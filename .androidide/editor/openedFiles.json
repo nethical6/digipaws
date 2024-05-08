@@ -1,0 +1,110 @@
+{
+  "allFiles": [
+    {
+      "file": "/storage/emulated/0/Digipaws/app/src/main/java/nethical/digipaws/utils/SurvivalModeConfig.java",
+      "selection": {
+        "end": {
+          "column": 21,
+          "index": 285,
+          "line": 9
+        },
+        "start": {
+          "column": 21,
+          "index": 285,
+          "line": 9
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/Digipaws/app/src/main/java/nethical/digipaws/utils/DigiUtils.java",
+      "selection": {
+        "end": {
+          "column": 107,
+          "index": 2129,
+          "line": 52
+        },
+        "start": {
+          "column": 107,
+          "index": 2129,
+          "line": 52
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/Digipaws/app/src/main/java/nethical/digipaws/blockers/AppBlocker.java",
+      "selection": {
+        "end": {
+          "column": 3,
+          "index": 1525,
+          "line": 36
+        },
+        "start": {
+          "column": 3,
+          "index": 1525,
+          "line": 36
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/Digipaws/app/src/main/java/nethical/digipaws/blockers/KeywordAction.java",
+      "selection": {
+        "end": {
+          "column": 42,
+          "index": 5235,
+          "line": 196
+        },
+        "start": {
+          "column": 42,
+          "index": 5235,
+          "line": 196
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/Digipaws/app/src/main/java/nethical/digipaws/blockers/ViewBlocker.java",
+      "selection": {
+        "end": {
+          "column": 40,
+          "index": 954,
+          "line": 25
+        },
+        "start": {
+          "column": 40,
+          "index": 954,
+          "line": 25
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/Digipaws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
+      "selection": {
+        "end": {
+          "column": 46,
+          "index": 1300,
+          "line": 38
+        },
+        "start": {
+          "column": 46,
+          "index": 1300,
+          "line": 38
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/Digipaws/app/src/main/java/nethical/digipaws/ui/LauncherHomeFragment.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 570,
+          "line": 18
+        },
+        "start": {
+          "column": 0,
+          "index": 570,
+          "line": 18
+        }
+      }
+    }
+  ],
+  "selectedFile": "/storage/emulated/0/Digipaws/app/src/main/java/nethical/digipaws/ui/LauncherHomeFragment.java"
+}

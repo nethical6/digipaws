@@ -1,0 +1,32 @@
+[
+  {
+    "category": "Chat Features",
+    "blockableViews": [
+      {
+        "viewId": "conversation_layout",
+        "title": "Chat Screen",
+        "description": "Block WhatsApp chat log"
+      },
+      {
+        "viewId": "status_container",
+        "title": "Status Screen",
+        "description": "Block opening status"
+      }
+    ]
+  },
+  {
+    "category": "Media",
+    "blockableViews": [
+      {
+        "viewId": "media_gallery",
+        "title": "Media Gallery",
+        "description": "Block access to media files"
+      },
+      {
+        "viewId": "video_player",
+        "title": "Video Player",
+        "description": "Block video playback"
+      }
+    ]
+  }
+]

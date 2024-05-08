@@ -1,0 +1,16 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Anti Uninstall">
+
+        <SwitchPreferenceCompat
+            android:key="disable_uninstall"
+            android:title="Disable Uninstall"
+             />
+
+        <SwitchPreferenceCompat android:key="block_settings" android:title="Block Settings" android:summary="Note:Provide device admin permission before disabling settings"/>
+    
+        
+
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,8 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  
+    <PreferenceCategory android:title="Search Term Blockers">
+        <SwitchPreferenceCompat android:key="porn_blocked" android:title="Block Porn" />
+        </PreferenceCategory>
+
+</PreferenceScreen>
