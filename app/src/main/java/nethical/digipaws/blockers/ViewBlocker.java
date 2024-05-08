@@ -15,6 +15,8 @@ import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.data.BlockableView;
 import nethical.digipaws.utils.data.SurvivalModeData;
 import nethical.digipaws.utils.SurvivalModeConfig;
+import nethical.digipaws.R;
+
 
 public class ViewBlocker {
 
@@ -57,7 +59,6 @@ public class ViewBlocker {
 					if (counter == 0) {
 						//user exceeded the threshold and punishment is started
 						DigiUtils.showToast(service, "Survival mode enabled");
-
 						SurvivalModeConfig.start(service.getApplicationContext(),
 								new SurvivalModeData(true,
 										SurvivalModeConfig.generateEndTime(service.getApplicationContext(), 1, 30),
@@ -65,10 +66,9 @@ public class ViewBlocker {
 						service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
 
 					} else {
-                        String msg =  "You got " + String.valueOf(counter)
-								+ " remaining attempts. Remember, passing this threshold will lead to a punishment.";
-					  DigiUtils.sendNotification(service,"Blocked: "+entry.getValue().getCommonName(),msg);
-
+                        String msg = "You have "+ String.valueOf(counter) +" remaining attempts. Exceeding this limit will result in a penalty.";
+                        DigiUtils.sendNotification(service,"Blocked " + entry.getValue().getCommonName(),msg);
+                        DigiUtils.updateStatCount(service,Constants.BLOCK_TYPE_VIEW);
 					}
 
 				}

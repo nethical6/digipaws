@@ -14,36 +14,27 @@ import androidx.constraintlayout.solver.state.helpers.BarrierReference;
 import nethical.digipaws.R;
 import nethical.digipaws.utils.SurvivalModeConfig;
 
+//shit not working idk why
 public class WidgetProvider extends AppWidgetProvider {
 
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        // Perform this loop procedure for each widget that belongs to this
-        // provider.
         int appWidgetId = appWidgetIds[0];
-            // Create an Intent to launch ExampleActivity
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
             
-
-            // Get the layout for the widget and attach an onClick listener to
-            // the button.
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-            
-            if (SurvivalModeConfig.isEnabled(context)) {
+        if (SurvivalModeConfig.isEnabled(context)) {
                 String survivalModeEndTime = SurvivalModeConfig.getUnlockTime(context);
                 
                 views.setTextViewText(R.id.stats_info,"Device locked until "+survivalModeEndTime+" hours. Attempt a quest to unlock device now!");
 		}else{
             views.setTextViewText(R.id.stats_info,generateStats(context));
         }
-            
-            // Tell the AppWidgetManager to perform an update on the current app
-            // widget.
-            appWidgetManager.updateAppWidget(appWidgetId, views);
+             appWidgetManager.updateAppWidget(appWidgetId, views);
         
     }
     
     	private String generateStats(Context context){
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
+		SharedPreferences preferences = context.getSharedPreferences("stats", Context.MODE_PRIVATE);
+	
 		int streak = preferences.getInt("streak",0);
 		int viewBlocked = preferences.getInt("viewblock_count",0);
 		int keywordBlocked = preferences.getInt("keywordblock_count",0);

@@ -1,7 +1,12 @@
 package nethical.digipaws.utils;
 
+import android.accessibilityservice.AccessibilityService;
+import android.app.LauncherActivity;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.SystemClock;
 import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
@@ -16,10 +21,14 @@ public class DigiUtils {
     }
     
     public static void sendNotification(Context context,String title,String content){
+       Intent activityIntent = new Intent(context, LauncherActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, activityIntent,PendingIntent.FLAG_UPDATE_CURRENT |PendingIntent.FLAG_IMMUTABLE);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, Constants.NOTIFICATION_CHANNEL)
         .setSmallIcon(R.drawable.paws)
         .setContentTitle(title)
         .setContentText(content)
+        .setContentIntent(pendingIntent)
         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
@@ -54,4 +63,18 @@ public class DigiUtils {
 		long currentTime = SystemClock.uptimeMillis();
 		preferences.edit().putLong(Constants.PREF_COOLDOWN_TIMESTAMP, currentTime).apply();
 	}
+    
+    public static String getStringFromResources(Context context, int stringResourceId, int formatArgs) {
+        Resources resources = context.getResources();
+        String string = resources.getString(stringResourceId);
+        return String.format(string, formatArgs);
+        }
+        
+   public static String getStringFromResources(AccessibilityService context, int stringResourceId, int formatArgs) {
+        Resources resources = context.getResources();
+        String string = resources.getString(stringResourceId);
+        return String.format(string, formatArgs);
+        
+
+}
 }
