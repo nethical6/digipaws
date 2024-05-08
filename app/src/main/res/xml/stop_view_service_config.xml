@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+<accessibility-service
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityEventTypes="typeWindowContentChanged|typeWindowStateChanged"
     android:accessibilityFeedbackType="feedbackGeneric"
     android:accessibilityFlags="flagDefault"
     android:canRetrieveWindowContent="true"
     android:description="@string/app_name"
-	android:notificationTimeout="1000"
+    android:notificationTimeout="1000"
     android:packageNames="com.google.android.youtube,com.instagram.android,com.reddit.frontpage"
-	/>
-
+    
+/>

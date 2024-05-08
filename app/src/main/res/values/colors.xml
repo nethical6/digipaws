@@ -1,13 +1,12 @@
 <resources>
-	<color name="colorPrimary">#1c1b1f</color>
-	<color name="colorPrimaryDark">#100f13</color>
-	<color name="colorAccent">#00C853</color>
-	<color name="colorControlHighlight">#2ECC71</color>
-	<color name="colorControlNormal">#29272a</color>
-	<color name="app_background_color">#1C1B1F</color>
-	<color name="equalizer_color">#A7948B</color>
-	<color name="white">#E5E1E5</color>
-	
-	<color name="lgrey">#808080</color>
-	<color name="lgreen">#90EE90</color>
+    <color name="colorPrimary">#1c1b1f</color>
+    <color name="colorPrimaryDark">#100f13</color>
+    <color name="colorAccent">#00C853</color>
+    <color name="colorControlHighlight">#2ECC71</color>
+    <color name="colorControlNormal">#29272a</color>
+    <color name="app_background_color">#1C1B1F</color>
+    <color name="equalizer_color">#A7948B</color>
+    <color name="white">#E5E1E5</color>
+    <color name="lgrey">#808080</color>
+    <color name="lgreen">#90EE90</color>
 </resources>

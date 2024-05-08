@@ -31,106 +31,93 @@ import nethical.digipaws.R;
 import nethical.digipaws.utils.FragmentChangeListener;
 import nethical.digipaws.utils.KeyboardUtils;
 import nethical.digipaws.utils.ListApps;
+
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
 
-    private List<ListApps.AppModel> appsList;
-    private List<ListApps.AppModel> originalList; // To hold the original unfiltered list
-    private Context context;
-	private FragmentChangeListener fragmentChangeListener;
-	
-    public AppAdapter(Context context, List<ListApps.AppModel> appsList,FragmentChangeListener listener) {
-        this.context = context;
-        this.appsList = appsList;
-        this.originalList = new ArrayList<>(appsList); // Make a copy of the original list
-		this.fragmentChangeListener = listener;
-		
-	
-   
-	}
+  private List<ListApps.AppModel> appsList;
+  private List<ListApps.AppModel> originalList; // To hold the original unfiltered list
+  private Context context;
+  private FragmentChangeListener fragmentChangeListener;
 
-    @NonNull
-    @Override
-    public AppViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		 
-        View view = LayoutInflater.from(context).inflate(R.layout.item_app, parent, false);
-        return new AppViewHolder(view);
-    }
+  public AppAdapter(
+      Context context, List<ListApps.AppModel> appsList, FragmentChangeListener listener) {
+    this.context = context;
+    this.appsList = appsList;
+    this.originalList = new ArrayList<>(appsList); // Make a copy of the original list
+    this.fragmentChangeListener = listener;
+  }
 
-    @Override
-    public void onBindViewHolder(@NonNull AppViewHolder holder, int position) {
-        final ListApps.AppModel appInfo = appsList.get(position);
-      holder.appName.setText(appInfo.getAppLabel());
-        
-	
-       
-      
+  @NonNull
+  @Override
+  public AppViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        // Set click listener to open the app or settings activity
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-				KeyboardUtils.hideKeyboard(context,v);
-	   
-                
-                if ("nethical.digipaws".equals(appInfo.getPackageName())) {
-                    openSettingsActivity();
-                } else {
-                    openApp(appInfo.getPackageName());
-                }
+    View view = LayoutInflater.from(context).inflate(R.layout.item_app, parent, false);
+    return new AppViewHolder(view);
+  }
+
+  @Override
+  public void onBindViewHolder(@NonNull AppViewHolder holder, int position) {
+    final ListApps.AppModel appInfo = appsList.get(position);
+    holder.appName.setText(appInfo.getAppLabel());
+
+    // Set click listener to open the app or settings activity
+    holder.itemView.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            KeyboardUtils.hideKeyboard(context, v);
+
+            if ("nethical.digipaws".equals(appInfo.getPackageName())) {
+              openSettingsActivity();
+            } else {
+              openApp(appInfo.getPackageName());
             }
+          }
         });
-    }
+  }
 
-    @Override
-    public int getItemCount() {
-        return appsList.size();
-    }
+  @Override
+  public int getItemCount() {
+    return appsList.size();
+  }
 
-    private void openApp(String packageName) {
-        PackageManager pm = context.getPackageManager();
-        Intent intent = pm.getLaunchIntentForPackage(packageName);
-        if (intent != null) {
-            context.startActivity(intent);
-        } else {
-            // App not found or unable to launch
-            // You can handle this case as needed
-        }
+  private void openApp(String packageName) {
+    PackageManager pm = context.getPackageManager();
+    Intent intent = pm.getLaunchIntentForPackage(packageName);
+    if (intent != null) {
+      context.startActivity(intent);
+    } else {
     }
+  }
 
-    private void openSettingsActivity() {
-		
-		// Create a new instance of the fragment you want to replace with
-		Fragment x = new SettingsFragment();
-		// Replace the existing fragment in the container view (replace with your container ID)
-		if (fragmentChangeListener != null) {
-                    fragmentChangeListener.onFragmentChange(x);
-                }
-    }
+  private void openSettingsActivity() {
 
-    public static class AppViewHolder extends RecyclerView.ViewHolder {
-        ImageView appIcon;
-        TextView appName;
-		
-		
-        public AppViewHolder(@NonNull View itemView) {
-            super(itemView);
-            
-			appName = itemView.findViewById(R.id.app_name);
-		
-        }
-		
-		
+    // Create a new instance of the fragment you want to replace with
+    Fragment x = new SettingsFragment();
+    // Replace the existing fragment in the container view (replace with your container ID)
+    if (fragmentChangeListener != null) {
+      fragmentChangeListener.onFragmentChange(x);
     }
-	
-	
+  }
 
-    public void filterList(List<ListApps.AppModel> filteredList) {
-        appsList = filteredList;
-        notifyDataSetChanged();
-    }
+  public static class AppViewHolder extends RecyclerView.ViewHolder {
+    ImageView appIcon;
+    TextView appName;
 
-    public void resetList() {
-        appsList = new ArrayList<>(originalList);
-        notifyDataSetChanged();
+    public AppViewHolder(@NonNull View itemView) {
+      super(itemView);
+
+      appName = itemView.findViewById(R.id.app_name);
     }
+  }
+
+  public void filterList(List<ListApps.AppModel> filteredList) {
+    appsList = filteredList;
+    notifyDataSetChanged();
+  }
+
+  public void resetList() {
+    appsList = new ArrayList<>(originalList);
+    notifyDataSetChanged();
+  }
 }

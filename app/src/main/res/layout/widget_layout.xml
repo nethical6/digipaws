@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
-     android:layout_height="match_parent"
-     android:layout_width="match_parent"
-     android:background="@color/app_background_color"
-     android:padding="8dp"
-     android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/app_background_color"
+    android:padding="8dp"
+    android:orientation="vertical"
+    >
 
     <TextView
-         android:layout_height="wrap_content"
-         android:layout_width="match_parent"
-         android:gravity="center|center_horizontal|center_vertical"
-         android:textSize="30sp"
-         android:textColor="@color/white"
-         android:id="@+id/title"
-         android:text="Start Quest" />
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:id="@+id/title"
+        android:text="Start Quest"
+        />
 
     <TextView
         android:layout_height="wrap_content"
@@ -24,12 +26,14 @@
         android:textSize="12sp"
         android:id="@+id/stats_info"
         android:textColor="@color/white"
-        android:text="Device locked until 69:00 hours" />
+        android:text="Device locked until 69:00 hours"
+        />
 
     <ImageView
-         android:layout_height="wrap_content"
-         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:src="@drawable/paws"
-         android:layout_weight="1" />
+        android:layout_weight="1"
+        />
 
 </LinearLayout>

@@ -1,8 +1,3 @@
 package nethical.digipaws.utils.adapters;
 
-public class AppSelectorAdapter {
-	
-	
-	
-	}
-	
+public class AppSelectorAdapter {}

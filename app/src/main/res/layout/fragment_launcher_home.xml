@@ -1,15 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true" >
+    android:fitsSystemWindows="true"
+    >
 
     <LinearLayout
         android:id="@+id/homeScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical|center|center_horizontal"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/hhTime"
@@ -17,7 +20,8 @@
             android:layout_height="wrap_content"
             android:letterSpacing="0.2"
             android:text="0669"
-            android:textSize="120sp" />
+            android:textSize="120sp"
+            />
 
         <TextView
             android:id="@+id/mmTime"
@@ -27,43 +31,48 @@
             android:paddingBottom="0px"
             android:text="0669"
             android:textColor="@color/lgreen"
-            android:textSize="120sp" />
+            android:textSize="120sp"
+            />
 
         <TextView
             android:id="@+id/Date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sunday, April 9"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            />
 
         <LinearLayout
             android:id="@+id/info_layout"
-			android:layout_margin="20dp"
+            android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-			android:background="@color/colorControlNormal"
-            android:padding="8dp" >
+            android:background="@color/colorControlNormal"
+            android:padding="8dp"
+            >
 
-            
-           <TextView
-		   android:id="@+id/info"
-		   android:layout_width="match_parent"
-		   android:layout_height="wrap_content"
-		   android:gravity="center_vertical|center|center_horizontal"
-		   android:padding="8dp"
-		   android:text="Smile!"
-		   android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center|center_horizontal"
+                android:padding="8dp"
+                android:text="Smile!"
+                android:textSize="12sp"
+                />
         </LinearLayout>
 
-        </LinearLayout>
+    </LinearLayout>
 
 
     <nethical.digipaws.view.EqualizerView
         android:id="@+id/equalizerView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

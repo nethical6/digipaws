@@ -15,11 +15,11 @@ import nethical.digipaws.utils.data.SurvivalModeData;
 import java.util.regex.Pattern;
 import nethical.digipaws.utils.SurvivalModeConfig;
 
-public class KeywordAction{
+public class KeywordAction {
 
   private static AccessibilityNodeInfo focusedEditText;
 
-//todo: load it from a file instead
+  // todo: load it from a file instead
   private static final List<String> KEYWORDS =
       Arrays.asList(
           "adult",
@@ -151,10 +151,10 @@ public class KeywordAction{
   private static AccessibilityService servicex;
   private static SharedPreferences preferences;
   private static Context context;
-  
+
   public static void performAction(AccessibilityService service, AccessibilityEvent event) {
     preferences = PreferenceManager.getDefaultSharedPreferences(service);
-	context=service;
+    context = service;
     if (preferences == null) {
       preferences = PreferenceManager.getDefaultSharedPreferences(service);
     }
@@ -162,7 +162,6 @@ public class KeywordAction{
       return; // Ignore action if cooldown is active
     }
 
-  
     AccessibilityNodeInfo rootNode = service.getRootInActiveWindow();
     if (rootNode != null) {
       traverseNodesForKeywords(rootNode);
@@ -180,14 +179,16 @@ public class KeywordAction{
         focusedEditText = node;
         String editTextContent = nodeText.toString().toLowerCase();
         if (containsKeyword(editTextContent)) {
-         // DefaultAction.showToast(servicex, "Keyword found in EditText: ");
-          DigiUtils.sendNotification(context,"Keword Blocked","Survival Mode Enabled");         
-                    
-		  SurvivalModeConfig.start(context,new SurvivalModeData(true,SurvivalModeConfig.generateEndTime(servicex,0,30),"null","null"));
-		  DigiUtils.updateStatCount(context,Constants.BLOCK_TYPE_KEYWORD);
-		
-		servicex.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
-          
+          // DefaultAction.showToast(servicex, "Keyword found in EditText: ");
+          DigiUtils.sendNotification(context, "Keword Blocked", "Survival Mode Enabled");
+
+          SurvivalModeConfig.start(
+              context,
+              new SurvivalModeData(
+                  true, SurvivalModeConfig.generateEndTime(servicex, 0, 30), "null", "null"));
+          DigiUtils.updateStatCount(context, Constants.BLOCK_TYPE_KEYWORD);
+
+          servicex.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
         }
       }
     }
@@ -197,8 +198,6 @@ public class KeywordAction{
       traverseNodesForKeywords(childNode);
     }
   }
-
-
 
   private static boolean containsKeyword(String text) {
     String lowerCaseText = text.toLowerCase().trim();
