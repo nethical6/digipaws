@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import nethical.digipaws.Constants;
 import nethical.digipaws.R;
 import nethical.digipaws.services.LocationTrackerService;
 import nethical.digipaws.utils.LocationHelper;
@@ -39,15 +40,15 @@ public class LocationQuestFragment extends Fragment {
     private MapView map = null;
     private Button start;
     private TextView countdownText;
-    private CountDownTimer timer;
-    private boolean isQuestRunning = false;
+	private boolean isQuestRunning = false;
     private Location radarLocation;
 
     private boolean isZoomed = false; // checks if map has been zoomed to current location
-    LocationHelper liveLocationTracker = null;
-
+    private LocationHelper liveLocationTracker = null;
+	
     private MyLocationNewOverlay mLocationOverlay;
 
+private SharedPreferences locationPreference;
     public LocationQuestFragment() {
         // Required empty public constructor
     }
@@ -119,22 +120,10 @@ public class LocationQuestFragment extends Fragment {
 
         long startTime = 5 * 60 * 1000; // 5 minutes in milliseconds
         long interval = 1000; // Update every second
-
-        timer =
-                new CountDownTimer(startTime, interval) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                        // Update the TextView with remaining time
-                        countdownText.setText("Time Remaining: " + formatTime(millisUntilFinished));
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        countdownText.setText("Time Up!");
-                        liveLocationTracker.stopLocationUpdates();
-                        isQuestRunning = false;
-                    }
-                };
+		
+		locationPreference = requireContext().getSharedPreferences(Constants.LOC_QUEST_DATA_PREF, Context.MODE_PRIVATE);
+		
+        
 
         new Thread(
                         () -> {
@@ -153,71 +142,99 @@ public class LocationQuestFragment extends Fragment {
 
                                                 // Use the location data here
                                                 myLocation.setPosition(currentLocation);
+												
                                             }
                                         }
                                     });
                             liveLocationTracker.startLocationUpdates();
                         })
                 .start();
+				makeRadar();
+/*
+if(locationPreference.getBoolean("is_radar_drawn",false)){
+	float latitude = locationPreference.getFloat("radar_latitude",0.0f);
+	float longitude = locationPreference.getFloat("radar_longitude",0.0f);
+	radarLocation.setLatitude(latitude);
+	radarLocation.setLongitude(longitude);
+	addCircleTo(radarLocation.getLatitude(),radarLocation.getLongitude(),100);
+}else{
+	makeRadar();
+	
+	
+}
 
-        LocationHelper locationHelperCircle = new LocationHelper(requireContext());
-
-        locationHelperCircle.setLiveLocationListener(
-                new LocationHelper.LocationListener() {
-                    @Override
-                    public void onLocationChanged(Location location) {
-                        if (location != null) {
-
-                            GeoPoint currentLocation =
-                                    new GeoPoint(location.getLatitude(), location.getLongitude());
-                            locationHelperCircle.stopLocationUpdates();
-
-                            IMapController controller = map.getController();
-                            controller.setZoom(17.0);
-                            controller.animateTo(currentLocation);
-                        
-                            isZoomed = false;
-
-                            double latitude = location.getLatitude();
-                            double longitude = location.getLongitude();
-                            double radius = 100; // Radius in meters
-
-                            Polygon circlePolygon = drawCircle(map, latitude, longitude, radius);
-                            map.getOverlays().add(circlePolygon);
-                            radarLocation = location;
- 
-       
-                        }
-                    }
-                });
-        locationHelperCircle.startLocationUpdates();
-
+if(locationPreference.getBoolean("is_quest_running",false)){
+	start.setText("Stop Quest");
+	isQuestRunning=true;
+	
+}*/
+        
         start.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (isQuestRunning) {
-
-                            isQuestRunning = false;
-                            start.setText("Start");
-                            timer.cancel();
-                            countdownText.setText("Time: 5mins");
-                            liveLocationTracker.stopLocationUpdates();
+							
+							isQuestRunning=false;
+                            start.setEnabled(true);
                             return;
                         }
-                        isQuestRunning = true;
-                        timer.start();
-                                           SharedPreferences preferences = requireContext().getSharedPreferences("location_quest", Context.MODE_PRIVATE);
-                        preferences.edit().putFloat("radar_latitude", (float)radarLocation.getLatitude()).apply();
-               preferences.edit().putFloat("radar_longitude", (float)radarLocation.getLongitude()).apply();
-               
+                        
+                        
+						isQuestRunning=true;
+						start.setEnabled(false);
+						start.setVisibility(View.INVISIBLE);//todo: animate it to fade away
+                        
+                        locationPreference.edit().putFloat(Constants.LOC_QUEST_RADAR_LAT_PREF, (float)radarLocation.getLatitude()).apply();
+               locationPreference.edit().putFloat(Constants.LOC_QUEST_RADAR_LON_PREF, (float)radarLocation.getLongitude()).apply();
+               locationPreference.edit().putBoolean("is_quest_running",true).apply();
+			   locationPreference.edit().putBoolean("is_radar_drawn",true).apply();
+			   
                     Intent serviceIntent = new Intent(requireContext(), LocationTrackerService.class);
 ContextCompat.startForegroundService(requireContext(), serviceIntent);
 
-                        start.setText("Stop Quest");
+                       
                     }
                 });
     }
+	
+	private void makeRadar(){
+		LocationHelper locationHelperCircle = new LocationHelper(requireContext());
+		
+		locationHelperCircle.setLiveLocationListener(
+		new LocationHelper.LocationListener() {
+			@Override
+			public void onLocationChanged(Location location) {
+				if (location != null) {
+					
+					GeoPoint currentLocation =
+					new GeoPoint(location.getLatitude(), location.getLongitude());
+					locationHelperCircle.stopLocationUpdates();
+					
+					IMapController controller = map.getController();
+					controller.setZoom(17.0);
+					controller.animateTo(currentLocation);
+					
+					isZoomed = false;
+					
+					double latitude = location.getLatitude();
+					double longitude = location.getLongitude();
+					double radius = Constants.LOC_QUEST_RADAR_RADIUS; // Radius in meters
+					
+					addCircleTo(latitude,longitude,radius);
+					radarLocation = location;
+					
+					
+				}
+			}
+		});
+		locationHelperCircle.startLocationUpdates();
+	}
+	
+	private void addCircleTo(double latitude,double longitude,double radius){
+		Polygon circlePolygon = drawCircle(map, latitude, longitude, radius);
+		map.getOverlays().add(circlePolygon);
+	}
 
     private void resetStatusBarColor() {
         // Get the hosting activity and reset status bar color as well as the navigation bar color

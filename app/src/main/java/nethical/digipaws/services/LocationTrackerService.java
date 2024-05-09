@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.os.CountDownTimer;
 import androidx.core.app.NotificationManagerCompat;
 import nethical.digipaws.Constants;
 import nethical.digipaws.R;
@@ -34,23 +35,36 @@ public class LocationTrackerService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Create a notification
         NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext(), Constants.NOTIFICATION_CHANNEL)
-                .setContentTitle("Service Running")
-                .setContentText("This service is performing a long-running task")
+                .setContentTitle("Quest Running")
+                .setContentText("A quest is running in the background")
                 .setSmallIcon(R.drawable.paws)
         .setChronometerCountDown(true)
+		.setOngoing(true)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
       notificationManager.notify(69, notification.build());
         
-        SharedPreferences preferences = this.getSharedPreferences("location_quest", Context.MODE_PRIVATE);
-        radarLocation.setLatitude(preferences.getFloat("radar_latitude",0.0f));
-        radarLocation.setLongitude(preferences.getFloat("radar_longitude",0.0f));
         
         final Context context = this;
+		
+		
+		
+		
+		
         new Thread(
+		
                         () -> {
-                            // Run code on background thread
+							
+							
+                            SharedPreferences preferences = context.getSharedPreferences(Constants.LOC_QUEST_DATA_PREF, Context.MODE_PRIVATE);
+							radarLocation.setLatitude(preferences.getFloat(Constants.LOC_QUEST_RADAR_LAT_PREF,0.0f));
+							radarLocation.setLongitude(preferences.getFloat(Constants.LOC_QUEST_RADAR_LON_PREF,0.0f));
+							
+							
+							
+							
+							
                             liveLocationTracker = new LocationHelper(getApplicationContext());
 
                             liveLocationTracker.setLiveLocationListener(
@@ -58,28 +72,32 @@ public class LocationTrackerService extends Service {
                                         @Override
                                         public void onLocationChanged(Location location) {
                                             if (location != null) {
+												
+												
                                                 GeoPoint currentLocation =
                                                         new GeoPoint(
                                                                 location.getLatitude(),
                                                                 location.getLongitude());
 
                                                 
-                                                if (true) {
+                                                
                                                     double distance =
                                                             liveLocationTracker
                                                                     .getDistanceBetweenLocations(
                                                                             location,
                                                                             radarLocation);
 
-                                                    if (distance > 100) {
+                                                    if (distance > Constants.LOC_QUEST_RADAR_RADIUS) {
                                         
                                                         
-                                                        //SurvivalModeConfig.stop(context);
+                                                        SurvivalModeConfig.stop(context);
                                         //DigiUtils.showToast(context,"done");
-                                       DigiUtils.sendNotification(context,"Quest done","w");
-                                        
+                                       DigiUtils.sendNotification(context,"Quest Completed!!!","Survival Mode has been disabled");
+                                        liveLocationTracker.stopLocationUpdates();
+										
+										stopForeground(true);
                                                     }
-                                                }
+                                                
                                             }
                                         }
                                     });

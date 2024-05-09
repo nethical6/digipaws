@@ -30,9 +30,7 @@ public class SurvivalModeConfig {
         editor.apply();
     }
 	
-	public static void generateEmptySurvivalMode(){
-		
-	}
+	
 
     public static void stop(Context context) {
 		
@@ -40,7 +38,6 @@ public class SurvivalModeConfig {
 		if(sd!=null){
 			sd.setEnabled(false);
 		}
-        
 
         resetCounter(context);
 

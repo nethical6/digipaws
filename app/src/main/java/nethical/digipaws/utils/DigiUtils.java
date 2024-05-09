@@ -22,6 +22,7 @@ public class DigiUtils {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
+
     public static void sendNotification(Context context, String title, String content) {
         Intent activityIntent = new Intent(context, LauncherActivity.class);
         PendingIntent pendingIntent =
