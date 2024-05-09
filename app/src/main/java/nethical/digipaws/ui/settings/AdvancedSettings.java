@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
@@ -54,20 +53,28 @@ public class AdvancedSettings extends PreferenceFragmentCompat
             boolean isSwitchOn = sharedPreferences.getBoolean(key, false);
             if (isSwitchOn) {
                 // Switch is turned on
-                devicePolicyManager = (DevicePolicyManager) requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
-                deviceAdminReceiver = new ComponentName(requireContext(), MyDeviceAdminReceiver.class);
+                devicePolicyManager =
+                        (DevicePolicyManager)
+                                requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
+                deviceAdminReceiver =
+                        new ComponentName(requireContext(), MyDeviceAdminReceiver.class);
 
                 // Check if the app is a device administrator
                 if (!devicePolicyManager.isAdminActive(deviceAdminReceiver)) {
                     Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
                     intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, deviceAdminReceiver);
-                    intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Enable device admin to protect app");
+                    intent.putExtra(
+                            DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+                            "Enable device admin to protect app");
                     startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);
                 }
             } else {
                 // Switch is turned off
-                devicePolicyManager = (DevicePolicyManager) requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
-                deviceAdminReceiver = new ComponentName(requireContext(), MyDeviceAdminReceiver.class);
+                devicePolicyManager =
+                        (DevicePolicyManager)
+                                requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
+                deviceAdminReceiver =
+                        new ComponentName(requireContext(), MyDeviceAdminReceiver.class);
 
                 // Disable the device admin if it was enabled
                 if (devicePolicyManager != null && deviceAdminReceiver != null) {
@@ -90,7 +97,11 @@ public class AdvancedSettings extends PreferenceFragmentCompat
                 if (devicePolicyManager != null && deviceAdminReceiver != null) {
                     devicePolicyManager.removeActiveAdmin(deviceAdminReceiver);
                 }
-                Toast.makeText(requireContext(), "Failed to enable device admin", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                                requireContext(),
+                                "Failed to enable device admin",
+                                Toast.LENGTH_SHORT)
+                        .show();
             }
         }
     }

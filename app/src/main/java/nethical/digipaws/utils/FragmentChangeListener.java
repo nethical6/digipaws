@@ -1,4 +1,5 @@
 package nethical.digipaws.utils;
+
 import androidx.fragment.app.Fragment;
 
 public interface FragmentChangeListener {
