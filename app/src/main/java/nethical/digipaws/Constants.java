@@ -6,10 +6,10 @@ public class Constants {
     public static final String NOTIF_PREF = "block_notification";
     public static final String LAUNCHER_PREF = "launcher_enabled";
 
-public static final String LOC_QUEST_DATA_PREF = "location_quest";
-public static final String LOC_QUEST_RADAR_LAT_PREF = "radar_latitude";
-public static final String LOC_QUEST_RADAR_LON_PREF = "radar_longitude";
-public static final int LOC_QUEST_RADAR_RADIUS = 100; // distance in meters
+    public static final String LOC_QUEST_DATA_PREF = "location_quest";
+    public static final String LOC_QUEST_RADAR_LAT_PREF = "radar_latitude";
+    public static final String LOC_QUEST_RADAR_LON_PREF = "radar_longitude";
+    public static final int LOC_QUEST_RADAR_RADIUS = 100; // distance in meters
 
     public static final String PREF_COOLDOWN_TIMESTAMP = "cooldown_timestamp";
 

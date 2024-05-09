@@ -29,15 +29,13 @@ public class SurvivalModeConfig {
         editor.putString(DATA_KEY, json);
         editor.apply();
     }
-	
-	
 
     public static void stop(Context context) {
-		
+
         SurvivalModeData sd = getInfo(context);
-		if(sd!=null){
-			sd.setEnabled(false);
-		}
+        if (sd != null) {
+            sd.setEnabled(false);
+        }
 
         resetCounter(context);
 

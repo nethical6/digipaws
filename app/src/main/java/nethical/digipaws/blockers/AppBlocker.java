@@ -27,7 +27,7 @@ public class AppBlocker {
                     service, "Settings Blocked", "Entering Settings has been blocked");
             return;
         }
-        
+
         if (SurvivalModeConfig.isEnabled(service)) {
             service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
             DigiUtils.sendNotification(

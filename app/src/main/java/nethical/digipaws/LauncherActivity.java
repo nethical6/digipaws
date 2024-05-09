@@ -9,13 +9,11 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
-import nethical.digipaws.services.LocationTrackerService;
 import nethical.digipaws.ui.LauncherHomeFragment;
 import nethical.digipaws.ui.SettingsFragment;
 
@@ -53,8 +51,6 @@ public class LauncherActivity extends AppCompatActivity {
         }
         transaction.addToBackStack(null);
         transaction.commit();
-        
-       
     }
 
     private void showToast(String message) {

@@ -187,9 +187,8 @@ public class LauncherHomeFragment extends Fragment {
                                                 .beginTransaction()
                                                 .setCustomAnimations(
                                                         R.anim.fade_enter,
-                                                        R.anim
-                                                                .fade_exit) // Use 0 for no exit
-                                                                            // animation
+                                                        R.anim.fade_exit) // Use 0 for no exit
+                                                // animation
                                                 .replace(
                                                         R.id.fragment_container,
                                                         launcherAppsFragment)
