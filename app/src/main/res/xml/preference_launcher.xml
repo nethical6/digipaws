@@ -1,23 +1,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreferenceCompat
+        android:key="launcher_enabled"
+        android:title="Enable Launcher" />
 
-<SwitchPreferenceCompat
-            android:key="launcher_enabled"
-            android:title="Enable Launcher" />
-
-
-  <PreferenceCategory
-        android:title="Additional Features">
-
+    <PreferenceCategory android:title="Additional Features">
         <SwitchPreferenceCompat
             android:key="equalizer"
             android:title="Music Equalizer" />
-
         <SwitchPreferenceCompat
             android:key="block_hate"
             android:title="Block Slangs" />
-
     </PreferenceCategory>
-
-    
-
 </PreferenceScreen>

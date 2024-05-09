@@ -5,7 +5,6 @@
     android:accessibilityFlags="flagDefault"
     android:canRetrieveWindowContent="true"
     android:description="@string/app_name"
-	android:notificationTimeout="1000"
-    android:packageNames="com.google.android.youtube,com.instagram.android,com.reddit.frontpage"
-	/>
+    android:notificationTimeout="1000"
+    android:packageNames="com.google.android.youtube,com.instagram.android,com.reddit.frontpage" />
 
