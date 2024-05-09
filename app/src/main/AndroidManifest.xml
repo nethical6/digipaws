@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" 
+	package="nethical.digipaws">
 
 
     <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="31"/>
@@ -53,7 +54,13 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/stop_view_service_config" />
         </service>
-
+        
+        <service
+        android:name=".services.LocationTrackerService"
+        android:foregroundServiceType="location"
+        android:exported="false">
+        </service>
+        
         <receiver
             android:exported="false"
             android:name=".MyDeviceAdminReceiver"

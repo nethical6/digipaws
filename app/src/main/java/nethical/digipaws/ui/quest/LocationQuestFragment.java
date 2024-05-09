@@ -1,6 +1,8 @@
 package nethical.digipaws.ui.quest;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -13,10 +15,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import nethical.digipaws.R;
+import nethical.digipaws.services.LocationTrackerService;
 import nethical.digipaws.utils.LocationHelper;
 import nethical.digipaws.utils.SurvivalModeConfig;
 
@@ -149,25 +153,6 @@ public class LocationQuestFragment extends Fragment {
 
                                                 // Use the location data here
                                                 myLocation.setPosition(currentLocation);
-
-                                                if (isQuestRunning) {
-                                                    double distance =
-                                                            liveLocationTracker
-                                                                    .getDistanceBetweenLocations(
-                                                                            location,
-                                                                            radarLocation);
-
-                                                    if (distance > 100) {
-                                                        Toast.makeText(
-                                                                        requireContext(),
-                                                                        "Quest Completed "
-                                                                                + String.valueOf(
-                                                                                        distance),
-                                                                        Toast.LENGTH_LONG)
-                                                                .show();
-                                                        SurvivalModeConfig.stop(requireContext());
-                                                    }
-                                                }
                                             }
                                         }
                                     });
@@ -190,7 +175,7 @@ public class LocationQuestFragment extends Fragment {
                             IMapController controller = map.getController();
                             controller.setZoom(17.0);
                             controller.animateTo(currentLocation);
-
+                        
                             isZoomed = false;
 
                             double latitude = location.getLatitude();
@@ -200,6 +185,8 @@ public class LocationQuestFragment extends Fragment {
                             Polygon circlePolygon = drawCircle(map, latitude, longitude, radius);
                             map.getOverlays().add(circlePolygon);
                             radarLocation = location;
+ 
+       
                         }
                     }
                 });
@@ -220,6 +207,13 @@ public class LocationQuestFragment extends Fragment {
                         }
                         isQuestRunning = true;
                         timer.start();
+                                           SharedPreferences preferences = requireContext().getSharedPreferences("location_quest", Context.MODE_PRIVATE);
+                        preferences.edit().putFloat("radar_latitude", (float)radarLocation.getLatitude()).apply();
+               preferences.edit().putFloat("radar_longitude", (float)radarLocation.getLongitude()).apply();
+               
+                    Intent serviceIntent = new Intent(requireContext(), LocationTrackerService.class);
+ContextCompat.startForegroundService(requireContext(), serviceIntent);
+
                         start.setText("Stop Quest");
                     }
                 });
