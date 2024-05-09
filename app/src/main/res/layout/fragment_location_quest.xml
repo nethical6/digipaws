@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <org.osmdroid.views.MapView
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:layout_above="@+id/bottom_linear_layout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
@@ -16,35 +16,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-	    android:gravity="center_vertical|center|center_horizontal"
+        android:gravity="center_vertical|center|center_horizontal"
         android:orientation="vertical"
-        android:padding="8dp" >
-
+        android:padding="8dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center|center_horizontal"
             android:text="Quest: TOUCH GRASS"
             android:textSize="35dp" />
-<TextView
-	android:id="@+id/countdown_timer_loc"
+
+        <TextView
+            android:id="@+id/countdown_timer_loc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Time: 5 mins" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-			android:textColor="@color/lgrey"
+            android:textColor="@color/lgrey"
             android:gravity="center_vertical|center|center_horizontal"
-            android:text="Take your phone out of this red zone to unlock device." 
-			/>
+            android:text="Take your phone out of this red zone to unlock device." />
+
         <Button
             android:id="@+id/start_location_quest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-			
-			android:backgroundTint="@color/colorControlNormal"
+            android:backgroundTint="@color/colorControlNormal"
             android:text="Start" />
     </LinearLayout>
-
 </RelativeLayout>
