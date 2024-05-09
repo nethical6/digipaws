@@ -5,6 +5,7 @@ on:
     paths-ignore:
       - '**.md'
       - '**.gradle'
+      - '**.xml'
   workflow_dispatch:
 
 jobs:
@@ -15,4 +16,4 @@ jobs:
       - uses: axel-op/googlejavaformat-action@v3.6.0
         with:
           args: '--replace --aosp --skip-reflowing-long-strings'
-          commitMessage: "Google Java format [skip ci]"
+          commitMessage: "refactor: Format Java-code [skip ci]"
