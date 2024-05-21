@@ -38,32 +38,11 @@ public class ViewBlocker {
 		
         for (int i = 0; i < BlockerData.shortsViewIds.length; i++) {
             if(isViewOpened(rootNode,BlockerData.shortsViewIds[i])){
-                
 			    punish(service,"shorts");
                 break;
 			    
 		    }
         }
-        /*
-        
-		// block youtube shorts
-		if(isViewOpened(rootNode,DigiConstants.YOUTUBE_SHORTS_VIEWID)){
-			if(BlockerConfig.isWarningDelayOver(service,"shorts")){
-				pressBack(service);
-				punish(service);
-			}
-			
-			
-			return;
-		}
-		
-		// block instagram reels
-		if(isViewOpened(rootNode,DigiConstants.INSTAGRAM_REELS_VIEWID)){
-			pressBack(service);
-			return;
-		}
-		
-	}*/
 	
 	}
 	
@@ -71,18 +50,15 @@ public class ViewBlocker {
 	private static void performEngagementAction(AccessibilityService service){
 		AccessibilityNodeInfo rootNode = service.getRootInActiveWindow();
 		
-		// block Youtube comment and description panel
-		if(isViewOpened(rootNode,DigiConstants.YOUTUBE_ENGAGEMENT_VIEWID)){
-			pressBack(service);
-			return;
-		}
-		
-		// block Instagram comments panel
-		if(isViewOpened(rootNode,DigiConstants.INSTAGRAM_COMMENTS_VIEWID)){
-			pressBack(service);
-			return;
-		}
-		
+		for (int i = 0; i < BlockerData.engagementPanelViewIds.length; i++) {
+            if(isViewOpened(rootNode,BlockerData.engagementPanelViewIds[i])){
+			    pressBack(service);
+                break;
+			    
+		    }
+        }
+        
+        
 	}
 	
 	public static void punish(AccessibilityService service,String blockerId){

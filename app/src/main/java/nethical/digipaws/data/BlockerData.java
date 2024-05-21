@@ -8,6 +8,10 @@ public class BlockerData {
         "com.instagram.android" + DigiConstants.VIEWID_SEPERATOR + "root_clips_layout"
     };
     
-    public static final String[] engagementPanelViewIds = {};
+    public static final String[] engagementPanelViewIds = {
+        "com.google.android.youtube" + DigiConstants.VIEWID_SEPERATOR + "engagement_panel_content",
+        "com.instagram.android" + DigiConstants.VIEWID_SEPERATOR + "comment_composer_parent"
+  
+    };
     
 }
