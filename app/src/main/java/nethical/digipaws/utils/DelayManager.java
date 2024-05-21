@@ -41,16 +41,6 @@ public class DelayManager {
 		return false;
 	}
 	
-	public static void setCurrentBlockerDelayTo(Context context,String viewId){
-		SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_BLOCKER_DELAY_FILE,
-		Context.MODE_PRIVATE);
-		sharedPreferences.edit().putString(DigiConstants.PREF_BLOCKER_DELAY_VIEWID_KEY,viewId).apply();
-	}
 	
-	public static String getCurrentBlockerDelayId(Context context){
-		SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_BLOCKER_DELAY_FILE,
-		Context.MODE_PRIVATE);
-		return sharedPreferences.getString(DigiConstants.PREF_BLOCKER_DELAY_VIEWID_KEY,"iusearchbtw");
-	}
 	
 }

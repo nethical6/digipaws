@@ -19,18 +19,9 @@ public class DigiConstants {
 	
 	public static final String VIEWID_SEPERATOR = ":id/";
 	
-	private static final String YOUTUBE_PACKAGE_NAME = "com.google.android.youtube";
-	public static final String YOUTUBE_SHORTS_VIEWID = YOUTUBE_PACKAGE_NAME + VIEWID_SEPERATOR + "reel_recycler";
-	public static final String YOUTUBE_ENGAGEMENT_VIEWID = YOUTUBE_PACKAGE_NAME + VIEWID_SEPERATOR + "engagement_panel_content"; // Blocks comment and description panel
-	
-	private static final String INSTAGRAM_PACKAGE_NAME = "com.instagram.android";
-	public static final String INSTAGRAM_REELS_VIEWID = INSTAGRAM_PACKAGE_NAME + VIEWID_SEPERATOR + "root_clips_layout";
-	public static final String INSTAGRAM_COMMENTS_VIEWID = INSTAGRAM_PACKAGE_NAME + VIEWID_SEPERATOR + "comment_composer_parent";
-	
 	public static final String PREF_BLOCKER_COOLDOWN_KEY = "cooldown";
 	public static final String PREF_BLOCKER_LAST_WARNING_TIME_KEY = "last_warning_time";
 	
-	public static final String PREF_BLOCKER_DELAY_FILE = "delay_data";
-	public static final String PREF_BLOCKER_DELAY_VIEWID_KEY = "current_running_delay_viewid";
+	
 	
 }
