@@ -78,9 +78,6 @@ public class OverlayManager {
 				AnimationHelper.fadeIn(closeButton,3000);
 				AnimationHelper.fadeIn(proceedButton,3000);
 			});
-			
-			
-			
 		});
 		
 	}

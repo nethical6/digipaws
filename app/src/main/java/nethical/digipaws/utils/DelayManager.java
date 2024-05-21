@@ -38,22 +38,17 @@ public class DelayManager {
     public static void updateGlobalActionDelay(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_GLOBAL_ACTIONS_COOLDOWN_FILE,
 		Context.MODE_PRIVATE);
-        sharedPreferences.edit().putLong(DigiConstants.PREF_GLOBAL_ACTION_TIME_KEY,SystemClock.uptimeMillis());
+        sharedPreferences.edit().putLong(DigiConstants.PREF_GLOBAL_ACTION_TIME_KEY,SystemClock.uptimeMillis()).apply();
     }
     
     public static boolean isGlobalActionCooldownActive(Context context){
        SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_GLOBAL_ACTIONS_COOLDOWN_FILE,
 		Context.MODE_PRIVATE);
         
-        if(!sharedPreferences.contains(DigiConstants.PREF_GLOBAL_ACTIONS_COOLDOWN_FILE)){
-            return false;
-        }
-        
-        Long diff = sharedPreferences.getLong(DigiConstants.PREF_GLOBAL_ACTION_TIME_KEY,0L) - SystemClock.uptimeMillis();
-        if(diff > DigiConstants.GLOBAL_ACTIONS_COOLDOWN_DELAY){
-            return true;
-        }
-        return false;
+        Long lastTimestamp = sharedPreferences.getLong(DigiConstants.PREF_GLOBAL_ACTION_TIME_KEY,0L);
+       
+        Long currentTime = SystemClock.uptimeMillis();
+        return currentTime - lastTimestamp < DigiConstants.GLOBAL_ACTIONS_COOLDOWN_DELAY;
     }
 	
 	
