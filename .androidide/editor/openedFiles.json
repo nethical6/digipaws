@@ -1,80 +1,50 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DelayManager.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/views/HollowCircleView.java",
       "selection": {
         "end": {
-          "column": 45,
-          "index": 975,
-          "line": 25
+          "column": 38,
+          "index": 1102,
+          "line": 36
         },
         "start": {
-          "column": 45,
-          "index": 975,
-          "line": 25
+          "column": 38,
+          "index": 1102,
+          "line": 36
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
       "selection": {
         "end": {
-          "column": 4,
-          "index": 929,
-          "line": 22
+          "column": 5,
+          "index": 1738,
+          "line": 49
         },
         "start": {
-          "column": 4,
-          "index": 929,
-          "line": 22
+          "column": 5,
+          "index": 1738,
+          "line": 49
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/home_fragment.xml",
       "selection": {
         "end": {
-          "column": 2,
-          "index": 1227,
-          "line": 37
+          "column": 0,
+          "index": 0,
+          "line": 0
         },
         "start": {
-          "column": 2,
-          "index": 1227,
-          "line": 37
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java",
-      "selection": {
-        "end": {
-          "column": 118,
-          "index": 2334,
-          "line": 66
-        },
-        "start": {
-          "column": 118,
-          "index": 2334,
-          "line": 66
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/OverlayManager.java",
-      "selection": {
-        "end": {
-          "column": 6,
-          "index": 2789,
-          "line": 79
-        },
-        "start": {
-          "column": 6,
-          "index": 2789,
-          "line": 79
+          "column": 0,
+          "index": 0,
+          "line": 0
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/views/HollowCircleView.java"
 }

@@ -1,6 +1,7 @@
 package nethical.digipaws.views;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +12,8 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.util.AttributeSet;
 import android.view.View;
+import androidx.core.view.WindowCompat;
+import com.google.android.material.color.MaterialColors;
 import nethical.digipaws.R;
 public class HollowCircleView extends View {
 	
@@ -18,23 +21,31 @@ public class HollowCircleView extends View {
 	private int strokeWidth = 5;
 	private int strokeColor = Color.BLACK;
 	private Bitmap image;
-	
+	private int colorPrimary;
+    
 	public HollowCircleView(Context context) {
 		super(context);
-		init(null);
+		init(null,context);
 	}
 	
 	public HollowCircleView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init(attrs);
+        init(attrs,context);
 	}
 	
 	public HollowCircleView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		init(attrs);
+		init(attrs,context);
+        
 	}
 	
-	private void init(AttributeSet attrs) {
+    public void setColor(int color){
+        this.colorPrimary = color;
+    }
+    
+	private void init(AttributeSet attrs,Context context) {
+        
+        
 		paint = new Paint();
 		paint.setAntiAlias(true);
 		// Load attributes from XML
@@ -48,7 +59,9 @@ public class HollowCircleView extends View {
 			}
 			a.recycle();
 		}
-		paint.setColor(strokeColor);
+        int colorPrimary = MaterialColors.getColor(context, com.google.android.material.R.attr.colorPrimary, strokeColor);
+		
+		paint.setColor(colorPrimary);
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setStrokeWidth(strokeWidth);
 	}
@@ -75,7 +88,7 @@ public class HollowCircleView extends View {
 			int centerY = height / 2 - image.getHeight() / 2;
 			
 			Paint imagePaint = new Paint();
-			imagePaint.setColorFilter(new PorterDuffColorFilter(strokeColor, PorterDuff.Mode.SRC_ATOP));
+			imagePaint.setColorFilter(new PorterDuffColorFilter(colorPrimary, PorterDuff.Mode.SRC_ATOP));
 			canvas.drawBitmap(image, centerX, centerY, imagePaint);
 		}
 	}
