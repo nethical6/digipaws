@@ -19,6 +19,9 @@ public class DigiConstants {
 	
 	public static final String VIEWID_SEPERATOR = ":id/";
 	
+    public static final String SHORTS_BLOCKER_ID = "shorts";
+    
+    
 	public static final String PREF_BLOCKER_LAST_WARNING_TIME_KEY = "last_warning_time";
     
     public static final String PREF_GLOBAL_ACTIONS_COOLDOWN_FILE = "global_action";

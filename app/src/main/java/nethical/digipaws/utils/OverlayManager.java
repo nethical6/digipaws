@@ -30,7 +30,7 @@ public class OverlayManager {
 		windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 	}
 	
-	public void showOverlay() {
+	public void showWarningOverlay() {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		overlayView = inflater.inflate(R.layout.warning_home_overlay, null);
 		

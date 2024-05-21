@@ -33,7 +33,7 @@ public class BlockerService extends AccessibilityService {
 		AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
 		| AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED;
 		info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
-		info.packageNames = LoadAppList.getPackageNames(this).stream().toArray(String[]::new);
+		//info.packageNames = LoadAppList.getPackageNames(this).stream().toArray(String[]::new);
 		setServiceInfo(info);
 		
 	}

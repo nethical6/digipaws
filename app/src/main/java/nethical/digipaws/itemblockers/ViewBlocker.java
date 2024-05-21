@@ -38,7 +38,7 @@ public class ViewBlocker {
 		
         for (int i = 0; i < BlockerData.shortsViewIds.length; i++) {
             if(isViewOpened(rootNode,BlockerData.shortsViewIds[i])){
-			    punish(service,"shorts");
+			    punish(service,DigiConstants.SHORTS_BLOCKER_ID);
                 break;
 			    
 		    }
@@ -70,8 +70,7 @@ public class ViewBlocker {
             if(DelayManager.isWarningDelayOver(service,blockerId)){
                 pressBack(service);
                 OverlayManager overlayManager = new OverlayManager(service,blockerId);
-				overlayManager.showOverlay();
-				
+				overlayManager.showWarningOverlay();
             }
 				
 			
