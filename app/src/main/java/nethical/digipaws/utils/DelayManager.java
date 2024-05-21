@@ -21,18 +21,9 @@ public class DelayManager {
 		Context.MODE_PRIVATE);
 		
 		float currentTime = SystemClock.uptimeMillis();
-		float lastWarningTime = sharedPreferences.getFloat(DigiConstants.PREF_BLOCKER_LAST_WARNING_TIME_KEY,0f);
+		float lastTimeStamp = sharedPreferences.getFloat(DigiConstants.PREF_BLOCKER_LAST_WARNING_TIME_KEY,0f);
 		
-		if(lastWarningTime==0f){
-			return true;
-		}
-		
-		float diff = currentTime - lastWarningTime;
-		if(diff > 30000){
-			return true;
-		}
-		
-		return false;
+		return currentTime - lastTimeStamp > 30000;
 	}
     
     public static void updateGlobalActionDelay(Context context){

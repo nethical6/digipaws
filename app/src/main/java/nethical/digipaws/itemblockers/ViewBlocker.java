@@ -64,7 +64,7 @@ public class ViewBlocker {
 	public static void punish(AccessibilityService service,String blockerId){
 		SharedPreferences preferences = service.getSharedPreferences(DigiConstants.PREF_VIEWBLOCKER_CONFIG_FILE,Context.MODE_PRIVATE);
 		
-		int difficulty = preferences.getInt(DigiConstants.PREF_PUNISHMENT_DIFFICULTY_KEY,DigiConstants.DIFFICULTY_LEVEL_EXTREME);
+		int difficulty = preferences.getInt(DigiConstants.PREF_PUNISHMENT_DIFFICULTY_KEY,DigiConstants.DIFFICULTY_LEVEL_EASY);
 		switch(difficulty){
 			case(DigiConstants.DIFFICULTY_LEVEL_EASY):
                 if(DelayManager.isWarningDelayOver(service,blockerId)){

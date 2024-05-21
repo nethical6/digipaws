@@ -21,12 +21,12 @@ public class DigiConstants {
 	
     public static final String SHORTS_BLOCKER_ID = "shorts";
     
-    
 	public static final String PREF_BLOCKER_LAST_WARNING_TIME_KEY = "last_warning_time";
     
+    // delay configs for actions like back press, home button etc...
     public static final String PREF_GLOBAL_ACTIONS_COOLDOWN_FILE = "global_action";
 	public static final String PREF_GLOBAL_ACTION_TIME_KEY = "last_global_press_time";
-    public static final int GLOBAL_ACTIONS_COOLDOWN_DELAY = 5000; // in ms
+    public static final int GLOBAL_ACTIONS_COOLDOWN_DELAY = 1500; // in ms
 	
 	
 	
