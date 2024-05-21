@@ -81,7 +81,11 @@ public class ViewBlocker {
 	
 	
 	private static void pressBack(AccessibilityService service){
-		service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+        if(!DelayManager.isGlobalActionCooldownActive(service)){
+       	service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+            DelayManager.updateGlobalActionDelay(service);
+        }
+		
 	}
 	
 	private static boolean isViewOpened(AccessibilityNodeInfo rootNode,String viewId){

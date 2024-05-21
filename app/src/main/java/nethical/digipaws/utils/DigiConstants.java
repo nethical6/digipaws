@@ -19,8 +19,11 @@ public class DigiConstants {
 	
 	public static final String VIEWID_SEPERATOR = ":id/";
 	
-	public static final String PREF_BLOCKER_COOLDOWN_KEY = "cooldown";
 	public static final String PREF_BLOCKER_LAST_WARNING_TIME_KEY = "last_warning_time";
+    
+    public static final String PREF_GLOBAL_ACTIONS_COOLDOWN_FILE = "global_action";
+	public static final String PREF_GLOBAL_ACTION_TIME_KEY = "last_global_press_time";
+    public static final int GLOBAL_ACTIONS_COOLDOWN_DELAY = 2000; // in ms
 	
 	
 	
