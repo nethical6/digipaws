@@ -1,0 +1,80 @@
+{
+  "allFiles": [
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi/app/src/main/java/nethical/digipaws/data/BlockerData.java",
+      "selection": {
+        "end": {
+          "column": 4,
+          "index": 416,
+          "line": 11
+        },
+        "start": {
+          "column": 4,
+          "index": 416,
+          "line": 11
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
+      "selection": {
+        "end": {
+          "column": 124,
+          "index": 1546,
+          "line": 27
+        },
+        "start": {
+          "column": 101,
+          "index": 1523,
+          "line": 27
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java",
+      "selection": {
+        "end": {
+          "column": 1,
+          "index": 1991,
+          "line": 68
+        },
+        "start": {
+          "column": 1,
+          "index": 1991,
+          "line": 68
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi/app/src/main/java/nethical/digipaws/utils/OverlayManager.java",
+      "selection": {
+        "end": {
+          "column": 32,
+          "index": 2136,
+          "line": 61
+        },
+        "start": {
+          "column": 32,
+          "index": 2136,
+          "line": 61
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi/app/src/main/java/nethical/digipaws/utils/AnimationHelper.java",
+      "selection": {
+        "end": {
+          "column": 5,
+          "index": 1571,
+          "line": 39
+        },
+        "start": {
+          "column": 5,
+          "index": 1571,
+          "line": 39
+        }
+      }
+    }
+  ],
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi/app/src/main/java/nethical/digipaws/utils/AnimationHelper.java"
+}

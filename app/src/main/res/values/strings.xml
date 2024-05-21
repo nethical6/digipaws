@@ -1,0 +1,15 @@
+<resources>
+<string name="app_name">digi</string>
+
+<string name="marathon_desc">Displace yourself by 1km within a 15 minute timi limit to win this quest. Failing this quest will result in NO penalties</string>
+
+<string name="start">Start</string>
+<string name="settings">Settings</string>
+<string name="close_app">Close App</string>
+<string name="proceed">Proceed</string>
+
+<string name="breathe">Take a deep breath!!!</string>
+<string name="warning_title">Are you sure?</string>
+
+<string name="notification_accessibility_permission">Please Enable Accessibility Service to continue.</string>
+</resources>

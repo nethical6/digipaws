@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical|center|center_horizontal"
+    android:orientation="vertical" >
+
+    <nethical.digipaws.views.HollowCircleView
+        android:id="@+id/select_quest"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:onClick="SelectQuest"
+        app:icon="@drawable/swords"
+        app:strokeColor="@color/md_theme_dark_primary"
+        app:strokeWidth="5dp" />
+
+
+</LinearLayout>
