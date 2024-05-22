@@ -37,4 +37,20 @@ public class DigiUtils {
 		return false;
 	}
 	
+    public static void pressBack(AccessibilityService service){
+        if(DelayManager.isGlobalActionCooldownActive(service)==false){
+            DelayManager.updateGlobalActionDelay(service);
+       	service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+            
+        }
+	}
+    
+    public static void pressHome(AccessibilityService service){
+        if(DelayManager.isGlobalActionCooldownActive(service)==false){
+            DelayManager.updateGlobalActionDelay(service);
+       	service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
+            
+        }
+	}
+    
 }

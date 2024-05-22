@@ -68,15 +68,18 @@ public class ViewBlocker {
 		switch(difficulty){
 			case(DigiConstants.DIFFICULTY_LEVEL_EASY):
                 if(DelayManager.isWarningDelayOver(service,blockerId)){
-                    pressBack(service);
+                    DigiUtils.pressBack(service);
                     OverlayManager overlayManager = new OverlayManager(service,blockerId);
 				    overlayManager.showWarningOverlay();
                 }
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_EXTREME):
-                pressBack(service);
+                DigiUtils.pressBack(service);
                 break;
+            
+            case(DigiConstants.DIFFICULTY_LEVEL_NORMAL):
+                
             
             
 				
@@ -86,14 +89,7 @@ public class ViewBlocker {
 	
 	
 	
-	private static void pressBack(AccessibilityService service){
-        if(DelayManager.isGlobalActionCooldownActive(service)==false){
-            DelayManager.updateGlobalActionDelay(service);
-       	service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-            
-        }
-		
-	}
+	
 	
 	private static boolean isViewOpened(AccessibilityNodeInfo rootNode,String viewId){
 		AccessibilityNodeInfo viewNode =

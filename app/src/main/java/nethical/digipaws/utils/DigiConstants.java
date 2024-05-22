@@ -15,7 +15,7 @@ public class DigiConstants {
 	public static final String PREF_PUNISHMENT_DIFFICULTY_KEY = "difficulty";
 	public static final int DIFFICULTY_LEVEL_EASY = 0;
 	public static final int DIFFICULTY_LEVEL_NORMAL = 1;
-	public static final int DIFFICULTY_LEVEL_EXTREME = 1;
+	public static final int DIFFICULTY_LEVEL_EXTREME = 2;
 	
 	public static final String VIEWID_SEPERATOR = ":id/";
 	
