@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Looper;
 import android.os.Handler;
 import android.view.accessibility.AccessibilityEvent;
+import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.itemblockers.ViewBlocker;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.LoadAppList;
@@ -16,8 +17,7 @@ public class BlockerService extends AccessibilityService {
 	
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
-		String packageName = String.valueOf(event.getPackageName());
-		ViewBlocker.performAction(this);
+		ViewBlocker.performAction(new ServiceData(this,event));
 	}
 	
 	@Override

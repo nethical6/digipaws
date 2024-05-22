@@ -11,6 +11,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import nethical.digipaws.R;
 import nethical.digipaws.data.BlockerData;
+import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.utils.DelayManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
@@ -18,27 +19,28 @@ import nethical.digipaws.utils.OverlayManager;
 
 public class ViewBlocker {
 	
-	public static void performAction(AccessibilityService service){
-		SharedPreferences preferences = service.getSharedPreferences(DigiConstants.PREF_VIEWBLOCKER_CONFIG_FILE,Context.MODE_PRIVATE);
+	public static void performAction(ServiceData data){
+		SharedPreferences preferences = data.getService().getSharedPreferences(DigiConstants.PREF_VIEWBLOCKER_CONFIG_FILE,Context.MODE_PRIVATE);
 		
 		// block short-form content
 		if(preferences.getBoolean(DigiConstants.PREF_VIEWBLOCKER_SHORTS_KEY,true)){
-			performShortsAction(service);
+			performShortsAction(data);
 		}
 		
 		// block comments and video descriptions
 		if(preferences.getBoolean(DigiConstants.PREF_VIEWBLOCKER_ENGAGEMENT_KEY,true)){
-			performEngagementAction(service);
+			performEngagementAction(data);
 		}
 	}
 	
-	private static void performShortsAction(AccessibilityService service){
+	private static void performShortsAction(ServiceData data){
 		
-		AccessibilityNodeInfo rootNode = service.getRootInActiveWindow();
+		AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
 		
         for (int i = 0; i < BlockerData.shortsViewIds.length; i++) {
             if(isViewOpened(rootNode,BlockerData.shortsViewIds[i])){
-			    punish(service,DigiConstants.SHORTS_BLOCKER_ID);
+                data.setBlockerId(DigiConstants.SHORTS_BLOCKER_ID);
+			    punish(data);
                 break;
 			    
 		    }
@@ -47,12 +49,12 @@ public class ViewBlocker {
 	}
 	
 	
-	private static void performEngagementAction(AccessibilityService service){
-		AccessibilityNodeInfo rootNode = service.getRootInActiveWindow();
+	private static void performEngagementAction(ServiceData data){
+		AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
 		
 		for (int i = 0; i < BlockerData.engagementPanelViewIds.length; i++) {
             if(isViewOpened(rootNode,BlockerData.engagementPanelViewIds[i])){
-			    pressBack(service);
+			    DigiUtils.pressBack(data.getService());
                 break;
 			    
 		    }
@@ -61,21 +63,21 @@ public class ViewBlocker {
         
 	}
 	
-	public static void punish(AccessibilityService service,String blockerId){
-		SharedPreferences preferences = service.getSharedPreferences(DigiConstants.PREF_VIEWBLOCKER_CONFIG_FILE,Context.MODE_PRIVATE);
+	public static void punish(ServiceData data){
+		SharedPreferences preferences = data.getService().getSharedPreferences(DigiConstants.PREF_VIEWBLOCKER_CONFIG_FILE,Context.MODE_PRIVATE);
 		
 		int difficulty = preferences.getInt(DigiConstants.PREF_PUNISHMENT_DIFFICULTY_KEY,DigiConstants.DIFFICULTY_LEVEL_EASY);
 		switch(difficulty){
 			case(DigiConstants.DIFFICULTY_LEVEL_EASY):
-                if(DelayManager.isWarningDelayOver(service,blockerId)){
-                    DigiUtils.pressBack(service);
-                    OverlayManager overlayManager = new OverlayManager(service,blockerId);
+                if(DelayManager.isWarningDelayOver(data.getService(),data.getBlockerId())){
+                    DigiUtils.pressBack(data.getService());
+                    OverlayManager overlayManager = new OverlayManager(data.getService(),data.getBlockerId());
 				    overlayManager.showWarningOverlay();
                 }
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_EXTREME):
-                DigiUtils.pressBack(service);
+                DigiUtils.pressBack(data.getService());
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_NORMAL):
