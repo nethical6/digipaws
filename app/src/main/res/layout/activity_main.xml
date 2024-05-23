@@ -18,12 +18,12 @@
             app:layout_scrollFlags="scroll|enterAlways|snap" >
 
             <Button
-                android:id="@+id/iconButton"
+                android:id="@+id/coint_count"
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|right|end"
-                android:text=" 69"
+                android:text=" 0"
                 app:icon="@drawable/swords" />
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>

@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.NotificationChannel;
 import android.os.Build;
 import android.view.View;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.fragments.dialogs.SelectQuestDialog;
 import nethical.digipaws.fragments.quests.MarathonQuest;
 import nethical.digipaws.R;
+import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.LoadAppList;
@@ -29,7 +31,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 		
-        SurvivalModeManager.enableSurvivalMode(this);
+       // SurvivalModeManager.enableSurvivalMode(this);
+        
+        Button cointCount = findViewById(R.id.coint_count);
+        cointCount.setText(" " + String.valueOf(CoinManager.getCoinCount(this)));
         
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 		//transaction.addToBackStack(null);
 		transaction.commit();
 		
+        
         // setup notification channels
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 

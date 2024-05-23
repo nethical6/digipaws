@@ -74,7 +74,82 @@
           "line": 70
         }
       }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/CoinManager.java",
+      "selection": {
+        "end": {
+          "column": 74,
+          "index": 950,
+          "line": 21
+        },
+        "start": {
+          "column": 74,
+          "index": 950,
+          "line": 21
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DelayManager.java",
+      "selection": {
+        "end": {
+          "column": 24,
+          "index": 459,
+          "line": 14
+        },
+        "start": {
+          "column": 24,
+          "index": 459,
+          "line": 14
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
+      "selection": {
+        "end": {
+          "column": 53,
+          "index": 1061,
+          "line": 21
+        },
+        "start": {
+          "column": 53,
+          "index": 1061,
+          "line": 21
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
+      "selection": {
+        "end": {
+          "column": 81,
+          "index": 1411,
+          "line": 36
+        },
+        "start": {
+          "column": 81,
+          "index": 1411,
+          "line": 36
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/activity_main.xml",
+      "selection": {
+        "end": {
+          "column": 32,
+          "index": 1143,
+          "line": 25
+        },
+        "start": {
+          "column": 32,
+          "index": 1143,
+          "line": 25
+        }
+      }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/warning_overlay.xml"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/CoinManager.java"
 }

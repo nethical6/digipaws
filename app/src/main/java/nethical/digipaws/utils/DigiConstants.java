@@ -18,6 +18,9 @@ public class DigiConstants {
     public static final String PREF_SURVIVAL_MODE_CONFIG_FILE = "survival_mode_config";
     public static final String PREF_SURVIVAL_MODE_IS_ENABLED_KEY = "is_survival_active";
     
+    public static final String PREF_COIN_DATA_FILE = "coin_info";
+    public static final String PREF_COIN_KEY = "coins";
+    
 	public static final String PREF_PUNISHMENT_FILE = "punishment_info";
 	public static final String PREF_PUNISHMENT_DIFFICULTY_KEY = "difficulty";
 	public static final int DIFFICULTY_LEVEL_EASY = 0;
