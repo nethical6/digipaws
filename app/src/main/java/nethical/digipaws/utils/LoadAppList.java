@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import nethical.digipaws.R;
+import nethical.digipaws.data.BlockerData;
 
 public class LoadAppList {
 
@@ -72,24 +73,18 @@ public class LoadAppList {
 			}
 		}
 
-		return removeIgnoredPackagea(context, packageList);
+		return removeIgnoredPackages(context, packageList);
 	}
 
-	private static List<String> removeIgnoredPackagea(Context context,List<String> packages) {
-
-
-		String[] array1 = context.getResources().getStringArray(R.array.IgnoredPackages);
+	private static List<String> removeIgnoredPackages(Context context,List<String> packages) {
 		
-		
-		String[] list2 = packages.stream().toArray(String[]::new);
-		
-		for (String value : array1) {
+		for (String value : BlockerData.nonBlockedPackages) {
 			if (packages.contains(value)) {
 				packages.remove(value);
 			}
 		}
 
-		// Convert back ArrayList to array
+		
 		return packages;
 	}
 	

@@ -14,4 +14,14 @@ public class BlockerData {
   
     };
     
+    public static final String[] nonBlockedPackages = {
+        DigiConstants.SETTINGS_PACKAGE_NAME ,
+        "com.google.android.dialer",
+        "nethical.digipaws",
+        "com.google.android.deskclock",
+        "com.android.systemui",
+        "com.android.phone"
+  
+    };
+    
 }

@@ -5,20 +5,19 @@ import android.content.SharedPreferences;
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
+import nethical.digipaws.utils.SurvivalModeManager;
 
 public class AppBlocker {
     
     public static void performAction(ServiceData data){
-        
         if(isSettingsBlockerOn(data.getService()) && data.getPackageName()==DigiConstants.SETTINGS_PACKAGE_NAME){
             DigiUtils.pressHome(data.getService());
             return;
         }
-        
-        
-        
-        
-        
+        if(SurvivalModeManager.isSurvivalModeActive(data.getService())){
+            DigiUtils.pressHome(data.getService());
+            return;
+        }
     }
     
     private static boolean isSettingsBlockerOn(AccessibilityService service){

@@ -16,6 +16,7 @@ import nethical.digipaws.R;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.LoadAppList;
 import nethical.digipaws.utils.OverlayManager;
+import nethical.digipaws.utils.SurvivalModeManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 		
+        SurvivalModeManager.enableSurvivalMode(this);
+        
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.replace(R.id.fragment_container, new HomeFragment());
 		//transaction.addToBackStack(null);
 		transaction.commit();
-		
 		
 		
 		

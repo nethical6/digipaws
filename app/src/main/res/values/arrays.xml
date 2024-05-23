@@ -5,17 +5,4 @@
 <item>Urge Controll</item>
 <item>Buy Quest Coins</item>
 </string-array>
-
-<string-array name="IgnoredPackages">
-<item>nethical.digipaws</item>
-<item>com.android.settings</item>
-<item>com.google.android.dialer</item>
-<item>com.google.android.deskclock</item>
-<item>android</item>
-<item>com.google.android.gm</item>
-<item>com.google.android.calendar</item>
-<item>com.android.phone</item>
-<item>com.google.android.cellbroadcastreceiver</item>
-<item>com.android.systemui</item>
-</string-array>
 </resources>
