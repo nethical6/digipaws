@@ -1,6 +1,7 @@
 package nethical.digipaws.itemblockers;
 
 import android.accessibilityservice.AccessibilityService;
+import android.app.Service;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
@@ -16,6 +17,7 @@ import nethical.digipaws.utils.DelayManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.OverlayManager;
+import nethical.digipaws.utils.SurvivalModeManager;
 
 public class ViewBlocker {
 	
@@ -69,10 +71,17 @@ public class ViewBlocker {
 		int difficulty = preferences.getInt(DigiConstants.PREF_PUNISHMENT_DIFFICULTY_KEY,DigiConstants.DIFFICULTY_LEVEL_EASY);
 		switch(difficulty){
 			case(DigiConstants.DIFFICULTY_LEVEL_EASY):
+            // check if time limit has been surpassed
                 if(DelayManager.isWarningDelayOver(data.getService(),data.getBlockerId())){
+                  // prevents creating multiple instances of overlays
+                    if(DelayManager.isOverlayCooldownActive(data.getService())){
+                        DigiUtils.pressBack(data.getService());
+                        break;
+                    }
                     DigiUtils.pressBack(data.getService());
                     OverlayManager overlayManager = new OverlayManager(data.getService(),data.getBlockerId());
 				    overlayManager.showWarningOverlay();
+                    DelayManager.updateOverlayCooldown(data.getService());
                 }
                 break;
             

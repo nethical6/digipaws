@@ -15,6 +15,9 @@ public class DigiConstants {
     public static final String PREF_APPBLOCKER_SETTINGS_BLOCKER_KEY = "is_settings_disabled";
     public static final String SETTINGS_PACKAGE_NAME = "com.android.settings";
     
+    public static final String PREF_SURVIVAL_MODE_CONFIG_FILE = "survival_mode_config";
+    public static final String PREF_SURVIVAL_MODE_IS_ENABLED_KEY = "is_survival_active";
+    
 	public static final String PREF_PUNISHMENT_FILE = "punishment_info";
 	public static final String PREF_PUNISHMENT_DIFFICULTY_KEY = "difficulty";
 	public static final int DIFFICULTY_LEVEL_EASY = 0;
@@ -33,6 +36,11 @@ public class DigiConstants {
 	public static final String PREF_GLOBAL_ACTION_TIME_KEY = "last_global_press_time";
     public static final int GLOBAL_ACTIONS_COOLDOWN_DELAY = 1500; // in ms
 	
+    // dekay configs for overlays
+    public static final String PREF_OVERLAY_COOLDOWN_FILE = "overlay_cooldown";
+	public static final String PREF_LAST_OVERLAY_TIME_KEY = "last_overlay_time";
+    public static final int OVERLAY_COOLDOWN_DELAY = 5000;
+    
 	
 	
 }

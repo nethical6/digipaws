@@ -1,50 +1,35 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/AppBlocker.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DelayManager.java",
       "selection": {
         "end": {
-          "column": 102,
-          "index": 975,
-          "line": 26
+          "column": 0,
+          "index": 0,
+          "line": 0
         },
         "start": {
-          "column": 8,
-          "index": 738,
-          "line": 24
+          "column": 0,
+          "index": 0,
+          "line": 0
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/SurvivalModeManager.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java",
       "selection": {
         "end": {
-          "column": 4,
-          "index": 468,
-          "line": 11
+          "column": 57,
+          "index": 3366,
+          "line": 87
         },
         "start": {
-          "column": 4,
-          "index": 468,
-          "line": 11
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
-      "selection": {
-        "end": {
-          "column": 86,
-          "index": 934,
-          "line": 18
-        },
-        "start": {
-          "column": 86,
-          "index": 934,
-          "line": 18
+          "column": 57,
+          "index": 3366,
+          "line": 87
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/SurvivalModeManager.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java"
 }

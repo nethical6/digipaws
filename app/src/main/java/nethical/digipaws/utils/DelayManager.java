@@ -42,6 +42,20 @@ public class DelayManager {
         return currentTime - lastTimestamp < DigiConstants.GLOBAL_ACTIONS_COOLDOWN_DELAY;
     }
 	
-	
+	public static void updateOverlayCooldown(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_OVERLAY_COOLDOWN_FILE,
+		Context.MODE_PRIVATE);
+        sharedPreferences.edit().putLong(DigiConstants.PREF_LAST_OVERLAY_TIME_KEY,SystemClock.uptimeMillis()).apply();
+    }
+    
+    public static boolean isOverlayCooldownActive(Context context){
+       SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_OVERLAY_COOLDOWN_FILE,
+		Context.MODE_PRIVATE);
+        
+        Long lastTimestamp = sharedPreferences.getLong(DigiConstants.PREF_LAST_OVERLAY_TIME_KEY,0L);
+       
+        Long currentTime = SystemClock.uptimeMillis();
+        return currentTime - lastTimestamp < DigiConstants.OVERLAY_COOLDOWN_DELAY;
+    }
 	
 }
