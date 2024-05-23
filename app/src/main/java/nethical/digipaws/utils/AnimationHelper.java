@@ -19,7 +19,7 @@ public class AnimationHelper {
 		fadeIn.setDuration(duration);
 		fadeIn.start();
 	}
-	
+	// Todo: smoothen this animation through any other means
 	public static void expandWindow(View view,int duration,WindowManager.LayoutParams params,WindowManager windowManager,AnimationListener listener){
 		int initialWidth = view.getWidth();
 		int initialHeight = view.getHeight();

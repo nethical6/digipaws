@@ -1,5 +1,8 @@
 package nethical.digipaws;
 
+import android.app.NotificationManager;
+import android.app.NotificationChannel;
+import android.os.Build;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +16,7 @@ import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.fragments.dialogs.SelectQuestDialog;
 import nethical.digipaws.fragments.quests.MarathonQuest;
 import nethical.digipaws.R;
+import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.LoadAppList;
 import nethical.digipaws.utils.OverlayManager;
@@ -33,8 +37,18 @@ public class MainActivity extends AppCompatActivity {
 		//transaction.addToBackStack(null);
 		transaction.commit();
 		
+        
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel =
+                    new NotificationChannel(DigiConstants.NOTIFICATION_CHANNEL, "Blockers", importance);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
 		
-		
+        DigiUtils.sendNotification(this,"ok","ok",R.drawable.swords);
+        
     }
 	
 	

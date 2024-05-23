@@ -118,7 +118,7 @@ public class ViewBlocker {
 		try {
 			targetNode = node.findAccessibilityNodeInfosByViewId(id).get(0);
 			} catch (Exception e) {
-			e.printStackTrace();
+		//	e.printStackTrace();
 		}
 		return targetNode;
 	}

@@ -23,16 +23,15 @@ public class OverlayManager {
     private String blockerId;
 	private View overlayView;
     
-    
+    // somehow implement material3 design here
 	public OverlayManager(Context context, String blockerId){
 		this.context = context;
         this.blockerId = blockerId;
 		windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 	}
-	
 	public void showWarningOverlay() {
 		LayoutInflater inflater = LayoutInflater.from(context);
-		overlayView = inflater.inflate(R.layout.warning_home_overlay, null);
+		overlayView = inflater.inflate(R.layout.warning_overlay, null);
 		
 		Button closeButton = overlayView.findViewById(R.id.close_overlay);
 		closeButton.setOnClickListener(v -> {
@@ -81,6 +80,7 @@ public class OverlayManager {
 		});
 		
 	}
+    
 	
 	public void removeOverlay() {
 		if (windowManager != null && overlayView!= null) {
