@@ -15,6 +15,7 @@ import nethical.digipaws.R;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.LayoutInflater;
+import nethical.digipaws.data.ServiceData;
 
 public class OverlayManager {
 	
@@ -81,6 +82,46 @@ public class OverlayManager {
 		
 	}
     
+    // buy watch hours
+    public void showSMUseCoinsOverlay(ServiceData data){
+        LayoutInflater inflater = LayoutInflater.from(context);
+		overlayView = inflater.inflate(R.layout.warning_overlay, null);
+		
+		Button closeButton = overlayView.findViewById(R.id.close_overlay);
+		closeButton.setOnClickListener(v -> {
+			removeOverlay();
+			
+		}); 
+		Button proceedButton = overlayView.findViewById(R.id.proceed_overlay);
+		proceedButton.setOnClickListener(v -> {
+			DelayManager.updateLastWarningTime(context,blockerId);
+			removeOverlay();
+			
+		});
+		
+		TextView textTitle = overlayView.findViewById(R.id.text_title);
+		TextView textDescription = overlayView.findViewById(R.id.text_desc);
+		
+        textTitle.setText(R.string.buy_20_mins);
+        textDescription.setText(R.string.desc_sd_overlay);
+        textDescription.setVisibility(View.VISIBLE);
+        proceedButton.setVisibility(View.VISIBLE);
+        closeButton.setVisibility(View.VISIBLE);
+        
+		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+		WindowManager.LayoutParams.WRAP_CONTENT,
+		WindowManager.LayoutParams.WRAP_CONTENT,
+		WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
+		WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+		PixelFormat.TRANSLUCENT);
+		
+		windowManager.addView(overlayView, params);
+		
+		
+    }
+    public static void showSMAppBlockInfoOverlay(){
+        
+    }
 	
 	public void removeOverlay() {
 		if (windowManager != null && overlayView!= null) {

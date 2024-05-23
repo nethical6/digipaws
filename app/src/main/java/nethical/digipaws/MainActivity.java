@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 		//transaction.addToBackStack(null);
 		transaction.commit();
 		
-        
+        // setup notification channels
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
 		
-        DigiUtils.sendNotification(this,"ok","ok",R.drawable.swords);
-        
     }
 	
 	

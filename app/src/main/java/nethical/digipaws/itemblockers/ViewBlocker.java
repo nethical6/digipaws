@@ -68,7 +68,7 @@ public class ViewBlocker {
 	public static void punish(ServiceData data){
 		SharedPreferences preferences = data.getService().getSharedPreferences(DigiConstants.PREF_VIEWBLOCKER_CONFIG_FILE,Context.MODE_PRIVATE);
 		
-		int difficulty = preferences.getInt(DigiConstants.PREF_PUNISHMENT_DIFFICULTY_KEY,DigiConstants.DIFFICULTY_LEVEL_EASY);
+		int difficulty = preferences.getInt(DigiConstants.PREF_PUNISHMENT_DIFFICULTY_KEY,DigiConstants.DIFFICULTY_LEVEL_NORMAL);
 		switch(difficulty){
 			case(DigiConstants.DIFFICULTY_LEVEL_EASY):
             // check if time limit has been surpassed
@@ -90,7 +90,14 @@ public class ViewBlocker {
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_NORMAL):
-                
+                if(DelayManager.isOverlayCooldownActive(data.getService())){
+                        DigiUtils.pressBack(data.getService());
+                        break;
+                    }
+                    DigiUtils.pressBack(data.getService());
+                    OverlayManager overlayManager = new OverlayManager(data.getService(),data.getBlockerId());
+				    overlayManager.showSMUseCoinsOverlay(data);
+                    DelayManager.updateOverlayCooldown(data.getService());
             
             
 				
