@@ -1,32 +1,17 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/warning_survival_mode_overlay.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DelayManager.java",
       "selection": {
         "end": {
-          "column": 15,
-          "index": 436,
-          "line": 11
+          "column": 0,
+          "index": 0,
+          "line": 0
         },
         "start": {
-          "column": 15,
-          "index": 436,
-          "line": 11
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/warning_overlay.xml",
-      "selection": {
-        "end": {
-          "column": 23,
-          "index": 361,
-          "line": 7
-        },
-        "start": {
-          "column": 23,
-          "index": 361,
-          "line": 7
+          "column": 0,
+          "index": 0,
+          "line": 0
         }
       }
     },
@@ -34,29 +19,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/OverlayManager.java",
       "selection": {
         "end": {
-          "column": 40,
-          "index": 3673,
-          "line": 105
+          "column": 33,
+          "index": 3773,
+          "line": 107
         },
         "start": {
-          "column": 40,
-          "index": 3673,
-          "line": 105
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
-      "selection": {
-        "end": {
-          "column": 4,
-          "index": 630,
-          "line": 11
-        },
-        "start": {
-          "column": 4,
-          "index": 630,
-          "line": 11
+          "column": 33,
+          "index": 3773,
+          "line": 107
         }
       }
     },
@@ -64,14 +34,29 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java",
       "selection": {
         "end": {
-          "column": 117,
-          "index": 2478,
-          "line": 70
+          "column": 47,
+          "index": 4095,
+          "line": 100
         },
         "start": {
-          "column": 117,
-          "index": 2478,
-          "line": 70
+          "column": 47,
+          "index": 4095,
+          "line": 100
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
         }
       }
     },
@@ -80,58 +65,13 @@
       "selection": {
         "end": {
           "column": 74,
-          "index": 950,
-          "line": 21
+          "index": 1121,
+          "line": 24
         },
         "start": {
           "column": 74,
-          "index": 950,
-          "line": 21
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DelayManager.java",
-      "selection": {
-        "end": {
-          "column": 24,
-          "index": 459,
-          "line": 14
-        },
-        "start": {
-          "column": 24,
-          "index": 459,
-          "line": 14
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
-      "selection": {
-        "end": {
-          "column": 53,
-          "index": 1061,
-          "line": 21
-        },
-        "start": {
-          "column": 53,
-          "index": 1061,
-          "line": 21
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
-      "selection": {
-        "end": {
-          "column": 81,
-          "index": 1411,
-          "line": 36
-        },
-        "start": {
-          "column": 81,
-          "index": 1411,
-          "line": 36
+          "index": 1121,
+          "line": 24
         }
       }
     },
@@ -139,14 +79,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/activity_main.xml",
       "selection": {
         "end": {
-          "column": 32,
-          "index": 1143,
-          "line": 25
+          "column": 0,
+          "index": 0,
+          "line": 0
         },
         "start": {
-          "column": 32,
-          "index": 1143,
-          "line": 25
+          "column": 0,
+          "index": 0,
+          "line": 0
         }
       }
     }

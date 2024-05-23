@@ -95,6 +95,7 @@ public class OverlayManager {
 		Button proceedButton = overlayView.findViewById(R.id.proceed_overlay);
 		proceedButton.setOnClickListener(v -> {
 			DelayManager.updateLastWarningTime(context,blockerId);
+            CoinManager.decrementCoin(context);
 			removeOverlay();
 			
 		});
@@ -104,6 +105,7 @@ public class OverlayManager {
 		
         textTitle.setText(R.string.buy_20_mins);
         textDescription.setText(R.string.desc_sd_overlay);
+        textDescription.append("\n"+"BALANCE: " + String.valueOf(CoinManager.getCoinCount(context)));
         textDescription.setVisibility(View.VISIBLE);
         proceedButton.setVisibility(View.VISIBLE);
         closeButton.setVisibility(View.VISIBLE);

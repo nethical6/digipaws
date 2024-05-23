@@ -90,7 +90,9 @@ public class ViewBlocker {
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_NORMAL):
-                if(DelayManager.isOverlayCooldownActive(data.getService())){
+               if(DelayManager.isWarningDelayOver(data.getService(),data.getBlockerId())){
+                  // prevents creating multiple instances of overlays
+                    if(DelayManager.isOverlayCooldownActive(data.getService())){
                         DigiUtils.pressBack(data.getService());
                         break;
                     }
@@ -98,9 +100,9 @@ public class ViewBlocker {
                     OverlayManager overlayManager = new OverlayManager(data.getService(),data.getBlockerId());
 				    overlayManager.showSMUseCoinsOverlay(data);
                     DelayManager.updateOverlayCooldown(data.getService());
-            
-            
-				
+                }
+                break;
+                    
 			
 		}
 	}
