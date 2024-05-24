@@ -55,6 +55,7 @@ public class LocationTrackerService extends Service implements LocationManager.L
                         .setSmallIcon(R.drawable.swords)
                         .setContentTitle("Location Quest Running")
                         .setContentText("You have x remaining time")
+                        .setOnlyAlertOnce(true)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         startForeground(70, builder.build());
@@ -66,6 +67,8 @@ public class LocationTrackerService extends Service implements LocationManager.L
                         .setSmallIcon(R.drawable.swords)
                         .setContentTitle("Location Quest Running")
                         .setContentText(content)
+                        .setOnlyAlertOnce(true)
+                        .setSilent(true)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         notificationManager.notify(70,builder.build());
   }
