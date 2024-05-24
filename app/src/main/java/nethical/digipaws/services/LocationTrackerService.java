@@ -3,6 +3,7 @@ package nethical.digipaws.services;
 import android.app.NotificationChannel;
 import android.app.Notification;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -22,6 +23,8 @@ public class LocationTrackerService extends Service implements LocationManager.L
     private LocationManager liveLocationTracker;
     private Location radarLocation = new Location("radarLocation");
     
+    SharedPreferences questPref;
+    
     private CountDownTimer countDownTimer;
     private String formattedTime ="00";
     private float distance = 0f;
@@ -35,12 +38,22 @@ public class LocationTrackerService extends Service implements LocationManager.L
     @Override
     public void onCreate() {
         super.onCreate();
+        questPref = getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE,
+				Context.MODE_PRIVATE);
         liveLocationTracker = new LocationManager(this);
     }
     
 
     @Override
     public int onStartCommand(Intent intent, int arg1, int arg2) {
+        
+        if(intent.getAction() == "STOP"){
+            stopQuest();
+            stopForeground(STOP_FOREGROUND_REMOVE);
+            stopSelf();
+            
+        }
+        
         
         radarLocation.setLatitude(intent.getDoubleExtra(DigiConstants.KEY_RADAR_LATITUDE,0D));
         radarLocation.setLongitude(intent.getDoubleExtra(DigiConstants.KEY_RADAR_LONGITUDE,0D));
@@ -84,6 +97,13 @@ public class LocationTrackerService extends Service implements LocationManager.L
         super.onDestroy();
         liveLocationTracker.stopLocationUpdates();
     }
+    
+    private void stopQuest(){
+        SharedPreferences.Editor editor = questPref.edit();
+        editor.putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL);
+        editor.putBoolean(DigiConstants.PREF_IS_QUEST_RUNNING_KEY,false);
+        editor.apply();  
+    }
    
     
 
@@ -95,6 +115,7 @@ public class LocationTrackerService extends Service implements LocationManager.L
             CoinManager.incrementCoin(this);
             updateNofification("Quest Completed","You earned 1 digicoin",NotificationCompat.PRIORITY_MAX);
             liveLocationTracker.stopLocationUpdates();
+            stopQuest();
         }
     }
     

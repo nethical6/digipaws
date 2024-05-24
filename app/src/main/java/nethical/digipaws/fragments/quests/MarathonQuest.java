@@ -1,6 +1,8 @@
 package nethical.digipaws.fragments.quests;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Location;
 import android.preference.PreferenceManager;
@@ -32,6 +34,10 @@ public class MarathonQuest extends Fragment {
 	
 	private MapView mapView;
     private Button startQuest;
+    
+    private boolean isRunning;
+    
+    private SharedPreferences questPref;
     
 	private LocationManager liveLocationTracker = null;
 	
@@ -74,6 +80,28 @@ public class MarathonQuest extends Fragment {
 		
 		mapView.getOverlays().add(myLocation);
 		
+        questPref = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE,
+				Context.MODE_PRIVATE);
+        
+        if(questPref.getBoolean(DigiConstants.PREF_IS_QUEST_RUNNING_KEY,false) && questPref.getString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL)==DigiConstants.QUEST_ID_MARATHON){
+                float latitude = questPref.getFloat(DigiConstants.KEY_RADAR_LATITUDE,0f);
+                float longitude = questPref.getFloat(DigiConstants.KEY_RADAR_LONGITUDE,0f);
+                radarLocation.setLatitude(latitude);
+                radarLocation.setLongitude(longitude);
+                
+                addCircleTo(latitude,longitude,DigiConstants.RADAR_RADIUS);
+                IMapController controller = mapView.getController();
+				controller.setZoom(18.0);
+                GeoPoint loc = new GeoPoint(latitude,longitude);
+				controller.animateTo(loc);
+                isRunning= true;
+                startQuest.setText(R.id.stop);
+                loadingDialog.dismiss();
+        } else {
+            makeRadar();
+        }
+        
+        
 		liveLocationTracker = new LocationManager(requireContext());
 		
 		
@@ -101,20 +129,27 @@ public class MarathonQuest extends Fragment {
 		.start();
 		
 		
-		makeRadar();
+		
 		
         startQuest.setOnClickListener(v -> {
-                
-                
-            Intent serviceIntent = new Intent(requireContext(), LocationTrackerService.class);
-            serviceIntent.putExtra(DigiConstants.KEY_RADAR_LATITUDE,radarLocation.getLatitude());
-            serviceIntent.putExtra(DigiConstants.KEY_RADAR_LONGITUDE,radarLocation.getLongitude());
-            requireContext().startForegroundService(serviceIntent);
+            if(!isRunning){
+                startQuest.setText(R.string.stop);
+                isRunning=true;
+                Intent serviceIntent = new Intent(requireContext(), LocationTrackerService.class);
+                serviceIntent.putExtra(DigiConstants.KEY_RADAR_LATITUDE,radarLocation.getLatitude());
+                serviceIntent.putExtra(DigiConstants.KEY_RADAR_LONGITUDE,radarLocation.getLongitude());
+                serviceIntent.setAction("START");
+                requireContext().startForegroundService(serviceIntent);
+            }else{
+                startQuest.setText(R.string.start);
+                isRunning=false;
+                Intent serviceIntent = new Intent(requireContext(), LocationTrackerService.class);
+                serviceIntent.putExtra(DigiConstants.KEY_RADAR_LATITUDE,radarLocation.getLatitude());
+                serviceIntent.putExtra(DigiConstants.KEY_RADAR_LONGITUDE,radarLocation.getLongitude());
+                serviceIntent.setAction("STOP");
+                requireContext().startForegroundService(serviceIntent);
+            }
         });
-		
-        
-        
-        
 	}
 	
 	
@@ -140,6 +175,15 @@ public class MarathonQuest extends Fragment {
 					double longitude = location.getLongitude();
 					double radius = DigiConstants.RADAR_RADIUS; // Radius in meters
 					
+                    SharedPreferences.Editor editor = questPref.edit();
+                        
+                    editor.putFloat(DigiConstants.KEY_RADAR_LATITUDE,(float) latitude);
+                    editor.putFloat(DigiConstants.KEY_RADAR_LONGITUDE,(float) longitude);
+                    editor.putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_MARATHON);
+                    editor.putBoolean(DigiConstants.PREF_IS_QUEST_RUNNING_KEY,true);
+                    editor.apply();    
+                       
+                        
                     radarLocation.set(location);
 					addCircleTo(latitude,longitude,radius);
 					loadingDialog.dismiss();
@@ -155,14 +199,7 @@ public class MarathonQuest extends Fragment {
 		Polygon circlePolygon = drawCircle(mapView, latitude, longitude, radius);
 		mapView.getOverlays().add(circlePolygon);
 	}
-	
-	
-	
-	
-	// Layout file (fragment_my.xml)
-	public static int getLayoutResourceId() {
-		return R.layout.marathon_quest_layout;
-	}
+
 	
 	public Polygon drawCircle(MapView map, double latitude, double longitude, double radius) {
 		
@@ -224,7 +261,5 @@ public class MarathonQuest extends Fragment {
 			liveLocationTracker.stopLocationUpdates();
 		}
 	}
-	
-	
 	
 }

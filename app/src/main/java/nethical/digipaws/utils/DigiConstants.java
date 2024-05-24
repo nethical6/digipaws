@@ -39,7 +39,7 @@ public class DigiConstants {
 	public static final String PREF_GLOBAL_ACTION_TIME_KEY = "last_global_press_time";
     public static final int GLOBAL_ACTIONS_COOLDOWN_DELAY = 1500; // in ms
 	
-    // dekay configs for overlays
+    // delay configs for overlays
     public static final String PREF_OVERLAY_COOLDOWN_FILE = "overlay_cooldown";
 	public static final String PREF_LAST_OVERLAY_TIME_KEY = "last_overlay_time";
     public static final int OVERLAY_COOLDOWN_DELAY = 5000;
@@ -50,6 +50,11 @@ public class DigiConstants {
     public static final String KEY_RADAR_LATITUDE = "radar_lat";
     public static final String KEY_RADAR_LONGITUDE = "radar_lon";
     
-	
+    public static final String PREF_QUEST_INFO_FILE = "overlay_cooldown";
+    public static final String PREF_IS_QUEST_RUNNING_KEY = "is_quest_running";
+	public static final String PREF_QUEST_ID_KEY = "quest_id";
+    
+    public static final String QUEST_ID_MARATHON = "marathon";
+	public static final String QUEST_ID_NULL = "null";
 	
 }

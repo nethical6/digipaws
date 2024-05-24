@@ -4,14 +4,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/LocationTrackerService.java",
       "selection": {
         "end": {
-          "column": 44,
-          "index": 3464,
-          "line": 94
+          "column": 24,
+          "index": 4307,
+          "line": 117
         },
         "start": {
-          "column": 44,
-          "index": 3464,
-          "line": 94
+          "column": 24,
+          "index": 4307,
+          "line": 117
         }
       }
     },
@@ -19,14 +19,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/LocationManager.java",
       "selection": {
         "end": {
-          "column": 43,
-          "index": 2033,
-          "line": 66
+          "column": 1,
+          "index": 608,
+          "line": 20
         },
         "start": {
-          "column": 43,
-          "index": 2033,
-          "line": 66
+          "column": 1,
+          "index": 608,
+          "line": 20
         }
       }
     },
@@ -34,17 +34,47 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java",
       "selection": {
         "end": {
-          "column": 38,
-          "index": 5605,
-          "line": 195
+          "column": 37,
+          "index": 6612,
+          "line": 183
         },
         "start": {
-          "column": 38,
-          "index": 5605,
-          "line": 195
+          "column": 1,
+          "index": 6113,
+          "line": 177
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
+      "selection": {
+        "end": {
+          "column": 56,
+          "index": 2572,
+          "line": 53
+        },
+        "start": {
+          "column": 56,
+          "index": 2572,
+          "line": 53
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/LoadAppList.java",
+      "selection": {
+        "end": {
+          "column": 26,
+          "index": 784,
+          "line": 26
+        },
+        "start": {
+          "column": 2,
+          "index": 657,
+          "line": 25
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/LocationTrackerService.java"
 }
