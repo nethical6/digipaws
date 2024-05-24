@@ -55,7 +55,7 @@ public class DelayManager {
         Long lastTimestamp = sharedPreferences.getLong(DigiConstants.PREF_LAST_OVERLAY_TIME_KEY,0L);
        
         Long currentTime = SystemClock.uptimeMillis();
-        return currentTime - lastTimestamp < DigiConstants.OVERLAY_COOLDOWN_DELAY;
+        return currentTime - lastTimestamp < 1000;
     }
 	
 }

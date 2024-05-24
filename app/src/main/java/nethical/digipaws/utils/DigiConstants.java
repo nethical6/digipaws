@@ -44,6 +44,7 @@ public class DigiConstants {
 	public static final String PREF_LAST_OVERLAY_TIME_KEY = "last_overlay_time";
     public static final int OVERLAY_COOLDOWN_DELAY = 5000;
     
+    
     public static final String NOTIFICATION_CHANNEL = "digipaws";
     
 	
