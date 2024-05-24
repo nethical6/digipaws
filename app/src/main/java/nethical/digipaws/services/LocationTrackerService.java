@@ -2,6 +2,7 @@ package nethical.digipaws.services;
 
 import android.app.NotificationChannel;
 import android.app.Notification;
+import android.content.Context;
 import android.location.Location;
 import android.util.Log;
 import androidx.core.app.NotificationCompat;
@@ -17,7 +18,9 @@ import nethical.digipaws.utils.LocationManager;
 public class LocationTrackerService extends Service implements LocationManager.LocationListener {
 
     private LocationManager liveLocationTracker;
+    private Location radarLocation = new Location("radarLocation");
     
+    private NotificationManager notificationManager;
     @Override
     public IBinder onBind(Intent arg0) {
         return null;
@@ -31,7 +34,12 @@ public class LocationTrackerService extends Service implements LocationManager.L
     
 
     @Override
-    public int onStartCommand(Intent arg0, int arg1, int arg2) {
+    public int onStartCommand(Intent intent, int arg1, int arg2) {
+        
+        radarLocation.setLatitude(intent.getDoubleExtra(DigiConstants.KEY_RADAR_LATITUDE,0D));
+        radarLocation.setLongitude(intent.getDoubleExtra(DigiConstants.KEY_RADAR_LONGITUDE,0D));
+        
+        
         liveLocationTracker.setLiveLocationListener(this);
         liveLocationTracker.startLocationUpdates();
         showNotification();
@@ -40,14 +48,26 @@ public class LocationTrackerService extends Service implements LocationManager.L
     }
     
     private void showNotification() {
-    NotificationCompat.Builder builder =
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+   
+        NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, DigiConstants.NOTIFICATION_CHANNEL)
                         .setSmallIcon(R.drawable.swords)
-                        .setContentTitle("title")
-                        .setContentText("content")
+                        .setContentTitle("Location Quest Running")
+                        .setContentText("You have x remaining time")
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-    startForeground(70, builder.build());
+        startForeground(70, builder.build());
+  }
+  
+  private void updateNofification(String content)  {
+      NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this, DigiConstants.NOTIFICATION_CHANNEL)
+                        .setSmallIcon(R.drawable.swords)
+                        .setContentTitle("Location Quest Running")
+                        .setContentText(content)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        notificationManager.notify(70,builder.build());
   }
     
     
@@ -62,7 +82,8 @@ public class LocationTrackerService extends Service implements LocationManager.L
 
     @Override
     public void onLocationChanged(Location location) {
-        
+       float distance = liveLocationTracker.getDistanceBetweenLocations(location,radarLocation);
+        updateNofification("distance: "+ String.valueOf(distance));
     }
     
 }

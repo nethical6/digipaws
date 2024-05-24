@@ -47,6 +47,9 @@ public class DigiConstants {
     
     public static final String NOTIFICATION_CHANNEL = "digipaws";
     
+    public static final String KEY_RADAR_LATITUDE = "radar_lat";
+    public static final String KEY_RADAR_LONGITUDE = "radar_lon";
+    
 	
 	
 }

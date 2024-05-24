@@ -1,5 +1,6 @@
 package nethical.digipaws.fragments.quests;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.preference.PreferenceManager;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import nethical.digipaws.R;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
+import nethical.digipaws.services.LocationTrackerService;
 import nethical.digipaws.utils.DigiConstants;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -29,8 +31,12 @@ import org.osmdroid.views.MapView;
 public class MarathonQuest extends Fragment {
 	
 	private MapView mapView;
+    private Button startQuest;
+    
 	private LocationManager liveLocationTracker = null;
 	
+    private Location radarLocation = new Location("radar");
+    
 	private MyLocationNewOverlay mLocationOverlay;
 	LoadingDialog loadingDialog = new LoadingDialog("Calculating Location...");
 	
@@ -42,7 +48,8 @@ public class MarathonQuest extends Fragment {
 		View view = inflater.inflate(R.layout.marathon_quest_layout, container, false);
 		
 		mapView = view.findViewById(R.id.map);
-		
+        startQuest = view.findViewById(R.id.start_location_quest);
+        
 		Configuration.getInstance()
 		.load(
 		requireContext(),
@@ -96,7 +103,18 @@ public class MarathonQuest extends Fragment {
 		
 		makeRadar();
 		
+        startQuest.setOnClickListener(v -> {
+                
+                
+            Intent serviceIntent = new Intent(requireContext(), LocationTrackerService.class);
+            serviceIntent.putExtra(DigiConstants.KEY_RADAR_LATITUDE,radarLocation.getLatitude());
+            serviceIntent.putExtra(DigiConstants.KEY_RADAR_LONGITUDE,radarLocation.getLongitude());
+            requireContext().startForegroundService(serviceIntent);
+        });
 		
+        
+        
+        
 	}
 	
 	
@@ -122,6 +140,7 @@ public class MarathonQuest extends Fragment {
 					double longitude = location.getLongitude();
 					double radius = DigiConstants.RADAR_RADIUS; // Radius in meters
 					
+                    radarLocation.set(location);
 					addCircleTo(latitude,longitude,radius);
 					loadingDialog.dismiss();
 					locationHelperCircle.stopLocationUpdates();

@@ -15,5 +15,7 @@
 
     <string name="notification_accessibility_permission">Please Enable Accessibility Service to continue.</string>
     
+     <string name="notification_marathon_title">Marathon Quest in running</string>
+    
     
 </resources>

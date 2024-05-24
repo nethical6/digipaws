@@ -63,8 +63,5 @@ public class MainActivity extends AppCompatActivity {
 	public void SelectQuest(View view){
 		SelectQuestDialog dialog = new SelectQuestDialog();
 		dialog.show(getSupportFragmentManager(), "select_quest"); // Use a unique tag for the dialog
-		Intent serviceIntent = new Intent(this, LocationTrackerService.class);
-        startForegroundService(serviceIntent);
-
 	}
 }
