@@ -193,7 +193,7 @@ public class MarathonQuest extends Fragment {
 		super.onResume();
 		mapView.onResume();
 		
-		if (liveLocationTracker != null && liveLocationTracker.isRunning) {
+		if (liveLocationTracker != null && !liveLocationTracker.isRunning) {
 			liveLocationTracker.startLocationUpdates();
 		}
 	}
@@ -201,7 +201,7 @@ public class MarathonQuest extends Fragment {
 	@Override
 	public void onDetach() {
 		super.onDetach();
-		if (liveLocationTracker != null && !liveLocationTracker.isRunning) {
+		if (liveLocationTracker != null && liveLocationTracker.isRunning) {
 			liveLocationTracker.stopLocationUpdates();
 		}
 	}
@@ -210,8 +210,8 @@ public class MarathonQuest extends Fragment {
 	public void onPause() {
 		super.onPause();
 		mapView.onPause();
-		
-		if (liveLocationTracker != null && !liveLocationTracker.isRunning) {
+		liveLocationTracker.stopLocationUpdates();
+		if (liveLocationTracker != null && liveLocationTracker.isRunning) {
 			liveLocationTracker.stopLocationUpdates();
 		}
 	}
@@ -219,7 +219,8 @@ public class MarathonQuest extends Fragment {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		if (liveLocationTracker != null && !liveLocationTracker.isRunning) {
+        liveLocationTracker.stopLocationUpdates();
+		if (liveLocationTracker != null && liveLocationTracker.isRunning) {
 			liveLocationTracker.stopLocationUpdates();
 		}
 	}
