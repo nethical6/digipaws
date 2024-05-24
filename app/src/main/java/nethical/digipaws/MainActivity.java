@@ -2,6 +2,8 @@ package nethical.digipaws;
 
 import android.app.NotificationManager;
 import android.app.NotificationChannel;
+import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Build;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +19,7 @@ import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.fragments.dialogs.SelectQuestDialog;
 import nethical.digipaws.fragments.quests.MarathonQuest;
 import nethical.digipaws.R;
+import nethical.digipaws.services.LocationTrackerService;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 		transaction.replace(R.id.fragment_container, new HomeFragment());
 		//transaction.addToBackStack(null);
 		transaction.commit();
+        
 		
         
         // setup notification channels
@@ -59,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 	public void SelectQuest(View view){
 		SelectQuestDialog dialog = new SelectQuestDialog();
 		dialog.show(getSupportFragmentManager(), "select_quest"); // Use a unique tag for the dialog
-		
+		Intent serviceIntent = new Intent(this, LocationTrackerService.class);
+        startForegroundService(serviceIntent);
+
 	}
 }

@@ -1,17 +1,32 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/receivers/AdminReceiver.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/LocationTrackerService.java",
       "selection": {
         "end": {
-          "column": 42,
-          "index": 322,
-          "line": 8
+          "column": 4,
+          "index": 1643,
+          "line": 51
         },
         "start": {
-          "column": 42,
-          "index": 322,
-          "line": 8
+          "column": 4,
+          "index": 1643,
+          "line": 51
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiUtils.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 2847,
+          "line": 67
+        },
+        "start": {
+          "column": 8,
+          "index": 2502,
+          "line": 61
         }
       }
     },
@@ -19,32 +34,62 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml",
       "selection": {
         "end": {
-          "column": 37,
-          "index": 2106,
-          "line": 62
+          "column": 27,
+          "index": 2149,
+          "line": 64
         },
         "start": {
-          "column": 37,
-          "index": 2106,
-          "line": 62
+          "column": 27,
+          "index": 2149,
+          "line": 64
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/xml/device_admin_receiver.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
       "selection": {
         "end": {
           "column": 0,
-          "index": 170,
-          "line": 5
+          "index": 2644,
+          "line": 67
         },
         "start": {
           "column": 0,
-          "index": 170,
-          "line": 5
+          "index": 2644,
+          "line": 67
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/LocationManager.java",
+      "selection": {
+        "end": {
+          "column": 19,
+          "index": 1684,
+          "line": 57
+        },
+        "start": {
+          "column": 19,
+          "index": 1684,
+          "line": 57
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
+      "selection": {
+        "end": {
+          "column": 4,
+          "index": 953,
+          "line": 18
+        },
+        "start": {
+          "column": 4,
+          "index": 953,
+          "line": 18
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/LocationTrackerService.java"
 }
