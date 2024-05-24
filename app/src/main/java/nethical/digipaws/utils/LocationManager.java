@@ -61,6 +61,7 @@ public class LocationManager {
 	}
 	
 	public void stopLocationUpdates() {
+        if(isRunning==false){return;}
 		isRunning = false;
 		LocationServices.getFusedLocationProviderClient(context)
 		.removeLocationUpdates(locationCallback);

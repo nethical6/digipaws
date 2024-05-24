@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.Notification;
 import android.content.Context;
 import android.location.Location;
+import android.os.CountDownTimer;
 import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
@@ -12,6 +13,7 @@ import android.app.Service;
 import android.os.IBinder;
 import android.content.Intent;
 import nethical.digipaws.R;
+import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.LocationManager;
 
@@ -19,6 +21,10 @@ public class LocationTrackerService extends Service implements LocationManager.L
 
     private LocationManager liveLocationTracker;
     private Location radarLocation = new Location("radarLocation");
+    
+    private CountDownTimer countDownTimer;
+    private String formattedTime ="00";
+    private float distance = 0f;
     
     private NotificationManager notificationManager;
     @Override
@@ -43,7 +49,6 @@ public class LocationTrackerService extends Service implements LocationManager.L
         liveLocationTracker.setLiveLocationListener(this);
         liveLocationTracker.startLocationUpdates();
         showNotification();
-        
         return START_NOT_STICKY;
     }
     
@@ -56,20 +61,20 @@ public class LocationTrackerService extends Service implements LocationManager.L
                         .setContentTitle("Location Quest Running")
                         .setContentText("You have x remaining time")
                         .setOnlyAlertOnce(true)
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                        .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         startForeground(70, builder.build());
   }
   
-  private void updateNofification(String content)  {
+  private void updateNofification(String title,String content,int priority)  {
       NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, DigiConstants.NOTIFICATION_CHANNEL)
                         .setSmallIcon(R.drawable.swords)
-                        .setContentTitle("Location Quest Running")
+                        .setContentTitle(title)
                         .setContentText(content)
                         .setOnlyAlertOnce(true)
                         .setSilent(true)
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                        .setPriority(priority);
         notificationManager.notify(70,builder.build());
   }
     
@@ -81,12 +86,16 @@ public class LocationTrackerService extends Service implements LocationManager.L
     }
    
     
-    
 
     @Override
     public void onLocationChanged(Location location) {
-       float distance = liveLocationTracker.getDistanceBetweenLocations(location,radarLocation);
-        updateNofification("distance: "+ String.valueOf(distance));
+       distance = liveLocationTracker.getDistanceBetweenLocations(location,radarLocation);
+        updateNofification("Location Quest Running","Distance Remaining "+ String.valueOf(distance),NotificationCompat.PRIORITY_DEFAULT);
+        if(distance>DigiConstants.RADAR_RADIUS){
+            CoinManager.incrementCoin(this);
+            updateNofification("Quest Completed","You earned 1 digicoin",NotificationCompat.PRIORITY_MAX);
+            liveLocationTracker.stopLocationUpdates();
+        }
     }
     
 }
