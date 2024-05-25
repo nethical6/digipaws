@@ -84,7 +84,7 @@ DigiPaws is licensed under the [GNU License](LICENSE). You are free to use, modi
 
 ## Contact
 
-For questions, suggestions, or feedback, please open an issue on the [GitHub repository](https://github.com/RealNethical/digipaws/issues) or contact me at:
+For questions, suggestions, or feedback, please open an issue on the [GitHub repository](https://github.com/nethical6/digipaws/issues) or contact me at:
 1. Discord: @nethical
 2. Telegram: @nethicalps
 
