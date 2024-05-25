@@ -1,50 +1,95 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/OverlayManager.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/AppBlocker.java",
       "selection": {
         "end": {
-          "column": 10,
-          "index": 3146,
-          "line": 97
+          "column": 8,
+          "index": 1470,
+          "line": 34
         },
         "start": {
-          "column": 10,
-          "index": 3146,
-          "line": 97
+          "column": 8,
+          "index": 1470,
+          "line": 34
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/themes.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/LoadAppList.java",
       "selection": {
         "end": {
-          "column": 68,
-          "index": 128,
-          "line": 2
+          "column": 65,
+          "index": 2509,
+          "line": 69
         },
         "start": {
-          "column": 68,
-          "index": 128,
-          "line": 2
+          "column": 65,
+          "index": 2509,
+          "line": 69
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values-night/themes.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
       "selection": {
         "end": {
-          "column": 67,
-          "index": 127,
-          "line": 2
+          "column": 68,
+          "index": 2917,
+          "line": 60
         },
         "start": {
-          "column": 67,
-          "index": 127,
-          "line": 2
+          "column": 68,
+          "index": 2917,
+          "line": 60
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
+      "selection": {
+        "end": {
+          "column": 62,
+          "index": 599,
+          "line": 16
+        },
+        "start": {
+          "column": 62,
+          "index": 599,
+          "line": 16
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/ServiceData.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
+      "selection": {
+        "end": {
+          "column": 56,
+          "index": 2562,
+          "line": 64
+        },
+        "start": {
+          "column": 56,
+          "index": 2562,
+          "line": 64
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/OverlayManager.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/AppBlocker.java"
 }

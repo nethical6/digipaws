@@ -68,7 +68,6 @@ public class LoadAppList {
 			List<LauncherActivityInfo> activityInfos = launcherApps.getActivityList(null, profile);
 			for (LauncherActivityInfo app : activityInfos) {
 				String packageName = app.getComponentName().getPackageName();
-				
 				packageList.add(packageName);
 			}
 		}

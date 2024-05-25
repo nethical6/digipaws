@@ -14,8 +14,8 @@ public class BlockerService extends AccessibilityService {
 	
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
-		ViewBlocker.performAction(new ServiceData(this,event));
         AppBlocker.performAction(new ServiceData(this,event));
+		ViewBlocker.performAction(new ServiceData(this,event));
         
 	}
 	

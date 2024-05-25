@@ -57,4 +57,7 @@ public class DigiConstants {
     public static final String QUEST_ID_MARATHON = "marathon";
 	public static final String QUEST_ID_NULL = "null";
 	
+    public static final String PREF_BLOCKED_APPS_FILE = "blocked_apps";
+    public static final String PREF_BLOCKED_APPS_LIST_KEY = "blocked";
+    
 }

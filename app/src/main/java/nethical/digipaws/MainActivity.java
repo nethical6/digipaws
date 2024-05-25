@@ -3,6 +3,7 @@ package nethical.digipaws;
 import android.app.NotificationManager;
 import android.app.NotificationChannel;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.LocationManager;
 import android.os.Build;
 import android.view.View;
@@ -14,6 +15,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.FragmentManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import android.content.Context;
 import nethical.digipaws.fragments.HomeFragment;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.fragments.dialogs.SelectQuestDialog;
@@ -56,6 +60,17 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+        
+        // Create a new set and add strings to it
+        Set<String> newBlockedAppsSet = new HashSet<>();
+        newBlockedAppsSet.add("com.example.myapplication");
+
+        // Save the new set to SharedPreferences
+        SharedPreferences sharedPreferences = this.getSharedPreferences(DigiConstants.PREF_BLOCKED_APPS_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, newBlockedAppsSet);
+        editor.apply();
+
 		
     }
 	
