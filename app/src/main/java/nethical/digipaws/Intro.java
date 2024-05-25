@@ -16,7 +16,7 @@ public class Intro extends AppIntro{
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		
+        
 		addSlide(AppIntroFragment.createInstance("Welcome!",
 		"This is a demo example in java of AppIntro library, with a custom background on each slide!",
 		R.drawable.flag,

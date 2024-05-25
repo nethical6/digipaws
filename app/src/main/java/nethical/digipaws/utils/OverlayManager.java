@@ -11,6 +11,9 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.material.color.MaterialColors;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import nethical.digipaws.MainActivity;
 import nethical.digipaws.R;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,39 +27,46 @@ public class OverlayManager {
     private String blockerId;
 	private View overlayView;
     
+    private Button closeButton;
+    private Button proceedButton;
+    private TextView textTitle;
+    private TextView textDescription;
+    
+    private WindowManager.LayoutParams params;
+    
     // somehow implement material3 design here
 	public OverlayManager(Context context, String blockerId){
 		this.context = context;
         this.blockerId = blockerId;
 		windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 	}
-	public void showWarningOverlay() {
-		LayoutInflater inflater = LayoutInflater.from(context);
+    
+    private void init(){
+        LayoutInflater inflater = LayoutInflater.from(context);
 		overlayView = inflater.inflate(R.layout.warning_overlay, null);
+        closeButton = overlayView.findViewById(R.id.close_overlay);
+        proceedButton = overlayView.findViewById(R.id.proceed_overlay);
+        textTitle = overlayView.findViewById(R.id.text_title);
+        textDescription = overlayView.findViewById(R.id.text_desc);
 		
-		Button closeButton = overlayView.findViewById(R.id.close_overlay);
+        
+    }
+    
+	public void showWarningOverlay() {
+        init();
+        applyMaterial();
 		closeButton.setOnClickListener(v -> {
 			AccessibilityService service = (AccessibilityService) context;
 			service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
 			removeOverlay();
 			
 		}); 
-		Button proceedButton = overlayView.findViewById(R.id.proceed_overlay);
 		proceedButton.setOnClickListener(v -> {
 			DelayManager.updateLastWarningTime(context,blockerId);
 			removeOverlay();
 			
 		});
 		
-		TextView textTitle = overlayView.findViewById(R.id.text_title);
-		TextView textDescription = overlayView.findViewById(R.id.text_desc);
-		
-		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-		WindowManager.LayoutParams.WRAP_CONTENT,
-		WindowManager.LayoutParams.WRAP_CONTENT,
-		WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
-		WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-		PixelFormat.TRANSLUCENT);
 		
 		Animation fadeInAnimation = new AlphaAnimation(0.0f, 1.0f);
 		fadeInAnimation.setDuration(500);  
@@ -84,15 +94,12 @@ public class OverlayManager {
     
     // buy watch hours
     public void showSMUseCoinsOverlay(ServiceData data){
-        LayoutInflater inflater = LayoutInflater.from(context);
-		overlayView = inflater.inflate(R.layout.warning_overlay, null);
-		
-		Button closeButton = overlayView.findViewById(R.id.close_overlay);
-		closeButton.setOnClickListener(v -> {
+        init();
+        applyMaterial();
+        closeButton.setOnClickListener(v -> {
 			removeOverlay();
 			
 		}); 
-		Button proceedButton = overlayView.findViewById(R.id.proceed_overlay);
 		proceedButton.setOnClickListener(v -> {
 			DelayManager.updateLastWarningTime(context,blockerId);
             CoinManager.decrementCoin(context);
@@ -100,8 +107,6 @@ public class OverlayManager {
 			
 		});
 		
-		TextView textTitle = overlayView.findViewById(R.id.text_title);
-		TextView textDescription = overlayView.findViewById(R.id.text_desc);
 		
         textTitle.setText(R.string.buy_20_mins);
         textDescription.setText(R.string.desc_sd_overlay);
@@ -110,20 +115,26 @@ public class OverlayManager {
         proceedButton.setVisibility(View.VISIBLE);
         closeButton.setVisibility(View.VISIBLE);
         
-		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+        params = new WindowManager.LayoutParams(
 		WindowManager.LayoutParams.WRAP_CONTENT,
 		WindowManager.LayoutParams.WRAP_CONTENT,
 		WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
 		WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-		PixelFormat.TRANSLUCENT);
-		
+		PixelFormat.OPAQUE);
+        
 		windowManager.addView(overlayView, params);
 		
-		
     }
-    public static void showSMAppBlockInfoOverlay(){
+    
+    private void applyMaterial(){
+        int surface = MaterialColors.getColor(context, com.google.android.material.R.attr.backgroundTint, R.color.md_theme_dark_background);
+        overlayView.setBackgroundColor(surface);
         
-    }
+        int textColour = MaterialColors.getColor(context, com.google.android.material.R.attr.colorPrimary, R.color.md_theme_dark_onSurface);
+        textTitle.setTextColor(textColour);
+        textDescription.setTextColor(textColour);
+        
+	}
 	
 	public void removeOverlay() {
 		if (windowManager != null && overlayView!= null) {
