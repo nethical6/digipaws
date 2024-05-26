@@ -22,8 +22,10 @@ public class SelectQuestDialog extends DialogFragment {
 	@NonNull
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
+        
 		MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
 		.setTitle("Select a quest");
+        
 		
 		View view = LayoutInflater.from(requireContext()).inflate(R.layout.select_quest_dialog, null);
 		recyclerView = view.findViewById(R.id.list_items);
@@ -37,9 +39,7 @@ public class SelectQuestDialog extends DialogFragment {
 	public void onStart() {
 		super.onStart();
 		String[] listItems = getResources().getStringArray(R.array.Quests); 
-		
 		recyclerView.setAdapter(new SelectQuestAdapter(listItems,this));
-		
 		}
 		
 		}
