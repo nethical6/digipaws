@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import nethical.digipaws.MainActivity;
@@ -27,6 +28,7 @@ public class OverlayManager {
     private String blockerId;
 	private View overlayView;
     
+    private MaterialButton mb;
     private Button closeButton;
     private Button proceedButton;
     private TextView textTitle;

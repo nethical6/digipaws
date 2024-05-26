@@ -1,58 +1,54 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center_vertical|center|center_horizontal"
-    android:orientation="vertical"
-	android:background="#ffffff"
-    android:padding="25dp" >
-
-
-
-    <TextView
-        android:id="@+id/text_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/breathe"
-        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-        android:textColor="#ff000000" />
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:gravity="center_vertical|center|center_horizontal"
+     android:background="@color/md_theme_dark_surfaceTint"
+     android:padding="24dp"
+     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/text_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-		android:textAlignment="center"
-        android:text="Imagine wasting your precious time on using shitty apps. what a looser lmao. idk what to write here tbh so hi ib dh maj hdhshs uwuw.."
-        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-        android:textColor="@color/light_grey"
-        android:visibility="gone" />
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+         android:id="@+id/text_title"
+         android:text="@string/breathe" />
 
-    <android.widget.LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center|center_horizontal"
-        android:orientation="horizontal" >
+    <TextView
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:textAlignment="center"
+         android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+         android:layout_marginTop="8dp"
+         android:id="@+id/text_desc"
+         android:text="Imagine wasting your precious time on using shitty apps. what a looser lmao. idk what to write here tbh so hi ib dh maj hdhshs uwuw.." />
 
-        <Button
-            android:id="@+id/close_overlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/seed"
-            android:text="@string/close_app"
-            android:textColor="#ffffffff"
-            android:visibility="gone" />
+    <LinearLayout
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:gravity="center_vertical|center|center_horizontal"
+         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/proceed_overlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/seed"
-            android:text="@string/proceed"
-            android:textColor="#ffffffff"
-            android:visibility="gone" />
-    </android.widget.LinearLayout>
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:layout_margin="8dp"
+             android:backgroundTint="@color/md_theme_dark_onPrimary"
+             android:textColor="@color/md_theme_dark_surfaceTint"
+             android:id="@+id/close_overlay"
+             android:text="@string/close_app" />
+
+        <Button
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:layout_margin="8dp"
+             android:backgroundTint="@color/md_theme_dark_onPrimary"
+             android:textColor="@color/md_theme_dark_surfaceTint"
+             android:id="@+id/proceed_overlay"
+             android:text="@string/proceed" />
+
+    </LinearLayout>
 
 </LinearLayout>
