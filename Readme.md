@@ -41,6 +41,12 @@ Hard Mode offers the most stringent control over app usage. In this mode, when y
 > [!CAUTION]  
 > This app relies exclusively on accessibility services to function. Because it requires sensitive permissions, please avoid downloading it from untrusted sources.
 
+## Acknowledgement 
+- [**Osmdroid**](https://github.com/osmdroid/osmdroid)
+- [**Digital Wellbeing Experiments Toolkit**](https://github.com/googlecreativelab/digital-wellbeing-experiments-toolkit)
+- Special thanks to all the premium apps on the Play Store that inspired me to create a free and open-source alternative. Just imagine making money out of miserable people.
+
+
 
 ## Installation
 
