@@ -95,7 +95,6 @@ public class OverlayManager {
     // buy watch hours
     public void showSMUseCoinsOverlay(ServiceData data){
         init();
-        applyMaterial();
         closeButton.setOnClickListener(v -> {
 			removeOverlay();
 			
