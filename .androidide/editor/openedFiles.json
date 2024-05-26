@@ -1,32 +1,32 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/KeywordBlocker.java",
       "selection": {
         "end": {
-          "column": 2,
-          "index": 1016,
-          "line": 25
+          "column": 94,
+          "index": 834,
+          "line": 24
         },
         "start": {
-          "column": 2,
-          "index": 1016,
-          "line": 25
+          "column": 94,
+          "index": 834,
+          "line": 24
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/KeywordBlocker.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/OverlayManager.java",
       "selection": {
         "end": {
-          "column": 30,
-          "index": 542,
-          "line": 13
+          "column": 2,
+          "index": 4179,
+          "line": 126
         },
         "start": {
-          "column": 30,
-          "index": 542,
-          "line": 13
+          "column": 2,
+          "index": 4179,
+          "line": 126
         }
       }
     },
@@ -34,17 +34,17 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
       "selection": {
         "end": {
-          "column": 10,
-          "index": 722,
-          "line": 19
+          "column": 1,
+          "index": 889,
+          "line": 26
         },
         "start": {
-          "column": 10,
-          "index": 722,
-          "line": 19
+          "column": 1,
+          "index": 889,
+          "line": 26
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/KeywordBlocker.java"
 }

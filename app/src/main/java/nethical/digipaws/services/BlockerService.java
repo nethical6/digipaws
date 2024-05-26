@@ -12,12 +12,12 @@ import nethical.digipaws.utils.LoadAppList;
 
 public class BlockerService extends AccessibilityService {
 	
-	
+	private KeywordBlocker kb;
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
         AppBlocker.performAction(new ServiceData(this,event));
 		ViewBlocker.performAction(new ServiceData(this,event));
-        KeywordBlocker.performAction(new ServiceData(this,event));
+        kb.performAction(new ServiceData(this,event));
 	}
 	
 	@Override
@@ -37,6 +37,7 @@ public class BlockerService extends AccessibilityService {
 		info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
 		info.packageNames = LoadAppList.getPackageNames(this).stream().toArray(String[]::new);
 		setServiceInfo(info);
+        kb = new KeywordBlocker();
 		
 	}
 	

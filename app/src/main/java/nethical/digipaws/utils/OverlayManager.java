@@ -125,6 +125,7 @@ public class OverlayManager {
         
 		windowManager.addView(overlayView, params);
 		
+        
     }
     
     private void applyMaterial(){
