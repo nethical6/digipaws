@@ -19,14 +19,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/AppBlocker.java",
       "selection": {
         "end": {
-          "column": 1,
-          "index": 2650,
-          "line": 70
+          "column": 33,
+          "index": 1236,
+          "line": 39
         },
         "start": {
-          "column": 1,
-          "index": 2650,
-          "line": 70
+          "column": 33,
+          "index": 1236,
+          "line": 39
         }
       }
     },
@@ -34,14 +34,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/ServiceData.java",
       "selection": {
         "end": {
-          "column": 36,
-          "index": 2203,
-          "line": 80
+          "column": 44,
+          "index": 711,
+          "line": 21
         },
         "start": {
-          "column": 36,
-          "index": 2203,
-          "line": 80
+          "column": 44,
+          "index": 711,
+          "line": 21
         }
       }
     },
@@ -49,17 +49,32 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
       "selection": {
         "end": {
-          "column": 46,
-          "index": 950,
-          "line": 24
+          "column": 37,
+          "index": 1748,
+          "line": 47
         },
         "start": {
-          "column": 46,
-          "index": 950,
-          "line": 24
+          "column": 37,
+          "index": 1748,
+          "line": 47
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
+      "selection": {
+        "end": {
+          "column": 23,
+          "index": 1939,
+          "line": 49
+        },
+        "start": {
+          "column": 23,
+          "index": 1939,
+          "line": 49
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/ServiceData.java"
 }

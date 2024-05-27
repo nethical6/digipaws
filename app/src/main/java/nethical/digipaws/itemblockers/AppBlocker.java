@@ -35,13 +35,9 @@ public class AppBlocker {
         this.data = data;
         init();
         
-        SharedPreferences sharedPreferences = data.getService().getSharedPreferences(DigiConstants.PREF_BLOCKED_APPS_FILE,
-					Context.MODE_PRIVATE);
-       
-        List<String> blockedApps = new ArrayList<>(sharedPreferences.getStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY,new HashSet<>()));
         
-        for (String packageName : blockedApps) {
-            if(packageName.equals(data.getPackageName())){
+        for (String blockedPackageName : data.getBlockedApps()) {
+            if(blockedPackageName.equals(data.getPackageName())){
                  // Check if warning cooldown is over
                if(DelayManager.isDelayOver(lastWarningTimestamp)){
                   // prevents creating multiple instances of overlays

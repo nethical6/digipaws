@@ -1,8 +1,13 @@
 package nethical.digipaws.data;
 
 import android.accessibilityservice.AccessibilityService;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.OverlayManager;
 
@@ -10,8 +15,11 @@ public class ServiceData {
 
     private AccessibilityService service;
     private AccessibilityEvent event;
+
     private String blockerId = DigiConstants.SHORTS_BLOCKER_ID;
     private int difficulty = DigiConstants.DIFFICULTY_LEVEL_NORMAL;
+
+    private List<String> blockedApps = null;
 
     private boolean isReelsBlocked = true;
     private boolean isEngagementBlocked = true;
@@ -97,5 +105,16 @@ public class ServiceData {
 
     public void isSettingsBlocked(boolean isSettingsBlocked) {
         this.isSettingsBlocked = isSettingsBlocked;
+    }
+
+    public List<String> getBlockedApps() {
+        return this.blockedApps;
+    }
+
+    public void setBlockedApps() {
+        SharedPreferences sharedPreferences = getService().getSharedPreferences(DigiConstants.PREF_BLOCKED_APPS_FILE,
+					Context.MODE_PRIVATE);
+       
+        blockedApps = new ArrayList<>(sharedPreferences.getStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY,new HashSet<>()));
     }
 }

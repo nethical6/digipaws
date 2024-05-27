@@ -43,7 +43,9 @@ public class BlockerService extends AccessibilityService {
 		setServiceInfo(info);
         
         serviceData = new ServiceData(this,DigiConstants.DIFFICULTY_LEVEL_NORMAL);
+        
         serviceData.setOverlayManager(new OverlayManager(serviceData));
+        serviceData.setBlockedApps();
         
         viewBlocker = new ViewBlocker();
         appBlocker = new AppBlocker();
