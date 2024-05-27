@@ -16,12 +16,14 @@ public class DelayManager {
 		sharedPreferences.edit().putFloat(DigiConstants.PREF_BLOCKER_LAST_WARNING_TIME_KEY,SystemClock.uptimeMillis()).apply();
 	}
 	
-	public static boolean isWarningDelayOver(Context context,String blockerId){
-		SharedPreferences sharedPreferences = context.getSharedPreferences(blockerId,
-		Context.MODE_PRIVATE);
-		
+	public static boolean isWarningDelayOver(Context con,String stg){
 		float currentTime = SystemClock.uptimeMillis();
-		float lastTimeStamp = sharedPreferences.getFloat(DigiConstants.PREF_BLOCKER_LAST_WARNING_TIME_KEY,0f);
+		
+		return currentTime - 0 > 30000;
+	}
+    
+    public static boolean isDelayOver(float lastTimeStamp){
+		float currentTime = SystemClock.uptimeMillis();
 		
 		return currentTime - lastTimeStamp > 30000;
 	}

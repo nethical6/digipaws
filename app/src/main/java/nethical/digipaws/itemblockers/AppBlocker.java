@@ -41,10 +41,10 @@ public class AppBlocker {
                             DigiUtils.pressBack(data.getService());
                             break;
                         }
-                        DigiUtils.pressHome(data.getService());
+                       /* DigiUtils.pressHome(data.getService());
                         OverlayManager overlayManager = new OverlayManager(data.getService(),data.getBlockerId());
                         overlayManager.showSMUseCoinsOverlay(data);
-                        DelayManager.updateOverlayCooldown(data.getService());
+                        DelayManager.updateOverlayCooldown(data.getService());*/
                         break;
                     }
                     break;

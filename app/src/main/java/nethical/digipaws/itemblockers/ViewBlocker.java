@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
+import android.os.SystemClock;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
@@ -13,6 +14,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import nethical.digipaws.R;
 import nethical.digipaws.data.BlockerData;
 import nethical.digipaws.data.ServiceData;
+import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DelayManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
@@ -21,21 +23,39 @@ import nethical.digipaws.utils.SurvivalModeManager;
 
 public class ViewBlocker {
 	
-	public static void performAction(ServiceData data){
-		SharedPreferences preferences = data.getService().getSharedPreferences(DigiConstants.PREF_VIEWBLOCKER_CONFIG_FILE,Context.MODE_PRIVATE);
+    private Context context;
+    
+    private boolean isReelsBlocked=true;
+    private boolean isEngagementBlocked=true;
+    private int difficulty = DigiConstants.DIFFICULTY_LEVEL_NORMAL;
+    
+    private float lastWarningTimestamp = 0f;
+    private float lastOverlayTimestamp = 0f;
+    private boolean isOverlayVisible = false;
+    private ServiceData data;
+    
+    private void init(){
+		isReelsBlocked = data.isReelsBlocked();
+        isEngagementBlocked = data.isEngagementBlocked();
+    }
+    
+	public void performAction(ServiceData data){
+        this.data = data;
+            
+        init();
 		
 		// block short-form content
-		if(preferences.getBoolean(DigiConstants.PREF_VIEWBLOCKER_SHORTS_KEY,true)){
+		if(isReelsBlocked){
 			performShortsAction(data);
 		}
 		
 		// block comments and video descriptions
-		if(preferences.getBoolean(DigiConstants.PREF_VIEWBLOCKER_ENGAGEMENT_KEY,true)){
+		if(isEngagementBlocked){
 			performEngagementAction(data);
 		}
 	}
 	
-	private static void performShortsAction(ServiceData data){
+	private void performShortsAction(ServiceData data){
 		
 		AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
 		
@@ -43,17 +63,19 @@ public class ViewBlocker {
             if(isViewOpened(rootNode,BlockerData.shortsViewIds[i])){
                 data.setBlockerId(DigiConstants.SHORTS_BLOCKER_ID);
 			    punish(data);
-                break;
-			    
+                return;
 		    }
+        }
+        if(isOverlayVisible){
+            data.getOverlayManager().removeOverlay();
+            isOverlayVisible=false;
         }
 	
 	}
 	
 	
-	private static void performEngagementAction(ServiceData data){
+	private void performEngagementAction(ServiceData data){
 		AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
-		
 		for (int i = 0; i < BlockerData.engagementPanelViewIds.length; i++) {
             if(isViewOpened(rootNode,BlockerData.engagementPanelViewIds[i])){
 			    DigiUtils.pressBack(data.getService());
@@ -65,24 +87,10 @@ public class ViewBlocker {
         
 	}
 	
-	public static void punish(ServiceData data){
-		SharedPreferences preferences = data.getService().getSharedPreferences(DigiConstants.PREF_VIEWBLOCKER_CONFIG_FILE,Context.MODE_PRIVATE);
-		
-		int difficulty = preferences.getInt(DigiConstants.PREF_PUNISHMENT_DIFFICULTY_KEY,DigiConstants.DIFFICULTY_LEVEL_NORMAL);
+	public void punish(ServiceData data){
 		switch(difficulty){
 			case(DigiConstants.DIFFICULTY_LEVEL_EASY):
-            // check if time limit has been surpassed
-                if(DelayManager.isWarningDelayOver(data.getService(),data.getBlockerId())){
-                  // prevents creating multiple instances of overlays
-                    if(DelayManager.isOverlayCooldownActive(data.getService())){
-                        DigiUtils.pressBack(data.getService());
-                        break;
-                    }
-                    DigiUtils.pressBack(data.getService());
-                    OverlayManager overlayManager = new OverlayManager(data.getService(),data.getBlockerId());
-				    overlayManager.showWarningOverlay();
-                    DelayManager.updateOverlayCooldown(data.getService());
-                }
+            
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_EXTREME):
@@ -90,20 +98,30 @@ public class ViewBlocker {
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_NORMAL):
-               if(DelayManager.isWarningDelayOver(data.getService(),data.getBlockerId())){
+            // Check if warning cooldown is over
+               if(DelayManager.isDelayOver(lastWarningTimestamp)){
                   // prevents creating multiple instances of overlays
-                    if(DelayManager.isOverlayCooldownActive(data.getService())){
-                        DigiUtils.pressBack(data.getService());
+                    if(isOverlayVisible){
                         break;
                     }
-                    DigiUtils.pressBack(data.getService());
-                    OverlayManager overlayManager = new OverlayManager(data.getService(),data.getBlockerId());
-				    overlayManager.showSMUseCoinsOverlay(data);
-                    DelayManager.updateOverlayCooldown(data.getService());
+                    OverlayManager overlayManager = data.getOverlayManager();
+				    overlayManager.showSMUseCoinsOverlay(()->{
+                        // Proceed Button clickdd
+                        CoinManager.decrementCoin(data.getService());
+                        overlayManager.removeOverlay();
+                        isOverlayVisible = false;
+                        lastWarningTimestamp = SystemClock.uptimeMillis();
+                    },
+                    ()->{
+                        // Close button clicked
+                        DigiUtils.pressBack(data.getService());
+                        overlayManager.removeOverlay();
+                        isOverlayVisible = false;
+                    }
+                    );
+                    isOverlayVisible = true;
                 }
                 break;
-                    
-			
 		}
 	}
 	
@@ -111,7 +129,7 @@ public class ViewBlocker {
 	
 	
 	
-	private static boolean isViewOpened(AccessibilityNodeInfo rootNode,String viewId){
+	private boolean isViewOpened(AccessibilityNodeInfo rootNode,String viewId){
 		AccessibilityNodeInfo viewNode =
 		findElementById(rootNode, viewId);
 		if (viewNode != null) {

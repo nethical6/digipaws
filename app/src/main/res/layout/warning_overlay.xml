@@ -40,7 +40,7 @@
              android:backgroundTint="@color/md_theme_dark_onPrimary"
              android:textColor="@color/md_theme_dark_surfaceTint"
              android:id="@+id/close_overlay"
-             android:text="@string/close_app" />
+             android:text="@string/close" />
 
         <Button
              android:layout_height="wrap_content"
