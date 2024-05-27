@@ -7,12 +7,6 @@ public class DigiConstants {
 	public static final String PREF_PACKAGES_FILE = "package_names";
 	public static final String PREF_PACKAGES_KEY = "packages";
 	
-	public static final String PREF_VIEWBLOCKER_CONFIG_FILE = "view_blocker_config";
-	public static final String PREF_VIEWBLOCKER_SHORTS_KEY = "isShortsBlocked";
-	public static final String PREF_VIEWBLOCKER_ENGAGEMENT_KEY = "isEngagementBlocked";
-	
-    public static final String PREF_APPBLOCKER_CONFIG_FILE = "app_blocker_config";
-    public static final String PREF_APPBLOCKER_SETTINGS_BLOCKER_KEY = "is_settings_disabled";
     public static final String SETTINGS_PACKAGE_NAME = "com.android.settings";
     
     public static final String PREF_SURVIVAL_MODE_CONFIG_FILE = "survival_mode_config";
@@ -29,21 +23,6 @@ public class DigiConstants {
 	
 	public static final String VIEWID_SEPERATOR = ":id/";
 	
-    public static final String SHORTS_BLOCKER_ID = "shorts";
-    public static final String ENGAGEMENT_BLOCKER_ID = "engagement";
-    
-	public static final String PREF_BLOCKER_LAST_WARNING_TIME_KEY = "last_warning_time";
-    
-    // delay configs for actions like back press, home button etc...
-    public static final String PREF_GLOBAL_ACTIONS_COOLDOWN_FILE = "global_action";
-	public static final String PREF_GLOBAL_ACTION_TIME_KEY = "last_global_press_time";
-    public static final int GLOBAL_ACTIONS_COOLDOWN_DELAY = 1500; // in ms
-	
-    // delay configs for overlays
-    public static final String PREF_OVERLAY_COOLDOWN_FILE = "overlay_cooldown";
-	public static final String PREF_LAST_OVERLAY_TIME_KEY = "last_overlay_time";
-    public static final int OVERLAY_COOLDOWN_DELAY = 5000;
-    
     
     public static final String NOTIFICATION_CHANNEL = "digipaws";
     

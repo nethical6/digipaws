@@ -61,8 +61,7 @@ public class ViewBlocker {
 		
         for (int i = 0; i < BlockerData.shortsViewIds.length; i++) {
             if(isViewOpened(rootNode,BlockerData.shortsViewIds[i])){
-                data.setBlockerId(DigiConstants.SHORTS_BLOCKER_ID);
-			    punish(data);
+                punish(data);
                 return;
 		    }
         }

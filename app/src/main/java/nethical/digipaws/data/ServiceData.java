@@ -16,7 +16,7 @@ public class ServiceData {
     private AccessibilityService service;
     private AccessibilityEvent event;
 
-    private String blockerId = DigiConstants.SHORTS_BLOCKER_ID;
+    private String blockerId = "ok";
     private int difficulty = DigiConstants.DIFFICULTY_LEVEL_NORMAL;
 
     private List<String> blockedApps = null;
