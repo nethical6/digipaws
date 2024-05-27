@@ -1,18 +1,37 @@
 package nethical.digipaws.data;
 
 import android.accessibilityservice.AccessibilityService;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import nethical.digipaws.utils.DigiConstants;
+import nethical.digipaws.utils.OverlayManager;
 
 public class ServiceData {
 
     private AccessibilityService service;
     private AccessibilityEvent event;
-    private String blockerId = DigiConstants.SHORTS_BLOCKER_ID;
 
-    public ServiceData(AccessibilityService service, AccessibilityEvent event) {
+    private String blockerId = "ok";
+    private int difficulty = DigiConstants.DIFFICULTY_LEVEL_NORMAL;
+
+    private List<String> blockedApps = null;
+
+    private boolean isReelsBlocked = true;
+    private boolean isEngagementBlocked = true;
+    private boolean isSettingsBlocked = false;
+
+    private WindowManager windowManager = null;
+    private OverlayManager overlayManager;
+
+    public ServiceData(AccessibilityService service, int difficulty) {
+        this.difficulty = difficulty;
         this.service = service;
-        this.event = event;
+        windowManager = (WindowManager) service.getSystemService(service.WINDOW_SERVICE);
     }
 
     public AccessibilityService getService() {
@@ -41,5 +60,61 @@ public class ServiceData {
 
     public void setBlockerId(String blockerId) {
         this.blockerId = blockerId;
+    }
+
+    public int getDifficulty() {
+        return this.difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public boolean isReelsBlocked() {
+        return this.isReelsBlocked;
+    }
+
+    public void setReelsBlocked(boolean isReelsBlocked) {
+        this.isReelsBlocked = isReelsBlocked;
+    }
+
+    public boolean isEngagementBlocked() {
+        return this.isEngagementBlocked;
+    }
+
+    public void isEngagementBlocked(boolean isEngagementBlocked) {
+        this.isEngagementBlocked = isEngagementBlocked;
+    }
+
+    public WindowManager getWindowManager() {
+
+        return this.windowManager;
+    }
+
+    public OverlayManager getOverlayManager() {
+        return this.overlayManager;
+    }
+
+    public void setOverlayManager(OverlayManager overlayManager) {
+        this.overlayManager = overlayManager;
+    }
+
+    public boolean isSettingsBlocked() {
+        return this.isSettingsBlocked;
+    }
+
+    public void isSettingsBlocked(boolean isSettingsBlocked) {
+        this.isSettingsBlocked = isSettingsBlocked;
+    }
+
+    public List<String> getBlockedApps() {
+        return this.blockedApps;
+    }
+
+    public void setBlockedApps() {
+        SharedPreferences sharedPreferences = getService().getSharedPreferences(DigiConstants.PREF_BLOCKED_APPS_FILE,
+					Context.MODE_PRIVATE);
+       
+        blockedApps = new ArrayList<>(sharedPreferences.getStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY,new HashSet<>()));
     }
 }

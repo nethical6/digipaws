@@ -43,19 +43,11 @@ public class DigiUtils {
 	}
 	
     public static void pressBack(AccessibilityService service){
-        if(DelayManager.isGlobalActionCooldownActive(service)==false){
-            DelayManager.updateGlobalActionDelay(service);
-       	service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-            
-        }
+        service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
 	}
     
     public static void pressHome(AccessibilityService service){
-        if(DelayManager.isGlobalActionCooldownActive(service)==false){
-            DelayManager.updateGlobalActionDelay(service);
-       	service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
-            
-        }
+        service.performGlobalAction(AccessibilityService.GLOBAL_ACTION_HOME);
 	}
     
     public static void sendNotification(Context context, String title, String content,int icon) {

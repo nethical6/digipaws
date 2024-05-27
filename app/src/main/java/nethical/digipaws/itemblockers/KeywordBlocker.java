@@ -29,7 +29,6 @@ public class KeywordBlocker {
         if(data.getEvent().getEventType()== AccessibilityEvent.TYPE_VIEW_FOCUSED){
            if (node.getClassName() != null && node.getClassName().equals("android.widget.EditText")) {
             isFocused=true;
-                Log.d("focus","sety");
         }
         }
         

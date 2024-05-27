@@ -20,7 +20,7 @@ public class AnimationHelper {
 		fadeIn.start();
 	}
 	// Todo: smoothen this animation through any other means
-	public static void expandWindow(View view,int duration,WindowManager.LayoutParams params,WindowManager windowManager,AnimationListener listener){
+	public static void expandWindow(View view,int duration,WindowManager.LayoutParams params,WindowManager windowManager){
 		int initialWidth = view.getWidth();
 		int initialHeight = view.getHeight();
 		
@@ -43,30 +43,8 @@ public class AnimationHelper {
 		AnimatorSet animatorSet = new AnimatorSet();
 		animatorSet.playTogether(widthAnimator, heightAnimator);
 		animatorSet.setDuration(duration); // Animation duration in milliseconds
-		animatorSet.setStartDelay(1500);
-		animatorSet.addListener(new Animator.AnimatorListener() {
-			
-			@Override
-			public void onAnimationStart(Animator arg0) {
-			}
-
-			@Override
-			public void onAnimationEnd(Animator arg0) {
-				
-			if (listener != null) {
-				listener.onAnimationOver();
-			}
-			}
-
-			@Override
-			public void onAnimationCancel(Animator arg0) {
-			}
-
-			@Override
-			public void onAnimationRepeat(Animator arg0) {
-			}
-			
-		});
+		animatorSet.setStartDelay(100);
+		
 		animatorSet.start();
 		
 	
