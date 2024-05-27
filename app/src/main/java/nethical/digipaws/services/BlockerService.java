@@ -16,12 +16,13 @@ import nethical.digipaws.utils.OverlayManager;
 public class BlockerService extends AccessibilityService {
 	
     private ViewBlocker viewBlocker;
-    
+    private AppBlocker appBlocker;
     private ServiceData serviceData;
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
         serviceData.setEvent(event);
         viewBlocker.performAction(serviceData);
+        appBlocker.performAction(serviceData);
 	}
 	
 	@Override
@@ -45,6 +46,7 @@ public class BlockerService extends AccessibilityService {
         serviceData.setOverlayManager(new OverlayManager(serviceData));
         
         viewBlocker = new ViewBlocker();
+        appBlocker = new AppBlocker();
 		
 	}
 	

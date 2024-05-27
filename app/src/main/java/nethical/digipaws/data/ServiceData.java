@@ -15,6 +15,7 @@ public class ServiceData {
 
     private boolean isReelsBlocked = true;
     private boolean isEngagementBlocked = true;
+    private boolean isSettingsBlocked = false;
 
     private WindowManager windowManager = null;
     private OverlayManager overlayManager;
@@ -88,5 +89,13 @@ public class ServiceData {
 
     public void setOverlayManager(OverlayManager overlayManager) {
         this.overlayManager = overlayManager;
+    }
+
+    public boolean isSettingsBlocked() {
+        return this.isSettingsBlocked;
+    }
+
+    public void isSettingsBlocked(boolean isSettingsBlocked) {
+        this.isSettingsBlocked = isSettingsBlocked;
     }
 }
