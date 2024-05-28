@@ -39,6 +39,7 @@
 		
 		<activity android:name="nethical.digipaws.Intro"
 			android:label="Intro" 
+            android:theme="@style/IntroTheme"
 			android:exported="true">
 				<intent-filter>
 					<action android:name="android.intent.action.MAIN" />

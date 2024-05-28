@@ -34,5 +34,7 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
-
+    
+    
+    
 </resources>

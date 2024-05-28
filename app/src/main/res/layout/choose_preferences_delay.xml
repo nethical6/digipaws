@@ -30,7 +30,6 @@
          android:entries="@array/delays"
         android:paddingBottom="10dp"
          android:textColor="#fff">
-        a
     </Spinner>
 
     <TextView

@@ -54,12 +54,7 @@ public class Intro extends AppIntro{
         addSlide(new ChooseViewBlockers());
         addSlide(new ChooseDelay());
         
-        addSlide(AppIntroFragment.createInstance(
-		getString(R.string.hard_mode),
-		HtmlCompat.fromHtml(getString(R.string.hard_mode_desc),Html.FROM_HTML_MODE_LEGACY),
-		R.drawable.intro_hard,
-		R.color.md_theme_dark_background
-		));
+        
         
 		// Fade Transition
 		setTransformer(AppIntroPageTransformerType.Flow.INSTANCE);
