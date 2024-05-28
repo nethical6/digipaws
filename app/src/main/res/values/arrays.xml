@@ -1,8 +1,6 @@
 <resources>
 <string-array name="Quests">
 <item>Touch Grass</item>
-<item>Complete 5x Duolingo Lessons</item>
-<item>Urge Controll</item>
 <item>Buy Quest Coins</item>
 </string-array>
     

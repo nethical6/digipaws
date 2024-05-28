@@ -39,4 +39,9 @@ public class DigiConstants {
     public static final String PREF_BLOCKED_APPS_FILE = "blocked_apps";
     public static final String PREF_BLOCKED_APPS_LIST_KEY = "blocked";
     
+    public static final String PREF_APP_CONFIG = "app_config";
+    public static final String PREF_MODE = "mode";
+    public static final String PREF_DELAY = "mode";
+    public static final String PREF_IS_SHORTS_BLOCKED = "mode";
+    
 }
