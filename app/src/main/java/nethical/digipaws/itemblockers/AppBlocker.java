@@ -45,7 +45,7 @@ public class AppBlocker {
                         break;
                     }
                     OverlayManager overlayManager = data.getOverlayManager();
-				    overlayManager.showSMUseCoinsOverlay(()->{
+				    overlayManager.showOverlay(data.getDifficulty(),()->{
                         // Proceed Button clickdd
                         CoinManager.decrementCoin(data.getService());
                         overlayManager.removeOverlay();

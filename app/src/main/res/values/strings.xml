@@ -12,6 +12,9 @@
     <string name="buy_20_mins">Buy 20 minutes</string>
     <string name="desc_sd_overlay">Do you want to buy a 20 minute timewaster for 1 digicoin? This purchase will lift off all restrictions for the next 20 minutes.. </string>
     
+    <string name="desc_ex_overlay">Are you sure you want to continue wasting your time?</string>
+    
+    
     <string name="breathe">Take a deep breath!!!</string>
     <string name="warning_title">Are you sure?</string>
 

@@ -61,7 +61,7 @@ public class OverlayManager {
     }
     
 	
-    public void showSMUseCoinsOverlay(OnProceedClicked proceed, OnCloseClicked close){
+    public void showOverlay(int difficulty,OnProceedClicked proceed, OnCloseClicked close){
         
         closeButton.setOnClickListener(v -> {
 			close.onCloseClicked();
@@ -71,10 +71,12 @@ public class OverlayManager {
             proceed.onProceedClicked();
 			
 		});
-        textTitle.setText(R.string.buy_20_mins);
-        textDescription.setText(R.string.desc_sd_overlay);
-        textDescription.append("\n"+"BALANCE: " + String.valueOf(CoinManager.getCoinCount(context)));
         
+        if(difficulty == DigiConstants.DIFFICULTY_LEVEL_NORMAL){
+            textTitle.setText(R.string.buy_20_mins);
+            textDescription.setText(R.string.desc_sd_overlay);
+            textDescription.append("\n"+"BALANCE: " + String.valueOf(CoinManager.getCoinCount(context)));
+        }
 		windowManager.addView(overlayView, params);
 		
         

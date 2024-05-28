@@ -27,7 +27,7 @@ public class ViewBlocker {
     
     private boolean isReelsBlocked=true;
     private boolean isEngagementBlocked=true;
-    private int difficulty = DigiConstants.DIFFICULTY_LEVEL_NORMAL;
+    private int difficulty = DigiConstants.DIFFICULTY_LEVEL_EASY;
     
     private float lastWarningTimestamp = 0f;
     private float lastOverlayTimestamp = 0f;
@@ -35,6 +35,7 @@ public class ViewBlocker {
     private ServiceData data;
     
     private void init(){
+        difficulty = data.getDifficulty();
 		isReelsBlocked = data.isReelsBlocked();
         isEngagementBlocked = data.isEngagementBlocked();
     }
@@ -89,13 +90,38 @@ public class ViewBlocker {
 	public void punish(ServiceData data){
 		switch(difficulty){
 			case(DigiConstants.DIFFICULTY_LEVEL_EASY):
-            
+            // Check if warning cooldown is over
+               if(DelayManager.isDelayOver(lastWarningTimestamp)){
+                  // prevents creating multiple instances of overlays
+                    if(isOverlayVisible){
+                        break;
+                    }
+                    OverlayManager overlayManager = data.getOverlayManager();
+				    overlayManager.showOverlay(difficulty,()->{
+                        // Proceed Button clickdd
+                        overlayManager.removeOverlay();
+                        isOverlayVisible = false;
+                        lastWarningTimestamp = SystemClock.uptimeMillis();
+                    },
+                    ()->{
+                        // Close button clicked
+                        DigiUtils.pressBack(data.getService());
+                        overlayManager.removeOverlay();
+                        isOverlayVisible = false;
+                    }
+                    );
+                    isOverlayVisible = true;
+                }
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_EXTREME):
-                DigiUtils.pressBack(data.getService());
+                if(DelayManager.isDelayOver(lastWarningTimestamp,1500)){
+                    DigiUtils.pressBack(data.getService());
+                    lastWarningTimestamp = SystemClock.uptimeMillis();
+                }
                 break;
             
+                    
             case(DigiConstants.DIFFICULTY_LEVEL_NORMAL):
             // Check if warning cooldown is over
                if(DelayManager.isDelayOver(lastWarningTimestamp)){
@@ -104,7 +130,7 @@ public class ViewBlocker {
                         break;
                     }
                     OverlayManager overlayManager = data.getOverlayManager();
-				    overlayManager.showSMUseCoinsOverlay(()->{
+				    overlayManager.showOverlay(difficulty,()->{
                         // Proceed Button clickdd
                         CoinManager.decrementCoin(data.getService());
                         overlayManager.removeOverlay();

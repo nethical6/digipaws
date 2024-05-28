@@ -46,7 +46,7 @@ public class BlockerService extends AccessibilityService {
 		info.packageNames = LoadAppList.getPackageNames(this).stream().toArray(String[]::new);
 		setServiceInfo(info);
         
-        serviceData = new ServiceData(this,DigiConstants.DIFFICULTY_LEVEL_NORMAL);
+        serviceData = new ServiceData(this,DigiConstants.DIFFICULTY_LEVEL_EASY);
         
         serviceData.setOverlayManager(new OverlayManager(serviceData));
         serviceData.setBlockedApps();

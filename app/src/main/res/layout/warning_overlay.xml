@@ -25,7 +25,7 @@
          android:textAppearance="@style/TextAppearance.Material3.BodySmall"
          android:layout_marginTop="8dp"
          android:id="@+id/text_desc"
-         android:text="Imagine wasting your precious time on using shitty apps. what a looser lmao. idk what to write here tbh so hi ib dh maj hdhshs uwuw.." />
+         android:text="@string/desc_ex_overlay" />
 
     <LinearLayout
          android:layout_height="wrap_content"
