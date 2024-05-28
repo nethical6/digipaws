@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="General Settings">
+        <Preference
+            android:key="content_blockers"
+            android:title="Blockers"
+            android:summary="Block specific contents like apps, reels, keywords etc"
+            android:fragment="nethical.digipaws.ui.settings.ContentBlockerSettings" />
+        <Preference
+            android:key="launcher"
+            android:title="Launcher"
+            android:summary="Tweak launcher appearance and functionalities"
+            android:fragment="nethical.digipaws.ui.settings.LauncherSettings" />
+        <Preference
+            android:key="advanced"
+            android:title="Advanced"
+            android:summary="Activate Advanced features like anti uninstall"
+            android:fragment="nethical.digipaws.ui.settings.AdvancedSettings" />
+    </PreferenceCategory>
+</PreferenceScreen>

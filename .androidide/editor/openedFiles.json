@@ -1,22 +1,22 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/KeywordBlocker.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
       "selection": {
         "end": {
-          "column": 22,
-          "index": 707,
-          "line": 22
+          "column": 34,
+          "index": 1474,
+          "line": 45
         },
         "start": {
-          "column": 22,
-          "index": 707,
-          "line": 22
+          "column": 34,
+          "index": 1474,
+          "line": 45
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/ServiceData.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/colors.xml",
       "selection": {
         "end": {
           "column": 0,
@@ -27,39 +27,9 @@
           "column": 0,
           "index": 0,
           "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/BlockerData.java",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        },
-        "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
-      "selection": {
-        "end": {
-          "column": 46,
-          "index": 1988,
-          "line": 55
-        },
-        "start": {
-          "column": 46,
-          "index": 1988,
-          "line": 55
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/colors.xml"
 }

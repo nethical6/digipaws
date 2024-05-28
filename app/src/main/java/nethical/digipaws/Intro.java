@@ -1,8 +1,10 @@
 package nethical.digipaws;
 
 import android.os.Bundle;
+import android.text.Html;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;
@@ -17,36 +19,38 @@ public class Intro extends AppIntro{
 		super.onCreate(savedInstanceState);
 		
         
-		addSlide(AppIntroFragment.createInstance("Welcome!",
-		"This is a demo example in java of AppIntro library, with a custom background on each slide!",
-		R.drawable.flag,
-		R.color.seed
+		addSlide(AppIntroFragment.createInstance(getString(R.string.welcome),
+		HtmlCompat.fromHtml(getString(R.string.app_desc),Html.FROM_HTML_MODE_COMPACT),
+		R.drawable.paws,
+		R.color.md_theme_dark_background
 		));
 		
 		addSlide(AppIntroFragment.createInstance(
-		"Clean App Intros",
-		"This library offers developers the ability to add clean app intros at the start of their apps.",
-		R.drawable.flag,
-		R.color.seed
+		getString(R.string.easy_mode),
+		HtmlCompat.fromHtml(getString(R.string.easy_mode_desc),Html.FROM_HTML_MODE_LEGACY),
+		R.drawable.intro_easy,
+		R.color.md_theme_dark_background
 		));
 		
 		addSlide(AppIntroFragment.createInstance(
-		"Simple, yet Customizable",
-		"The library offers a lot of customization, while keeping it simple for those that like simple.",
-		R.drawable.flag,
-		R.color.seed
+		getString(R.string.adventure_mode),
+		HtmlCompat.fromHtml(getString(R.string.adventure_mode_desc),Html.FROM_HTML_MODE_LEGACY),
+		R.drawable.intro_explore,
+		R.color.md_theme_dark_background
 		));
 		
 		addSlide(AppIntroFragment.createInstance(
-		"Explore",
-		"Feel free to explore the rest of the library demo!",
-		R.drawable.flag,
-		R.color.seed
+		getString(R.string.hard_mode),
+		HtmlCompat.fromHtml(getString(R.string.hard_mode_desc),Html.FROM_HTML_MODE_LEGACY),
+		R.drawable.intro_hard,
+		R.color.md_theme_dark_background
 		));
 		
 		// Fade Transition
 		setTransformer(AppIntroPageTransformerType.Fade.INSTANCE);
 		
+       // isColorTransitionsEnabled();
+        
 		// Show/hide status bar
 		showStatusBar(true);
 		//Enable the color "fade" animation between two slides (make sure the slide implements SlideBackgroundColorHolder)

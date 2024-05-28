@@ -17,7 +17,22 @@
 
     <string name="notification_accessibility_permission">Please Enable Accessibility Service to continue.</string>
     
-     <string name="notification_marathon_title">Marathon Quest in running</string>
+    <string name="notification_marathon_title">Marathon Quest in running</string>
+    
+    
+    
+    <string name="welcome">Welcome</string>
+    <string name="app_desc">DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes—Easy, Adventure, and Hard—each with unique features and challenges to promote healthy screen time habits.</string>
+    
+    <string name="easy_mode">Easy Mode</string>
+    <string name="easy_mode_desc">In Easy Mode, DigiPaws provides gentle reminders to help you manage your screen time. When you attempt to access a blocked app, a warning screen appears. If you choose to proceed, a cooldown period starts. After the cooldown, another warning is displayed to remind you of your usage.</string>
+    
+    <string name="adventure_mode">Adventure Mode</string>
+    <string name="adventure_mode_desc">Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need DigiCoins. These can be earned by completing quests such as a quick 1 km walk. Each DigiCoin grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use.</string>
+    
+    <string name="hard_mode">Hard Mode</string>
+    <string name="hard_mode_desc">Hard Mode offers the most stringent control over app usage. In this mode, when you try to open a blocked app, the back button is automatically pressed without any warning or cooldown, preventing access entirely.</string>
+    
     
     
 </resources>

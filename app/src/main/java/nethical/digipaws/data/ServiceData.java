@@ -22,7 +22,7 @@ public class ServiceData {
     private List<String> blockedApps = null;
 
     private boolean isReelsBlocked = true;
-    private boolean isEngagementBlocked = true;
+    private boolean isEngagementBlocked = false;
     private boolean isSettingsBlocked = false;
 
     private WindowManager windowManager = null;
