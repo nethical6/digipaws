@@ -10,6 +10,10 @@ import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;
 import com.github.appintro.AppIntroPageTransformerType;
 import nethical.digipaws.R;
+import nethical.digipaws.fragments.SettingsFragment;
+import nethical.digipaws.fragments.intro.ChooseDelay;
+import nethical.digipaws.fragments.intro.ChooseMode;
+import nethical.digipaws.fragments.intro.ChooseViewBlockers;
 
 
 public class Intro extends AppIntro{
@@ -45,19 +49,30 @@ public class Intro extends AppIntro{
 		R.drawable.intro_hard,
 		R.color.md_theme_dark_background
 		));
-		
+        
+        addSlide(new ChooseMode());
+        addSlide(new ChooseViewBlockers());
+        addSlide(new ChooseDelay());
+        
+        addSlide(AppIntroFragment.createInstance(
+		getString(R.string.hard_mode),
+		HtmlCompat.fromHtml(getString(R.string.hard_mode_desc),Html.FROM_HTML_MODE_LEGACY),
+		R.drawable.intro_hard,
+		R.color.md_theme_dark_background
+		));
+        
 		// Fade Transition
-		setTransformer(AppIntroPageTransformerType.Fade.INSTANCE);
+		setTransformer(AppIntroPageTransformerType.Flow.INSTANCE);
 		
        // isColorTransitionsEnabled();
         
 		// Show/hide status bar
 		showStatusBar(true);
 		//Enable the color "fade" animation between two slides (make sure the slide implements SlideBackgroundColorHolder)
-		setColorTransitionsEnabled(true);
+		//setColorTransitionsEnabled(true);
 		
 		//Prevent the back button from exiting the slides
-		setSystemBackButtonLocked(true);
+		//setSystemBackButtonLocked(true);
 		
 		//Activate wizard mode (Some aesthetic changes)
 		setWizardMode(true);
@@ -69,7 +84,7 @@ public class Intro extends AppIntro{
 		setIndicatorEnabled(true);
 		
 		//Dhow/hide ALL buttons
-		setButtonsEnabled(true);
+		//setButtonsEnabled(true);
 		
 		// Enable Vibration
 		setVibrate(true);

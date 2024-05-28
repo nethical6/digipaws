@@ -33,6 +33,16 @@
     <string name="hard_mode">Hard Mode</string>
     <string name="hard_mode_desc">Hard Mode offers the most stringent control over app usage. In this mode, when you try to open a blocked app, the back button is automatically pressed without any warning or cooldown, preventing access entirely.</string>
     
+     <string name="block_vb_title">What do you wish to block?</string>
+    <string name="block_shorts_cb">Block Shorts</string>
+     <string name="block_comments_cb">Block Comments</string>
+     <string name="block_porn_cb">Block Porn</string>
+    <string name="block_vb_desc">Supported Platforms: Youtube, Instagram, Reddit, Facebook, Tiktok</string>
     
+     <string name="choose_mode_title">Configure Mode</string>
+    <string name="choose_mode">Choose Mode</string>
+    
+     <string name="choose_delay_title">How often?</string>
+    <string name="choose_delay_desc">This is the cooldown period between each warnings.</string>
     
 </resources>

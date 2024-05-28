@@ -1,16 +1,16 @@
 package nethical.digipaws.fragments;
 
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
+import com.github.appintro.SlidePolicy;
 import nethical.digipaws.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat
-        implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+        implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback, SlidePolicy {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -40,4 +40,12 @@ public class SettingsFragment extends PreferenceFragmentCompat
 
         return true;
     }
+
+    @Override
+    public boolean isPolicyRespected() {
+        return false;
+    }
+
+    @Override
+    public void onUserIllegallyRequestedNextPage() {}
 }
