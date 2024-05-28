@@ -56,21 +56,10 @@ public class Intro extends AppIntro{
         
         
         
-		// Fade Transition
 		setTransformer(AppIntroPageTransformerType.Flow.INSTANCE);
-		
-       // isColorTransitionsEnabled();
-        
-		// Show/hide status bar
+	
 		showStatusBar(true);
-		//Enable the color "fade" animation between two slides (make sure the slide implements SlideBackgroundColorHolder)
-		//setColorTransitionsEnabled(true);
-		
-		//Prevent the back button from exiting the slides
-		//setSystemBackButtonLocked(true);
-		
-		//Activate wizard mode (Some aesthetic changes)
-		setWizardMode(true);
+	    setWizardMode(true);
 		
 		//Enable immersive mode (no status and nav bar)
 		setImmersiveMode();
