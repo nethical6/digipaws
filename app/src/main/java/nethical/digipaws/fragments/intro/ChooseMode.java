@@ -53,12 +53,15 @@ public class ChooseMode extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
 
+        chooseModeSn.setSelection(1);
+        
         chooseModeSn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             String selectedItem = (String) parent.getItemAtPosition(position);
             // Handle item selection here (e.g., display a toast message)
-            Toast.makeText(requireContext(), "Selected: " + selectedItem + String.valueOf(position), Toast.LENGTH_SHORT).show();
+            sharedPreferences.edit().putInt(DigiConstants.PREF_MODE,position).apply();
+            Toast.makeText(requireContext(), "Selected: " + selectedItem , Toast.LENGTH_SHORT).show();
         }
         
         @Override

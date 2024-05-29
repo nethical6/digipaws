@@ -41,7 +41,9 @@ public class DigiConstants {
     
     public static final String PREF_APP_CONFIG = "app_config";
     public static final String PREF_MODE = "mode";
-    public static final String PREF_DELAY = "mode";
-    public static final String PREF_IS_SHORTS_BLOCKED = "mode";
+    public static final String PREF_DELAY = "delay";
+    public static final String PREF_IS_SHORTS_BLOCKED = "is_shorts_blocked";
+    public static final String PREF_IS_PORN_BLOCKED = "is_porn_blocked";
+    public static final String PREF_IS_ENGMMT_BLOCKED = "is_engmnt_blocked";
     
 }

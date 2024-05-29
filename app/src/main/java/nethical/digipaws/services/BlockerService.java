@@ -3,6 +3,8 @@ package nethical.digipaws.services;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Service;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.accessibility.AccessibilityEvent;
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.itemblockers.AppBlocker;
@@ -46,7 +48,9 @@ public class BlockerService extends AccessibilityService {
 		info.packageNames = LoadAppList.getPackageNames(this).stream().toArray(String[]::new);
 		setServiceInfo(info);
         
-        serviceData = new ServiceData(this,DigiConstants.DIFFICULTY_LEVEL_EASY);
+        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
+
+        serviceData = new ServiceData(this,sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY));
         
         serviceData.setOverlayManager(new OverlayManager(serviceData));
         serviceData.setBlockedApps();
