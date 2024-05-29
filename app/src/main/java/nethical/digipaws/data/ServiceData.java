@@ -23,6 +23,9 @@ public class ServiceData {
 
     private boolean isReelsBlocked = true;
     private boolean isEngagementBlocked = false;
+    private boolean isPornBlocked = false;
+    
+    
     private boolean isSettingsBlocked = false;
 
     private WindowManager windowManager = null;
@@ -84,8 +87,16 @@ public class ServiceData {
         return this.isEngagementBlocked;
     }
 
-    public void isEngagementBlocked(boolean isEngagementBlocked) {
+    public void setEngagementBlocked(boolean isEngagementBlocked) {
         this.isEngagementBlocked = isEngagementBlocked;
+    }
+    
+    public boolean isPornBlocked() {
+        return this.isPornBlocked;
+    }
+
+    public void setPornBlocked(boolean isPornBlocked) {
+        this.isPornBlocked = isPornBlocked;
     }
 
     public WindowManager getWindowManager() {

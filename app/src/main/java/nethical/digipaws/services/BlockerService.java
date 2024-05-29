@@ -54,7 +54,12 @@ public class BlockerService extends AccessibilityService {
         
         serviceData.setOverlayManager(new OverlayManager(serviceData));
         serviceData.setBlockedApps();
+        
         serviceData.setDelay(sharedPreferences.getInt(DigiConstants.PREF_DELAY,120000));
+        serviceData.setReelsBlocked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_SHORTS_BLOCKED,false));
+        serviceData.setPornBlocked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_PORN_BLOCKED,false));
+        serviceData.setEngagementBlocked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_ENGMMT_BLOCKED,false));
+       
         viewBlocker = new ViewBlocker();
         appBlocker = new AppBlocker();
         keywordBlocker = new KeywordBlocker();

@@ -1,17 +1,47 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/ServiceData.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseViewBlockers.java",
+      "selection": {
+        "end": {
+          "column": 8,
+          "index": 2535,
+          "line": 61
+        },
+        "start": {
+          "column": 8,
+          "index": 2535,
+          "line": 61
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/dialogs/LoadingDialog.java",
       "selection": {
         "end": {
           "column": 0,
-          "index": 3563,
-          "line": 135
+          "index": 0,
+          "line": 0
         },
         "start": {
           "column": 0,
-          "index": 3563,
-          "line": 135
+          "index": 0,
+          "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseMode.java",
+      "selection": {
+        "end": {
+          "column": 9,
+          "index": 2475,
+          "line": 61
+        },
+        "start": {
+          "column": 9,
+          "index": 2475,
+          "line": 61
         }
       }
     },
@@ -19,77 +49,17 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
       "selection": {
         "end": {
-          "column": 41,
-          "index": 1347,
-          "line": 41
+          "column": 128,
+          "index": 1974,
+          "line": 52
         },
         "start": {
-          "column": 41,
-          "index": 1347,
-          "line": 41
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java",
-      "selection": {
-        "end": {
-          "column": 38,
-          "index": 2241,
-          "line": 76
-        },
-        "start": {
-          "column": 38,
-          "index": 2241,
-          "line": 76
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseDelay.java",
-      "selection": {
-        "end": {
-          "column": 88,
-          "index": 2323,
-          "line": 59
-        },
-        "start": {
-          "column": 88,
-          "index": 2323,
-          "line": 59
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/arrays.xml",
-      "selection": {
-        "end": {
-          "column": 19,
-          "index": 289,
-          "line": 10
-        },
-        "start": {
-          "column": 19,
-          "index": 289,
-          "line": 10
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
-      "selection": {
-        "end": {
-          "column": 106,
-          "index": 3245,
-          "line": 48
-        },
-        "start": {
-          "column": 106,
-          "index": 3245,
-          "line": 48
+          "column": 43,
+          "index": 1889,
+          "line": 52
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseDelay.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseMode.java"
 }
