@@ -1,10 +1,14 @@
 package nethical.digipaws.fragments.intro;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.provider.Settings;
 import android.graphics.Color;
 import android.util.Log;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -13,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.core.view.WindowCompat;
 import androidx.fragment.app.Fragment;
 import com.github.appintro.SlidePolicy;
@@ -46,6 +51,24 @@ public class ChooseMode extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
+
+        chooseModeSn.setSelection(1);
+        
+        chooseModeSn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            String selectedItem = (String) parent.getItemAtPosition(position);
+            // Handle item selection here (e.g., display a toast message)
+            sharedPreferences.edit().putInt(DigiConstants.PREF_MODE,position).apply();
+            Toast.makeText(requireContext(), "Selected: " + selectedItem , Toast.LENGTH_SHORT).show();
+        }
+        
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+            // Handle if no item is selected
+        }
+        });
         
     }
     
