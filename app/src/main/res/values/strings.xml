@@ -46,6 +46,6 @@
     <string name="choose_mode">Choose Mode</string>
     
      <string name="choose_delay_title">How often?</string>
-    <string name="choose_delay_desc">This is the cooldown period between each warnings.</string>
+    <string name="choose_delay_desc">This is the cooldown period between each warnings.(ONLY FOR EASY MODE)</string>
     
 </resources>

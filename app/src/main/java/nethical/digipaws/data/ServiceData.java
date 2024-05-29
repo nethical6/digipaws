@@ -23,10 +23,15 @@ public class ServiceData {
 
     private boolean isReelsBlocked = true;
     private boolean isEngagementBlocked = false;
+    private boolean isPornBlocked = false;
+    
+    
     private boolean isSettingsBlocked = false;
 
     private WindowManager windowManager = null;
     private OverlayManager overlayManager;
+
+    private int delay = 120000;
 
     public ServiceData(AccessibilityService service, int difficulty) {
         this.difficulty = difficulty;
@@ -82,8 +87,16 @@ public class ServiceData {
         return this.isEngagementBlocked;
     }
 
-    public void isEngagementBlocked(boolean isEngagementBlocked) {
+    public void setEngagementBlocked(boolean isEngagementBlocked) {
         this.isEngagementBlocked = isEngagementBlocked;
+    }
+    
+    public boolean isPornBlocked() {
+        return this.isPornBlocked;
+    }
+
+    public void setPornBlocked(boolean isPornBlocked) {
+        this.isPornBlocked = isPornBlocked;
     }
 
     public WindowManager getWindowManager() {
@@ -112,9 +125,22 @@ public class ServiceData {
     }
 
     public void setBlockedApps() {
-        SharedPreferences sharedPreferences = getService().getSharedPreferences(DigiConstants.PREF_BLOCKED_APPS_FILE,
-					Context.MODE_PRIVATE);
-       
-        blockedApps = new ArrayList<>(sharedPreferences.getStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY,new HashSet<>()));
+        SharedPreferences sharedPreferences =
+                getService()
+                        .getSharedPreferences(
+                                DigiConstants.PREF_BLOCKED_APPS_FILE, Context.MODE_PRIVATE);
+
+        blockedApps =
+                new ArrayList<>(
+                        sharedPreferences.getStringSet(
+                                DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, new HashSet<>()));
+    }
+
+    public int getDelay() {
+        return this.delay;
+    }
+
+    public void setDelay(int delay) {
+        this.delay = delay;
     }
 }

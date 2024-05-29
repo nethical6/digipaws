@@ -21,16 +21,33 @@
          android:paddingBottom="40dp"
          android:paddingTop="40dp" />
 
-    <Spinner
-        android:id="@+id/choose_delay"
+    <LinearLayout
          android:layout_height="wrap_content"
          android:layout_width="wrap_content"
          android:gravity="center"
-         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-         android:entries="@array/delays"
-        android:paddingBottom="10dp"
-         android:textColor="#fff">
-    </Spinner>
+         android:orientation="horizontal">
+
+        <NumberPicker
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:gravity="center"
+             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+             android:padding="10dp"
+             android:textColor="#fff"
+             android:id="@+id/choose_delay">
+
+        </NumberPicker>
+
+        <TextView
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:gravity="center"
+             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+             android:padding="8dp"
+             android:textColor="#fff"
+             android:text="minutes" />
+
+    </LinearLayout>
 
     <TextView
          android:layout_height="wrap_content"
@@ -41,6 +58,4 @@
          android:textColor="#fff"
          android:text="@string/choose_delay_desc" />
 
-    
-    
 </LinearLayout>
