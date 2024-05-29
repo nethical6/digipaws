@@ -47,22 +47,22 @@ public class ViewBlocker {
 		
 		// block short-form content
 		if(isReelsBlocked){
-			performShortsAction(data);
+			performShortsAction();
 		}
 		
 		// block comments and video descriptions
 		if(isEngagementBlocked){
-			performEngagementAction(data);
+			performEngagementAction();
 		}
 	}
 	
-	private void performShortsAction(ServiceData data){
+	private void performShortsAction(){
 		
 		AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
 		
         for (int i = 0; i < BlockerData.shortsViewIds.length; i++) {
             if(isViewOpened(rootNode,BlockerData.shortsViewIds[i])){
-                punish(data);
+                punish();
                 return;
 		    }
         }
@@ -74,7 +74,7 @@ public class ViewBlocker {
 	}
 	
 	
-	private void performEngagementAction(ServiceData data){
+	private void performEngagementAction(){
 		AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
 		for (int i = 0; i < BlockerData.engagementPanelViewIds.length; i++) {
             if(isViewOpened(rootNode,BlockerData.engagementPanelViewIds[i])){
@@ -87,11 +87,11 @@ public class ViewBlocker {
         
 	}
 	
-	public void punish(ServiceData data){
+	public void punish(){
 		switch(difficulty){
 			case(DigiConstants.DIFFICULTY_LEVEL_EASY):
             // Check if warning cooldown is over
-               if(DelayManager.isDelayOver(lastWarningTimestamp)){
+               if(DelayManager.isDelayOver(lastWarningTimestamp,data.getDelay())){
                   // prevents creating multiple instances of overlays
                     if(isOverlayVisible){
                         break;

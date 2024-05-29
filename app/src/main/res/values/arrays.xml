@@ -1,22 +1,12 @@
 <resources>
-<string-array name="Quests">
-<item>Touch Grass</item>
-<item>Buy Quest Coins</item>
-</string-array>
+    <string-array name="Quests">
+        <item>Touch Grass</item>
+        <item>Buy Quest Coins</item>
+    </string-array>
     
     <string-array name="modes">
-<item>Easy Mode</item>
-<item>Adventure Mode</item>
-<item>Hard Mode</item>
-</string-array>
-    
-    <string-array name="delays">
-        <item>20 minutes</item>
-        <item>30 minutes</item>
-        <item>40 minutes</item>
-        <item>50 minutes</item>
-        <item>60 minutes</item>
-        <item>5 minutes</item>
-        <item>10 minutes</item>
-</string-array>
+        <item>Easy Mode</item>
+        <item>Adventure Mode</item>
+        <item>Hard Mode</item>
+    </string-array>
 </resources>

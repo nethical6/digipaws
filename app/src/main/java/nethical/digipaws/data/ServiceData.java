@@ -28,6 +28,8 @@ public class ServiceData {
     private WindowManager windowManager = null;
     private OverlayManager overlayManager;
 
+    private int delay = 120000;
+
     public ServiceData(AccessibilityService service, int difficulty) {
         this.difficulty = difficulty;
         this.service = service;
@@ -112,9 +114,22 @@ public class ServiceData {
     }
 
     public void setBlockedApps() {
-        SharedPreferences sharedPreferences = getService().getSharedPreferences(DigiConstants.PREF_BLOCKED_APPS_FILE,
-					Context.MODE_PRIVATE);
-       
-        blockedApps = new ArrayList<>(sharedPreferences.getStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY,new HashSet<>()));
+        SharedPreferences sharedPreferences =
+                getService()
+                        .getSharedPreferences(
+                                DigiConstants.PREF_BLOCKED_APPS_FILE, Context.MODE_PRIVATE);
+
+        blockedApps =
+                new ArrayList<>(
+                        sharedPreferences.getStringSet(
+                                DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, new HashSet<>()));
+    }
+
+    public int getDelay() {
+        return this.delay;
+    }
+
+    public void setDelay(int delay) {
+        this.delay = delay;
     }
 }

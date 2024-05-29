@@ -54,7 +54,7 @@ public class BlockerService extends AccessibilityService {
         
         serviceData.setOverlayManager(new OverlayManager(serviceData));
         serviceData.setBlockedApps();
-        
+        serviceData.setDelay(sharedPreferences.getInt(DigiConstants.PREF_DELAY,120000));
         viewBlocker = new ViewBlocker();
         appBlocker = new AppBlocker();
         keywordBlocker = new KeywordBlocker();
