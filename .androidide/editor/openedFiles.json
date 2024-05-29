@@ -1,24 +1,24 @@
 {
   "allFiles": [
     {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
+      "selection": {
+        "end": {
+          "column": 25,
+          "index": 2401,
+          "line": 74
+        },
+        "start": {
+          "column": 25,
+          "index": 2401,
+          "line": 74
+        }
+      }
+    },
+    {
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseViewBlockers.java",
       "selection": {
         "end": {
-          "column": 8,
-          "index": 2535,
-          "line": 61
-        },
-        "start": {
-          "column": 8,
-          "index": 2535,
-          "line": 61
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/dialogs/LoadingDialog.java",
-      "selection": {
-        "end": {
           "column": 0,
           "index": 0,
           "line": 0
@@ -27,39 +27,9 @@
           "column": 0,
           "index": 0,
           "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseMode.java",
-      "selection": {
-        "end": {
-          "column": 9,
-          "index": 2475,
-          "line": 61
-        },
-        "start": {
-          "column": 9,
-          "index": 2475,
-          "line": 61
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
-      "selection": {
-        "end": {
-          "column": 128,
-          "index": 1974,
-          "line": 52
-        },
-        "start": {
-          "column": 43,
-          "index": 1889,
-          "line": 52
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseMode.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java"
 }

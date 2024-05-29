@@ -1,5 +1,7 @@
 package nethical.digipaws;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import nethical.digipaws.fragments.SettingsFragment;
 import nethical.digipaws.fragments.intro.ChooseDelay;
 import nethical.digipaws.fragments.intro.ChooseMode;
 import nethical.digipaws.fragments.intro.ChooseViewBlockers;
+import nethical.digipaws.utils.DigiConstants;
 
 
 public class Intro extends AppIntro{
@@ -50,14 +53,15 @@ public class Intro extends AppIntro{
 		R.color.md_theme_dark_background
 		));
         
-        addSlide(new ChooseMode());
-        addSlide(new ChooseViewBlockers());
-        addSlide(new ChooseDelay());
+        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
+
+        
+        addSlide(new ChooseMode(sharedPreferences));
+        addSlide(new ChooseViewBlockers(sharedPreferences));
+        addSlide(new ChooseDelay(sharedPreferences));
         
         
         
-		setTransformer(AppIntroPageTransformerType.Flow.INSTANCE);
-	
 		showStatusBar(true);
 	    setWizardMode(true);
 		
@@ -68,7 +72,7 @@ public class Intro extends AppIntro{
 		setIndicatorEnabled(true);
 		
 		//Dhow/hide ALL buttons
-		//setButtonsEnabled(true);
+		setButtonsEnabled(false);
 		
 		// Enable Vibration
 		setVibrate(true);
