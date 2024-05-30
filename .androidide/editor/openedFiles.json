@@ -1,0 +1,50 @@
+{
+  "allFiles": [
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java",
+      "selection": {
+        "end": {
+          "column": 46,
+          "index": 4645,
+          "line": 124
+        },
+        "start": {
+          "column": 46,
+          "index": 4645,
+          "line": 124
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/LocationTrackerService.java",
+      "selection": {
+        "end": {
+          "column": 25,
+          "index": 3715,
+          "line": 104
+        },
+        "start": {
+          "column": 8,
+          "index": 3477,
+          "line": 101
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
+      "selection": {
+        "end": {
+          "column": 4,
+          "index": 772,
+          "line": 16
+        },
+        "start": {
+          "column": 4,
+          "index": 772,
+          "line": 16
+        }
+      }
+    }
+  ],
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml"
+}

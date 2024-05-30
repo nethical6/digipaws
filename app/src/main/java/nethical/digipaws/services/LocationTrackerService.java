@@ -71,8 +71,8 @@ public class LocationTrackerService extends Service implements LocationManager.L
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, DigiConstants.NOTIFICATION_CHANNEL)
                         .setSmallIcon(R.drawable.swords)
-                        .setContentTitle("Location Quest Running")
-                        .setContentText("You have x remaining time")
+                        .setContentTitle("Quest Running: TOUCH GRASS")
+                        .setContentText("Initialized successfully")
                         .setOnlyAlertOnce(true)
                         .setPriority(NotificationCompat.PRIORITY_HIGH);
 
@@ -110,7 +110,7 @@ public class LocationTrackerService extends Service implements LocationManager.L
     @Override
     public void onLocationChanged(Location location) {
        distance = liveLocationTracker.getDistanceBetweenLocations(location,radarLocation);
-        updateNofification("Location Quest Running","Distance Remaining "+ String.valueOf(distance),NotificationCompat.PRIORITY_DEFAULT);
+        updateNofification("Quest: Touch Grass","Distance Covered: "+ String.valueOf(distance),NotificationCompat.PRIORITY_DEFAULT);
         if(distance>DigiConstants.RADAR_RADIUS){
             CoinManager.incrementCoin(this);
             updateNofification("Quest Completed","You earned 1 digicoin",NotificationCompat.PRIORITY_MAX);

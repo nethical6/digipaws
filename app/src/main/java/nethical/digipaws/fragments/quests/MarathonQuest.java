@@ -1,11 +1,15 @@
 package nethical.digipaws.fragments.quests;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.widget.LinearLayout;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -13,12 +17,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import nethical.digipaws.R;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.services.LocationTrackerService;
 import nethical.digipaws.utils.DigiConstants;
+import nethical.digipaws.utils.DigiUtils;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import nethical.digipaws.utils.LocationManager;
@@ -68,6 +76,24 @@ public class MarathonQuest extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		
+        
+        
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            ActivityCompat.requestPermissions(requireActivity(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    69); // Use a unique request code
+            }
+
+        
+        
+        if(!DigiUtils.isNotificationAccessEnabled(requireContext())){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                ActivityCompat.requestPermissions(requireActivity(),
+                    new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                    70);
+            }
+          }
 	
 		loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog"); // Use a unique tag for the dialog
 		
@@ -95,8 +121,8 @@ public class MarathonQuest extends Fragment {
                 GeoPoint loc = new GeoPoint(latitude,longitude);
 				controller.animateTo(loc);
                 isRunning= true;
-                startQuest.setText(R.id.stop);
                 loadingDialog.dismiss();
+                startQuest.setText(R.id.stop);
         } else {
             makeRadar();
         }
@@ -133,6 +159,11 @@ public class MarathonQuest extends Fragment {
 		
         startQuest.setOnClickListener(v -> {
             if(!isRunning){
+                SharedPreferences.Editor editor = questPref.edit();
+                editor.putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_MARATHON);
+                editor.putBoolean(DigiConstants.PREF_IS_QUEST_RUNNING_KEY,true);
+                editor.apply();      
+                    
                 startQuest.setText(R.string.stop);
                 isRunning=true;
                 Intent serviceIntent = new Intent(requireContext(), LocationTrackerService.class);
