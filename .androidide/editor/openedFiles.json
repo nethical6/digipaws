@@ -1,22 +1,52 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/adapters/SelectBlockedAppsAdapter.java",
       "selection": {
         "end": {
-          "column": 25,
-          "index": 2401,
-          "line": 74
+          "column": 17,
+          "index": 2229,
+          "line": 63
         },
         "start": {
-          "column": 25,
-          "index": 2401,
-          "line": 74
+          "column": 17,
+          "index": 2229,
+          "line": 63
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseViewBlockers.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseBlockedApps.java",
+      "selection": {
+        "end": {
+          "column": 6,
+          "index": 1920,
+          "line": 52
+        },
+        "start": {
+          "column": 6,
+          "index": 1920,
+          "line": 52
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/AppData.java",
+      "selection": {
+        "end": {
+          "column": 28,
+          "index": 895,
+          "line": 43
+        },
+        "start": {
+          "column": 28,
+          "index": 895,
+          "line": 43
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/choose_blocked_apps_list_item.xml",
       "selection": {
         "end": {
           "column": 0,
@@ -31,5 +61,5 @@
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/adapters/SelectBlockedAppsAdapter.java"
 }
