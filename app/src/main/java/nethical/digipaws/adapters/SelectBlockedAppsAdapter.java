@@ -25,7 +25,7 @@ import nethical.digipaws.utils.DigiUtils;
 public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlockedAppsAdapter.ViewHolder> {
 	
 	
-	private final List<AppData> appData;
+	private List<AppData> appData;
 	private Context context;
 	private List<Drawable> iconList;
     private PackageManager pm;
@@ -33,11 +33,12 @@ public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlocked
     private Set<String> newBlockedAppsSet = new HashSet<>();
     
     
-	public SelectBlockedAppsAdapter(List<AppData> appData,Context context) {
-		this.appData = appData;
+	public SelectBlockedAppsAdapter(Context context) {
         this.context = context;
-        
 	}
+    public void setData(List<AppData> appDataL){
+        appData = appDataL;
+    }
 	
 	@NonNull
 	@Override
@@ -66,6 +67,13 @@ public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlocked
             int adapterPosition = holder.getAdapterPosition();
             if (adapterPosition != RecyclerView.NO_POSITION) {
                 appData.get(adapterPosition).setIsChecked(isChecked);
+                    if(isChecked){
+                        newBlockedAppsSet.add(appData.get(position).getPackageName());
+                    }else{
+                        if(newBlockedAppsSet.contains(appData.get(position).getPackageName())){
+                           newBlockedAppsSet.remove(appData.get(position).getPackageName());
+                        }
+                    }
            }
         });
 		}
@@ -74,6 +82,10 @@ public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlocked
 	public int getItemCount() {
 		return appData.size();
 	}
+    
+    public Set<String> getSelectedAppList(){
+        return this.newBlockedAppsSet;
+    }
 	
 	
 	public static class ViewHolder extends RecyclerView.ViewHolder {

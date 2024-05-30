@@ -6,6 +6,8 @@ import android.app.Service;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.accessibility.AccessibilityEvent;
+import java.util.ArrayList;
+import java.util.HashSet;
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.itemblockers.AppBlocker;
 import nethical.digipaws.itemblockers.KeywordBlocker;
@@ -53,13 +55,14 @@ public class BlockerService extends AccessibilityService {
         serviceData = new ServiceData(this,sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY));
         
         serviceData.setOverlayManager(new OverlayManager(serviceData));
-        serviceData.setBlockedApps();
         
         serviceData.setDelay(sharedPreferences.getInt(DigiConstants.PREF_DELAY,120000));
         serviceData.setReelsBlocked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_SHORTS_BLOCKED,false));
         serviceData.setPornBlocked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_PORN_BLOCKED,false));
         serviceData.setEngagementBlocked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_ENGMMT_BLOCKED,false));
-       
+        serviceData.setBlockedApps(new ArrayList<>(
+                        sharedPreferences.getStringSet(
+                                DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, new HashSet<>())));
         viewBlocker = new ViewBlocker();
         appBlocker = new AppBlocker();
         keywordBlocker = new KeywordBlocker();

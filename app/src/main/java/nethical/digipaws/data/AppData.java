@@ -8,9 +8,10 @@ public class AppData {
     private Drawable icon;
     private boolean isSelected = false;
 
-    public AppData(String label, Drawable icon) {
+    public AppData(String label, Drawable icon,String packageName) {
         this.label = label;
         this.icon = icon;
+        this.packageName = packageName;
     }
 
     public String getLabel() {

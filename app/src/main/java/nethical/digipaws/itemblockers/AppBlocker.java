@@ -25,9 +25,12 @@ public class AppBlocker {
     private float lastOverlayTimestamp = 0f;
     private boolean isOverlayVisible = false;
     private ServiceData data;
+    private int difficulty = DigiConstants.DIFFICULTY_LEVEL_EASY;
+    
     
     private void init(){
 		isSettingsBlocked = data.isReelsBlocked();
+        difficulty = data.getDifficulty();
     }
     
     
@@ -38,30 +41,74 @@ public class AppBlocker {
         
         for (String blockedPackageName : data.getBlockedApps()) {
             if(blockedPackageName.equals(data.getPackageName())){
-                 // Check if warning cooldown is over
+               punish();
+                break;
+                
+            }
+          }
+        }
+    
+   public void punish(){
+		switch(difficulty){
+			case(DigiConstants.DIFFICULTY_LEVEL_EASY):
+            // Check if warning cooldown is over
+               if(DelayManager.isDelayOver(lastWarningTimestamp,data.getDelay())){
+                  // prevents creating multiple instances of overlays
+                    if(isOverlayVisible){
+                        break;
+                    }
+                    OverlayManager overlayManager = data.getOverlayManager();
+				    overlayManager.showOverlay(difficulty,()->{
+                        // Proceed Button clickdd
+                        overlayManager.removeOverlay();
+                        isOverlayVisible = false;
+                        lastWarningTimestamp = SystemClock.uptimeMillis();
+                    },
+                    ()->{
+                        // Close button clicked
+                        DigiUtils.pressHome(data.getService());
+                        overlayManager.removeOverlay();
+                        isOverlayVisible = false;
+                    }
+                    );
+                    isOverlayVisible = true;
+                }
+                break;
+            
+            case(DigiConstants.DIFFICULTY_LEVEL_EXTREME):
+                if(DelayManager.isDelayOver(lastWarningTimestamp,1500)){
+                    DigiUtils.pressHome(data.getService());
+                    lastWarningTimestamp = SystemClock.uptimeMillis();
+                }
+                break;
+            
+                    
+            case(DigiConstants.DIFFICULTY_LEVEL_NORMAL):
+            // Check if warning cooldown is over
                if(DelayManager.isDelayOver(lastWarningTimestamp)){
                   // prevents creating multiple instances of overlays
                     if(isOverlayVisible){
                         break;
                     }
                     OverlayManager overlayManager = data.getOverlayManager();
-				    overlayManager.showOverlay(data.getDifficulty(),()->{
+				    overlayManager.showOverlay(difficulty,()->{
                         // Proceed Button clickdd
                         CoinManager.decrementCoin(data.getService());
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
-                        lastWarningTimestamp = SystemClock.uptimeMillis();},
+                        lastWarningTimestamp = SystemClock.uptimeMillis();
+                    },
                     ()->{
                         // Close button clicked
-                        DigiUtils.pressHome(data.getService());
+                        DigiUtils.pressBack(data.getService());
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
-                    });
+                    }
+                    );
                     isOverlayVisible = true;
                 }
                 break;
-        }
+		}
+	}
     
-    }
-        }
 }
