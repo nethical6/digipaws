@@ -26,12 +26,14 @@ import nethical.digipaws.utils.DigiConstants;
 
 
 public class Intro extends AppIntro{
-	
+    
+	private SharedPreferences sharedPreferences;
+    
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
 		addSlide(AppIntroFragment.createInstance(getString(R.string.welcome),
 		HtmlCompat.fromHtml(getString(R.string.app_desc),Html.FROM_HTML_MODE_COMPACT),
@@ -101,6 +103,7 @@ public class Intro extends AppIntro{
 	@Override
 	protected void onDonePressed(Fragment currentFragment) {
 		super.onDonePressed(currentFragment);
+        sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,true).apply();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

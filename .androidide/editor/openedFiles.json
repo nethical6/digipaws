@@ -1,50 +1,65 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
       "selection": {
         "end": {
-          "column": 46,
-          "index": 4645,
-          "line": 124
+          "column": 90,
+          "index": 3345,
+          "line": 105
         },
         "start": {
-          "column": 46,
-          "index": 4645,
-          "line": 124
+          "column": 90,
+          "index": 3345,
+          "line": 105
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/LocationTrackerService.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
       "selection": {
         "end": {
-          "column": 25,
-          "index": 3715,
-          "line": 104
+          "column": 60,
+          "index": 2165,
+          "line": 48
         },
         "start": {
-          "column": 8,
-          "index": 3477,
-          "line": 101
+          "column": 60,
+          "index": 2165,
+          "line": 48
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
       "selection": {
         "end": {
-          "column": 4,
-          "index": 772,
-          "line": 16
+          "column": 12,
+          "index": 2293,
+          "line": 65
         },
         "start": {
-          "column": 4,
-          "index": 772,
-          "line": 16
+          "column": 12,
+          "index": 2293,
+          "line": 65
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml",
+      "selection": {
+        "end": {
+          "column": 57,
+          "index": 1689,
+          "line": 46
+        },
+        "start": {
+          "column": 57,
+          "index": 1689,
+          "line": 46
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml"
 }

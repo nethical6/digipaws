@@ -26,6 +26,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
+import nethical.digipaws.Intro;
 import nethical.digipaws.R;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.services.BlockerService;
@@ -61,6 +62,13 @@ public class HomeFragment extends Fragment {
      
         
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
+        
+        if(!sharedPreferences.getBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,false)){
+           Intent intent = new Intent(getActivity(),Intro.class);
+			startActivity(intent);
+            getActivity().finish();
+        }
+        
         
         if(sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)==DigiConstants.DIFFICULTY_LEVEL_NORMAL){
            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

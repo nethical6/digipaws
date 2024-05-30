@@ -46,4 +46,5 @@ public class DigiConstants {
     public static final String PREF_IS_PORN_BLOCKED = "is_porn_blocked";
     public static final String PREF_IS_ENGMMT_BLOCKED = "is_engmnt_blocked";
     
+    public static final String PREF_IS_INTRO_SHOWN ="intro";
 }
