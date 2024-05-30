@@ -13,6 +13,7 @@ import com.github.appintro.AppIntroFragment;
 import com.github.appintro.AppIntroPageTransformerType;
 import nethical.digipaws.R;
 import nethical.digipaws.fragments.SettingsFragment;
+import nethical.digipaws.fragments.intro.ChooseBlockedApps;
 import nethical.digipaws.fragments.intro.ChooseDelay;
 import nethical.digipaws.fragments.intro.ChooseMode;
 import nethical.digipaws.fragments.intro.ChooseViewBlockers;
@@ -25,6 +26,11 @@ public class Intro extends AppIntro{
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
+
+        
+        addSlide(new ChooseBlockedApps(sharedPreferences));
+        
         
 		addSlide(AppIntroFragment.createInstance(getString(R.string.welcome),
 		HtmlCompat.fromHtml(getString(R.string.app_desc),Html.FROM_HTML_MODE_COMPACT),
@@ -53,8 +59,7 @@ public class Intro extends AppIntro{
 		R.color.md_theme_dark_background
 		));
         
-        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
-
+        
         
         addSlide(new ChooseMode(sharedPreferences));
         addSlide(new ChooseViewBlockers(sharedPreferences));
@@ -74,8 +79,6 @@ public class Intro extends AppIntro{
 		//Dhow/hide ALL buttons
 		setButtonsEnabled(false);
 		
-		// Enable Vibration
-		setVibrate(true);
 	}
 	
 	@Override

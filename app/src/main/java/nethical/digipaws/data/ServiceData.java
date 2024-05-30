@@ -124,16 +124,14 @@ public class ServiceData {
         return this.blockedApps;
     }
 
-    public void setBlockedApps() {
+    public void setBlockedApps(List<String> blockedPacks) {
         SharedPreferences sharedPreferences =
                 getService()
                         .getSharedPreferences(
                                 DigiConstants.PREF_BLOCKED_APPS_FILE, Context.MODE_PRIVATE);
 
-        blockedApps =
-                new ArrayList<>(
-                        sharedPreferences.getStringSet(
-                                DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, new HashSet<>()));
+        blockedApps = blockedPacks;
+                
     }
 
     public int getDelay() {
