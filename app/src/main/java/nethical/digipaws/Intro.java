@@ -1,8 +1,13 @@
 package nethical.digipaws;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.content.Intent;
+import android.net.Uri;
 import android.text.Html;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,16 +26,14 @@ import nethical.digipaws.utils.DigiConstants;
 
 
 public class Intro extends AppIntro{
-	
+    
+	private SharedPreferences sharedPreferences;
+    
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
-
-        
-        addSlide(new ChooseBlockedApps(sharedPreferences));
-        
+        sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
 		addSlide(AppIntroFragment.createInstance(getString(R.string.welcome),
 		HtmlCompat.fromHtml(getString(R.string.app_desc),Html.FROM_HTML_MODE_COMPACT),
@@ -64,7 +67,16 @@ public class Intro extends AppIntro{
         addSlide(new ChooseMode(sharedPreferences));
         addSlide(new ChooseViewBlockers(sharedPreferences));
         addSlide(new ChooseDelay(sharedPreferences));
+        addSlide(new ChooseBlockedApps(sharedPreferences));
         
+        addSlide(AppIntroFragment.createInstance(
+		"Thanks For choosing us",
+		"By continuing you agree that we are not responsible to any damages done by this app to you or your device(s)",
+                	R.drawable.paws,
+		R.color.md_theme_dark_background
+		));
+        
+
         
         
 		showStatusBar(true);
@@ -75,21 +87,25 @@ public class Intro extends AppIntro{
 		
 		//Enable/disable page indicators
 		setIndicatorEnabled(true);
-		
+		setSkipButtonEnabled(false);
 		//Dhow/hide ALL buttons
-		setButtonsEnabled(false);
+	//	setButtonsEnabled(false);
 		
 	}
 	
+    
+    
 	@Override
 	protected void onSkipPressed(Fragment currentFragment) {
 		super.onSkipPressed(currentFragment);
-		finish();
 	}
 	
 	@Override
 	protected void onDonePressed(Fragment currentFragment) {
 		super.onDonePressed(currentFragment);
-		finish();
+        sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,true).apply();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
 	}
 }

@@ -18,7 +18,9 @@
     <string name="breathe">Take a deep breath!!!</string>
     <string name="warning_title">Are you sure?</string>
 
-    <string name="notification_accessibility_permission">Please Enable Accessibility Service to continue.</string>
+    <string name="notification_accessibility_permission">Accessibilty Services required to run blockers.</string>
+    <string name="notification_notif_permission">Please allow us to send notifications to run this quest on background when started.</string>
+    
     
     <string name="notification_marathon_title">Marathon Quest in running</string>
     
@@ -49,6 +51,6 @@
       <string name="choose_delay_desc">This is the cooldown period between each warnings.(ONLY FOR EASY MODE)</string>
 
     <string name="choose_blocked_apps_title">App Blocker Configuration</string>
-    <string name="choose_blocked_apps_desc">Select the apps you wish to block or receive usage warnings for. Leave empty to disable.</string>
+    <string name="choose_blocked_apps_desc">Select the apps you wish to block or receive usage warnings for.</string>
 
 </resources>

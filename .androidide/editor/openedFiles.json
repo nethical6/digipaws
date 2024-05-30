@@ -1,0 +1,65 @@
+{
+  "allFiles": [
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
+      "selection": {
+        "end": {
+          "column": 90,
+          "index": 3345,
+          "line": 105
+        },
+        "start": {
+          "column": 90,
+          "index": 3345,
+          "line": 105
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
+      "selection": {
+        "end": {
+          "column": 60,
+          "index": 2165,
+          "line": 48
+        },
+        "start": {
+          "column": 60,
+          "index": 2165,
+          "line": 48
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
+      "selection": {
+        "end": {
+          "column": 12,
+          "index": 2293,
+          "line": 65
+        },
+        "start": {
+          "column": 12,
+          "index": 2293,
+          "line": 65
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml",
+      "selection": {
+        "end": {
+          "column": 57,
+          "index": 1689,
+          "line": 46
+        },
+        "start": {
+          "column": 57,
+          "index": 1689,
+          "line": 46
+        }
+      }
+    }
+  ],
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml"
+}
