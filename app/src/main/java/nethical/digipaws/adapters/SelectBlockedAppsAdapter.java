@@ -54,15 +54,19 @@ public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlocked
         holder.icon.setImageDrawable(appData.get(position).getIcon());
         holder.cb.setChecked(appData.get(position).getChecked());
         
+        holder.itemView.setOnClickListener(null);
         holder.cb.setOnCheckedChangeListener(null);
 
+        holder.itemView.setOnClickListener((view)->{
+            holder.cb.setChecked(!holder.cb.isChecked());
+        });
+        
         // Set new listener
         holder.cb.setOnCheckedChangeListener((buttonView, isChecked) -> {
             int adapterPosition = holder.getAdapterPosition();
             if (adapterPosition != RecyclerView.NO_POSITION) {
                 appData.get(adapterPosition).setIsChecked(isChecked);
-               // notifyItemChanged(adapterPosition);
-            }
+           }
         });
 		}
 		

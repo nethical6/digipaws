@@ -6,9 +6,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.os.Looper;
 import android.widget.NumberPicker;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 import nethical.digipaws.R;
 import nethical.digipaws.adapters.SelectBlockedAppsAdapter;
 import nethical.digipaws.data.AppData;
+import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.LoadAppList;
 
@@ -26,6 +30,8 @@ public class ChooseBlockedApps extends Fragment {
 
     SharedPreferences sharedPreferences;
     RecyclerView recyclerView;
+    HandlerThread handlerThread;
+    
     
     public ChooseBlockedApps(SharedPreferences sp){
         sharedPreferences = sp;
@@ -44,24 +50,56 @@ public class ChooseBlockedApps extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        List<String> appList = LoadAppList.getPackageNames(requireContext());
+        LoadingDialog loadingDialog = new LoadingDialog("Fetching Packages");
+        loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog"); 
+		
+        handlerThread = new HandlerThread("AppListLoader");
+        handlerThread.start();
+        Handler handler = new Handler(handlerThread.getLooper());
         
-        List<AppData> appData = new ArrayList<AppData>();
+        // Create a Handler for the main thread
+        Handler mainHandler = new Handler(Looper.getMainLooper());
 
-        PackageManager pm = requireContext().getPackageManager(); // Replace 'context' with your activity or context
-      
         
-        for(String packageName: appList){
-            try {
-                ApplicationInfo info = pm.getApplicationInfo(packageName, 0);
-                appData.add(new AppData(info.loadLabel(pm).toString(),pm.getApplicationIcon(packageName)));
-            } catch (PackageManager.NameNotFoundException e) {
-                continue;
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                    List<String> appList = LoadAppList.getPackageNames(requireContext());
+                    List<AppData> appData = new ArrayList<AppData>();
+
+                    PackageManager pm = requireContext().getPackageManager(); // Replace 'context' with your activity or context
+                
+                    
+                    for(String packageName: appList){
+                        try {
+                            ApplicationInfo info = pm.getApplicationInfo(packageName, 0);
+                            appData.add(new AppData(info.loadLabel(pm).toString(),pm.getApplicationIcon(packageName)));
+                        } catch (PackageManager.NameNotFoundException e) {
+                            continue;
+                        }
+                    }
+                    
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+                            // Update the UI with the result
+                            recyclerView.setAdapter(new SelectBlockedAppsAdapter(appData,requireContext()));
+                            loadingDialog.dismiss();
+                        }
+                    });
+                    
+                    
             }
-        }
-		recyclerView.setAdapter(new SelectBlockedAppsAdapter(appData,requireContext()));
-	
+        });
 
     }
+    
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Quit the HandlerThread to free up resources
+        handlerThread.quitSafely();
+    }
+    
 }

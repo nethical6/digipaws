@@ -4,14 +4,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/adapters/SelectBlockedAppsAdapter.java",
       "selection": {
         "end": {
-          "column": 17,
-          "index": 2229,
-          "line": 63
+          "column": 50,
+          "index": 2067,
+          "line": 60
         },
         "start": {
-          "column": 17,
-          "index": 2229,
-          "line": 63
+          "column": 50,
+          "index": 2067,
+          "line": 60
         }
       }
     },
@@ -19,14 +19,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseBlockedApps.java",
       "selection": {
         "end": {
-          "column": 6,
-          "index": 1920,
-          "line": 52
+          "column": 101,
+          "index": 3342,
+          "line": 84
         },
         "start": {
-          "column": 6,
-          "index": 1920,
-          "line": 52
+          "column": 101,
+          "index": 3342,
+          "line": 84
         }
       }
     },
@@ -57,6 +57,66 @@
           "column": 0,
           "index": 0,
           "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/choose_blocked_apps.xml",
+      "selection": {
+        "end": {
+          "column": 56,
+          "index": 309,
+          "line": 6
+        },
+        "start": {
+          "column": 56,
+          "index": 309,
+          "line": 6
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
+      "selection": {
+        "end": {
+          "column": 4,
+          "index": 3343,
+          "line": 51
+        },
+        "start": {
+          "column": 4,
+          "index": 3343,
+          "line": 51
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/choose_preferences_view_blockers.xml",
+      "selection": {
+        "end": {
+          "column": 5,
+          "index": 320,
+          "line": 7
+        },
+        "start": {
+          "column": 5,
+          "index": 262,
+          "line": 6
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java",
+      "selection": {
+        "end": {
+          "column": 2,
+          "index": 2352,
+          "line": 72
+        },
+        "start": {
+          "column": 2,
+          "index": 2234,
+          "line": 71
         }
       }
     }

@@ -46,6 +46,9 @@
     <string name="choose_mode">Choose Mode</string>
     
      <string name="choose_delay_title">How often?</string>
-    <string name="choose_delay_desc">This is the cooldown period between each warnings.(ONLY FOR EASY MODE)</string>
-    
+      <string name="choose_delay_desc">This is the cooldown period between each warnings.(ONLY FOR EASY MODE)</string>
+
+    <string name="choose_blocked_apps_title">App Blocker Configuration</string>
+    <string name="choose_blocked_apps_desc">Select the apps you wish to block or receive usage warnings for.</string>
+
 </resources>
