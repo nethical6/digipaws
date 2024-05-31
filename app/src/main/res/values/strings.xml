@@ -19,13 +19,14 @@
     <string name="warning_title">Are you sure?</string>
 
     <string name="notification_accessibility_permission">Accessibilty Services required to run blockers.</string>
+     <string name="notification_overlay_permission">Overlay permission required to display warning messages and alerts.</string>
     <string name="notification_notif_permission">Please allow us to send notifications to run this quest on background when started.</string>
     
     
     <string name="notification_marathon_title">Marathon Quest in running</string>
     
     
-    
+     <string name="select_quest">Select Quest</string>
     <string name="welcome">Welcome</string>
     <string name="app_desc">DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes—Easy, Adventure, and Hard—each with unique features and challenges to promote healthy screen time habits.</string>
     
@@ -52,5 +53,8 @@
 
     <string name="choose_blocked_apps_title">App Blocker Configuration</string>
     <string name="choose_blocked_apps_desc">Select the apps you wish to block or receive usage warnings for.</string>
+    
+    <string name="perm_quest_manager_label">Digipaws Quests</string>
+    <string name="perm_quest_manager_desc">Allow this app to act as an quest and modify digicoin counts?</string>
 
 </resources>

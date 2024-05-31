@@ -3,10 +3,10 @@
     package="nethical.digipaws"
     android:versionCode="1"
 	android:versionName="1.0">
-
     
     <uses-sdk android:minSdkVersion="22" android:targetSdkVersion="33"/>
 	
+    <uses-permission android:name="nethical.digipaws.permission.API_V0"/>
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	
@@ -20,7 +20,13 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 	<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
-	
+    
+     <permission
+        android:name="nethical.digipaws.permission.API_V0"
+        android:label="@string/perm_quest_manager_label"
+        android:description="@string/perm_quest_manager_desc"
+        android:protectionLevel="dangerous" />
+    
     <application
         android:name=".DigiApplication"
         android:allowBackup="true"
@@ -31,7 +37,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+             android:exported="true">
             <intent-filter>
 			<action android:name="android.intent.action.MAIN" />
 			
@@ -68,6 +74,11 @@
             android:foregroundServiceType="location"
             android:exported="false" />
 
+        <service
+            android:name=".services.QuestManagerService"
+            android:permission="nethical.digipaws.permission.API_V0"
+            android:exported="true" />
+        
         
         <receiver
             android:exported="false"
@@ -82,8 +93,7 @@
                 android:resource="@xml/device_admin_receiver" />
         </receiver>
         
-        
-        
     </application>
 
+    
 </manifest>

@@ -18,6 +18,14 @@
             app:layout_scrollFlags="scroll|enterAlways|snap" >
 
             <Button
+                android:id="@+id/configure"
+                style="?attr/materialIconButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="Configure"
+                android:layout_gravity="center_horizontal|right|end"
+                app:icon="@drawable/flag" />
+            <Button
                 android:id="@+id/coint_count"
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
