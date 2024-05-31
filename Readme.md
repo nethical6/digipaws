@@ -2,7 +2,9 @@
 
 DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes—Easy, Adventure, and Hard—each with unique features and challenges to promote healthy screen time habits.
 
-
+> [!CAUTION]  
+> This app may be discontinued very soon as it has been completely coded on an android phone from scratch. Help me buy a pc by [Donating Money](https://www.patreon.com/nethical)
+> 
 ## Features
 
 - **Three Unique Modes**: Tailor your screen usage experience with Easy, Adventure, and Hard modes.
