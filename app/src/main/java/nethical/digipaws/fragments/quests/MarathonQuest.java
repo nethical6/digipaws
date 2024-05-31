@@ -10,13 +10,17 @@ import android.location.Location;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.net.Uri;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.util.ArrayList;
 import nethical.digipaws.R;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
@@ -50,7 +54,9 @@ public class MarathonQuest extends Fragment {
 	private MyLocationNewOverlay mLocationOverlay;
 	LoadingDialog loadingDialog = new LoadingDialog("Calculating Location...");
 	
-	
+	private static final int REQUEST_FINE_LOCATION_PERMISSION = 69;
+    private static final int REQUEST_POST_NOTIFICATIONS_PERMISSION = 70;
+
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,26 +77,8 @@ public class MarathonQuest extends Fragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		
         
         
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            ActivityCompat.requestPermissions(requireActivity(),
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    69); // Use a unique request code
-            }
-
-        
-        
-        if(!DigiUtils.isNotificationAccessEnabled(requireContext())){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                ActivityCompat.requestPermissions(requireActivity(),
-                    new String[]{Manifest.permission.POST_NOTIFICATIONS},
-                    70);
-            }
-          }
-	
 		loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog"); // Use a unique tag for the dialog
 		
 		
@@ -181,9 +169,11 @@ public class MarathonQuest extends Fragment {
 	
 	
 	private void makeRadar(){
-		LocationManager locationHelperCircle = new LocationManager(requireContext());
 		
-		locationHelperCircle.setLiveLocationListener(
+        new Thread(
+		() -> {
+               LocationManager locationHelperCircle = new LocationManager(requireContext());
+			locationHelperCircle.setLiveLocationListener(
 		new LocationManager.LocationListener() {
 			@Override
 			public void onLocationChanged(Location location) {
@@ -220,6 +210,11 @@ public class MarathonQuest extends Fragment {
 			}
 		});
 		locationHelperCircle.startLocationUpdates();
+		})
+		.start();
+        
+        
+		
 	}
 	
 	private void addCircleTo(double latitude,double longitude,double radius){
@@ -259,7 +254,9 @@ public class MarathonQuest extends Fragment {
 		
 		if (liveLocationTracker != null && !liveLocationTracker.isRunning) {
 			liveLocationTracker.startLocationUpdates();
-		}
+		}else{
+            checkLocationPermission();
+        }
 	}
 	
 	@Override
@@ -290,5 +287,65 @@ public class MarathonQuest extends Fragment {
 	}
     
     
+    private void checkNotificationPermision(){
+        if(!DigiUtils.isNotificationAccessEnabled(requireContext())){
+            loadingDialog.dismiss();
+            makeNotificationPermissionDialog().create().show();
+        }
+    }
+    
+    private void checkLocationPermission(){
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            loadingDialog.dismiss();
+            makeLocationPermissionDialog().create().show();
+            }else{
+                checkNotificationPermision();
+            }
+
+    }
+    
+    private MaterialAlertDialogBuilder makeNotificationPermissionDialog(){
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Missing Permissions")
+                    .setMessage(R.string.notification_notif_permission)
+                    .setNeutralButton("Provide",(dialog,which)->{
+                        requestPermissions(
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        REQUEST_POST_NOTIFICATIONS_PERMISSION);
+				  
+                    });
+        return builder;
+    }
+    
+    private MaterialAlertDialogBuilder makeLocationPermissionDialog(){
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Missing Permissions")
+                    .setMessage(R.string.notification_location_permission)
+                    .setNeutralButton("Provide",(dialog,which)->{
+                        requestPermissions(
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        REQUEST_FINE_LOCATION_PERMISSION);
+				  
+                    });
+        return builder;
+    }
+    
+    @Override
+        public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (requestCode == REQUEST_FINE_LOCATION_PERMISSION) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    checkNotificationPermision();
+                    // Permission granted for ACCESS_FINE_LOCATION
+                 //   makeRadar();
+                }
+            } else if (requestCode == REQUEST_POST_NOTIFICATIONS_PERMISSION) {
+                loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog"); // Use a unique tag for the dialog
+                makeRadar();
+            }
+        }
+   
+    
+        
 	
 }

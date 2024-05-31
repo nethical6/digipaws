@@ -4,14 +4,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
       "selection": {
         "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 44,
+          "index": 2185,
+          "line": 58
         },
         "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 16,
+          "index": 1551,
+          "line": 48
         }
       }
     },
@@ -19,14 +19,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java",
       "selection": {
         "end": {
-          "column": 2,
-          "index": 9669,
-          "line": 280
+          "column": 45,
+          "index": 10178,
+          "line": 301
         },
         "start": {
-          "column": 2,
-          "index": 9669,
-          "line": 280
+          "column": 45,
+          "index": 10178,
+          "line": 301
         }
       }
     },
@@ -74,7 +74,37 @@
           "line": 43
         }
       }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiUtils.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
+      "selection": {
+        "end": {
+          "column": 39,
+          "index": 1474,
+          "line": 23
+        },
+        "start": {
+          "column": 39,
+          "index": 1474,
+          "line": 23
+        }
+      }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseBlockedApps.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java"
 }

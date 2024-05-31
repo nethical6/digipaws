@@ -24,16 +24,17 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    
-    
+    private View view;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		View view = inflater.inflate(R.layout.home_fragment, container, false);
+        view = inflater.inflate(R.layout.home_fragment, container, false);
 		
 		return view;
 	}
 	
+    
+    
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
@@ -42,18 +43,6 @@ public class HomeFragment extends Fragment {
 		loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog");
 		List<String> packages = LoadAppList.getPackageNames(requireContext());
 		loadingDialog.dismiss();
-        
-        
-		if(!DigiUtils.isAccessibilityServiceEnabled(requireContext(),BlockerService.class)){
-			Snackbar.make(view, R.string.notification_accessibility_permission, Snackbar.LENGTH_LONG)
-			.setAction(R.string.settings, new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-					startActivity(intent);
-				}
-			}).show();
-		}
         
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(requireContext())) {
@@ -78,9 +67,21 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        
+        checkAccessibiltyPermission();
     }
     
+    private void checkAccessibiltyPermission(){
+        if(!DigiUtils.isAccessibilityServiceEnabled(requireContext(),BlockerService.class)){
+			Snackbar.make(view, R.string.notification_accessibility_permission, Snackbar.LENGTH_LONG)
+			.setAction(R.string.settings, new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+					startActivity(intent);
+				}
+			}).show();
+		}
+    }
 	
 	// Layout file (fragment_my.xml)
 	public static int getLayoutResourceId() {
