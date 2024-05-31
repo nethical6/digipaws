@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
             if (!Settings.canDrawOverlays(requireContext())) {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
                     .setTitle("Missing Permissions")
-                    .setMessage("Permission to display over other apps required to display warnings")
+                    .setMessage(R.string.notification_overlay_permission)
                     .setNeutralButton("Provide",(dialog,which)->{
                         Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                         Uri.parse("package:" + requireContext().getPackageName()));

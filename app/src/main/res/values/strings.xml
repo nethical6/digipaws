@@ -19,7 +19,7 @@
     <string name="warning_title">Are you sure?</string>
 
     <string name="notification_accessibility_permission">Accessibilty Services required to run blockers.</string>
-     <string name="notification_overlay_permission">Overlay permission required to display warning messages and alerts.</string>
+     <string name="notification_overlay_permission">This app requires overlay permission to display warning screen each time when a blocked item is found on screen. This permission is only required for easy and adventure modes.</string>
     <string name="notification_notif_permission">Please allow us to send notifications to run this quest on background when started.</string>
     
     

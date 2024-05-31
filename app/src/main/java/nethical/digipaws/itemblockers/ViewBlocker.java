@@ -1,17 +1,8 @@
 package nethical.digipaws.itemblockers;
 
-import android.accessibilityservice.AccessibilityService;
-import android.app.Service;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.PixelFormat;
 import android.os.SystemClock;
-import android.view.View;
-import android.view.LayoutInflater;
-import android.view.WindowManager;
-import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
-import nethical.digipaws.R;
 import nethical.digipaws.data.BlockerData;
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.utils.CoinManager;
@@ -19,7 +10,6 @@ import nethical.digipaws.utils.DelayManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.OverlayManager;
-import nethical.digipaws.utils.SurvivalModeManager;
 
 public class ViewBlocker {
 	
@@ -115,7 +105,7 @@ public class ViewBlocker {
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_EXTREME):
-                if(DelayManager.isDelayOver(lastWarningTimestamp,1500)){
+                if(DelayManager.isDelayOver(lastWarningTimestamp,DigiConstants.GLOBAL_ACTION_COOLDOWN)){
                     DigiUtils.pressBack(data.getService());
                     lastWarningTimestamp = SystemClock.uptimeMillis();
                 }
@@ -124,7 +114,7 @@ public class ViewBlocker {
                     
             case(DigiConstants.DIFFICULTY_LEVEL_NORMAL):
             // Check if warning cooldown is over
-               if(DelayManager.isDelayOver(lastWarningTimestamp)){
+               if(DelayManager.isDelayOver(lastWarningTimestamp,DigiConstants.ADVENTURE_MODE_COOLDOWN)){
                   // prevents creating multiple instances of overlays
                     if(isOverlayVisible){
                         break;
