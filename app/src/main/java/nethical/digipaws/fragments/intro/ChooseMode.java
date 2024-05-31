@@ -1,6 +1,5 @@
 package nethical.digipaws.fragments.intro;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.AdapterView;
 import android.os.Bundle;

@@ -1,20 +1,10 @@
 package nethical.digipaws.utils;
 
-import android.accessibilityservice.AccessibilityService;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.PixelFormat;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.color.MaterialColors;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import nethical.digipaws.MainActivity;
 import nethical.digipaws.R;
 import android.view.View;
 import android.view.WindowManager;

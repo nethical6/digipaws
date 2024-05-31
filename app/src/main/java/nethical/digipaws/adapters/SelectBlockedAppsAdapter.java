@@ -1,7 +1,6 @@
 package nethical.digipaws.adapters;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -10,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,8 +16,6 @@ import nethical.digipaws.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import nethical.digipaws.data.AppData;
-import nethical.digipaws.fragments.quests.MarathonQuest;
-import nethical.digipaws.utils.DigiUtils;
 
 public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlockedAppsAdapter.ViewHolder> {
 	
@@ -47,7 +42,6 @@ public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlocked
 		context=parent.getContext();
 		return new ViewHolder(view);
 	}
-	
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         

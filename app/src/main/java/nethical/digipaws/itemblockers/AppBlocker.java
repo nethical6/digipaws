@@ -1,14 +1,6 @@
 package nethical.digipaws.itemblockers;
 
-import android.accessibilityservice.AccessibilityService;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.SystemClock;
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DelayManager;
@@ -16,13 +8,15 @@ import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.OverlayManager;
 import nethical.digipaws.utils.OverlayManager;
-import nethical.digipaws.utils.SurvivalModeManager;
 
 public class AppBlocker {
     
     private boolean isSettingsBlocked=false;
+    
     private float lastWarningTimestamp = 0f;
     private float lastOverlayTimestamp = 0f;
+    private float lastGlobalActionTimestamp = 0f;
+    
     private boolean isOverlayVisible = false;
     private ServiceData data;
     private int difficulty = DigiConstants.DIFFICULTY_LEVEL_EASY;
@@ -37,7 +31,6 @@ public class AppBlocker {
     public void performAction(ServiceData data){
         this.data = data;
         init();
-        
         
         for (String blockedPackageName : data.getBlockedApps()) {
             if(blockedPackageName.equals(data.getPackageName())){
@@ -66,7 +59,7 @@ public class AppBlocker {
                     },
                     ()->{
                         // Close button clicked
-                        DigiUtils.pressHome(data.getService());
+                        pressHome();
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
                     }
@@ -76,16 +69,13 @@ public class AppBlocker {
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_EXTREME):
-                if(DelayManager.isDelayOver(lastWarningTimestamp,1500)){
-                    DigiUtils.pressHome(data.getService());
-                    lastWarningTimestamp = SystemClock.uptimeMillis();
-                }
+                pressHome();
                 break;
             
                     
             case(DigiConstants.DIFFICULTY_LEVEL_NORMAL):
             // Check if warning cooldown is over
-               if(DelayManager.isDelayOver(lastWarningTimestamp)){
+               if(DelayManager.isDelayOver(lastWarningTimestamp,DigiConstants.ADVENTURE_MODE_COOLDOWN)){
                   // prevents creating multiple instances of overlays
                     if(isOverlayVisible){
                         break;
@@ -100,7 +90,7 @@ public class AppBlocker {
                     },
                     ()->{
                         // Close button clicked
-                        DigiUtils.pressBack(data.getService());
+                        pressHome();
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
                     }
@@ -110,5 +100,11 @@ public class AppBlocker {
                 break;
 		}
 	}
+    private void pressHome(){
+         if(DelayManager.isDelayOver(lastGlobalActionTimestamp,DigiConstants.GLOBAL_ACTION_COOLDOWN)){
+                   DigiUtils.pressHome(data.getService());
+                    lastGlobalActionTimestamp = SystemClock.uptimeMillis();
+            }
+    }
     
 }

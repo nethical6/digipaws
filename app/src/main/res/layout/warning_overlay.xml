@@ -5,7 +5,7 @@
      android:layout_height="wrap_content"
      android:layout_width="wrap_content"
      android:gravity="center_vertical|center|center_horizontal"
-     android:background="@color/md_theme_dark_surfaceTint"
+     android:background="@color/md_theme_dark_background"
      android:padding="24dp"
      android:orientation="vertical">
 

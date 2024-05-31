@@ -18,7 +18,7 @@ public class DigiConstants {
 	public static final String PREF_PUNISHMENT_FILE = "punishment_info";
 	public static final String PREF_PUNISHMENT_DIFFICULTY_KEY = "difficulty";
 	public static final int DIFFICULTY_LEVEL_EASY = 0;
-	public static final int DIFFICULTY_LEVEL_NORMAL = 1;
+	public static final int DIFFICULTY_LEVEL_NORMAL = 1; // NORMAL MODE == ADVENTURE MODE
 	public static final int DIFFICULTY_LEVEL_EXTREME = 2;
 	
 	public static final String VIEWID_SEPERATOR = ":id/";
@@ -54,5 +54,9 @@ public class DigiConstants {
     public static final String COIN_MANAGER_DECREMENT = "decrement_coin";
     public static final String COIN_MANAGER_NOTIF_DESC = "coin_desc";
     
+    // specifies how many minutes to waste does 1 digicoin provide
+    public static final int ADVENTURE_MODE_COOLDOWN = 20 * 60 * 1000; // 20 minutes
     
+    // required to prevent repeated back presses 
+    public static final int GLOBAL_ACTION_COOLDOWN = 1500; // 1.5 seconds
 }

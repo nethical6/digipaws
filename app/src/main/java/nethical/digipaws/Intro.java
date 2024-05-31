@@ -1,29 +1,23 @@
 package nethical.digipaws;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.Settings;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.text.Html;
-import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+
 import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;
-import com.github.appintro.AppIntroPageTransformerType;
-import nethical.digipaws.R;
-import nethical.digipaws.fragments.SettingsFragment;
+
 import nethical.digipaws.fragments.intro.ChooseBlockedApps;
 import nethical.digipaws.fragments.intro.ChooseDelay;
 import nethical.digipaws.fragments.intro.ChooseMode;
 import nethical.digipaws.fragments.intro.ChooseViewBlockers;
 import nethical.digipaws.utils.DigiConstants;
-
 
 public class Intro extends AppIntro{
     
@@ -71,13 +65,10 @@ public class Intro extends AppIntro{
         
         addSlide(AppIntroFragment.createInstance(
 		"Thanks For choosing us",
-		"By continuing you agree that we are not responsible to any damages done by this app to you or your device(s)",
-                	R.drawable.paws,
+		"By continuing you agree that we are not responsible for any damages done by this app to you or your device(s)",
+        R.drawable.paws,
 		R.color.md_theme_dark_background
 		));
-        
-
-        
         
 		showStatusBar(true);
 	    setWizardMode(true);
@@ -99,6 +90,19 @@ public class Intro extends AppIntro{
 	protected void onSkipPressed(Fragment currentFragment) {
 		super.onSkipPressed(currentFragment);
 	}
+    @Override
+    protected void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
+        super.onSlideChanged(oldFragment, newFragment);
+
+        // You can perform actions when the slide changes, if needed
+        if (newFragment instanceof ChooseBlockedApps) {
+            ((ChooseBlockedApps) newFragment).loadAppsAndDisplay();
+        }
+        
+        
+        
+    }
+    
 	
 	@Override
 	protected void onDonePressed(Fragment currentFragment) {
