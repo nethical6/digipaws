@@ -2,7 +2,9 @@
 
 DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes—Easy, Adventure, and Hard—each with unique features and challenges to promote healthy screen time habits.
 
-
+> [!CAUTION]  
+> This app may be discontinued very soon as it has been completely coded on an android phone from scratch. Help me buy a pc by [Donating Money](https://www.patreon.com/nethical)
+> 
 ## Features
 
 - **Three Unique Modes**: Tailor your screen usage experience with Easy, Adventure, and Hard modes.
@@ -41,11 +43,23 @@ Hard Mode offers the most stringent control over app usage. In this mode, when y
 > [!CAUTION]  
 > This app relies exclusively on accessibility services to function. Because it requires sensitive permissions, please avoid downloading it from untrusted sources.
 
-## Acknowledgement 
-- [**Osmdroid**](https://github.com/osmdroid/osmdroid)
-- [**Digital Wellbeing Experiments Toolkit**](https://github.com/googlecreativelab/digital-wellbeing-experiments-toolkit)
-- [**undraw**](https://undraw.co)
-- Special thanks to all the premium apps on the Play Store that inspired me to create a free and open-source alternative. Just imagine making money out of miserable people.
+## ToDo
+- [x] Block reels
+- [x] Block comments
+- [x] Block explicit context
+- [x] App blockers
+- [ ] Survival Mode (basically blocking everything except calling and sms)
+- [ ] Geoblocker (basically block things when a certain area is entered like workplace)
+- [ ] Customisable warning screen
+- [ ] Block cusomtom user defined keywords
+- [ ] Modular and downloadable view blockers
+- [ ] Api for other developers to transform their existing apps into digipaw quests! (help needed)
+- [ ] expand the app to ios and desktops.
+## Thanks 
+- [**Osmdroid**](https://github.com/osmdroid/osmdroid) : Mapview used in Quest "TouchGrass"
+- [**Digital Wellbeing Experiments Toolkit**](https://github.com/googlecreativelab/digital-wellbeing-experiments-toolkit) : some ideas ig, basically the geoblocker one.
+- [**Undraw**](https://undraw.co) : illustrations on intro page
+- Special thanks to all the premium apps on the Play Store that inspired me to create a free and open-source alternative. imagine making money out of miserable people.
 
 
 
@@ -82,6 +96,13 @@ We welcome contributions from the community! If you'd like to contribute, please
 5. Create a new Pull Request.
 
 Please ensure your code adheres to our coding standards and includes relevant tests.
+    
+### HELP REQUIRED!!
+1. Implementing material ui inside the warning overlay and also making it customisable.
+2. Implementing a custom api/service through which other apps like a pomodoro can also act like quests. A basic api to implement/decrement coins has been created but this is very insecure as fake coins can be created. A way is required to prevent fake quests.
+3. Expanding the list of explict keywords
+4. Expanding the list of Blocked views so that more apps can be supported. You can scrape the view ids of a screen with the help of [Developer Assistant](https://play.google.com/store/apps/details?id=com.appsisle.developerassistant). Remeber that these view ids must be unique and only present on the screen to block!!
+
 
 ## License
 
