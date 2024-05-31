@@ -6,18 +6,13 @@ import android.content.SharedPreferences;
 
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
-import java.lang.reflect.Type;
 import android.os.UserHandle;
 import android.os.UserManager;
 import java.text.Collator;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import nethical.digipaws.R;
 import nethical.digipaws.data.BlockerData;
 
 public class LoadAppList {

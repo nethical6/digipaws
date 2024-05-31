@@ -1,6 +1,5 @@
 package nethical.digipaws.fragments.intro;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.CheckBox;
 import android.os.Bundle;
@@ -40,7 +39,7 @@ public class ChooseViewBlockers extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
         
         isPornDisabled.setChecked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_PORN_BLOCKED,false));
-        isShortsDisabled.setChecked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_SHORTS_BLOCKED,true));
+        isShortsDisabled.setChecked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_SHORTS_BLOCKED,false));
         isEngmntDisabled.setChecked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_ENGMMT_BLOCKED,false));
         
         

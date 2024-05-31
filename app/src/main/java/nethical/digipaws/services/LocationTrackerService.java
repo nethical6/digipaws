@@ -1,14 +1,10 @@
 package nethical.digipaws.services;
 
-import android.app.NotificationChannel;
-import android.app.Notification;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.CountDownTimer;
-import android.util.Log;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.os.IBinder;

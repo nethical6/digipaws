@@ -1,24 +1,17 @@
 package nethical.digipaws.utils;
 
-import android.Manifest;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.accessibilityservice.AccessibilityService;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ServiceInfo;
-import android.os.Build;
-import android.provider.Settings;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import java.util.List;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.FragmentManager;
-import nethical.digipaws.MainActivity;
 import nethical.digipaws.R;
 public class DigiUtils {
 	

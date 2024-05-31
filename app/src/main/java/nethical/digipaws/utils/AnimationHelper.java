@@ -1,5 +1,4 @@
 package nethical.digipaws.utils;
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.view.View;

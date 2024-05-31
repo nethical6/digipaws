@@ -2,7 +2,6 @@ package nethical.digipaws.services;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
-import android.app.Service;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.accessibility.AccessibilityEvent;

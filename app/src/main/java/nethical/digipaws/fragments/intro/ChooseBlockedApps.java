@@ -1,10 +1,8 @@
 package nethical.digipaws.fragments.intro;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -12,16 +10,13 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.os.Looper;
-import android.widget.NumberPicker;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.github.appintro.SlidePolicy;
-import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import nethical.digipaws.R;
 import nethical.digipaws.adapters.SelectBlockedAppsAdapter;
 import nethical.digipaws.data.AppData;

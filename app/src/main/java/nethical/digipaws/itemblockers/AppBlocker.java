@@ -1,14 +1,6 @@
 package nethical.digipaws.itemblockers;
 
-import android.accessibilityservice.AccessibilityService;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.SystemClock;
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DelayManager;
@@ -16,7 +8,6 @@ import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.OverlayManager;
 import nethical.digipaws.utils.OverlayManager;
-import nethical.digipaws.utils.SurvivalModeManager;
 
 public class AppBlocker {
     
