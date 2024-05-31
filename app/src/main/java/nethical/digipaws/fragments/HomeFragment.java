@@ -1,8 +1,6 @@
 package nethical.digipaws.fragments;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -11,7 +9,6 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import nethical.digipaws.R;
@@ -43,24 +40,6 @@ public class HomeFragment extends Fragment {
 		loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog");
 		List<String> packages = LoadAppList.getPackageNames(requireContext());
 		loadingDialog.dismiss();
-        
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(requireContext())) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Missing Permissions")
-                    .setMessage(R.string.notification_overlay_permission)
-                    .setNeutralButton("Provide",(dialog,which)->{
-                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                        Uri.parse("package:" + requireContext().getPackageName()));
-                        startActivityForResult(intent, 69);
-                        dialog.dismiss();
-				  
-                    });
-                    builder.create().show();
-        
-                }
-        }
-        
         
         
 	}

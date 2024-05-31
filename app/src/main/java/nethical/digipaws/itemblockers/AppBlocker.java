@@ -12,8 +12,11 @@ import nethical.digipaws.utils.OverlayManager;
 public class AppBlocker {
     
     private boolean isSettingsBlocked=false;
+    
     private float lastWarningTimestamp = 0f;
     private float lastOverlayTimestamp = 0f;
+    private float lastGlobalActionTimestamp = 0f;
+    
     private boolean isOverlayVisible = false;
     private ServiceData data;
     private int difficulty = DigiConstants.DIFFICULTY_LEVEL_EASY;
@@ -28,7 +31,6 @@ public class AppBlocker {
     public void performAction(ServiceData data){
         this.data = data;
         init();
-        
         
         for (String blockedPackageName : data.getBlockedApps()) {
             if(blockedPackageName.equals(data.getPackageName())){
@@ -57,7 +59,7 @@ public class AppBlocker {
                     },
                     ()->{
                         // Close button clicked
-                        DigiUtils.pressHome(data.getService());
+                        pressHome();
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
                     }
@@ -67,10 +69,7 @@ public class AppBlocker {
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_EXTREME):
-                if(DelayManager.isDelayOver(lastWarningTimestamp,1500)){
-                    DigiUtils.pressHome(data.getService());
-                    lastWarningTimestamp = SystemClock.uptimeMillis();
-                }
+                pressHome();
                 break;
             
                     
@@ -91,7 +90,7 @@ public class AppBlocker {
                     },
                     ()->{
                         // Close button clicked
-                        DigiUtils.pressHome(data.getService());
+                        pressHome();
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
                     }
@@ -101,5 +100,11 @@ public class AppBlocker {
                 break;
 		}
 	}
+    private void pressHome(){
+         if(DelayManager.isDelayOver(lastGlobalActionTimestamp,DigiConstants.GLOBAL_ACTION_COOLDOWN)){
+                   DigiUtils.pressHome(data.getService());
+                    lastGlobalActionTimestamp = SystemClock.uptimeMillis();
+            }
+    }
     
 }

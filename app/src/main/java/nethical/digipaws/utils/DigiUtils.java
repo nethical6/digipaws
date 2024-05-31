@@ -59,16 +59,6 @@ public class DigiUtils {
         notificationManager.notify(69, builder.build());
     }
     
-    public static boolean isNotificationAccessEnabled(Context context) {
-        String packageName = context.getPackageName();
-        for (String enabledPackage : NotificationManagerCompat.getEnabledListenerPackages(context)) {
-            if (enabledPackage.equals(packageName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     
     
 }

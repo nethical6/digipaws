@@ -21,6 +21,8 @@ public class ViewBlocker {
     
     private float lastWarningTimestamp = 0f;
     private float lastOverlayTimestamp = 0f;
+    private float lastGlobalActionTimestamp = 0f;
+    
     private boolean isOverlayVisible = false;
     private ServiceData data;
     
@@ -68,9 +70,7 @@ public class ViewBlocker {
 		AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
 		for (int i = 0; i < BlockerData.engagementPanelViewIds.length; i++) {
             if(isViewOpened(rootNode,BlockerData.engagementPanelViewIds[i])){
-			    DigiUtils.pressBack(data.getService());
-                break;
-			    
+			    pressBack();
 		    }
         }
         
@@ -95,7 +95,7 @@ public class ViewBlocker {
                     },
                     ()->{
                         // Close button clicked
-                        DigiUtils.pressBack(data.getService());
+                        pressBack();
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
                     }
@@ -105,10 +105,7 @@ public class ViewBlocker {
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_EXTREME):
-                if(DelayManager.isDelayOver(lastWarningTimestamp,DigiConstants.GLOBAL_ACTION_COOLDOWN)){
-                    DigiUtils.pressBack(data.getService());
-                    lastWarningTimestamp = SystemClock.uptimeMillis();
-                }
+                pressBack();
                 break;
             
                     
@@ -129,7 +126,7 @@ public class ViewBlocker {
                     },
                     ()->{
                         // Close button clicked
-                        DigiUtils.pressBack(data.getService());
+                        pressBack();
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
                     }
@@ -164,6 +161,11 @@ public class ViewBlocker {
 		}
 		return targetNode;
 	}
-	
+	private void pressBack(){
+         if(DelayManager.isDelayOver(lastGlobalActionTimestamp,DigiConstants.GLOBAL_ACTION_COOLDOWN)){
+                   DigiUtils.pressBack(data.getService());
+                    lastGlobalActionTimestamp = SystemClock.uptimeMillis();
+            }
+    }
 	
 }

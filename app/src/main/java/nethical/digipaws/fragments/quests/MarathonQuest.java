@@ -7,17 +7,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.net.Uri;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -93,7 +88,7 @@ public class MarathonQuest extends Fragment {
         questPref = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE,
 				Context.MODE_PRIVATE);
         
-        if(questPref.getBoolean(DigiConstants.PREF_IS_QUEST_RUNNING_KEY,false) && questPref.getString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL)==DigiConstants.QUEST_ID_MARATHON){
+        if(questPref.getBoolean(DigiConstants.PREF_IS_QUEST_RUNNING_KEY,false) && questPref.getString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL).equals(DigiConstants.QUEST_ID_MARATHON)){
                 float latitude = questPref.getFloat(DigiConstants.KEY_RADAR_LATITUDE,0f);
                 float longitude = questPref.getFloat(DigiConstants.KEY_RADAR_LONGITUDE,0f);
                 radarLocation.setLatitude(latitude);
@@ -113,7 +108,6 @@ public class MarathonQuest extends Fragment {
         
         
 		liveLocationTracker = new LocationManager(requireContext());
-		
 		
 		// updates current location on map
 		new Thread(
@@ -143,11 +137,12 @@ public class MarathonQuest extends Fragment {
 		
         startQuest.setOnClickListener(v -> {
             if(!isRunning){
+                    
                 SharedPreferences.Editor editor = questPref.edit();
                 editor.putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_MARATHON);
                 editor.putBoolean(DigiConstants.PREF_IS_QUEST_RUNNING_KEY,true);
-                editor.apply();      
-                    
+                editor.apply();    
+                       
                 startQuest.setText(R.string.stop);
                 isRunning=true;
                 Intent serviceIntent = new Intent(requireContext(), LocationTrackerService.class);
@@ -288,7 +283,7 @@ public class MarathonQuest extends Fragment {
     
     
     private void checkNotificationPermision(){
-        if(!DigiUtils.isNotificationAccessEnabled(requireContext())){
+        if( ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
             loadingDialog.dismiss();
             makeNotificationPermissionDialog().create().show();
         }
@@ -306,7 +301,7 @@ public class MarathonQuest extends Fragment {
     
     private MaterialAlertDialogBuilder makeNotificationPermissionDialog(){
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Missing Permissions")
+                    .setTitle(R.string.missing_permission)
                     .setMessage(R.string.notification_notif_permission)
                     .setNeutralButton("Provide",(dialog,which)->{
                         requestPermissions(
@@ -319,7 +314,7 @@ public class MarathonQuest extends Fragment {
     
     private MaterialAlertDialogBuilder makeLocationPermissionDialog(){
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
-                    .setTitle("Missing Permissions")
+                    .setTitle(R.string.missing_permission)
                     .setMessage(R.string.notification_location_permission)
                     .setNeutralButton("Provide",(dialog,which)->{
                         requestPermissions(
