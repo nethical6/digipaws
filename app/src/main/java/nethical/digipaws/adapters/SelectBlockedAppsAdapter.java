@@ -42,7 +42,6 @@ public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlocked
 		context=parent.getContext();
 		return new ViewHolder(view);
 	}
-	
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         

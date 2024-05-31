@@ -76,7 +76,7 @@ public class AppBlocker {
                     
             case(DigiConstants.DIFFICULTY_LEVEL_NORMAL):
             // Check if warning cooldown is over
-               if(DelayManager.isDelayOver(lastWarningTimestamp)){
+               if(DelayManager.isDelayOver(lastWarningTimestamp,DigiConstants.ADVENTURE_MODE_COOLDOWN)){
                   // prevents creating multiple instances of overlays
                     if(isOverlayVisible){
                         break;
@@ -91,7 +91,7 @@ public class AppBlocker {
                     },
                     ()->{
                         // Close button clicked
-                        DigiUtils.pressBack(data.getService());
+                        DigiUtils.pressHome(data.getService());
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
                     }

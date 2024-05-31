@@ -65,13 +65,10 @@ public class Intro extends AppIntro{
         
         addSlide(AppIntroFragment.createInstance(
 		"Thanks For choosing us",
-		"By continuing you agree that we are not responsible to any damages done by this app to you or your device(s)",
-                	R.drawable.paws,
+		"By continuing you agree that we are not responsible for any damages done by this app to you or your device(s)",
+        R.drawable.paws,
 		R.color.md_theme_dark_background
 		));
-        
-
-        
         
 		showStatusBar(true);
 	    setWizardMode(true);
@@ -93,6 +90,19 @@ public class Intro extends AppIntro{
 	protected void onSkipPressed(Fragment currentFragment) {
 		super.onSkipPressed(currentFragment);
 	}
+    @Override
+    protected void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
+        super.onSlideChanged(oldFragment, newFragment);
+
+        // You can perform actions when the slide changes, if needed
+        if (newFragment instanceof ChooseBlockedApps) {
+            ((ChooseBlockedApps) newFragment).loadAppsAndDisplay();
+        }
+        
+        
+        
+    }
+    
 	
 	@Override
 	protected void onDonePressed(Fragment currentFragment) {

@@ -1,5 +1,6 @@
 package nethical.digipaws.fragments.intro;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -30,6 +31,7 @@ public class ChooseBlockedApps extends Fragment implements SlidePolicy {
     private RecyclerView recyclerView;
     private HandlerThread handlerThread;
     private SelectBlockedAppsAdapter adapter;
+    private boolean isRecyclerViewLoaded = false;
     
     public ChooseBlockedApps(SharedPreferences sp) {
         sharedPreferences = sp;
@@ -44,11 +46,29 @@ public class ChooseBlockedApps extends Fragment implements SlidePolicy {
         return view;
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
-        LoadingDialog loadingDialog = new LoadingDialog("Fetching Packages");
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Quit the HandlerThread to free up resources
+        handlerThread.quitSafely();
+    }
+
+    @Override
+    public boolean isPolicyRespected() {
+       Set<String> newBlockedAppsSet = adapter.getSelectedAppList();
+        if(!newBlockedAppsSet.isEmpty()){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, newBlockedAppsSet);
+            editor.apply();
+        }
+        return true;
+    }
+    
+    public void loadAppsAndDisplay(){
+        
+       LoadingDialog loadingDialog = new LoadingDialog("Fetching Packages");
+        
         loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog");
 
         adapter = new SelectBlockedAppsAdapter(requireContext());
@@ -90,7 +110,6 @@ public class ChooseBlockedApps extends Fragment implements SlidePolicy {
                                     public void run() {
                                         recyclerView.setLayoutManager(
                                                 new LinearLayoutManager(requireContext()));
-                                        // Update the UI with the result
                                         adapter.setData(appData);
                                         recyclerView.setAdapter(adapter);
                                         loadingDialog.dismiss();
@@ -99,27 +118,12 @@ public class ChooseBlockedApps extends Fragment implements SlidePolicy {
                     }
                 });
     }
-
+    
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        // Quit the HandlerThread to free up resources
-        handlerThread.quitSafely();
-    }
-
+    public void onUserIllegallyRequestedNextPage() {}
     @Override
-    public boolean isPolicyRespected() {
-       Set<String> newBlockedAppsSet = adapter.getSelectedAppList();
-        if(!newBlockedAppsSet.isEmpty()){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, newBlockedAppsSet);
-            editor.apply();
-        }
-        return true;
-    }
-
-    @Override
-    public void onUserIllegallyRequestedNextPage() {
+    public void onAttach(Context arg0) {
+        super.onAttach(arg0);
        
     }
 }

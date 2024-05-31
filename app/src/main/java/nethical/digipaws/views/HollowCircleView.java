@@ -1,7 +1,6 @@
 package nethical.digipaws.views;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,9 +11,12 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.util.AttributeSet;
 import android.view.View;
-import androidx.core.view.WindowCompat;
+
+
 import com.google.android.material.color.MaterialColors;
+
 import nethical.digipaws.R;
+
 public class HollowCircleView extends View {
 	
 	private Paint paint;
@@ -59,8 +61,9 @@ public class HollowCircleView extends View {
 			}
 			a.recycle();
 		}
-        int colorPrimary = MaterialColors.getColor(context, com.google.android.material.R.attr.colorPrimary, strokeColor);
+        colorPrimary = MaterialColors.getColor(context, com.google.android.material.R.attr.colorPrimary, strokeColor);
 		
+        
 		paint.setColor(colorPrimary);
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setStrokeWidth(strokeWidth);
@@ -90,6 +93,20 @@ public class HollowCircleView extends View {
 			Paint imagePaint = new Paint();
 			imagePaint.setColorFilter(new PorterDuffColorFilter(colorPrimary, PorterDuff.Mode.SRC_ATOP));
 			canvas.drawBitmap(image, centerX, centerY, imagePaint);
-		}
+		}else{
+           Paint textPaint = new Paint();
+            textPaint.setColor(colorPrimary); 
+            textPaint.setTextSize(56); 
+            
+            // Get the TextView text
+            String text = "QUESTS";
+            // Calculate center coordinates for the text
+            float textWidth = textPaint.measureText(text);
+            int xPos = width / 2 - (int) (textWidth / 2);
+            int yPos = (int) ((getHeight() / 2) - ((textPaint.descent() + textPaint.ascent()) / 2));
+        
+            canvas.drawText(text, xPos, yPos, textPaint);
+   
+        }
 	}
 }

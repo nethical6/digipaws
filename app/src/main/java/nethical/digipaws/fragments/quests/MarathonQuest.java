@@ -9,18 +9,14 @@ import android.graphics.Color;
 import android.location.Location;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.widget.LinearLayout;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import nethical.digipaws.R;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
@@ -292,5 +288,7 @@ public class MarathonQuest extends Fragment {
 			liveLocationTracker.stopLocationUpdates();
 		}
 	}
+    
+    
 	
 }
