@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.NotificationChannel;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Build;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.FragmentManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
 		
        // SurvivalModeManager.enableSurvivalMode(this);
         
+        
+        
+        
         Button cointCount = findViewById(R.id.coint_count);
         cointCount.setText(" " + String.valueOf(CoinManager.getCoinCount(this)));
         
@@ -50,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
 		transaction.commit();
         
 		
+        if(ActivityCompat.checkSelfPermission(this,"nethical.digipaws.permission.API_V0")==PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{
+                "nethical.digipaws.permission.API_V0"
+            },69);
+        }
+        
         
         // setup notification channels
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -61,17 +72,6 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
         
-        // Create a new set and add strings to it
-        Set<String> newBlockedAppsSet = new HashSet<>();
-        newBlockedAppsSet.add("com.example.myapplication");
-
-        // Save the new set to SharedPreferences
-        SharedPreferences sharedPreferences = this.getSharedPreferences(DigiConstants.PREF_BLOCKED_APPS_FILE, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, newBlockedAppsSet);
-        editor.apply();
-
-		
     }
 	
 	

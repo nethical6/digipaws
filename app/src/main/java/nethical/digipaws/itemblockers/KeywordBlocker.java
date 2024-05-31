@@ -30,7 +30,6 @@ public class KeywordBlocker {
             isFocused=true;
         }
         }
-        
     }
     
     private void traverseNodesForKeywords(AccessibilityNodeInfo node,AccessibilityService context) {

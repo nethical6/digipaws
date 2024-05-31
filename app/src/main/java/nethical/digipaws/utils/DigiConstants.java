@@ -47,4 +47,12 @@ public class DigiConstants {
     public static final String PREF_IS_ENGMMT_BLOCKED = "is_engmnt_blocked";
     
     public static final String PREF_IS_INTRO_SHOWN ="intro";
+    
+    
+    public static final String PERMISSION_MANAGE_COINS = "nethical.digipaws.permission.API_V0";
+    public static final String COIN_MANAGER_INCREMENT = "increment_coin";
+    public static final String COIN_MANAGER_DECREMENT = "decrement_coin";
+    public static final String COIN_MANAGER_NOTIF_DESC = "coin_desc";
+    
+    
 }

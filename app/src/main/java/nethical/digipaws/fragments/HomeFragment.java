@@ -30,6 +30,7 @@ import nethical.digipaws.Intro;
 import nethical.digipaws.R;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.services.BlockerService;
+import nethical.digipaws.services.CoinManagerService;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.LoadAppList;
@@ -59,6 +60,11 @@ public class HomeFragment extends Fragment {
 		List<String> packages = LoadAppList.getPackageNames(requireContext());
 		loadingDialog.dismiss();
 		
+        Intent serviceIntent = new Intent(requireContext(), CoinManagerService.class);
+        serviceIntent.setAction(DigiConstants.COIN_MANAGER_INCREMENT);
+        serviceIntent.putExtra(DigiConstants.COIN_MANAGER_NOTIF_DESC,"ok");
+        requireContext().startService(serviceIntent);
+      
      
         
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);

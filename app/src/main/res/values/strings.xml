@@ -52,5 +52,8 @@
 
     <string name="choose_blocked_apps_title">App Blocker Configuration</string>
     <string name="choose_blocked_apps_desc">Select the apps you wish to block or receive usage warnings for.</string>
+    
+    <string name="perm_quest_manager_label">Digipaws Quests</string>
+    <string name="perm_quest_manager_desc">Allow this app to act as an quest and modify digicoin counts?</string>
 
 </resources>

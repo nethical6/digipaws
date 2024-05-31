@@ -1,17 +1,47 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml",
       "selection": {
         "end": {
-          "column": 90,
-          "index": 3345,
-          "line": 105
+          "column": 67,
+          "index": 2791,
+          "line": 78
         },
         "start": {
-          "column": 90,
-          "index": 3345,
-          "line": 105
+          "column": 32,
+          "index": 2756,
+          "line": 78
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/LocationTrackerService.java",
+      "selection": {
+        "end": {
+          "column": 15,
+          "index": 4089,
+          "line": 114
+        },
+        "start": {
+          "column": 15,
+          "index": 4089,
+          "line": 114
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/CoinManagerService.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
         }
       }
     },
@@ -19,14 +49,44 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
       "selection": {
         "end": {
-          "column": 60,
-          "index": 2165,
-          "line": 48
+          "column": 67,
+          "index": 2487,
+          "line": 54
         },
         "start": {
-          "column": 60,
-          "index": 2165,
-          "line": 48
+          "column": 67,
+          "index": 2487,
+          "line": 54
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiUtils.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java",
+      "selection": {
+        "end": {
+          "column": 32,
+          "index": 6644,
+          "line": 179
+        },
+        "start": {
+          "column": 32,
+          "index": 6644,
+          "line": 179
         }
       }
     },
@@ -34,32 +94,32 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
       "selection": {
         "end": {
-          "column": 12,
-          "index": 2293,
-          "line": 65
+          "column": 0,
+          "index": 2332,
+          "line": 64
         },
         "start": {
-          "column": 12,
-          "index": 2293,
-          "line": 65
+          "column": 0,
+          "index": 2332,
+          "line": 64
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/KeywordBlocker.java",
       "selection": {
         "end": {
-          "column": 57,
-          "index": 1689,
-          "line": 46
+          "column": 9,
+          "index": 1165,
+          "line": 31
         },
         "start": {
-          "column": 57,
-          "index": 1689,
-          "line": 46
+          "column": 9,
+          "index": 1165,
+          "line": 31
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java"
 }
