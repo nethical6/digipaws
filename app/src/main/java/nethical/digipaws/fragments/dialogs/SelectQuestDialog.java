@@ -24,7 +24,7 @@ public class SelectQuestDialog extends DialogFragment {
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
         
 		MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
-		.setTitle("Select a quest");
+		.setTitle(R.string.select_quest);
         
 		
 		View view = LayoutInflater.from(requireContext()).inflate(R.layout.select_quest_dialog, null);

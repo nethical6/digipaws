@@ -20,6 +20,11 @@ public class KeywordBlocker {
         if(node==null){
             return;
         }
+        if(!data.isPornBlocked()){
+            return;
+        }
+        
+        
         if(isFocused){
             if(data.getEvent().getEventType()== AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED){
                 traverseNodesForKeywords(data.getService().getRootInActiveWindow(),data.getService());
