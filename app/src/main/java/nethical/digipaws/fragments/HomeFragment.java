@@ -4,40 +4,28 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.graphics.Color;
-import android.util.Log;
-import android.widget.LinearLayout;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
-import androidx.core.view.WindowCompat;
 import androidx.fragment.app.Fragment;
-import com.google.android.material.color.DynamicColors;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 import nethical.digipaws.Intro;
 import nethical.digipaws.R;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.services.BlockerService;
-import nethical.digipaws.services.CoinManagerService;
+import nethical.digipaws.services.QuestManagerService;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.LoadAppList;
-import nethical.digipaws.fragments.dialogs.SelectQuestDialog;
-import nethical.digipaws.utils.OverlayManager;
-import nethical.digipaws.views.HollowCircleView;
-import org.osmdroid.views.MapView;
 
 public class HomeFragment extends Fragment {
 
@@ -60,9 +48,9 @@ public class HomeFragment extends Fragment {
 		List<String> packages = LoadAppList.getPackageNames(requireContext());
 		loadingDialog.dismiss();
 		
-        Intent serviceIntent = new Intent(requireContext(), CoinManagerService.class);
+        Intent serviceIntent = new Intent(requireContext(), QuestManagerService.class);
         serviceIntent.setAction(DigiConstants.COIN_MANAGER_INCREMENT);
-        serviceIntent.putExtra(DigiConstants.COIN_MANAGER_NOTIF_DESC,"ok");
+        
         requireContext().startService(serviceIntent);
       
      

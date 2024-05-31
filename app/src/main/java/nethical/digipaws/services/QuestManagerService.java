@@ -1,14 +1,16 @@
 package nethical.digipaws.services;
 
 import android.app.Service;
+import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.content.Intent;
+import android.widget.Toast;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.R;
 
-public class CoinManagerService extends Service {
+public class QuestManagerService extends Service {
 
     @Override
     public IBinder onBind(Intent arg0) {
@@ -17,10 +19,16 @@ public class CoinManagerService extends Service {
     
     @Override
     public int onStartCommand(Intent intent, int arg1, int arg2) {
-        if(intent.getAction()==null){
-            return START_NOT_STICKY;
+        if (intent != null && checkCallingOrSelfPermission(DigiConstants.PERMISSION_MANAGE_QUEST) == PackageManager.PERMISSION_GRANTED) {
+            handleQuestAction(intent);
+        } else {
+            Toast.makeText(this, "Digipaws: Permission denied to Manage Quests", Toast.LENGTH_SHORT).show();
         }
+        return START_STICKY;
         
+    }
+    
+    private void handleQuestAction(Intent intent){
         switch(intent.getAction()){
             case DigiConstants.COIN_MANAGER_DECREMENT:
                 CoinManager.decrementCoin(this);
@@ -32,7 +40,6 @@ public class CoinManagerService extends Service {
                 break;
         }
         
-        return START_NOT_STICKY;
     }
     
     private String getMessage(String type,Intent intent){

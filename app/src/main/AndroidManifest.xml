@@ -75,7 +75,7 @@
             android:exported="false" />
 
         <service
-            android:name=".services.CoinManagerService"
+            android:name=".services.QuestManagerService"
             android:permission="nethical.digipaws.permission.API_V0"
             android:exported="true" />
         
