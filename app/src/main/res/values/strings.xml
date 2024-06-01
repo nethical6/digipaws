@@ -44,7 +44,7 @@
     <string name="block_shorts_cb">Block Shorts</string>
      <string name="block_comments_cb">Block Comments</string>
      <string name="block_porn_cb">Block Explict Keywords</string>
-    <string name="block_vb_desc">Supported Platforms: Youtube, Instagram, Reddit, Facebook, Tiktok, Revanced</string>
+    <string name="block_vb_desc">Supported Platforms: Youtube, Instagram, Revanced</string>
     
      <string name="choose_mode_title">Configure Mode</string>
     <string name="choose_mode">Choose Mode</string>
