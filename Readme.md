@@ -107,8 +107,6 @@ Please ensure your code adheres to our coding standards and includes relevant te
 ## License
 
 DigiPaws is licensed under the [GNU License](LICENSE). You are free to use, modify, and distribute this software in accordance with the license. 
-> [!IMPORTANT]  
-> Uploading any copies/versions/forks of this program to any application sharing platform like playstore without permission is strictly prohibited.
 
 ## Contact
 
