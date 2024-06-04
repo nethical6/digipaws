@@ -27,9 +27,10 @@ public class BlockerService extends AccessibilityService {
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
         serviceData.setEvent(event);
-        viewBlocker.performAction(serviceData);
+        
         if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED){
-             appBlocker.performAction(serviceData);
+            viewBlocker.performAction(serviceData);
+            appBlocker.performAction(serviceData);
         }
         
         if(event.getEventType()==AccessibilityEvent.TYPE_VIEW_FOCUSED){
@@ -48,8 +49,7 @@ public class BlockerService extends AccessibilityService {
 		super.onServiceConnected();
 		AccessibilityServiceInfo info = new AccessibilityServiceInfo();
 		info.eventTypes =
-		AccessibilityEvent.CONTENT_CHANGE_TYPE_PANE_TITLE
-		| AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
+         AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
         | AccessibilityEvent.TYPE_VIEW_FOCUSED;
 		info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
 		info.packageNames = LoadAppList.getPackageNames(this).stream().toArray(String[]::new);
