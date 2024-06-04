@@ -28,8 +28,14 @@ public class BlockerService extends AccessibilityService {
 	public void onAccessibilityEvent(AccessibilityEvent event) {
         serviceData.setEvent(event);
         viewBlocker.performAction(serviceData);
-        appBlocker.performAction(serviceData);
-        keywordBlocker.performAction(serviceData);
+        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED){
+             appBlocker.performAction(serviceData);
+        }
+        
+        if(event.getEventType()==AccessibilityEvent.TYPE_VIEW_FOCUSED){
+            keywordBlocker.performAction(serviceData);
+        }
+        
 	}
 	
 	@Override
@@ -42,7 +48,7 @@ public class BlockerService extends AccessibilityService {
 		super.onServiceConnected();
 		AccessibilityServiceInfo info = new AccessibilityServiceInfo();
 		info.eventTypes =
-		AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
+		AccessibilityEvent.CONTENT_CHANGE_TYPE_PANE_TITLE
 		| AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
         | AccessibilityEvent.TYPE_VIEW_FOCUSED;
 		info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
