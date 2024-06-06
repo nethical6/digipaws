@@ -1,10 +1,12 @@
 package nethical.digipaws.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
+import nethical.digipaws.MainActivity;
 import nethical.digipaws.R;
 import android.view.View;
 import android.view.WindowManager;
@@ -63,10 +65,38 @@ public class OverlayManager {
 		});
         
         if(difficulty == DigiConstants.DIFFICULTY_LEVEL_NORMAL){
+            int crnt_coins = CoinManager.getCoinCount(context);
+            
+            if(crnt_coins<=0){
+                showNoCoinsOverlay(proceed,close);
+                return;
+            }
             textTitle.setText(R.string.buy_20_mins);
             textDescription.setText(R.string.desc_sd_overlay);
-            textDescription.append("\n"+"BALANCE: " + String.valueOf(CoinManager.getCoinCount(context)));
+            textDescription.append("\n"+"BALANCE: " + String.valueOf(crnt_coins));
         }
+		windowManager.addView(overlayView, params);
+		
+        
+    }
+    
+    public void showNoCoinsOverlay(OnProceedClicked proceed, OnCloseClicked close){
+        
+        closeButton.setOnClickListener(v -> {
+			close.onCloseClicked();
+		}); 
+        
+		proceedButton.setOnClickListener(v -> {
+            Intent intent = new Intent(context,MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		    context.startActivity(intent);
+            removeOverlay();
+            proceed.onProceedClicked();    
+		});
+        textTitle.setText(R.string.no_coins_title);
+        textDescription.setText(R.string.desc_no_coins_overlay);
+        textDescription.append("\n"+"BALANCE: " + String.valueOf(CoinManager.getCoinCount(context)));
+    
 		windowManager.addView(overlayView, params);
 		
         
