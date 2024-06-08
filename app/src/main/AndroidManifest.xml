@@ -20,6 +20,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 	<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
     
      <permission
         android:name="nethical.digipaws.permission.API_V0"
@@ -39,9 +42,8 @@
             android:name=".MainActivity"
              android:exported="true">
             <intent-filter>
-			<action android:name="android.intent.action.MAIN" />
-			
-			<category android:name="android.intent.category.LAUNCHER" />
+			    <action android:name="android.intent.action.MAIN" />
+			    <category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
         </activity>
 		
@@ -49,11 +51,13 @@
 			android:label="Intro" 
             android:theme="@style/IntroTheme"
 			android:exported="true">
-				<intent-filter>
-					<action android:name="android.intent.action.MAIN" />
-				</intent-filter>
 		</activity>
 	 
+        <activity 
+            android:name=".WorkoutActivity" 
+            android:exported="true">
+            
+        </activity>
 	 
 		<service
 			android:exported="true"

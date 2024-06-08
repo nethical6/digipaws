@@ -1,65 +1,50 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/workout/src/main/java/nethical/workout/WorkoutActivity.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/WorkoutActivity.java",
       "selection": {
         "end": {
-          "column": 65,
-          "index": 2810,
-          "line": 76
+          "column": 25,
+          "index": 25,
+          "line": 0
         },
         "start": {
-          "column": 65,
-          "index": 2810,
-          "line": 76
+          "column": 25,
+          "index": 25,
+          "line": 0
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml",
       "selection": {
         "end": {
-          "column": 65,
-          "index": 2633,
-          "line": 69
+          "column": 12,
+          "index": 2265,
+          "line": 58
         },
         "start": {
-          "column": 65,
-          "index": 2633,
-          "line": 69
+          "column": 12,
+          "index": 2265,
+          "line": 58
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/workout/src/main/res/layout/quest_workout.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/adapters/SelectQuestAdapter.java",
       "selection": {
         "end": {
-          "column": 35,
-          "index": 892,
-          "line": 22
+          "column": 41,
+          "index": 531,
+          "line": 14
         },
         "start": {
-          "column": 8,
-          "index": 865,
-          "line": 22
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/marathon_quest_layout.xml",
-      "selection": {
-        "end": {
-          "column": 0,
-          "index": 637,
-          "line": 18
-        },
-        "start": {
-          "column": 0,
-          "index": 637,
-          "line": 18
+          "column": 41,
+          "index": 531,
+          "line": 14
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/marathon_quest_layout.xml"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml"
 }

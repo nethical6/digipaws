@@ -61,4 +61,14 @@
     <string name="perm_quest_manager_label">Digipaws Quests</string>
     <string name="perm_quest_manager_desc">Allow this app to act as an quest and modify Aura count?</string>
 
+
+    <string name="pref_category_key_camera" translatable="false">pckc</string>
+    <string name="pref_category_title_camera" translatable="false">Camera</string>
+    <string name="pref_key_rear_camera_preview_size" translatable="false">rcpvs</string>
+    <string name="pref_key_rear_camera_picture_size" translatable="false">rcpts</string>
+    <string name="pref_key_front_camera_preview_size" translatable="false">fcpvs</string>
+    <string name="pref_key_front_camera_picture_size" translatable="false">fcpts</string>
+    
+    
+
 </resources>

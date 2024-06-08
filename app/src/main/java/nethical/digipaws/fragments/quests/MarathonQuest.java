@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.location.Location;
 import android.preference.PreferenceManager;
@@ -65,15 +66,20 @@ public class MarathonQuest extends Fragment {
 		mapView = view.findViewById(R.id.map);
         startQuest = view.findViewById(R.id.start_location_quest);
         
-        int primaryColor = MaterialColors.getColor(requireContext(), R.attr.colorSurfaceContainer, Color.BLACK);
-
+        MaterialCardView cardView = view.findViewById(R.id.bottom_card);
+     
+        ColorStateList backgroundColor = cardView.getCardBackgroundColor();
+        int defaultColor = Color.WHITE; // Default color in case background color is null
+        
+        // Get the default background color of the CardView
+        int backgroundColorValue = backgroundColor != null ? backgroundColor.getDefaultColor() : defaultColor;
+        
         // Adjust the alpha to create a semi-transparent color (65% transparency)
-        int semiTransparentColor = ColorUtils.setAlphaComponent(primaryColor, (int) (0.65 * 255));
+        int semiTransparentColor = ColorUtils.setAlphaComponent(backgroundColorValue, (int) (0.65 * 255));
 
         // Find the CardView and set the background color
-        MaterialCardView cardView = view.findViewById(R.id.bottom_card);
-        cardView.setCardBackgroundColor(semiTransparentColor);
-        
+           cardView.setCardBackgroundColor(semiTransparentColor);
+   
 		Configuration.getInstance()
 		.load(
 		requireContext(),

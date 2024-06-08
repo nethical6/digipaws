@@ -53,7 +53,6 @@ import com.google.mlkit.vision.demo.VisionImageProcessor;
 import java.nio.ByteBuffer;
 import java.util.Timer;
 import java.util.TimerTask;
-import com.google.mlkit.vision.demo.preference.PreferenceUtils;
 /**
  * Abstract base class for vision frame processors. Subclasses need to implement {@link
  * #onSuccess(Object, GraphicOverlay)} to define what they want to with the detection results and
@@ -170,7 +169,7 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
     // If live viewport is on (that is the underneath surface view takes care of the camera preview
     // drawing), skip the unnecessary bitmap creation that used for the manual preview drawing.
     Bitmap bitmap =
-        PreferenceUtils.isCameraLiveViewportEnabled(graphicOverlay.getContext())
+        false
             ? null
             : BitmapUtils.getBitmap(data, frameMetadata);
 
@@ -218,10 +217,7 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
     }
 
     Bitmap bitmap = null;
-    if (!PreferenceUtils.isCameraLiveViewportEnabled(graphicOverlay.getContext())) {
-      bitmap = BitmapUtils.getBitmap(image);
-    }
-
+  
     if (isMlImageEnabled(graphicOverlay.getContext())) {
       MlImage mlImage =
           new MediaMlImageBuilder(image.getImage())
@@ -333,14 +329,13 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
                 graphicOverlay.add(new CameraImageGraphic(graphicOverlay, originalCameraImage));
               }
               VisionProcessorBase.this.onSuccess(results, graphicOverlay);
-              if (!PreferenceUtils.shouldHideDetectionInfo(graphicOverlay.getContext())) {
-                graphicOverlay.add(
+               graphicOverlay.add(
                     new InferenceInfoGraphic(
                         graphicOverlay,
                         currentFrameLatencyMs,
                         currentDetectorLatencyMs,
                         shouldShowFps ? framesPerSecond : null));
-              }
+              
               graphicOverlay.postInvalidate();
             })
         .addOnFailureListener(

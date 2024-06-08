@@ -7,5 +7,5 @@ dependencyResolutionManagement {
         maven { url "https://jitpack.io" }
     }
 }
-rootProject.name = "digi"
-include ':app',':workout'
+rootProject.name = "digiPause"
+include ':app'

@@ -1,5 +1,6 @@
-package nethical.workout;
+package nethical.digipaws;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -33,6 +34,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import nethical.digipaws.R;
 
 public class WorkoutActivity extends AppCompatActivity
         implements PoseDetectorProcessor.PoseDetectorListener {
@@ -70,16 +72,19 @@ public class WorkoutActivity extends AppCompatActivity
             switchCameraLens();
         });
         
+        MaterialCardView cardView = findViewById(R.id.bottom_card);
+     
+        ColorStateList backgroundColor = cardView.getCardBackgroundColor();
+        int defaultColor = Color.WHITE; // Default color in case background color is null
         
+        // Get the default background color of the CardView
+        int backgroundColorValue = backgroundColor != null ? backgroundColor.getDefaultColor() : defaultColor;
         
-        int primaryColor = MaterialColors.getColor(this, R.attr.colorSurfaceContainer, Color.BLACK);
-
         // Adjust the alpha to create a semi-transparent color (65% transparency)
-        int semiTransparentColor = ColorUtils.setAlphaComponent(primaryColor, (int) (0.65 * 255));
+        int semiTransparentColor = ColorUtils.setAlphaComponent(backgroundColorValue, (int) (0.65 * 255));
 
         // Find the CardView and set the background color
-        MaterialCardView cardView = findViewById(R.id.bottom_card);
-        cardView.setCardBackgroundColor(semiTransparentColor);
+           cardView.setCardBackgroundColor(semiTransparentColor);
    
         
         
@@ -239,7 +244,7 @@ public class WorkoutActivity extends AppCompatActivity
                         })
                 .start();
     }
-
+    
     private void switchCameraLens(){
     if (cameraProvider == null) {
       return;

@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import nethical.digipaws.fragments.quests.MarathonQuest;
 import nethical.digipaws.utils.DigiUtils;
-import nethical.workout.WorkoutActivity;
+import nethical.digipaws.WorkoutActivity;
 
 public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.ViewHolder> {
 	

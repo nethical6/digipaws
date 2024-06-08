@@ -19,8 +19,8 @@
     <com.google.android.material.card.MaterialCardView
          android:layout_height="wrap_content"
          android:layout_width="match_parent"
+         android:layout_margin="8dp"
          android:layout_alignParentBottom="true"
-        android:layout_margin="8dp"
          android:id="@+id/bottom_card">
 
         <LinearLayout
@@ -29,12 +29,26 @@
              android:padding="16dp"
              android:orientation="vertical">
 
-            <TextView
+            <RelativeLayout
                  android:layout_height="wrap_content"
                  android:layout_width="wrap_content"
-                 android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                 android:text="Quest: TOUCH GRASS"
-                 android:textStyle="bold" />
+                 android:orientation="horizontal">
+
+                <TextView
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"
+                     android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                     android:text="Quest: TOUCH GRASS"
+                     android:textStyle="bold" />
+
+                <ImageView
+                     android:layout_height="24dp"
+                     android:layout_width="24dp"
+                     android:src="@drawable/ic_switch_camera_white_48dp"
+                     android:layout_alignParentRight="true"
+                     android:id="@+id/switch_camera" />
+
+            </RelativeLayout>
 
             <TextView
                  android:layout_height="wrap_content"
@@ -49,14 +63,6 @@
                  android:layout_marginTop="8dp"
                  android:text="Loading"
                  android:id="@+id/start_button_workout" />
-
-            <ImageView
-                 android:layout_height="25dp"
-                 android:layout_width="25dp"
-                 android:src="@drawable/ic_switch_camera_white_48dp"
-                 android:layout_above="@id/start_button_workout"
-                 android:layout_centerHorizontal="true"
-                 android:id="@+id/switch_camera" />
 
         </LinearLayout>
 

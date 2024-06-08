@@ -31,7 +31,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import nethical.pushup.ExerciseConstants;
 
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
