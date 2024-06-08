@@ -14,7 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.color.MaterialColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.util.ArrayList;
 import nethical.digipaws.R;
@@ -27,6 +30,7 @@ import org.osmdroid.config.Configuration;
 import nethical.digipaws.utils.LocationManager;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polygon;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
@@ -61,6 +65,15 @@ public class MarathonQuest extends Fragment {
 		mapView = view.findViewById(R.id.map);
         startQuest = view.findViewById(R.id.start_location_quest);
         
+        int primaryColor = MaterialColors.getColor(requireContext(), R.attr.colorSurfaceContainer, Color.BLACK);
+
+        // Adjust the alpha to create a semi-transparent color (65% transparency)
+        int semiTransparentColor = ColorUtils.setAlphaComponent(primaryColor, (int) (0.65 * 255));
+
+        // Find the CardView and set the background color
+        MaterialCardView cardView = view.findViewById(R.id.bottom_card);
+        cardView.setCardBackgroundColor(semiTransparentColor);
+        
 		Configuration.getInstance()
 		.load(
 		requireContext(),
@@ -80,7 +93,8 @@ public class MarathonQuest extends Fragment {
 		mapView.setTileSource(TileSourceFactory.MAPNIK);
 		
 		mapView.setMultiTouchControls(true);
-		
+		mapView.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
+        
 		Marker myLocation = new Marker(mapView);
 		
 		mapView.getOverlays().add(myLocation);

@@ -1,5 +1,6 @@
 package nethical.workout;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,6 +20,9 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 
+import androidx.core.graphics.ColorUtils;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.color.MaterialColors;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.java.posedetector.PoseDetectorProcessor;
@@ -39,7 +43,6 @@ public class WorkoutActivity extends AppCompatActivity
 
     private ExecutorService cameraExecutor;
     private ExecutorService executor;
-private String s;
     private PoseDetectorProcessor imageProcessor;
 
     private boolean needUpdateGraphicOverlayImageSourceInfo = true;
@@ -53,7 +56,7 @@ private String s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.quest_workout);
 
         previewView = findViewById(R.id.previewView);
         graphicOverlay = findViewById(R.id.overlayView);
@@ -66,6 +69,18 @@ private String s;
         switchCamera.setOnClickListener((v)->{
             switchCameraLens();
         });
+        
+        
+        
+        int primaryColor = MaterialColors.getColor(this, R.attr.colorSurfaceContainer, Color.BLACK);
+
+        // Adjust the alpha to create a semi-transparent color (65% transparency)
+        int semiTransparentColor = ColorUtils.setAlphaComponent(primaryColor, (int) (0.65 * 255));
+
+        // Find the CardView and set the background color
+        MaterialCardView cardView = findViewById(R.id.bottom_card);
+        cardView.setCardBackgroundColor(semiTransparentColor);
+   
         
         
         startButton.setEnabled(false);
