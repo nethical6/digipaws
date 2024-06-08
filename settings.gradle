@@ -8,4 +8,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "digi"
-include ':app'
+include ':app',':workout'

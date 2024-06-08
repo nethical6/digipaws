@@ -1,0 +1,47 @@
+
+plugins {
+    id 'com.android.library'
+    
+}
+
+android {
+    namespace 'nethical.workout'
+    compileSdk 33
+    
+    defaultConfig {
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        
+        vectorDrawables { 
+            useSupportLibrary true
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+}
+
+dependencies {
+
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.android.material:material:1.9.0")
+    
+    implementation 'com.google.mlkit:pose-detection:18.0.0-beta4'
+    implementation 'com.google.mlkit:pose-detection-accurate:18.0.0-beta4' // Optional for accurate mode
+
+    implementation 'com.google.guava:guava:27.1-android'
+    
+    def camerax_version = "1.2.0-rc01"
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    implementation "androidx.camera:camera-view:${camerax_version}"
+    
+}

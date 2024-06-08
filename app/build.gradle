@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+
 }
 
 android {
@@ -27,6 +28,8 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":workout"))
 
     implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.appcompat:appcompat:1.7.0-alpha01'
