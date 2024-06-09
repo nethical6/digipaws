@@ -1,5 +1,7 @@
 package nethical.digipaws;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -95,7 +97,8 @@ public class WorkoutActivity extends AppCompatActivity
         startButton.setEnabled(false);
 
         uiHandler = new Handler(Looper.getMainLooper());
-
+        
+        checkCameraPermission();
         startCamera();
         loadCsvData();
 
@@ -328,5 +331,23 @@ public class WorkoutActivity extends AppCompatActivity
             finish();
         });
         builder.create().show();
+    }
+    
+    private void checkCameraPermission(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            makeCameraPermissionDialog().create().show();
+        }
+    }
+    
+    private MaterialAlertDialogBuilder makeCameraPermissionDialog(){
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
+                    .setTitle(R.string.missing_permission)
+                    .setMessage(R.string.notification_camera_permission)
+                    .setNeutralButton("Provide",(dialog,which)->{
+                        requestPermissions(
+                        new String[]{Manifest.permission.CAMERA},0);
+				  
+                    });
+        return builder;
     }
 }

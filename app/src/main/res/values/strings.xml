@@ -24,6 +24,7 @@
      <string name="notification_overlay_permission">This app requires overlay permission to display warning screen each time when a blocked item is found on screen.</string>
     <string name="notification_notif_permission">Notification permission required to receive quest updates.</string>
     <string name="notification_location_permission">Precise Location permission required to track location for this quest.</string>
+   <string name="notification_camera_permission">Camera permission required to track position and count reps for this quest.</string>
     
     
     <string name="notification_marathon_title">Marathon Quest in running</string>
