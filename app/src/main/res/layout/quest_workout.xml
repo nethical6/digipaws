@@ -38,7 +38,7 @@
                      android:layout_height="wrap_content"
                      android:layout_width="wrap_content"
                      android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                     android:text="Quest: TOUCH GRASS"
+                     android:text="Quest: Squats"
                      android:textStyle="bold" />
 
                 <ImageView
@@ -54,14 +54,14 @@
                  android:layout_height="wrap_content"
                  android:layout_width="wrap_content"
                  android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-                 android:text="@string/marathon_desc" />
+                 android:text="@string/squats_desc" />
 
             <com.google.android.material.button.MaterialButton
                  android:layout_height="wrap_content"
                  android:layout_width="wrap_content"
                  android:layout_marginBottom="8dp"
                  android:layout_marginTop="8dp"
-                 android:text="Loading"
+                 android:text="@string/loading"
                  android:id="@+id/start_button_workout" />
 
         </LinearLayout>

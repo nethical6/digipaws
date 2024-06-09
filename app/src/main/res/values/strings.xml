@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">DigiPaws</string>
 
-    <string name="marathon_desc">Move out of the above red zone to win this quest. There is no penalty for failing this quest. Do not forget to carry your phone!</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
      <string name="missing_permission">Permission Missing</string>
@@ -51,6 +50,8 @@
     
      <string name="choose_mode_title">Configure Mode</string>
     <string name="choose_mode">Choose Mode</string>
+    <string name="loading">Loading</string>
+    
     
      <string name="choose_delay_title">How often?</string>
       <string name="choose_delay_desc">This is the cooldown period between each warnings.(ONLY FOR EASY MODE)</string>
@@ -69,6 +70,8 @@
     <string name="pref_key_front_camera_preview_size" translatable="false">fcpvs</string>
     <string name="pref_key_front_camera_picture_size" translatable="false">fcpts</string>
     
-    
+    <string name="marathon_desc">Move out of the above red zone to win this quest. There is no penalty for failing this quest. Do not forget to carry your phone!</string>
+    <string name="squats_desc">Simply perform 40x squats to earn 1 Aura point. Make sure your entire body is visible on camera above. </string>
+
 
 </resources>

@@ -23,7 +23,7 @@ import androidx.core.content.ContextCompat;
 
 import androidx.core.graphics.ColorUtils;
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.color.MaterialColors;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.java.posedetector.PoseDetectorProcessor;
@@ -34,7 +34,11 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import nethical.digipaws.R;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import nethical.digipaws.utils.CoinManager;
+import nethical.digipaws.utils.DigiConstants;
+import nethical.digipaws.utils.DigiUtils;
 
 public class WorkoutActivity extends AppCompatActivity
         implements PoseDetectorProcessor.PoseDetectorListener {
@@ -53,7 +57,7 @@ public class WorkoutActivity extends AppCompatActivity
     private ProcessCameraProvider cameraProvider;
 
     private Handler uiHandler;
-
+    private boolean isQuestRunning = false;
     private CameraSelector cameraSelector;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +88,7 @@ public class WorkoutActivity extends AppCompatActivity
         int semiTransparentColor = ColorUtils.setAlphaComponent(backgroundColorValue, (int) (0.65 * 255));
 
         // Find the CardView and set the background color
-           cardView.setCardBackgroundColor(semiTransparentColor);
+       cardView.setCardBackgroundColor(semiTransparentColor);
    
         
         
@@ -98,8 +102,12 @@ public class WorkoutActivity extends AppCompatActivity
         startButton.setOnClickListener(
                 (v) -> {
                     if (startButton.isEnabled()) {
+                        if(isQuestRunning){
+                            finish();
+                        }
                         startCamera();
-                        startButton.setText("Stop Quest");
+                        startButton.setText(getString(R.string.stop));
+                        isQuestRunning = true;
                     } else {
                         Toast.makeText(this, "Please wait while the AI loads", Toast.LENGTH_SHORT)
                                 .show();
@@ -212,7 +220,7 @@ public class WorkoutActivity extends AppCompatActivity
                                                 getApplication(),
                                                 true,
                                                 new String[] {
-                                                    PoseClassifierProcessor.PUSHUPS_CLASS
+                                                    PoseClassifierProcessor.SQUATS_CLASS
                                                 });
                                 // Update the UI on the main thread
                                 uiHandler.post(
@@ -229,14 +237,12 @@ public class WorkoutActivity extends AppCompatActivity
                                                                 true,
                                                                 true,
                                                                 pcf, (poseClassification)->{
-                                                                    if(poseClassification.size()>=2){
-                                                                       for (int i = 0; i < poseClassification.size(); i++) {
-                                                                            startButton.setText(poseClassification.get(0));
-                                                                        }
+                                                                    if(poseClassification.size()>=2){ 
+                                                                       checkIfWorkoutComplete(poseClassification.get(0));
                                                                     }
                                                                     
                                                                 });
-                                                startButton.setText("Start");
+                                                startButton.setText(getString(R.string.start));
                                                 startButton.setEnabled(true);
                                             }
                                         });
@@ -280,14 +286,47 @@ public class WorkoutActivity extends AppCompatActivity
         if (imageProcessor != null) {
             imageProcessor.stop();
         }
-        //    cameraProvider.shutdown();
-
     }
+    
 
     @Override
     public void onNewRepOccured(List<String> poseClassification) {
       for (int i = 0; i < poseClassification.size(); i++) {
         startButton.setText(poseClassification.get(i));
         }
+    }
+    
+    public int formatReps(String unFormattedRep){
+        Matcher matcher = Pattern.compile("\\d+").matcher(unFormattedRep);
+        if (matcher.find()) {
+            return Integer.parseInt(matcher.group());
+        }
+        return 0;
+    }
+    
+    public void checkIfWorkoutComplete(String unformattedRep){
+        int formattedRep = formatReps(unformattedRep);
+        if(formattedRep>=DigiConstants.DEFAULT_REPS_SQUAT){
+            DigiUtils.sendNotification(getApplicationContext(),"Quest Complete","You earned 1 Aura point.",R.drawable.swords);
+            if (imageProcessor != null) {
+                imageProcessor.stop();
+            }
+            isQuestRunning = true;
+            showQuestCompleteDialog();
+            CoinManager.incrementCoin(this);
+        }
+    }
+    
+    public void showQuestCompleteDialog(){
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
+		.setTitle("Quest Complete")
+		.setCancelable(false)
+        .setMessage("You earned 1 Aura point")
+        
+        .setNegativeButton("Quit",(dialog,which)->{
+            dialog.dismiss();
+            finish();
+        });
+        builder.create().show();
     }
 }
