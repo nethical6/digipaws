@@ -1,6 +1,7 @@
 package nethical.digipaws.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import nethical.digipaws.fragments.quests.MarathonQuest;
 import nethical.digipaws.utils.DigiUtils;
+import nethical.digipaws.WorkoutActivity;
 
 public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.ViewHolder> {
 	
@@ -39,11 +41,12 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 		holder.textView.setOnClickListener(v -> {
 			switch(position){
 				case(0)://Touch Grass Quest
-				DigiUtils.replaceScreen(((AppCompatActivity)context).getSupportFragmentManager(),new MarathonQuest());
-				dialog.dismiss();
-				break;
+				    DigiUtils.replaceScreen(((AppCompatActivity)context).getSupportFragmentManager(),new MarathonQuest());
+				    dialog.dismiss();
+				    break;
 				case(1):
-				DigiUtils.showToast(context,"1");
+				    Intent intent = new Intent(context,WorkoutActivity.class);
+                    context.startActivity(intent);
 				break;
 			}
 		});

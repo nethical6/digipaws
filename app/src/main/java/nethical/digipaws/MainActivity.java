@@ -25,6 +25,8 @@ import nethical.digipaws.utils.DigiConstants;
 
 public class MainActivity extends AppCompatActivity {
 
+    
+    private Button cointCount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +61,10 @@ public class MainActivity extends AppCompatActivity {
         }
         }
         
+        cointCount = findViewById(R.id.coint_count);
+     
         
         
-        
-        Button cointCount = findViewById(R.id.coint_count);
-        cointCount.setText(" " + String.valueOf(CoinManager.getCoinCount(this)));
         
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -84,6 +85,15 @@ public class MainActivity extends AppCompatActivity {
         }
         
     }
+    public void refreshCoinCount(){
+      cointCount.setText(" " + String.valueOf(CoinManager.getCoinCount(this)));
+    }
+    
+	@Override
+	protected void onResume() {
+	    super.onResume();
+	    refreshCoinCount();
+	}
 	
 	
 	public void SelectQuest(View view){
@@ -95,4 +105,6 @@ public class MainActivity extends AppCompatActivity {
 		startActivity(intent);
         Toast.makeText(this,"Restarting services required to apply any configuration changes",Toast.LENGTH_LONG).show();
 	}
+    
+    
 }

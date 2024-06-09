@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.location.Location;
 import android.preference.PreferenceManager;
@@ -14,7 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.color.MaterialColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.util.ArrayList;
 import nethical.digipaws.R;
@@ -27,6 +31,7 @@ import org.osmdroid.config.Configuration;
 import nethical.digipaws.utils.LocationManager;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polygon;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
@@ -61,6 +66,20 @@ public class MarathonQuest extends Fragment {
 		mapView = view.findViewById(R.id.map);
         startQuest = view.findViewById(R.id.start_location_quest);
         
+        MaterialCardView cardView = view.findViewById(R.id.bottom_card);
+     
+        ColorStateList backgroundColor = cardView.getCardBackgroundColor();
+        int defaultColor = Color.WHITE; // Default color in case background color is null
+        
+        // Get the default background color of the CardView
+        int backgroundColorValue = backgroundColor != null ? backgroundColor.getDefaultColor() : defaultColor;
+        
+        // Adjust the alpha to create a semi-transparent color (65% transparency)
+        int semiTransparentColor = ColorUtils.setAlphaComponent(backgroundColorValue, (int) (0.65 * 255));
+
+        // Find the CardView and set the background color
+           cardView.setCardBackgroundColor(semiTransparentColor);
+   
 		Configuration.getInstance()
 		.load(
 		requireContext(),
@@ -80,7 +99,8 @@ public class MarathonQuest extends Fragment {
 		mapView.setTileSource(TileSourceFactory.MAPNIK);
 		
 		mapView.setMultiTouchControls(true);
-		
+		mapView.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
+        
 		Marker myLocation = new Marker(mapView);
 		
 		mapView.getOverlays().add(myLocation);

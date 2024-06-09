@@ -2,8 +2,9 @@ package nethical.digipaws.utils;
 
 public class DigiConstants {
 	
-	public static final int RADAR_RADIUS = 200; // in meters
-	
+	public static final int RADAR_RADIUS = 200; // in meters (distance to run in marathon quest)
+	public static final int DEFAULT_REPS_SQUAT = 40; // default number of squats for 1 aura
+    
 	public static final String PREF_PACKAGES_FILE = "package_names";
 	public static final String PREF_PACKAGES_KEY = "packages";
 	
