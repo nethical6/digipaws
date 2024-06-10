@@ -34,23 +34,24 @@ public class AppBlocker {
         this.data = data;
         init();
         
+        if(SurvivalModeManager.isSurvivalModeActive(data.getService())){
+           for (String blockedPackageName : BlockerData.nonBlockedPackages) {
+            if(!blockedPackageName.equals(data.getPackageName())){
+               pressHome();
+                return;
+                }
+            }
+         }
+        
+        
         for (String blockedPackageName : data.getBlockedApps()) {
             if(blockedPackageName.equals(data.getPackageName())){
                punish();
                 break;
-                
             }
         }
         
-        if(SurvivalModeManager.isSurvivalModeActive(data.getService())){
-           for (String blockedPackageName : BlockerData.nonBlockedPackages) {
-            if(!blockedPackageName.equals(data.getPackageName())){
-               punish();
-                break;
-                
-            }
-        }
-        }
+        
         
     }
     

@@ -22,6 +22,7 @@ public class FocusQuest extends Fragment {
 
     
     private HollowCircleView hollowTimer;
+    private boolean isQuestRunning = false;
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,9 +37,15 @@ public class FocusQuest extends Fragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		hollowTimer.setTitle("00:00");
-        SurvivalModeManager.enableSurvivalMode(requireContext());
-        startTimer();
+		hollowTimer.setTitle("Start");
+        hollowTimer.setOnClickListener((v)->{
+            if(isQuestRunning){
+               return;
+            }
+            SurvivalModeManager.enableSurvivalMode(requireContext());
+            startTimer();
+        });
+        
 	}
     @Override
     public void onAttach(Context context) {
@@ -50,7 +57,6 @@ public class FocusQuest extends Fragment {
     private void startTimer() {
         Intent serviceIntent = new Intent(requireContext(), FocusModeTimerService.class);
         requireContext().startService(serviceIntent);
-        
     }
     
     private BroadcastReceiver timerUpdateReceiver = new BroadcastReceiver() {
@@ -59,6 +65,10 @@ public class FocusQuest extends Fragment {
             if (intent.getAction().equals("TIMER_UPDATED")) {
                 String time = intent.getStringExtra("time");
                 hollowTimer.setTitle(time);
+                if(isQuestRunning==false){
+                    isQuestRunning= true;
+                }
+                
             }
         }
     };

@@ -19,7 +19,7 @@ import nethical.digipaws.utils.SurvivalModeManager;
 
 public class FocusModeTimerService extends Service {
     private CountDownTimer countDownTimer; 
-    private long timeLeftInMillis = 30000; // 60 minutes in milliseconds
+    private long timeLeftInMillis = DigiConstants.FOCUS_MODE_LENGTH; // in milliseconds
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {

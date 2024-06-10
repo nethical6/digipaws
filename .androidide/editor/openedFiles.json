@@ -4,14 +4,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/FocusQuest.java",
       "selection": {
         "end": {
-          "column": 59,
-          "index": 1167,
-          "line": 39
+          "column": 4,
+          "index": 675,
+          "line": 25
         },
         "start": {
-          "column": 59,
-          "index": 1167,
-          "line": 39
+          "column": 4,
+          "index": 675,
+          "line": 25
         }
       }
     },
@@ -49,13 +49,13 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/FocusModeTimerService.java",
       "selection": {
         "end": {
-          "column": 41,
-          "index": 757,
+          "column": 71,
+          "index": 787,
           "line": 21
         },
         "start": {
-          "column": 41,
-          "index": 757,
+          "column": 71,
+          "index": 787,
           "line": 21
         }
       }
@@ -64,14 +64,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/AppBlocker.java",
       "selection": {
         "end": {
-          "column": 11,
-          "index": 1481,
-          "line": 46
+          "column": 49,
+          "index": 2337,
+          "line": 70
         },
         "start": {
-          "column": 11,
-          "index": 1481,
-          "line": 46
+          "column": 49,
+          "index": 2337,
+          "line": 70
         }
       }
     },
@@ -87,6 +87,36 @@
           "column": 5,
           "index": 1127,
           "line": 21
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/BlockerData.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
+      "selection": {
+        "end": {
+          "column": 72,
+          "index": 3084,
+          "line": 65
+        },
+        "start": {
+          "column": 72,
+          "index": 3084,
+          "line": 65
         }
       }
     }
