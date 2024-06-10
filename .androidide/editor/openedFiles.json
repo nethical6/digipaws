@@ -1,65 +1,35 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/KeywordBlocker.java",
       "selection": {
         "end": {
           "column": 0,
-          "index": 4583,
-          "line": 117
+          "index": 0,
+          "line": 0
         },
         "start": {
           "column": 0,
-          "index": 4583,
-          "line": 117
+          "index": 0,
+          "line": 0
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/receivers/ResetCoinsReceiver.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
       "selection": {
         "end": {
-          "column": 128,
-          "index": 601,
-          "line": 14
+          "column": 16,
+          "index": 1238,
+          "line": 35
         },
         "start": {
-          "column": 128,
-          "index": 601,
-          "line": 14
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml",
-      "selection": {
-        "end": {
-          "column": 36,
-          "index": 4035,
-          "line": 111
-        },
-        "start": {
-          "column": 36,
-          "index": 4035,
-          "line": 111
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/receivers/BootReceiver.java",
-      "selection": {
-        "end": {
-          "column": 9,
-          "index": 476,
-          "line": 13
-        },
-        "start": {
-          "column": 9,
-          "index": 476,
-          "line": 13
+          "column": 16,
+          "index": 1238,
+          "line": 35
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java"
 }

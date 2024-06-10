@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         cointCount = findViewById(R.id.coint_count);
      
         
-        setDailyAlarm(this);
+        //setDailyAlarm(this);
         
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -123,20 +123,13 @@ public class MainActivity extends AppCompatActivity {
     calendar.set(Calendar.MINUTE, 0);
     calendar.set(Calendar.SECOND, 0);
     
-      // If the time set is before the current time, add one day
+    // If the time set is before the current time, add one day
     if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
         calendar.add(Calendar.DAY_OF_YEAR, 1);
     }
 
-    // Calculate the delay to midnight
-    long initialDelay = calendar.getTimeInMillis() - System.currentTimeMillis();
-    if (initialDelay <= 0) {
-        // If it's already close to or past midnight, set the alarm to trigger immediately
-        initialDelay = 1000; // 1 second delay
-    }
-
-    // Set the alarm to repeat every 24 hours
-    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + initialDelay, AlarmManager.INTERVAL_DAY, pendingIntent);
+    // Set exact alarm for the next midnight
+    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 }
     
