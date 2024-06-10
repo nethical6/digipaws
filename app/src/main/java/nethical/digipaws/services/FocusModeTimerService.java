@@ -14,10 +14,12 @@ import androidx.core.app.NotificationCompat;
 import nethical.digipaws.MainActivity;
 import nethical.digipaws.R;
 import nethical.digipaws.utils.DigiConstants;
+import nethical.digipaws.utils.DigiUtils;
+import nethical.digipaws.utils.SurvivalModeManager;
 
 public class FocusModeTimerService extends Service {
-    private CountDownTimer countDownTimer;
-    private long timeLeftInMillis = 3600000; // 60 minutes in milliseconds
+    private CountDownTimer countDownTimer; 
+    private long timeLeftInMillis = 30000; // 60 minutes in milliseconds
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -37,6 +39,8 @@ public class FocusModeTimerService extends Service {
             @Override
             public void onFinish() {
                 stopSelf();
+                SurvivalModeManager.disableSurvivalMode(getApplicationContext());
+                DigiUtils.sendNotification(getApplicationContext(),"Quest Completed!","You earned 1 Aura Coin.",R.drawable.swords);
             }
         }.start();
 
@@ -62,8 +66,8 @@ public class FocusModeTimerService extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         return new NotificationCompat.Builder(this, DigiConstants.NOTIFICATION_CHANNEL)
-                .setContentTitle("Focus Mode Active")
-                .setContentText(time)
+                .setContentTitle("Focus Mode Running")
+                .setContentText("Time Remaining: "+time)
                 .setSmallIcon(R.drawable.swords)
                 .setContentIntent(pendingIntent)
                 .setOnlyAlertOnce(true)

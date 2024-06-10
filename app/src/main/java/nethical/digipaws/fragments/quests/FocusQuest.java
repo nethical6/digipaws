@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import nethical.digipaws.R;
 import nethical.digipaws.services.FocusModeTimerService;
+import nethical.digipaws.utils.SurvivalModeManager;
 import nethical.digipaws.views.HollowCircleView;
 
 
@@ -36,6 +37,7 @@ public class FocusQuest extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		hollowTimer.setTitle("00:00");
+        SurvivalModeManager.enableSurvivalMode(requireContext());
         startTimer();
 	}
     @Override
