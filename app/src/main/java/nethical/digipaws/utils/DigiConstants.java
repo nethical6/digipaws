@@ -63,4 +63,6 @@ public class DigiConstants {
     
     public static final String KEY_WORKOUT_TYPE = "workout_type";
     
+    public static final int FOCUS_MODE_LENGTH = 3600000; // 1 hour in ms
+    
 }

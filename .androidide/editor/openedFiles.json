@@ -1,47 +1,32 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/WorkoutActivity.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/FocusQuest.java",
       "selection": {
         "end": {
-          "column": 60,
-          "index": 3412,
-          "line": 89
+          "column": 4,
+          "index": 675,
+          "line": 25
         },
         "start": {
-          "column": 60,
-          "index": 3412,
-          "line": 89
+          "column": 4,
+          "index": 675,
+          "line": 25
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/views/HollowCircleView.java",
       "selection": {
         "end": {
           "column": 4,
-          "index": 2265,
-          "line": 48
+          "index": 762,
+          "line": 28
         },
         "start": {
           "column": 4,
-          "index": 2265,
-          "line": 48
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/adapters/SelectQuestAdapter.java",
-      "selection": {
-        "end": {
-          "column": 105,
-          "index": 2162,
-          "line": 55
-        },
-        "start": {
-          "column": 105,
-          "index": 2162,
-          "line": 55
+          "index": 762,
+          "line": 28
         }
       }
     },
@@ -49,32 +34,92 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
       "selection": {
         "end": {
-          "column": 24,
-          "index": 5299,
-          "line": 75
+          "column": 55,
+          "index": 5793,
+          "line": 78
         },
         "start": {
-          "column": 24,
-          "index": 5299,
-          "line": 75
+          "column": 55,
+          "index": 5793,
+          "line": 78
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/quest_workout.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/FocusModeTimerService.java",
       "selection": {
         "end": {
-          "column": 37,
-          "index": 2296,
-          "line": 57
+          "column": 71,
+          "index": 787,
+          "line": 21
         },
         "start": {
-          "column": 37,
-          "index": 2296,
-          "line": 57
+          "column": 71,
+          "index": 787,
+          "line": 21
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/AppBlocker.java",
+      "selection": {
+        "end": {
+          "column": 49,
+          "index": 2337,
+          "line": 70
+        },
+        "start": {
+          "column": 49,
+          "index": 2337,
+          "line": 70
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/SurvivalModeManager.java",
+      "selection": {
+        "end": {
+          "column": 5,
+          "index": 1127,
+          "line": 21
+        },
+        "start": {
+          "column": 5,
+          "index": 1127,
+          "line": 21
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/BlockerData.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
+      "selection": {
+        "end": {
+          "column": 72,
+          "index": 3084,
+          "line": 65
+        },
+        "start": {
+          "column": 72,
+          "index": 3084,
+          "line": 65
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/WorkoutActivity.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/FocusQuest.java"
 }

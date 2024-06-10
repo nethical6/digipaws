@@ -74,6 +74,9 @@
     <string name="marathon_desc">Move out of the above red zone to win this quest. There is no penalty for failing this quest. Do not forget to carry your phone!</string>
     <string name="squats_desc">Simply perform 40x squats to earn 1 Aura point. You are free to perform this quest in sets of any.Make sure your entire body is visible on camera above. </string>
     <string name="pushups_desc">Simply perform 40x pushups to earn 1 Aura point. You are free to perform this quest in sets of any. Make sure your entire body is visible on camera above. </string>
+    <string name="focus_desc">Focus or survival mode blocks all apps except basic needs like calling and SMS for the next 90 minutes. Once focus mode is turned on, it CANNOT be turned off until the timer goes off. Completing this quest brings 1 Aura coin.</string>
+
+    <string name="aura_earned_1">You earned 1 Aura coin</string>
 
 
 </resources>

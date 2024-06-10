@@ -1,6 +1,7 @@
 package nethical.digipaws.itemblockers;
 
 import android.os.SystemClock;
+import nethical.digipaws.data.BlockerData;
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DelayManager;
@@ -8,6 +9,7 @@ import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.OverlayManager;
 import nethical.digipaws.utils.OverlayManager;
+import nethical.digipaws.utils.SurvivalModeManager;
 
 public class AppBlocker {
     
@@ -32,14 +34,26 @@ public class AppBlocker {
         this.data = data;
         init();
         
+        if(SurvivalModeManager.isSurvivalModeActive(data.getService())){
+           for (String blockedPackageName : BlockerData.nonBlockedPackages) {
+            if(!blockedPackageName.equals(data.getPackageName())){
+               pressHome();
+                return;
+                }
+            }
+         }
+        
+        
         for (String blockedPackageName : data.getBlockedApps()) {
             if(blockedPackageName.equals(data.getPackageName())){
                punish();
                 break;
-                
             }
-          }
         }
+        
+        
+        
+    }
     
    public void punish(){
 		switch(difficulty){
