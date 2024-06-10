@@ -23,6 +23,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    
     
      <permission
         android:name="nethical.digipaws.permission.API_V0"
@@ -99,6 +102,19 @@
                 android:name="android.app.device_admin"
                 android:resource="@xml/device_admin_receiver" />
         </receiver>
+        
+        <receiver 
+            android:name=".receivers.ResetCoinsReceiver"
+            android:exported="false" />
+        
+        <receiver
+             android:name=".receivers.BootReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         
     </application>
 
