@@ -9,33 +9,48 @@ import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.utils.DigiUtils;
 
 public class KeywordBlocker {
-    
-    private boolean isFocused = false;
-    
-    public void performAction(ServiceData data){
+
+    public boolean isFocused = false;
+
+    public void performAction(ServiceData data) {
         AccessibilityNodeInfo node = data.getEvent().getSource();
-        
-        if(node==null){
+
+        if (node == null) {
             return;
         }
-        if(!data.isPornBlocked()){
+        if (!data.isPornBlocked()) {
             return;
         }
-        
-        
-        if(isFocused){
-            if(data.getEvent().getEventType()== AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED){
-                traverseNodesForKeywords(data.getService().getRootInActiveWindow(),data.getService());
+
+        if (isFocused) {
+            if (data.getEvent().getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
+                traverseNodesForKeywords(
+                        data.getService().getRootInActiveWindow(), data.getService());
             }
         }
-        if(data.getEvent().getEventType()== AccessibilityEvent.TYPE_VIEW_FOCUSED){
-           if (node.getClassName() != null && node.getClassName().equals("android.widget.EditText")) {
-            isFocused=true;
+        
+        
+    }
+
+    public void checkIfEditext(ServiceData data){
+        AccessibilityNodeInfo node = data.getEvent().getSource();
+
+        if (node == null) {
+            return;
         }
+        if (!data.isPornBlocked()) {
+            return;
+        }
+        
+        if (data.getEvent().getEventType() == AccessibilityEvent.TYPE_VIEW_FOCUSED) {
+            if (node.getClassName() != null
+                    && node.getClassName().equals("android.widget.EditText")) {
+                isFocused = true;
+            }
         }
     }
-    
-    private void traverseNodesForKeywords(AccessibilityNodeInfo node,AccessibilityService context) {
+    private void traverseNodesForKeywords(
+            AccessibilityNodeInfo node, AccessibilityService context) {
         if (node == null) {
             return;
         }
@@ -46,14 +61,14 @@ public class KeywordBlocker {
                 if (containsKeyword(editTextContent)) {
                     // DefaultAction.showToast(servicex, "Keyword found in EditText: ");
                     DigiUtils.pressHome(context);
-                    isFocused=false;
+                    isFocused = false;
                 }
             }
         }
 
         for (int i = 0; i < node.getChildCount(); i++) {
             AccessibilityNodeInfo childNode = node.getChild(i);
-            traverseNodesForKeywords(childNode,context);
+            traverseNodesForKeywords(childNode, context);
         }
     }
 
@@ -68,4 +83,10 @@ public class KeywordBlocker {
         }
         return false;
     }
+
+    public boolean isEdFocused() {
+        return this.isFocused;
+    }
+
+    
 }

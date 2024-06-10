@@ -33,8 +33,12 @@ public class BlockerService extends AccessibilityService {
             appBlocker.performAction(serviceData);
         }
         
-        if(event.getEventType()==AccessibilityEvent.TYPE_VIEW_FOCUSED){
+        if(keywordBlocker.isEdFocused()&&event.getEventType()==AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED){
             keywordBlocker.performAction(serviceData);
+        }
+        
+        if(event.getEventType()==AccessibilityEvent.TYPE_VIEW_FOCUSED){
+            keywordBlocker.checkIfEditext(serviceData);
         }
         
 	}
@@ -50,7 +54,10 @@ public class BlockerService extends AccessibilityService {
 		AccessibilityServiceInfo info = new AccessibilityServiceInfo();
 		info.eventTypes =
          AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
+        | AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
+        | AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED
         | AccessibilityEvent.TYPE_VIEW_FOCUSED;
+        
 		info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
 		info.packageNames = LoadAppList.getPackageNames(this).stream().toArray(String[]::new);
 		setServiceInfo(info);

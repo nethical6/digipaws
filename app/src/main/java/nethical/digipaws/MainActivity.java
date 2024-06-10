@@ -1,7 +1,10 @@
 package nethical.digipaws;
 
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import java.util.Calendar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import nethical.digipaws.fragments.HomeFragment;
 import nethical.digipaws.fragments.dialogs.SelectQuestDialog;
+import nethical.digipaws.receivers.ResetCoinsReceiver;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
 
@@ -64,14 +68,13 @@ public class MainActivity extends AppCompatActivity {
         cointCount = findViewById(R.id.coint_count);
      
         
-        
+        //setDailyAlarm(this);
         
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.replace(R.id.fragment_container, new HomeFragment());
 		//transaction.addToBackStack(null);
 		transaction.commit();
-        
         
         
         // setup notification channels
@@ -107,4 +110,26 @@ public class MainActivity extends AppCompatActivity {
 	}
     
     
+    public static void setDailyAlarm(Context context) {
+    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    
+    Intent intent = new Intent(context, ResetCoinsReceiver.class);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+    // Set the alarm to start at midnight
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTimeInMillis(System.currentTimeMillis());
+    calendar.set(Calendar.HOUR_OF_DAY, 0);
+    calendar.set(Calendar.MINUTE, 0);
+    calendar.set(Calendar.SECOND, 0);
+    
+    // If the time set is before the current time, add one day
+    if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+    }
+
+    // Set exact alarm for the next midnight
+    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+    }
 }
+    
