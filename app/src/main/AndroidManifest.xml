@@ -82,7 +82,10 @@
             android:name=".services.QuestManagerService"
             android:permission="nethical.digipaws.permission.API_V0"
             android:exported="true" />
-        
+        <service
+            android:name=".services.FocusModeTimerService"
+            android:enabled="true"
+            android:exported="false"/>
         
         <receiver
             android:exported="false"

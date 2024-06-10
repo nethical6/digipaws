@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -24,6 +25,8 @@ public class HollowCircleView extends View {
 	private int strokeColor = Color.BLACK;
 	private Bitmap image;
 	private int colorPrimary;
+    private String text = "QUESTS";
+    
     
 	public HollowCircleView(Context context) {
 		super(context);
@@ -43,6 +46,11 @@ public class HollowCircleView extends View {
 	
     public void setColor(int color){
         this.colorPrimary = color;
+        invalidate();
+    }
+    public void setTitle(String title){
+        this.text = title;
+        invalidate();
     }
     
 	private void init(AttributeSet attrs,Context context) {
@@ -67,6 +75,9 @@ public class HollowCircleView extends View {
 		paint.setColor(colorPrimary);
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setStrokeWidth(strokeWidth);
+        
+        
+
 	}
 	
 	// Method to set the image dynamically
@@ -85,6 +96,7 @@ public class HollowCircleView extends View {
 		// Draw the hollow circle
 		canvas.drawCircle(width / 2, height / 2, radius, paint);
 		
+        
 		// Draw the image at the center of the circle with stroke color
 		if (image != null) {
 			int centerX = width / 2 - image.getWidth() / 2;
@@ -99,7 +111,7 @@ public class HollowCircleView extends View {
             textPaint.setTextSize(56); 
             
             // Get the TextView text
-            String text = "QUESTS";
+            
             // Calculate center coordinates for the text
             float textWidth = textPaint.measureText(text);
             int xPos = width / 2 - (int) (textWidth / 2);
@@ -109,4 +121,5 @@ public class HollowCircleView extends View {
    
         }
 	}
+    
 }
