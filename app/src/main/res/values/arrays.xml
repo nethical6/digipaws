@@ -1,8 +1,9 @@
 <resources>
     <string-array name="Quests">
         <item>Touch Grass</item>
-        <item>40x Squats</item>
-        <item>40x Pushups</item>
+        <item>Squats</item>
+        <item>Pushups</item>
+         <item>Focus Mode</item>
         <item>Buy Quest Coins</item>
     </string-array>
     

@@ -12,6 +12,7 @@ import com.google.mlkit.vision.demo.java.posedetector.classification.PoseClassif
 import nethical.digipaws.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import nethical.digipaws.fragments.quests.FocusQuest;
 import nethical.digipaws.fragments.quests.MarathonQuest;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
@@ -46,16 +47,20 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 				    DigiUtils.replaceScreen(((AppCompatActivity)context).getSupportFragmentManager(),new MarathonQuest());
 				    dialog.dismiss();
 				    break;
-				case(1):
+				case(1): // squats
 				    Intent intent = new Intent(context,WorkoutActivity.class);
                     intent.putExtra(DigiConstants.KEY_WORKOUT_TYPE,PoseClassifierProcessor.SQUATS_CLASS);
                     context.startActivity(intent);
                     break;
-                case(2):
+                case(2): // pushups
 				    Intent intent2 = new Intent(context,WorkoutActivity.class);
                     intent2.putExtra(DigiConstants.KEY_WORKOUT_TYPE,PoseClassifierProcessor.PUSHUPS_CLASS);
                     context.startActivity(intent2);    
-				break;
+				    break;
+                case(3): //focus mode
+				    DigiUtils.replaceScreen(((AppCompatActivity)context).getSupportFragmentManager(),new FocusQuest());
+				    dialog.dismiss();
+				    break;
 			}
 		});
 		
