@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import com.google.mlkit.vision.demo.java.posedetector.classification.PoseClassifierProcessor;
 import nethical.digipaws.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import nethical.digipaws.fragments.quests.MarathonQuest;
+import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.WorkoutActivity;
 
@@ -46,7 +48,13 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 				    break;
 				case(1):
 				    Intent intent = new Intent(context,WorkoutActivity.class);
+                    intent.putExtra(DigiConstants.KEY_WORKOUT_TYPE,PoseClassifierProcessor.SQUATS_CLASS);
                     context.startActivity(intent);
+                    break;
+                case(2):
+				    Intent intent2 = new Intent(context,WorkoutActivity.class);
+                    intent2.putExtra(DigiConstants.KEY_WORKOUT_TYPE,PoseClassifierProcessor.PUSHUPS_CLASS);
+                    context.startActivity(intent2);    
 				break;
 			}
 		});

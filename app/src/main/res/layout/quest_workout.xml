@@ -39,6 +39,7 @@
                      android:layout_width="wrap_content"
                      android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
                      android:text="Quest: Squats"
+                    android:id="@+id/title"
                      android:textStyle="bold" />
 
                 <ImageView
@@ -54,6 +55,7 @@
                  android:layout_height="wrap_content"
                  android:layout_width="wrap_content"
                  android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                android:id="@+id/desc"
                  android:text="@string/squats_desc" />
 
             <com.google.android.material.button.MaterialButton

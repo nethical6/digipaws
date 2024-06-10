@@ -60,4 +60,7 @@ public class DigiConstants {
     
     // required to prevent repeated back presses 
     public static final int GLOBAL_ACTION_COOLDOWN = 1500; // 1.5 seconds
+    
+    public static final String KEY_WORKOUT_TYPE = "workout_type";
+    
 }

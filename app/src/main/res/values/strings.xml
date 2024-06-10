@@ -72,7 +72,8 @@
     <string name="pref_key_front_camera_picture_size" translatable="false">fcpts</string>
     
     <string name="marathon_desc">Move out of the above red zone to win this quest. There is no penalty for failing this quest. Do not forget to carry your phone!</string>
-    <string name="squats_desc">Simply perform 40x squats to earn 1 Aura point. Make sure your entire body is visible on camera above. </string>
+    <string name="squats_desc">Simply perform 40x squats to earn 1 Aura point. You are free to perform this quest in sets of any.Make sure your entire body is visible on camera above. </string>
+    <string name="pushups_desc">Simply perform 40x pushups to earn 1 Aura point. You are free to perform this quest in sets of any. Make sure your entire body is visible on camera above. </string>
 
 
 </resources>

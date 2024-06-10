@@ -1,6 +1,7 @@
 package nethical.digipaws;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.widget.Button;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,6 +63,9 @@ public class WorkoutActivity extends AppCompatActivity
     private Handler uiHandler;
     private boolean isQuestRunning = false;
     private CameraSelector cameraSelector;
+    
+    private String workoutType = PoseClassifierProcessor.SQUATS_CLASS;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +78,19 @@ public class WorkoutActivity extends AppCompatActivity
         cameraExecutor = Executors.newSingleThreadExecutor();
         executor = Executors.newSingleThreadExecutor();
 
+        Intent intent = getIntent();
+        if(intent!=null){
+           workoutType = intent.getStringExtra(DigiConstants.KEY_WORKOUT_TYPE);
+        }
+        TextView title = findViewById(R.id.title);
+        TextView desc = findViewById(R.id.desc);
+        switch(workoutType){
+            case PoseClassifierProcessor.PUSHUPS_CLASS:
+                title.setText("Quest: Pushups");
+                desc.setText(getString(R.string.pushups_desc));
+        }
+        
+        
         ImageView switchCamera = findViewById(R.id.switch_camera);
         switchCamera.setOnClickListener((v)->{
             switchCameraLens();
@@ -223,7 +241,7 @@ public class WorkoutActivity extends AppCompatActivity
                                                 getApplication(),
                                                 true,
                                                 new String[] {
-                                                    PoseClassifierProcessor.SQUATS_CLASS
+                                                    workoutType
                                                 });
                                 // Update the UI on the main thread
                                 uiHandler.post(
