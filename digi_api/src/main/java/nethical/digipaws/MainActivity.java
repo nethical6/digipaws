@@ -48,7 +48,19 @@ public class MainActivity extends AppCompatActivity {
         contentResolver = getContentResolver();
 
         coinCountInfo.setText("Aura Coin: " + String.valueOf(getCoinCount()));
-        appModeInfo.setText("Current Mode Config: "+String.valueOf(getAppMode()));
+         switch(getAppMode()){
+            case AppConstants.DIFFICULTY_LEVEL_EASY:
+                appModeInfo.setText("Current Mode Config: Easy Mode (0)");
+                break;
+            case AppConstants.DIFFICULTY_LEVEL_NORMAL:
+                appModeInfo.setText("Current Mode Config: Adventure/Normal Mode (1)");
+                break;
+            case AppConstants.DIFFICULTY_LEVEL_EXTREME:
+                appModeInfo.setText("Current Mode Config: Hard Mode (2)");
+                break;
+       
+        }
+        
         focusQuestInfo.setText("Is Focus Mode Running"+ String.valueOf(isFocusQuestRunning()));
         
         btnRequestPermission.setOnClickListener((v)->{
