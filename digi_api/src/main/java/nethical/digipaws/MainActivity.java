@@ -95,15 +95,15 @@ public class MainActivity extends AppCompatActivity {
     
     private void incrementCoins() {
      try{
-        ContentResolver contentResolver = getContentResolver();
-
+        if(!isCoinIncCooldownOver()){
+            return;
+        }
         // Build the content URI for updating the coin count
         Uri updateUri = Uri.parse( "content://" + AppConstants.PROVIDER_AUTHORITY + "/"); 
         
         // Call update on the ContentResolver with empty ContentValues (no specific data)
         contentResolver.update(updateUri, new ContentValues(), null, null);
         coinCountInfo.setText("Aura Coin: " + String.valueOf(getCoinCount()));
-            
         
      }catch(SecurityException e){
          Toast.makeText(this,"Missing permisions: " + e.toString(),Toast.LENGTH_SHORT).show();
@@ -150,6 +150,20 @@ public class MainActivity extends AppCompatActivity {
             return isfocus != 0;
         }else{
             Toast.makeText(this,"Digipaws not installed",Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+    
+    private boolean isCoinIncCooldownOver(){
+       Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_UPDATE_DATA_DELAY,null,null,null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int isDelayActive = cursor.getInt(cursor.getColumnIndex("is_active"));
+           if(isDelayActive==0){
+               Toast.makeText(this, String.valueOf(cursor.getLong(cursor.getColumnIndex("remaining_time")) + " ms remaing before a new coin can be generated."),Toast.LENGTH_SHORT).show();
+            }
+            return isDelayActive!=0;
+        }else{
+           Toast.makeText(this,"Digipaws not installed",Toast.LENGTH_LONG).show();
             return false;
         }
     }

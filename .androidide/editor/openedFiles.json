@@ -1,17 +1,47 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/digi_api/src/main/java/nethical/digipaws/AppConstants.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/QuestDataProvider.java",
       "selection": {
         "end": {
-          "column": 32,
-          "index": 651,
-          "line": 18
+          "column": 90,
+          "index": 4223,
+          "line": 107
         },
         "start": {
-          "column": 32,
-          "index": 651,
-          "line": 18
+          "column": 90,
+          "index": 4223,
+          "line": 107
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DelayManager.java",
+      "selection": {
+        "end": {
+          "column": 4,
+          "index": 440,
+          "line": 15
+        },
+        "start": {
+          "column": 4,
+          "index": 440,
+          "line": 15
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
+      "selection": {
+        "end": {
+          "column": 65,
+          "index": 3325,
+          "line": 71
+        },
+        "start": {
+          "column": 65,
+          "index": 3325,
+          "line": 71
         }
       }
     },
@@ -19,47 +49,32 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/digi_api/src/main/java/nethical/digipaws/MainActivity.java",
       "selection": {
         "end": {
-          "column": 55,
-          "index": 2318,
-          "line": 63
+          "column": 2,
+          "index": 5293,
+          "line": 146
         },
         "start": {
-          "column": 55,
-          "index": 2318,
-          "line": 63
+          "column": 2,
+          "index": 5293,
+          "line": 146
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/digi_api/src/main/res/layout/activity_main.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/digi_api/src/main/java/nethical/digipaws/AppConstants.java",
       "selection": {
         "end": {
-          "column": 33,
-          "index": 470,
-          "line": 12
+          "column": 4,
+          "index": 955,
+          "line": 23
         },
         "start": {
-          "column": 33,
-          "index": 470,
-          "line": 12
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/QuestDataProvider.java",
-      "selection": {
-        "end": {
-          "column": 83,
-          "index": 3452,
-          "line": 88
-        },
-        "start": {
-          "column": 83,
-          "index": 3452,
-          "line": 88
+          "column": 4,
+          "index": 955,
+          "line": 23
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/digi_api/src/main/java/nethical/digipaws/MainActivity.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/digi_api/src/main/java/nethical/digipaws/AppConstants.java"
 }

@@ -9,25 +9,31 @@ import android.database.Cursor;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import nethical.digipaws.R;
 
 public class QuestDataProvider extends ContentProvider {
 
-    private SharedPreferences mSharedPreferences;
+    private SharedPreferences preferences;
     private Context context;
     
     
-    public static final Uri CONTENT_URI_COIN =
+    public final Uri CONTENT_URI_COIN =
             Uri.parse("content://" + DigiConstants.PROVIDER_AUTHORITY + "/coin");
-    public static final Uri CONTENT_URI_MODE =
+    public final Uri CONTENT_URI_MODE =
             Uri.parse("content://" + DigiConstants.PROVIDER_AUTHORITY + "/mode");
-    public static final Uri CONTENT_URI_FOCUS_MODE =
+    public final Uri CONTENT_URI_FOCUS_MODE =
             Uri.parse("content://" + DigiConstants.PROVIDER_AUTHORITY + "/focus");
+    public final Uri CONTENT_URI_UPDATE_DATA_DELAY =
+            Uri.parse("content://" + DigiConstants.PROVIDER_AUTHORITY + "/get_delay_details");
+    
+    public final int SUCCESS_CODE = 1;
+    public final int ERROR_CODE_COOLDOWN_ACTIVE = 2;
     
     
     @Override
     public boolean onCreate() {
-        mSharedPreferences = getContext().getSharedPreferences("quest_data", Context.MODE_PRIVATE);
+        preferences = getContext().getSharedPreferences(DigiConstants.PREF_QUEST_MANAGING_PERM, Context.MODE_PRIVATE);
         this.context = getContext();
         return true;
     }
@@ -49,11 +55,18 @@ public class QuestDataProvider extends ContentProvider {
                 getContext().checkCallingOrSelfPermission(DigiConstants.PERMISSION_MANAGE_QUEST);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             throw new SecurityException(
-                    "Requires permission: " + DigiConstants.PERMISSION_MANAGE_QUEST);
+                    "Permission Missing: " + DigiConstants.PERMISSION_MANAGE_QUEST);
         }
-        DigiUtils.sendNotification(context, "Coin earned", getCallingPackage(), R.drawable.swords);
-        CoinManager.incrementCoin(context);
-        return 1;
+        if(isCooldownOver(getCallingPackage())){
+            DigiUtils.sendNotification(context, "Coin earned", getCallingPackage(), R.drawable.swords);
+            CoinManager.incrementCoin(context);
+            startCooldown(getCallingPackage());
+            return SUCCESS_CODE;
+        } else {
+            return ERROR_CODE_COOLDOWN_ACTIVE;
+        }
+        
+        
     }
 
     @Override
@@ -90,10 +103,29 @@ public class QuestDataProvider extends ContentProvider {
             cursor.addRow(new Object[] { mode });
             return cursor;
         }
-        
-        
+        if (uri.equals(CONTENT_URI_UPDATE_DATA_DELAY)) {
+            // Create a dummy cursor with the coin count
+            MatrixCursor cursor = new MatrixCursor(new String[] { "is_active","remaining_time"},1);
+            int isActive = isCooldownOver(getCallingPackage()) ? 1:0;
+            long startTime = getCooldownStartTime(getCallingPackage());
+            long remainingTime = DigiConstants.API_COIN_INC_COOLDOWN - (SystemClock.uptimeMillis() - startTime);
+            cursor.addRow(new Object[] { isActive,remainingTime});
+            return cursor;
+        }
         return null;
     }
 
+    private void startCooldown(String packageName){
+        long currentTime = SystemClock.uptimeMillis();
+        preferences.edit().putLong(packageName,currentTime).apply();
+    }
+    
+    private long getCooldownStartTime(String packageName){
+        return preferences.getLong(packageName,0L);
+    }
+    
+    private boolean isCooldownOver(String packageName){
+        return DelayManager.isDelayOver(getCooldownStartTime(packageName),10000);
+    }
     
 }
