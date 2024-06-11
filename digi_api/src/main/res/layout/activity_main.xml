@@ -7,9 +7,22 @@
      android:orientation="vertical">
 
     <TextView
+        android:id="@+id/coin_count"
          android:layout_height="wrap_content"
          android:layout_width="wrap_content"
-         android:text="Hello user!" />
+         android:text="Coins: idk" />
+    
+    <TextView
+        android:id="@+id/mode"
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:text="Mode: idk" />
+    
+    <TextView
+        android:id="@+id/focus_quest"
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:text="Is Focus Quest Active: idk" />
 
     <Button
          android:layout_height="wrap_content"

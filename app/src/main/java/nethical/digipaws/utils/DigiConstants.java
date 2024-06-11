@@ -65,4 +65,5 @@ public class DigiConstants {
     
     public static final int FOCUS_MODE_LENGTH = 3600000; // 1 hour in ms
     
+    public static final String PROVIDER_AUTHORITY = "nethical.digipaws.questprovider";
 }

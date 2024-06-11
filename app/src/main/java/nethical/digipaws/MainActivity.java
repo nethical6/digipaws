@@ -5,6 +5,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
+import android.database.Cursor;
 import java.util.Calendar;
 import android.content.Context;
 import android.content.Intent;
@@ -89,14 +90,7 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
         
-        ContentResolver contentResolver = getContentResolver();
-
-        // Build the content URI for updating the coin count
-        Uri updateUri = Uri.parse( "content://" + "nethical.digipaws.questprovider" + "/");  // Assuming no path segments
         
-        // Call update on the ContentResolver with empty ContentValues (no specific data)
-        contentResolver.update(updateUri, null, null, null);
-
         
     }
     public void refreshCoinCount(){
