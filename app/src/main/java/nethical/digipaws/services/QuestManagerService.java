@@ -1,5 +1,10 @@
 package nethical.digipaws.services;
 
+import android.app.Notification;
+import nethical.digipaws.MainActivity;
+import android.app.PendingIntent;
+import androidx.core.app.NotificationCompat;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.pm.PackageManager;
 import android.os.IBinder;
@@ -29,41 +34,36 @@ public class QuestManagerService extends Service {
     }
     
     private void handleQuestAction(Intent intent){
-        switch(intent.getAction()){
-            case DigiConstants.COIN_MANAGER_DECREMENT:
-                CoinManager.decrementCoin(this);
-                sendNotification(DigiConstants.COIN_MANAGER_DECREMENT,intent);
-                break;
-            case DigiConstants.COIN_MANAGER_INCREMENT:
-                CoinManager.incrementCoin(this);
-                sendNotification(DigiConstants.COIN_MANAGER_INCREMENT,intent);
-                break;
+        if(intent.getAction().equals(DigiConstants.COIN_MANAGER_INCREMENT)){
+            updateNotification();
         }
         
     }
     
-    private String getMessage(String type,Intent intent){
-        String msg = intent.getStringExtra(DigiConstants.COIN_MANAGER_NOTIF_DESC);
-        if(msg == null || msg == ""){
-            switch(type){
-            case DigiConstants.COIN_MANAGER_INCREMENT:
-                return "You earned 1 DigiCoin";
-            case DigiConstants.COIN_MANAGER_DECREMENT:
-                return "You spent 1 DigiCoin";
-            }
-        }
-        return msg;
-    }
     
-    public void sendNotification(String type,Intent intent){
-        
-        switch(type){
-            case DigiConstants.COIN_MANAGER_INCREMENT:
-                DigiUtils.sendNotification(this,"Quest Completed!! ",getMessage(type,intent),R.drawable.swords);
-                break;
-            case DigiConstants.COIN_MANAGER_DECREMENT:
-                DigiUtils.sendNotification(this,"Digicoin",getMessage(type,intent),R.drawable.swords);
-                break;
+    
+    
+        private Notification getNotification() {
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        return new NotificationCompat.Builder(this, DigiConstants.NOTIFICATION_CHANNEL)
+                .setContentTitle("DigiCoin Earned")
+                .setContentText("You earned 1 Digicoin ")
+                .setSmallIcon(R.drawable.swords)
+                .setContentIntent(pendingIntent)
+                .setOnlyAlertOnce(true)
+                .setSilent(true)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .build();
+    }
+
+    private void updateNotification() {
+        Notification notification = getNotification();
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (manager != null) {
+         //   manager.notify(1, notification);
+            startForeground(1,notification);
         }
     }
     

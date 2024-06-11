@@ -76,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
 		//transaction.addToBackStack(null);
 		transaction.commit();
         
+        Intent intent = new Intent();
+        intent.setClassName("nethical.digipaws", "nethical.digipaws.services.QuestManagerService");
+        intent.setAction(DigiConstants.COIN_MANAGER_INCREMENT); // or another action
+        startService(intent);
         
         // setup notification channels
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
