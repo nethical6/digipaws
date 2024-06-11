@@ -125,7 +125,7 @@ public class QuestDataProvider extends ContentProvider {
     }
     
     private boolean isCooldownOver(String packageName){
-        return DelayManager.isDelayOver(getCooldownStartTime(packageName),10000);
+        return DelayManager.isDelayOver(getCooldownStartTime(packageName),DigiConstants.API_COIN_INC_COOLDOWN);
     }
     
 }

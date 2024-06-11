@@ -2,53 +2,56 @@ package nethical.digipaws.api;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import androidx.core.content.ContextCompat;
-import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import nethical.digipaws.AppConstants;
 import nethical.digipaws.api.databinding.ActivityMainBinding;
-import android.content.ComponentName;
 
 public class MainActivity extends AppCompatActivity {
-    
+
     private ActivityMainBinding binding;
-    
     private static final int PERMISSION_REQUEST_CODE = 100;
-    
+
     private Button btnRequestPermission;
     private Button btnIncrementCoin;
     private TextView coinCountInfo;
-    
+
     private ContentResolver contentResolver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Inflate and get instance of binding
+        // Inflate the layout using View Binding
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-
-        // set content view to binding's root
         setContentView(binding.getRoot());
-        
+
+        // Initialize UI components
         btnRequestPermission = findViewById(R.id.permission);
         btnIncrementCoin = findViewById(R.id.inc_coin);
-        
         coinCountInfo = findViewById(R.id.coin_count);
         TextView appModeInfo = findViewById(R.id.mode);
         TextView focusQuestInfo = findViewById(R.id.focus_quest);
-        
+
+        // Initialize ContentResolver for database operations
         contentResolver = getContentResolver();
 
-        coinCountInfo.setText("Aura Coin: " + String.valueOf(getCoinCount()));
-         switch(getAppMode()){
+        // get coin count
+        coinCountInfo.setText("Aura Coin: " + getCoinCount());
+
+        // get current app mode
+        switch (getAppMode()) {
             case AppConstants.DIFFICULTY_LEVEL_EASY:
                 appModeInfo.setText("Current Mode Config: Easy Mode (0)");
                 break;
@@ -58,114 +61,117 @@ public class MainActivity extends AppCompatActivity {
             case AppConstants.DIFFICULTY_LEVEL_EXTREME:
                 appModeInfo.setText("Current Mode Config: Hard Mode (2)");
                 break;
-       
         }
+
+        // check if focus quest is running
+        focusQuestInfo.setText("Is Focus Mode Running: " + isFocusQuestRunning());
+
+        // The app needs to explicitly ask for user permission to manage quests in order to increment the coin count. 
+        // Retrieving other data like available coins doesn't require explicit permissions.
+       btnRequestPermission.setOnClickListener(v -> askPermission());
         
-        focusQuestInfo.setText("Is Focus Mode Running: "+ String.valueOf(isFocusQuestRunning()));
-        
-        btnRequestPermission.setOnClickListener((v)->{
-                askPermission();
-        });
-        
-        
-        btnIncrementCoin.setOnClickListener((v)->{
-            incrementCoins();
-        });
-        
-        
+        btnIncrementCoin.setOnClickListener(v -> incrementCoins());
     }
-    
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        this.binding = null;
+        // Clean up the binding reference
+        binding = null;
     }
-    
+
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission was granted, do your work
-                Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT);
-                
-            } 
-        }
-    }
-    
-    private void incrementCoins() {
-     try{
-        if(!isCoinIncCooldownOver()){
-            return;
-        }
-        // Build the content URI for updating the coin count
-        Uri updateUri = Uri.parse( "content://" + AppConstants.PROVIDER_AUTHORITY + "/"); 
-        
-        // Call update on the ContentResolver with empty ContentValues (no specific data)
-        contentResolver.update(updateUri, new ContentValues(), null, null);
-        coinCountInfo.setText("Aura Coin: " + String.valueOf(getCoinCount()));
-        
-     }catch(SecurityException e){
-         Toast.makeText(this,"Missing permisions: " + e.toString(),Toast.LENGTH_SHORT).show();
-     }
-        
-  }
-    
-    
-    private void askPermission(){
-        if (ContextCompat.checkSelfPermission(this, "nethical.digipaws.permission.API_V0")
-                != PackageManager.PERMISSION_GRANTED) {
-                    // Permission is not granted, request it
-                    ActivityCompat.requestPermissions(this,
-                    new String[]{AppConstants.PERMISSION_MANAGE_QUESTS}, PERMISSION_REQUEST_CODE);
+                // Permission was granted, inform the user
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
             }
+        }
     }
-    
-    private int getCoinCount(){
-       Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_COIN,null,null,null);
+
+    private void incrementCoins() {
+        try {
+            if (!isCoinInCooldownOver()) {
+                return;
+            }
+
+            // Build the content URI for updating the coin count
+            Uri updateUri = Uri.parse("content://" + AppConstants.PROVIDER_AUTHORITY + "/");
+
+            // Update the coin count
+            contentResolver.update(updateUri, new ContentValues(), null, null);
+
+            // Refresh the coin count display
+            coinCountInfo.setText("Aura Coin: " + getCoinCount());
+        } catch (SecurityException e) {
+            // Handle the exception if permission is missing
+            Toast.makeText(this, "Missing permissions: " + e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void askPermission() {
+        if (ContextCompat.checkSelfPermission(this, "nethical.digipaws.permission.API_V0") != PackageManager.PERMISSION_GRANTED) {
+            // Request the permission if it is not granted
+            ActivityCompat.requestPermissions(this, new String[]{AppConstants.PERMISSION_MANAGE_QUESTS}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    private int getCoinCount() {
+        Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_COIN, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             int coinCount = cursor.getInt(cursor.getColumnIndex("count"));
+            cursor.close();
             return coinCount;
-        }else{
-           Toast.makeText(this,"Digipaws not installed",Toast.LENGTH_LONG).show();
+        } else {
+            // Show a message if the Digipaws app is not installed
+            Toast.makeText(this, "Digipaws not installed", Toast.LENGTH_LONG).show();
             return 0;
         }
     }
-    
-    private int getAppMode(){
-       Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_MODE,null,null,null);
+
+    private int getAppMode() {
+        Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_MODE, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             int mode = cursor.getInt(cursor.getColumnIndex("mode"));
+            cursor.close();
             return mode;
-        }else{
-           Toast.makeText(this,"Digipaws not installed",Toast.LENGTH_LONG).show();
+        } else {
+            // Show a message if the Digipaws app is not installed
+            Toast.makeText(this, "Digipaws not installed", Toast.LENGTH_LONG).show();
             return AppConstants.DIFFICULTY_LEVEL_NORMAL;
         }
     }
-    
-    private boolean isFocusQuestRunning(){
-      Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_FOCUS_QUEST,null,null,null);
+
+    private boolean isFocusQuestRunning() {
+        Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_FOCUS_QUEST, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
-            int isfocus = cursor.getInt(cursor.getColumnIndex("focus"));
-            return isfocus != 0;
-        }else{
-            Toast.makeText(this,"Digipaws not installed",Toast.LENGTH_LONG).show();
+            int isFocus = cursor.getInt(cursor.getColumnIndex("focus"));
+            cursor.close();
+            return isFocus != 0;
+        } else {
+            // Show a message if the Digipaws app is not installed
+            Toast.makeText(this, "Digipaws not installed", Toast.LENGTH_LONG).show();
             return false;
         }
     }
-    
-    private boolean isCoinIncCooldownOver(){
-       Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_UPDATE_DATA_DELAY,null,null,null);
+
+    private boolean isCoinInCooldownOver() {
+        Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_UPDATE_DATA_DELAY, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
             int isDelayActive = cursor.getInt(cursor.getColumnIndex("is_active"));
-           if(isDelayActive==0){
-               Toast.makeText(this, String.valueOf(cursor.getLong(cursor.getColumnIndex("remaining_time")) + " ms remaing before a new coin can be generated."),Toast.LENGTH_SHORT).show();
+            if (isDelayActive == 0) {
+                // Show remaining cooldown time if delay is active
+                long remainingTime = cursor.getLong(cursor.getColumnIndex("remaining_time"));
+                Toast.makeText(this, remainingTime + " ms remaining before a new coin can be generated.", Toast.LENGTH_SHORT).show();
             }
-            return isDelayActive!=0;
-        }else{
-           Toast.makeText(this,"Digipaws not installed",Toast.LENGTH_LONG).show();
+            cursor.close();
+            return isDelayActive != 0;
+        } else {
+            // Show a message if the Digipaws app is not installed
+            Toast.makeText(this, "Digipaws not installed", Toast.LENGTH_LONG).show();
             return false;
         }
     }
-    
 }
