@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
        
         }
         
-        focusQuestInfo.setText("Is Focus Mode Running"+ String.valueOf(isFocusQuestRunning()));
+        focusQuestInfo.setText("Is Focus Mode Running: "+ String.valueOf(isFocusQuestRunning()));
         
         btnRequestPermission.setOnClickListener((v)->{
                 askPermission();
@@ -143,17 +143,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     
-    private int isFocusQuestRunning(){
-     /*  Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_FOCUS_QUEST,null,null,null);
+    private boolean isFocusQuestRunning(){
+      Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_FOCUS_QUEST,null,null,null);
         if (cursor != null && cursor.moveToFirst()) {
             int isfocus = cursor.getInt(cursor.getColumnIndex("focus"));
-            return isfocus;
+            return isfocus != 0;
         }else{
-           Toast.makeText(this,"Digipaws not installed",Toast.LENGTH_LONG).show();
-            return 0;
+            Toast.makeText(this,"Digipaws not installed",Toast.LENGTH_LONG).show();
+            return false;
         }
-    */
-        return 0;
     }
     
 }

@@ -86,7 +86,8 @@ public class QuestDataProvider extends ContentProvider {
         if (uri.equals(CONTENT_URI_FOCUS_MODE)) {
             // Create a dummy cursor with the coin count
             MatrixCursor cursor = new MatrixCursor(new String[] { "focus" },1);
-            cursor.addRow(new Object[] { SurvivalModeManager.isSurvivalModeActive(getContext()) });
+            int mode = SurvivalModeManager.isSurvivalModeActive(getContext()) ? 1:0;
+            cursor.addRow(new Object[] { mode });
             return cursor;
         }
         

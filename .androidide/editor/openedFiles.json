@@ -19,14 +19,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/digi_api/src/main/java/nethical/digipaws/MainActivity.java",
       "selection": {
         "end": {
-          "column": 70,
-          "index": 2208,
-          "line": 58
+          "column": 55,
+          "index": 2318,
+          "line": 63
         },
         "start": {
-          "column": 70,
-          "index": 2208,
-          "line": 58
+          "column": 55,
+          "index": 2318,
+          "line": 63
         }
       }
     },
@@ -42,6 +42,21 @@
           "column": 33,
           "index": 470,
           "line": 12
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/QuestDataProvider.java",
+      "selection": {
+        "end": {
+          "column": 83,
+          "index": 3452,
+          "line": 88
+        },
+        "start": {
+          "column": 83,
+          "index": 3452,
+          "line": 88
         }
       }
     }
