@@ -12,7 +12,7 @@ DigiPaws is an open-source Android productivity utility designed to help users r
 - **Open Source**: Fully transparent and free to use, with the source code available for community contributions.
 - **Productivity Enhancement**: Helps build healthier digital habits and reduce screen addiction.
 - **Versatile Blockers**: Take control of your digital environment by blocking apps, keywords, and unwanted in-app screens (e.g., YouTube shorts, comments).
-
+- **Open Api**: Turn your existing application into a digipaws quest!! [Learn More](https://github.com/nethical6/digipause/blob/main/HowToUseApi.md)
 
 ## Modes
 
@@ -25,8 +25,12 @@ In Easy Mode, DigiPaws provides gentle reminders to help you manage your screen 
 Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need DigiCoins. These can be earned by completing quests such as a quick 1 km walk. Each DigiCoin grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use.
 
 #### Quests
-1. **Touch Grass** - Displace yourself by 1km
-2. more quests comming soon. Drop ideas on my dm.
+1. **Touch Grass** - Displace yourself by 1 km.
+2. **40x Squats** - Perform 40 reps of squats in any sets. Verified using AI.
+3. **40x Pushups** - Perform 40 reps of pushups in any sets. Verified using AI.
+4. **Focus Quest** - Apply the 20/60 study rule: Digipaws blocks all unnecessary applications except basic apps like calling and SMS.
+5. **Open API** - See the list of [applications using our quest API.](https://github.com/nethical6/digipause/blob/main/HowToUseApi.md)
+
 
 ### Hard Mode
 
@@ -48,19 +52,19 @@ Hard Mode offers the most stringent control over app usage. In this mode, when y
 - [x] Block comments
 - [x] Block explicit context
 - [x] App blockers
-- [ ] Survival Mode (basically blocking everything except calling and sms)
+- [x] Focus Quest
 - [ ] Geoblocker (basically block things when a certain area is entered like workplace)
 - [ ] Customisable warning screen
 - [ ] Block cusomtom user defined keywords
 - [ ] Modular and downloadable view blockers
-- [ ] Api for other developers to transform their existing apps into digipaw quests! (help needed)
+- [x] Api for other developers to transform their existing apps into digipaw quests!
 - [ ] expand the app to ios and desktops.
 ## Thanks 
 - [**Osmdroid**](https://github.com/osmdroid/osmdroid) : Mapview used in Quest "TouchGrass"
 - [**Digital Wellbeing Experiments Toolkit**](https://github.com/googlecreativelab/digital-wellbeing-experiments-toolkit) : some ideas ig, basically the geoblocker one.
 - [**Undraw**](https://undraw.co) : illustrations on intro page
 - Special thanks to all the premium apps on the Play Store that inspired me to create a free and open-source alternative. imagine making money out of miserable people.
-
+- [**Ml Kit QuickStart**](https://github.com/googlesamples/mlkit/tree/master) : ML models and multiple classes were used from this repository.
 
 
 ## Installation
@@ -99,9 +103,8 @@ Please ensure your code adheres to our coding standards and includes relevant te
     
 ### HELP REQUIRED!!
 1. Implementing material ui inside the warning overlay and also making it customisable.
-2. Implementing a custom api/service through which other apps like a pomodoro can also act like quests. A basic api to implement/decrement coins has been created but this is very insecure as fake coins can be created. A way is required to prevent fake quests.
-3. Expanding the list of explict keywords
-4. Expanding the list of Blocked views so that more apps can be supported. You can scrape the view ids of a screen with the help of [Developer Assistant](https://play.google.com/store/apps/details?id=com.appsisle.developerassistant). Remeber that these view ids must be unique and only present on the screen to block!!
+2. Expanding the list of [explict keywords](https://github.com/nethical6/digipause/blob/da5723915412277655aea4dd448cdc64a21fcc83/app/src/main/java/nethical/digipaws/data/BlockerData.java#L28)
+3. Expanding the list of [Blocked views](https://github.com/nethical6/digipause/blob/main/app/src/main/java/nethical/digipaws/data/BlockerData.java#L4) so that more apps can be supported. You can scrape the view ids of a screen with the help of [Developer Assistant](https://play.google.com/store/apps/details?id=com.appsisle.developerassistant). Remeber that these view ids must be unique and only present on the screen to block!!
 
 
 ## License
