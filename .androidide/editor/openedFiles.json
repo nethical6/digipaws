@@ -1,7 +1,37 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/KeywordBlocker.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/settings.gradle",
+      "selection": {
+        "end": {
+          "column": 22,
+          "index": 334,
+          "line": 10
+        },
+        "start": {
+          "column": 22,
+          "index": 334,
+          "line": 10
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/QuestDataProvider.java",
+      "selection": {
+        "end": {
+          "column": 90,
+          "index": 2423,
+          "line": 66
+        },
+        "start": {
+          "column": 90,
+          "index": 2423,
+          "line": 66
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/digi-api/src/main/java/nethical/digipaws/AppConstants.java",
       "selection": {
         "end": {
           "column": 0,
@@ -16,20 +46,20 @@
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/digi-api/src/main/java/nethical/digipaws/MainActivity.java",
       "selection": {
         "end": {
-          "column": 16,
-          "index": 1238,
-          "line": 35
+          "column": 64,
+          "index": 3692,
+          "line": 100
         },
         "start": {
-          "column": 16,
-          "index": 1238,
-          "line": 35
+          "column": 64,
+          "index": 3692,
+          "line": 100
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/digi-api/src/main/java/nethical/digipaws/MainActivity.java"
 }

@@ -4,6 +4,8 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
+import android.database.Cursor;
 import java.util.Calendar;
 import android.content.Context;
 import android.content.Intent;
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 		transaction.commit();
         
         
+        
         // setup notification channels
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
@@ -86,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+        
+        
         
     }
     public void refreshCoinCount(){

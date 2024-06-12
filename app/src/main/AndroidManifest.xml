@@ -6,7 +6,8 @@
     
     <uses-sdk android:minSdkVersion="22" android:targetSdkVersion="33"/>
 	
-    <uses-permission android:name="nethical.digipaws.permission.API_V0"/>
+    <uses-permission android:name="nethical.digipaws.permission.API_V1"/>
+    
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	
@@ -27,8 +28,8 @@
 
     
     
-     <permission
-        android:name="nethical.digipaws.permission.API_V0"
+    <permission
+        android:name="nethical.digipaws.permission.API_V1"
         android:label="@string/perm_quest_manager_label"
         android:description="@string/perm_quest_manager_desc"
         android:protectionLevel="dangerous" />
@@ -81,10 +82,7 @@
             android:foregroundServiceType="location"
             android:exported="false" />
 
-        <service
-            android:name=".services.QuestManagerService"
-            android:permission="nethical.digipaws.permission.API_V0"
-            android:exported="true" />
+        
         <service
             android:name=".services.FocusModeTimerService"
             android:enabled="true"
@@ -114,7 +112,15 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        
 
+     <provider
+        android:name=".utils.QuestDataProvider"
+        android:authorities="nethical.digipaws.questprovider"
+        android:exported="true" >
+    </provider>
+
+   
         
     </application>
 

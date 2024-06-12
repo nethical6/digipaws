@@ -47,10 +47,13 @@ public class DigiConstants {
     public static final String PREF_IS_PORN_BLOCKED = "is_porn_blocked";
     public static final String PREF_IS_ENGMMT_BLOCKED = "is_engmnt_blocked";
     
+    public static final String PREF_QUEST_MANAGING_PERM = "perm_config";
+    
+    
     public static final String PREF_IS_INTRO_SHOWN ="intro";
     
     
-    public static final String PERMISSION_MANAGE_QUEST = "nethical.digipaws.permission.API_V0";
+    public static final String PERMISSION_MANAGE_QUEST = "nethical.digipaws.permission.API_V1";
     public static final String COIN_MANAGER_INCREMENT = "increment_coin";
     public static final String COIN_MANAGER_DECREMENT = "decrement_coin";
     public static final String COIN_MANAGER_NOTIF_DESC = "coin_desc";
@@ -64,5 +67,8 @@ public class DigiConstants {
     public static final String KEY_WORKOUT_TYPE = "workout_type";
     
     public static final int FOCUS_MODE_LENGTH = 3600000; // 1 hour in ms
+    
+    public static final String PROVIDER_AUTHORITY = "nethical.digipaws.questprovider";
+    public static final int API_COIN_INC_COOLDOWN = 60 * 60 * 1000; // in ms 
     
 }
