@@ -30,7 +30,7 @@
              android:layout_width="wrap_content"
              android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
              android:textColor="#fff"
-             android:id="@+id/shorts_cb"
+             android:id="@+id/anti_uninstall_cb"
              android:text="@string/anti_uninstall_cb" />
 
 

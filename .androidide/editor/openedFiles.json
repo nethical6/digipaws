@@ -1,32 +1,32 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/choose_preferences_uninstall.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ConfigureAntiUninstall.java",
       "selection": {
         "end": {
-          "column": 45,
-          "index": 476,
-          "line": 11
+          "column": 24,
+          "index": 2731,
+          "line": 67
         },
         "start": {
-          "column": 45,
-          "index": 476,
-          "line": 11
+          "column": 24,
+          "index": 2731,
+          "line": 67
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ConfigureAntiUninstall.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/choose_preferences_uninstall.xml",
       "selection": {
         "end": {
-          "column": 64,
-          "index": 811,
-          "line": 26
+          "column": 47,
+          "index": 1242,
+          "line": 32
         },
         "start": {
-          "column": 64,
-          "index": 811,
-          "line": 26
+          "column": 47,
+          "index": 1242,
+          "line": 32
         }
       }
     }
