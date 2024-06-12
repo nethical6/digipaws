@@ -97,11 +97,8 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            // Build the content URI for updating the coin count
-            Uri updateUri = Uri.parse("content://" + AppConstants.PROVIDER_AUTHORITY + "/");
-
             // Update the coin count
-            contentResolver.update(updateUri, new ContentValues(), null, null);
+            contentResolver.update(AppConstants.CONTENT_URI_COIN, new ContentValues(), null, null);
 
             // Refresh the coin count display
             coinCountInfo.setText("Aura Coin: " + getCoinCount());

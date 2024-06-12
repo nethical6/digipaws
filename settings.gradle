@@ -8,4 +8,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "digiPause"
-include ':app',':digi_api'
+include ':app',':digi-api'

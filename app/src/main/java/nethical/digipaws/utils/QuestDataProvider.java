@@ -27,9 +27,10 @@ public class QuestDataProvider extends ContentProvider {
     public final Uri CONTENT_URI_UPDATE_DATA_DELAY =
             Uri.parse("content://" + DigiConstants.PROVIDER_AUTHORITY + "/get_delay_details");
     
+    public final int ERROR_CODE_UNKNOWN = 0;
+    
     public final int SUCCESS_CODE = 1;
     public final int ERROR_CODE_COOLDOWN_ACTIVE = 2;
-    
     
     @Override
     public boolean onCreate() {
@@ -49,29 +50,35 @@ public class QuestDataProvider extends ContentProvider {
         return null;
     }
 
+    
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        int permissionCheck =
-                getContext().checkCallingOrSelfPermission(DigiConstants.PERMISSION_MANAGE_QUEST);
+        
+        // updating values requires explict user permission
+       int permissionCheck =
+            getContext().checkCallingOrSelfPermission(DigiConstants.PERMISSION_MANAGE_QUEST);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             throw new SecurityException(
                     "Permission Missing: " + DigiConstants.PERMISSION_MANAGE_QUEST);
         }
-        if(isCooldownOver(getCallingPackage())){
-            DigiUtils.sendNotification(context, "Coin earned", getCallingPackage(), R.drawable.swords);
-            CoinManager.incrementCoin(context);
-            startCooldown(getCallingPackage());
-            return SUCCESS_CODE;
-        } else {
-            return ERROR_CODE_COOLDOWN_ACTIVE;
-        }
         
+        if(uri.equals(CONTENT_URI_COIN)){
+            if(isCooldownOver(getCallingPackage())){
+                DigiUtils.sendNotification(context, "Coin Earned", "You earned 1 Aura coin", R.drawable.swords);
+                CoinManager.incrementCoin(context);
+                startCooldown(getCallingPackage());
+                return SUCCESS_CODE;
+            } else {
+                return ERROR_CODE_COOLDOWN_ACTIVE;
+            }
+        }
+        return ERROR_CODE_UNKNOWN;
         
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Not applicable for retrieving coin count
+        // Not allowed to delete coin count
         return 0;
     }
 
