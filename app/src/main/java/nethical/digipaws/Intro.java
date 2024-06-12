@@ -17,6 +17,7 @@ import nethical.digipaws.fragments.intro.ChooseBlockedApps;
 import nethical.digipaws.fragments.intro.ChooseDelay;
 import nethical.digipaws.fragments.intro.ChooseMode;
 import nethical.digipaws.fragments.intro.ChooseViewBlockers;
+import nethical.digipaws.fragments.intro.ConfigureAntiUninstall;
 import nethical.digipaws.utils.DigiConstants;
 
 public class Intro extends AppIntro{
@@ -62,6 +63,7 @@ public class Intro extends AppIntro{
         addSlide(new ChooseViewBlockers(sharedPreferences));
         addSlide(new ChooseDelay(sharedPreferences));
         addSlide(new ChooseBlockedApps(sharedPreferences));
+        addSlide(new ConfigureAntiUninstall(sharedPreferences));
         
         addSlide(AppIntroFragment.createInstance(
 		"Thanks For choosing us",
