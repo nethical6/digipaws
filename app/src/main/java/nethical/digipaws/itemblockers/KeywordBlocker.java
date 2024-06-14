@@ -49,7 +49,7 @@ public class KeywordBlocker {
             }
         }
     }
-    private void traverseNodesForKeywords(
+    public void traverseNodesForKeywords(
             AccessibilityNodeInfo node, AccessibilityService context) {
         if (node == null) {
             return;

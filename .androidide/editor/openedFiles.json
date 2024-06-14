@@ -1,35 +1,95 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ConfigureAntiUninstall.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java",
       "selection": {
         "end": {
-          "column": 24,
-          "index": 2731,
-          "line": 67
+          "column": 5,
+          "index": 5508,
+          "line": 168
         },
         "start": {
-          "column": 24,
-          "index": 2731,
-          "line": 67
+          "column": 1,
+          "index": 5225,
+          "line": 163
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/choose_preferences_uninstall.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/SettingsBlocker.java",
       "selection": {
         "end": {
-          "column": 47,
-          "index": 1242,
-          "line": 32
+          "column": 73,
+          "index": 1239,
+          "line": 30
         },
         "start": {
-          "column": 47,
-          "index": 1242,
-          "line": 32
+          "column": 73,
+          "index": 1239,
+          "line": 30
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
+      "selection": {
+        "end": {
+          "column": 30,
+          "index": 2015,
+          "line": 54
+        },
+        "start": {
+          "column": 30,
+          "index": 2015,
+          "line": 54
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/BlockerData.java",
+      "selection": {
+        "end": {
+          "column": 8,
+          "index": 868,
+          "line": 18
+        },
+        "start": {
+          "column": 8,
+          "index": 868,
+          "line": 18
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/KeywordBlocker.java",
+      "selection": {
+        "end": {
+          "column": 5,
+          "index": 2834,
+          "line": 84
+        },
+        "start": {
+          "column": 4,
+          "index": 1516,
+          "line": 51
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ConfigureAntiUninstall.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/SettingsBlocker.java"
 }

@@ -10,6 +10,7 @@ import java.util.HashSet;
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.itemblockers.AppBlocker;
 import nethical.digipaws.itemblockers.KeywordBlocker;
+import nethical.digipaws.itemblockers.SettingsBlocker;
 import nethical.digipaws.itemblockers.ViewBlocker;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.LoadAppList;
@@ -23,6 +24,7 @@ public class BlockerService extends AccessibilityService {
     private AppBlocker appBlocker;
     private ServiceData serviceData;
     private KeywordBlocker keywordBlocker;
+    private SettingsBlocker settingsBlocker;
     
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -39,6 +41,11 @@ public class BlockerService extends AccessibilityService {
         
         if(event.getEventType()==AccessibilityEvent.TYPE_VIEW_FOCUSED){
             keywordBlocker.checkIfEditext(serviceData);
+        }
+       if (event.getPackageName() != null &&
+            event.getPackageName().toString().equals(DigiConstants.SETTINGS_PACKAGE_NAME)
+        && event.getEventType()==AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED ) {
+            settingsBlocker.performAction(serviceData);
         }
         
 	}
@@ -78,7 +85,7 @@ public class BlockerService extends AccessibilityService {
         viewBlocker = new ViewBlocker();
         appBlocker = new AppBlocker();
         keywordBlocker = new KeywordBlocker();
-		
+		settingsBlocker = new SettingsBlocker();
 	}
 	
 	@Override
