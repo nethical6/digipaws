@@ -65,6 +65,7 @@ public class ConfigureAntiUninstall extends Fragment  {
                     startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);
                 }
             } else {
+                    sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,false).apply();
                     if(!devicePolicyManager.isAdminActive(deviceAdminReceiver)){
                         return;
                     }
@@ -83,6 +84,7 @@ public class ConfigureAntiUninstall extends Fragment  {
             if (resultCode == Activity.RESULT_OK) {
                 // Device admin enabled successfully
                 Toast.makeText(requireContext(), "Device admin enabled", Toast.LENGTH_SHORT).show();
+                sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,true).apply();
             } else {
                 enableAntiUninstallCb.setChecked(false);
                 Toast.makeText(

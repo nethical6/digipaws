@@ -46,6 +46,8 @@ public class DigiConstants {
     public static final String PREF_IS_SHORTS_BLOCKED = "is_shorts_blocked";
     public static final String PREF_IS_PORN_BLOCKED = "is_porn_blocked";
     public static final String PREF_IS_ENGMMT_BLOCKED = "is_engmnt_blocked";
+    public static final String PREF_IS_ANTI_UNINSTALL = "is_uninstall_blocmed";
+    
     
     public static final String PREF_QUEST_MANAGING_PERM = "perm_config";
     

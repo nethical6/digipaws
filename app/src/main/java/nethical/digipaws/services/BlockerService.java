@@ -16,7 +16,6 @@ import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.LoadAppList;
 import nethical.digipaws.utils.OverlayManager;
 
-
 public class BlockerService extends AccessibilityService {
 	
     private ViewBlocker viewBlocker;
@@ -24,6 +23,8 @@ public class BlockerService extends AccessibilityService {
     private AppBlocker appBlocker;
     private ServiceData serviceData;
     private KeywordBlocker keywordBlocker;
+    
+    private boolean isAntiUninstallOn = false;
     private SettingsBlocker settingsBlocker;
     
 	@Override
@@ -42,7 +43,7 @@ public class BlockerService extends AccessibilityService {
         if(event.getEventType()==AccessibilityEvent.TYPE_VIEW_FOCUSED){
             keywordBlocker.checkIfEditext(serviceData);
         }
-       if (event.getPackageName() != null &&
+       if (isAntiUninstallOn && event.getPackageName() != null &&
             event.getPackageName().toString().equals(DigiConstants.SETTINGS_PACKAGE_NAME)
         && event.getEventType()==AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED ) {
             settingsBlocker.performAction(serviceData);
@@ -82,6 +83,7 @@ public class BlockerService extends AccessibilityService {
         serviceData.setBlockedApps(new ArrayList<>(
                         sharedPreferences.getStringSet(
                                 DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, new HashSet<>())));
+        isAntiUninstallOn = sharedPreferences.getBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,false);
         viewBlocker = new ViewBlocker();
         appBlocker = new AppBlocker();
         keywordBlocker = new KeywordBlocker();
