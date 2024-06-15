@@ -14,5 +14,15 @@
         app:strokeColor="@color/md_theme_dark_primary"
         app:strokeWidth="5dp" />
 
+     <TextView
+        android:id="@+id/anti_uninstall_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_margin="16dp"
+        android:text="@string/anti_uninstall_desc_day" 
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"/>
+
+    
 
 </LinearLayout>

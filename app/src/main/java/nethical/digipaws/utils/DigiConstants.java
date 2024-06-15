@@ -46,6 +46,10 @@ public class DigiConstants {
     public static final String PREF_IS_SHORTS_BLOCKED = "is_shorts_blocked";
     public static final String PREF_IS_PORN_BLOCKED = "is_porn_blocked";
     public static final String PREF_IS_ENGMMT_BLOCKED = "is_engmnt_blocked";
+    public static final String PREF_IS_ANTI_UNINSTALL = "is_uninstall_blocked";
+    public static final String PREF_ANTI_UNINSTALL_START = "anti_uninstall_day";
+    
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
     
     public static final String PREF_QUEST_MANAGING_PERM = "perm_config";
     
@@ -63,6 +67,10 @@ public class DigiConstants {
     
     // required to prevent repeated back presses 
     public static final int GLOBAL_ACTION_COOLDOWN = 1500; // 1.5 seconds
+    
+    //number of days anti-uninstall would run
+    public static final int CHALLENGE_TIME = 21; // 3 weeks
+    
     
     public static final String KEY_WORKOUT_TYPE = "workout_type";
     
