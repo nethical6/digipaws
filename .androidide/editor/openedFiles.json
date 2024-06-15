@@ -1,32 +1,32 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
       "selection": {
         "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 58,
+          "index": 2711,
+          "line": 79
         },
         "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 58,
+          "index": 2711,
+          "line": 79
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ConfigureAntiUninstall.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
       "selection": {
         "end": {
-          "column": 98,
-          "index": 2805,
-          "line": 67
+          "column": 44,
+          "index": 3992,
+          "line": 54
         },
         "start": {
-          "column": 98,
-          "index": 2805,
-          "line": 67
+          "column": 44,
+          "index": 3992,
+          "line": 54
         }
       }
     },
@@ -34,19 +34,34 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
       "selection": {
         "end": {
-          "column": 77,
-          "index": 2338,
-          "line": 48
+          "column": 59,
+          "index": 3354,
+          "line": 71
         },
         "start": {
-          "column": 77,
-          "index": 2338,
-          "line": 48
+          "column": 59,
+          "index": 3354,
+          "line": 71
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/receivers/BootReceiver.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ConfigureAntiUninstall.java",
+      "selection": {
+        "end": {
+          "column": 41,
+          "index": 2177,
+          "line": 59
+        },
+        "start": {
+          "column": 41,
+          "index": 2177,
+          "line": 59
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
       "selection": {
         "end": {
           "column": 0,
@@ -57,24 +72,9 @@
           "column": 0,
           "index": 0,
           "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
-      "selection": {
-        "end": {
-          "column": 5,
-          "index": 5304,
-          "line": 137
-        },
-        "start": {
-          "column": 4,
-          "index": 4352,
-          "line": 117
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java"
 }

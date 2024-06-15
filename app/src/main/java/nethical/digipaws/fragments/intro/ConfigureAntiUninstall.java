@@ -13,6 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import nethical.digipaws.R;
 import nethical.digipaws.receivers.AdminReceiver;
 import nethical.digipaws.utils.DigiConstants;
@@ -44,6 +47,12 @@ public class ConfigureAntiUninstall extends Fragment  {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         
+        Date date = new Date();
+       
+        SimpleDateFormat sdf = new SimpleDateFormat(DigiConstants.DATE_FORMAT, Locale.getDefault());
+        String dateString = sdf.format(date);
+      
+        sharedPreferences.edit().putString(DigiConstants.PREF_ANTI_UNINSTALL_START,dateString).apply();
         devicePolicyManager =
                         (DevicePolicyManager)
                                 requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE);

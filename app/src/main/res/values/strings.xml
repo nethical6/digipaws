@@ -52,6 +52,7 @@
     <string name="anti_uninstall_title">Enter the #TechRehab challenge!</string>
     <string name="anti_uninstall_cb">Activate Anti-Uninstall</string>
     <string name="anti_uninstall_desc">#TechRehab is a 3 week productivity challenge that blocks all uninstall attempts on this app.</string>
+     <string name="anti_uninstall_desc_day">days strong!!!</string>
     
     
      <string name="choose_mode_title">Configure Mode</string>
