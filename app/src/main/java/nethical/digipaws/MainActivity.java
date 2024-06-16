@@ -110,9 +110,17 @@ public class MainActivity extends AppCompatActivity {
 		dialog.show(getSupportFragmentManager(), "select_quest"); // Use a unique tag for the dialog
 	}
     public void Configure(View view){
-		Intent intent = new Intent(this,Intro.class);
-		startActivity(intent);
-        Toast.makeText(this,"Restarting services required to apply any configuration changes",Toast.LENGTH_LONG).show();
+        if(!BuildConfig.DEBUG){
+            SharedPreferences sp = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
+            if(sp.getBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,false)){
+               Toast.makeText(this,"Anti Uninstall is active. Cannot change configurations.",Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
+        Intent intent = new Intent(this,Intro.class);
+        startActivity(intent);
+        Toast.makeText(this,"Restarting Acessibility services required to apply any configuration changes",Toast.LENGTH_LONG).show();
+		
 	}
     
     

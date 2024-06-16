@@ -19,16 +19,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "boolean", "IS_RELEASE", "true"
         }
-        debug {
-            buildConfigField "boolean", "IS_RELEASE", "false"
+        release {
         }
+        
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures { buildConfig = true } 
 }
 
 dependencies {

@@ -19,14 +19,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/build.gradle",
       "selection": {
         "end": {
-          "column": 5,
-          "index": 602,
-          "line": 26
+          "column": 41,
+          "index": 663,
+          "line": 30
         },
         "start": {
-          "column": 4,
-          "index": 271,
-          "line": 17
+          "column": 41,
+          "index": 663,
+          "line": 30
         }
       }
     },
@@ -34,14 +34,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
       "selection": {
         "end": {
-          "column": 7,
-          "index": 1344,
-          "line": 41
+          "column": 32,
+          "index": 4068,
+          "line": 109
         },
         "start": {
-          "column": 7,
-          "index": 1344,
-          "line": 41
+          "column": 32,
+          "index": 4068,
+          "line": 109
         }
       }
     },
@@ -79,14 +79,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
       "selection": {
         "end": {
-          "column": 4,
-          "index": 1503,
-          "line": 45
+          "column": 114,
+          "index": 2167,
+          "line": 60
         },
         "start": {
           "column": 8,
-          "index": 1433,
-          "line": 44
+          "index": 2061,
+          "line": 60
         }
       }
     },
@@ -104,7 +104,22 @@
           "line": 72
         }
       }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ConfigureAntiUninstall.java",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/WorkoutActivity.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java"
 }
