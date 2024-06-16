@@ -4,8 +4,8 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ContentResolver;
-import android.database.Cursor;
+import android.view.WindowManager;
+import com.google.android.material.internal.EdgeToEdgeUtils;
 import java.util.Calendar;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
         setContentView(R.layout.activity_main);
 		
        // SurvivalModeManager.enableSurvivalMode(this);
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         cointCount = findViewById(R.id.coint_count);
      
         
-        
+        setDailyAlarm(this);
         
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -105,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
 	
 	
 	public void SelectQuest(View view){
-        setDailyAlarm(this);
 		SelectQuestDialog dialog = new SelectQuestDialog();
 		dialog.show(getSupportFragmentManager(), "select_quest"); // Use a unique tag for the dialog
 	}
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Set exact alarm for the next midnight
     long intervalMillis = AlarmManager.INTERVAL_DAY;
-    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), intervalMillis, pendingIntent);
+    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 0, pendingIntent);
     }
 }
     

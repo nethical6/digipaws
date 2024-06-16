@@ -10,8 +10,8 @@ import nethical.digipaws.R;
 public class ResetCoinsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        // Perform your action here
-        CoinManager.resetCoinCount(context);
+        // in implementation
+       // CoinManager.resetCoinCount(context);
         DigiUtils.sendNotification(context,"Aura Coin","Good Morning King, its time to collect Aura again!!",R.drawable.swords);
     }
 }
