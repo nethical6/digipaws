@@ -3,6 +3,7 @@ package nethical.digipaws.fragments;
 import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import com.google.android.material.internal.EdgeToEdgeUtils;
 import nethical.digipaws.receivers.AdminReceiver;
 import android.content.Context;
 import java.util.Date;
@@ -41,6 +42,7 @@ public class HomeFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
+        EdgeToEdgeUtils.applyEdgeToEdge(getActivity().getWindow(),false);
         view = inflater.inflate(R.layout.home_fragment, container, false);
 		daysRemaining = view.findViewById(R.id.anti_uninstall_info);
 		return view;

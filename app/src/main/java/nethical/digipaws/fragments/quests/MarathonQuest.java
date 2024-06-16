@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.color.MaterialColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.internal.EdgeToEdgeUtils;
 import java.util.ArrayList;
 import nethical.digipaws.R;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
@@ -62,10 +63,11 @@ public class MarathonQuest extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.marathon_quest_layout, container, false);
-		
 		mapView = view.findViewById(R.id.map);
         startQuest = view.findViewById(R.id.start_location_quest);
         
+        EdgeToEdgeUtils.applyEdgeToEdge(getActivity().getWindow(),true);
+   
         MaterialCardView cardView = view.findViewById(R.id.bottom_card);
      
         ColorStateList backgroundColor = cardView.getCardBackgroundColor();

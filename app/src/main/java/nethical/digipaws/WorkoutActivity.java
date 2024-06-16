@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.internal.EdgeToEdgeUtils;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.java.posedetector.PoseDetectorProcessor;
@@ -69,6 +70,8 @@ public class WorkoutActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdgeUtils.applyEdgeToEdge(getWindow(),true);
+    
         setContentView(R.layout.quest_workout);
 
         previewView = findViewById(R.id.previewView);

@@ -1,67 +1,7 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
-      "selection": {
-        "end": {
-          "column": 58,
-          "index": 2711,
-          "line": 79
-        },
-        "start": {
-          "column": 58,
-          "index": 2711,
-          "line": 79
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
-      "selection": {
-        "end": {
-          "column": 44,
-          "index": 3992,
-          "line": 54
-        },
-        "start": {
-          "column": 44,
-          "index": 3992,
-          "line": 54
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/utils/DigiConstants.java",
-      "selection": {
-        "end": {
-          "column": 59,
-          "index": 3354,
-          "line": 71
-        },
-        "start": {
-          "column": 59,
-          "index": 3354,
-          "line": 71
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ConfigureAntiUninstall.java",
-      "selection": {
-        "end": {
-          "column": 41,
-          "index": 2177,
-          "line": 59
-        },
-        "start": {
-          "column": 41,
-          "index": 2177,
-          "line": 59
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/build.gradle",
       "selection": {
         "end": {
           "column": 0,
@@ -72,6 +12,21 @@
           "column": 0,
           "index": 0,
           "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/build.gradle",
+      "selection": {
+        "end": {
+          "column": 5,
+          "index": 602,
+          "line": 26
+        },
+        "start": {
+          "column": 4,
+          "index": 271,
+          "line": 17
         }
       }
     },
@@ -79,29 +34,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
       "selection": {
         "end": {
-          "column": 9,
-          "index": 2761,
-          "line": 67
+          "column": 7,
+          "index": 1344,
+          "line": 41
         },
         "start": {
-          "column": 8,
-          "index": 1722,
-          "line": 51
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseMode.java",
-      "selection": {
-        "end": {
-          "column": 117,
-          "index": 2040,
-          "line": 54
-        },
-        "start": {
-          "column": 117,
-          "index": 2040,
-          "line": 54
+          "column": 7,
+          "index": 1344,
+          "line": 41
         }
       }
     },
@@ -109,17 +49,62 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java",
       "selection": {
         "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 3,
+          "index": 2631,
+          "line": 69
         },
         "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 8,
+          "index": 2563,
+          "line": 68
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
+      "selection": {
+        "end": {
+          "column": 3,
+          "index": 2913,
+          "line": 84
+        },
+        "start": {
+          "column": 3,
+          "index": 2913,
+          "line": 84
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
+      "selection": {
+        "end": {
+          "column": 4,
+          "index": 1503,
+          "line": 45
+        },
+        "start": {
+          "column": 8,
+          "index": 1433,
+          "line": 44
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/WorkoutActivity.java",
+      "selection": {
+        "end": {
+          "column": 58,
+          "index": 2741,
+          "line": 72
+        },
+        "start": {
+          "column": 57,
+          "index": 2740,
+          "line": 72
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseMode.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/WorkoutActivity.java"
 }

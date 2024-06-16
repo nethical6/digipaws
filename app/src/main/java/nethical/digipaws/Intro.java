@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 
+import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.github.appintro.AppIntro;
 import com.github.appintro.AppIntroFragment;
 
+import com.google.android.material.internal.EdgeToEdgeUtils;
 import nethical.digipaws.fragments.intro.ChooseBlockedApps;
 import nethical.digipaws.fragments.intro.ChooseDelay;
 import nethical.digipaws.fragments.intro.ChooseMode;
@@ -28,6 +30,10 @@ public class Intro extends AppIntro{
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+        EdgeToEdgeUtils.applyEdgeToEdge(getWindow(),true);
+      //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+       
+        
         sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
 		addSlide(AppIntroFragment.createInstance(getString(R.string.welcome),
@@ -76,7 +82,7 @@ public class Intro extends AppIntro{
 	    setWizardMode(true);
 		
 		//Enable immersive mode (no status and nav bar)
-		setImmersiveMode();
+	//	setImmersiveMode();
 		
 		//Enable/disable page indicators
 		setIndicatorEnabled(true);
