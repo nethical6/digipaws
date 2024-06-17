@@ -3,6 +3,8 @@ package nethical.digipaws.fragments;
 import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import android.net.Uri;
 import com.google.android.material.internal.EdgeToEdgeUtils;
 import nethical.digipaws.receivers.AdminReceiver;
 import android.content.Context;
@@ -128,8 +130,7 @@ public class HomeFragment extends Fragment {
 			.setAction(R.string.settings, new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-					startActivity(intent);
+					buildAccessibiltyDialog();
 				}
 			}).show();
 		}
@@ -140,6 +141,22 @@ public class HomeFragment extends Fragment {
 		return R.layout.home_fragment;
 	}
 	
+    private void buildAccessibiltyDialog(){
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(R.string.missing_permission)
+                    .setMessage(R.string.accessibility_perm)
+                    .setPositiveButton("Provide",(dialog,which)->{
+                        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+					    startActivity(intent);
+                        dialog.dismiss();
+                    })
+                    .setNegativeButton("Read more",(dialog,which)->{
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT+"about/permission"));
+                        startActivity(intent);
+                        dialog.dismiss();
+                    });
+                    builder.create().show();
+    }
 	
 	
 }
