@@ -122,7 +122,10 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this,"Restarting Acessibility services required to apply any configuration changes",Toast.LENGTH_LONG).show();
 		
 	}
-    
+    public void info(View view){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT));
+        startActivity(intent);
+    }
     
     public static void setDailyAlarm(Context context) {
     AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);

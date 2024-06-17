@@ -4,14 +4,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
       "selection": {
         "end": {
-          "column": 44,
-          "index": 2747,
-          "line": 64
+          "column": 91,
+          "index": 4905,
+          "line": 125
         },
         "start": {
-          "column": 16,
-          "index": 2143,
-          "line": 55
+          "column": 91,
+          "index": 4905,
+          "line": 125
         }
       }
     },
@@ -19,14 +19,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
       "selection": {
         "end": {
-          "column": 92,
-          "index": 5202,
-          "line": 144
+          "column": 46,
+          "index": 5825,
+          "line": 154
         },
         "start": {
-          "column": 92,
-          "index": 5202,
-          "line": 144
+          "column": 24,
+          "index": 5673,
+          "line": 153
         }
       }
     },
@@ -59,7 +59,22 @@
           "line": 39
         }
       }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/activity_main.xml",
+      "selection": {
+        "end": {
+          "column": 40,
+          "index": 1183,
+          "line": 26
+        },
+        "start": {
+          "column": 40,
+          "index": 1183,
+          "line": 26
+        }
+      }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java"
 }
