@@ -1,0 +1,35 @@
+{
+  "allFiles": [
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/about/quests/index.html",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 1895,
+          "line": 48
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/about/terms-and-conditions/index.html",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 821,
+          "line": 19
+        },
+        "start": {
+          "column": 0,
+          "index": 821,
+          "line": 19
+        }
+      }
+    }
+  ],
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/about/terms-and-conditions/index.html"
+}
