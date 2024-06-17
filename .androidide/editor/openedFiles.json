@@ -1,7 +1,37 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/build.gradle",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "selection": {
+        "end": {
+          "column": 65,
+          "index": 321,
+          "line": 4
+        },
+        "start": {
+          "column": 65,
+          "index": 321,
+          "line": 4
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml",
+      "selection": {
+        "end": {
+          "column": 66,
+          "index": 322,
+          "line": 4
+        },
+        "start": {
+          "column": 44,
+          "index": 300,
+          "line": 4
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/choose_blocked_apps_list_item.xml",
       "selection": {
         "end": {
           "column": 0,
@@ -12,51 +42,6 @@
           "column": 0,
           "index": 0,
           "line": 0
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/build.gradle",
-      "selection": {
-        "end": {
-          "column": 41,
-          "index": 663,
-          "line": 30
-        },
-        "start": {
-          "column": 41,
-          "index": 663,
-          "line": 30
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
-      "selection": {
-        "end": {
-          "column": 32,
-          "index": 4068,
-          "line": 109
-        },
-        "start": {
-          "column": 32,
-          "index": 4068,
-          "line": 109
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/quests/MarathonQuest.java",
-      "selection": {
-        "end": {
-          "column": 3,
-          "index": 2631,
-          "line": 69
-        },
-        "start": {
-          "column": 8,
-          "index": 2563,
-          "line": 68
         }
       }
     },
@@ -64,49 +49,19 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
       "selection": {
         "end": {
-          "column": 3,
-          "index": 2913,
-          "line": 84
+          "column": 16,
+          "index": 2788,
+          "line": 77
         },
         "start": {
-          "column": 3,
-          "index": 2913,
-          "line": 84
+          "column": 16,
+          "index": 2788,
+          "line": 77
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
-      "selection": {
-        "end": {
-          "column": 114,
-          "index": 2167,
-          "line": 60
-        },
-        "start": {
-          "column": 8,
-          "index": 2061,
-          "line": 60
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/WorkoutActivity.java",
-      "selection": {
-        "end": {
-          "column": 58,
-          "index": 2741,
-          "line": 72
-        },
-        "start": {
-          "column": 57,
-          "index": 2740,
-          "line": 72
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ConfigureAntiUninstall.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml",
       "selection": {
         "end": {
           "column": 0,
@@ -121,5 +76,5 @@
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java"
 }

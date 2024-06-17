@@ -21,6 +21,7 @@ import nethical.digipaws.fragments.intro.ChooseMode;
 import nethical.digipaws.fragments.intro.ChooseViewBlockers;
 import nethical.digipaws.fragments.intro.ConfigureAntiUninstall;
 import nethical.digipaws.utils.DigiConstants;
+import nethical.digipaws.R;
 
 public class Intro extends AppIntro{
     
@@ -38,7 +39,7 @@ public class Intro extends AppIntro{
         
 		addSlide(AppIntroFragment.createInstance(getString(R.string.welcome),
 		HtmlCompat.fromHtml(getString(R.string.app_desc),Html.FROM_HTML_MODE_COMPACT),
-		R.drawable.paws,
+		R.mipmap.ic_launcher_round,
 		R.color.md_theme_dark_background
 		));
 		
@@ -74,7 +75,7 @@ public class Intro extends AppIntro{
         addSlide(AppIntroFragment.createInstance(
 		"Thanks For choosing us",
 		"By continuing you agree that we are not responsible for any damages done by this app to you or your device(s)",
-        R.drawable.paws,
+        R.mipmap.ic_launcher_round,
 		R.color.md_theme_dark_background
 		));
         
