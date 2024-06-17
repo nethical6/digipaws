@@ -1,47 +1,32 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/accept_toc.xml",
       "selection": {
         "end": {
-          "column": 65,
-          "index": 321,
-          "line": 4
-        },
-        "start": {
-          "column": 65,
-          "index": 321,
-          "line": 4
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml",
-      "selection": {
-        "end": {
-          "column": 66,
-          "index": 322,
-          "line": 4
+          "column": 44,
+          "index": 613,
+          "line": 14
         },
         "start": {
           "column": 44,
-          "index": 300,
-          "line": 4
+          "index": 613,
+          "line": 14
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/choose_blocked_apps_list_item.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/TermsAndConditions.java",
       "selection": {
         "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 23,
+          "index": 1660,
+          "line": 44
         },
         "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 23,
+          "index": 1660,
+          "line": 44
         }
       }
     },
@@ -49,32 +34,32 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
       "selection": {
         "end": {
-          "column": 16,
-          "index": 2788,
-          "line": 77
+          "column": 0,
+          "index": 0,
+          "line": 0
         },
         "start": {
-          "column": 16,
-          "index": 2788,
-          "line": 77
+          "column": 0,
+          "index": 0,
+          "line": 0
         }
       }
     },
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/AndroidManifest.xml",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseMode.java",
       "selection": {
         "end": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 23,
+          "index": 2066,
+          "line": 55
         },
         "start": {
-          "column": 0,
-          "index": 0,
-          "line": 0
+          "column": 23,
+          "index": 2066,
+          "line": 55
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/accept_toc.xml"
 }

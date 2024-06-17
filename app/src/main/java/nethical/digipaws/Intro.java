@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 
-import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -20,8 +19,8 @@ import nethical.digipaws.fragments.intro.ChooseDelay;
 import nethical.digipaws.fragments.intro.ChooseMode;
 import nethical.digipaws.fragments.intro.ChooseViewBlockers;
 import nethical.digipaws.fragments.intro.ConfigureAntiUninstall;
+import nethical.digipaws.fragments.intro.TermsAndConditions;
 import nethical.digipaws.utils.DigiConstants;
-import nethical.digipaws.R;
 
 public class Intro extends AppIntro{
     
@@ -37,9 +36,10 @@ public class Intro extends AppIntro{
         
         sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
+        
 		addSlide(AppIntroFragment.createInstance(getString(R.string.welcome),
 		HtmlCompat.fromHtml(getString(R.string.app_desc),Html.FROM_HTML_MODE_COMPACT),
-		R.mipmap.ic_launcher_round,
+		R.drawable.paws,
 		R.color.md_theme_dark_background
 		));
 		
@@ -72,12 +72,8 @@ public class Intro extends AppIntro{
         addSlide(new ChooseBlockedApps(sharedPreferences));
         addSlide(new ConfigureAntiUninstall(sharedPreferences));
         
-        addSlide(AppIntroFragment.createInstance(
-		"Thanks For choosing us",
-		"By continuing you agree that we are not responsible for any damages done by this app to you or your device(s)",
-        R.mipmap.ic_launcher_round,
-		R.color.md_theme_dark_background
-		));
+        
+        addSlide(new TermsAndConditions());
         
 		showStatusBar(true);
 	    setWizardMode(true);

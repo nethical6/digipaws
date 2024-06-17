@@ -53,7 +53,7 @@ public class ChooseMode extends Fragment implements SlidePolicy {
                             AdapterView<?> parent, View view, int position, long id) {
                         sharedPreferences.edit().putInt(DigiConstants.PREF_MODE, position).apply();
                     if(position==DigiConstants.DIFFICULTY_LEVEL_NORMAL||position==DigiConstants.DIFFICULTY_LEVEL_EASY){
-                        showOverlayPerm();
+                        canOverlay = false;
                     }else{
                         canOverlay= true;
                     }

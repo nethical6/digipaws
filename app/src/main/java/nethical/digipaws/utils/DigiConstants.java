@@ -79,4 +79,5 @@ public class DigiConstants {
     public static final String PROVIDER_AUTHORITY = "nethical.digipaws.questprovider";
     public static final int API_COIN_INC_COOLDOWN = 60 * 60 * 1000; // in ms 
     
+    public static final String WEBSITE_ROOT = "https://nethical6.github.io/digipaws/";
 }
