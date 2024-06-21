@@ -1,80 +1,20 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/warning_overlay.xml",
       "selection": {
         "end": {
-          "column": 91,
-          "index": 4905,
-          "line": 125
+          "column": 75,
+          "index": 929,
+          "line": 22
         },
         "start": {
-          "column": 91,
-          "index": 4905,
-          "line": 125
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
-      "selection": {
-        "end": {
-          "column": 46,
-          "index": 5825,
-          "line": 154
-        },
-        "start": {
-          "column": 24,
-          "index": 5673,
-          "line": 153
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
-      "selection": {
-        "end": {
-          "column": 142,
-          "index": 6402,
-          "line": 87
-        },
-        "start": {
-          "column": 142,
-          "index": 6402,
-          "line": 87
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/TermsAndConditions.java",
-      "selection": {
-        "end": {
-          "column": 38,
-          "index": 1584,
-          "line": 40
-        },
-        "start": {
-          "column": 16,
-          "index": 1436,
-          "line": 39
-        }
-      }
-    },
-    {
-      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/activity_main.xml",
-      "selection": {
-        "end": {
-          "column": 40,
-          "index": 1183,
-          "line": 26
-        },
-        "start": {
-          "column": 40,
-          "index": 1183,
-          "line": 26
+          "column": 75,
+          "index": 929,
+          "line": 22
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/warning_overlay.xml"
 }
