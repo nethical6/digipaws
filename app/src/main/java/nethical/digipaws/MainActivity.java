@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         
+        cointCount = findViewById(R.id.coint_count);
+        
         if(sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)==DigiConstants.DIFFICULTY_LEVEL_EASY || sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)==DigiConstants.DIFFICULTY_LEVEL_NORMAL){
            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) {
@@ -65,11 +67,14 @@ public class MainActivity extends AppCompatActivity {
                     builder.create().show();
         
                 }
-        }
+            }
+            
         }
         
-        cointCount = findViewById(R.id.coint_count);
-     
+        if(sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)==DigiConstants.DIFFICULTY_LEVEL_EASY || sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)==DigiConstants.DIFFICULTY_LEVEL_EXTREME){
+            cointCount.setVisibility(View.GONE);
+        }
+        
         
         setDailyAlarm(this);
         
@@ -90,9 +95,6 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
-        
-        
-        
     }
     public void refreshCoinCount(){
       cointCount.setText(" " + String.valueOf(CoinManager.getCoinCount(this)));
@@ -105,10 +107,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 	
 	
-	public void SelectQuest(View view){
-		SelectQuestDialog dialog = new SelectQuestDialog();
-		dialog.show(getSupportFragmentManager(), "select_quest"); // Use a unique tag for the dialog
-	}
+	
     public void Configure(View view){
         if(!BuildConfig.DEBUG){
             SharedPreferences sp = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);

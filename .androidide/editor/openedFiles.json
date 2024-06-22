@@ -44,7 +44,52 @@
           "line": 75
         }
       }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/MainActivity.java",
+      "selection": {
+        "end": {
+          "column": 8,
+          "index": 3215,
+          "line": 76
+        },
+        "start": {
+          "column": 8,
+          "index": 3215,
+          "line": 76
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/HomeFragment.java",
+      "selection": {
+        "end": {
+          "column": 22,
+          "index": 3571,
+          "line": 90
+        },
+        "start": {
+          "column": 22,
+          "index": 3571,
+          "line": 90
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/layout/home_fragment.xml",
+      "selection": {
+        "end": {
+          "column": 32,
+          "index": 503,
+          "line": 11
+        },
+        "start": {
+          "column": 32,
+          "index": 503,
+          "line": 11
+        }
+      }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java"
 }

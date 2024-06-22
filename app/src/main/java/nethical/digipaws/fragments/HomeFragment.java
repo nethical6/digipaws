@@ -6,6 +6,10 @@ import android.content.ComponentName;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import android.net.Uri;
 import com.google.android.material.internal.EdgeToEdgeUtils;
+import nethical.digipaws.MainActivity;
+import nethical.digipaws.fragments.dialogs.SelectQuestDialog;
+import nethical.digipaws.fragments.intro.ConfigureWarning;
+import nethical.digipaws.fragments.quests.FocusQuest;
 import nethical.digipaws.receivers.AdminReceiver;
 import android.content.Context;
 import java.util.Date;
@@ -34,6 +38,7 @@ import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.LoadAppList;
 
 import java.util.List;
+import nethical.digipaws.views.HollowCircleView;
 
 public class HomeFragment extends Fragment {
 
@@ -55,13 +60,37 @@ public class HomeFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		LoadingDialog loadingDialog = new LoadingDialog("Reloading packages");
+		/*LoadingDialog loadingDialog = new LoadingDialog("Reloading packages");
 		
 		loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog");
 		List<String> packages = LoadAppList.getPackageNames(requireContext());
-		loadingDialog.dismiss();
+		loadingDialog.dismiss();*/
         sharedPreferences = getContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         calculateDaysPassed();
+        
+        HollowCircleView hcv = view.findViewById(R.id.select_quest);
+        switch(sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)){
+            case DigiConstants.DIFFICULTY_LEVEL_EASY:
+                hcv.setTitle("Focus");
+                hcv.setOnClickListener(v->{
+                    DigiUtils.replaceScreen(getFragmentManager(),new FocusQuest());
+                });
+                break;
+            case DigiConstants.DIFFICULTY_LEVEL_NORMAL:
+                hcv.setOnClickListener(v->{
+                    SelectQuestDialog dialog = new SelectQuestDialog();
+                    dialog.show(getFragmentManager(), "select_quest"); 
+                });
+                break;
+            
+            case DigiConstants.DIFFICULTY_LEVEL_EXTREME:
+                hcv.setTitle("Focus");
+                hcv.setOnClickListener(v->{
+                    DigiUtils.replaceScreen(getFragmentManager(),new FocusQuest());
+                });
+                break;
+        }
+        
 	}
     
     
