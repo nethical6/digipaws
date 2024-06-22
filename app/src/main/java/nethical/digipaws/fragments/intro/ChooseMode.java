@@ -58,7 +58,6 @@ public class ChooseMode extends Fragment implements SlidePolicy {
                         canOverlay= true;
                     }
                     }
-
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
                         // Handle if no item is selected

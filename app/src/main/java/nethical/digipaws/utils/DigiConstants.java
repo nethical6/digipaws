@@ -49,6 +49,11 @@ public class DigiConstants {
     public static final String PREF_IS_ANTI_UNINSTALL = "is_uninstall_blocked";
     public static final String PREF_ANTI_UNINSTALL_START = "anti_uninstall_day";
     
+    public static final String PREF_WARN_FILE = "warn_info";
+    public static final String PREF_WARN_MESSAGE = "warn_msg";
+    public static final String PREF_WARN_TITLE = "warn_title";
+    
+    
     public static final String DATE_FORMAT = "yyyy-MM-dd";
     
     public static final String PREF_QUEST_MANAGING_PERM = "perm_config";

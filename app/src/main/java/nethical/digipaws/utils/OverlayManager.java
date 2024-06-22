@@ -2,6 +2,7 @@ package nethical.digipaws.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.widget.Button;
 import android.widget.TextView;
@@ -49,12 +50,11 @@ public class OverlayManager {
 		WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
 		PixelFormat.OPAQUE);
         
-        
     }
     
 	
     public void showOverlay(int difficulty,OnProceedClicked proceed, OnCloseClicked close){
-        
+        SharedPreferences sp = context.getSharedPreferences(DigiConstants.PREF_WARN_FILE,Context.MODE_PRIVATE);
         closeButton.setOnClickListener(v -> {
 			close.onCloseClicked();
 		}); 
@@ -67,13 +67,13 @@ public class OverlayManager {
         if(difficulty == DigiConstants.DIFFICULTY_LEVEL_NORMAL){
             int crnt_coins = CoinManager.getCoinCount(context);
             
-            if(crnt_coins<=0){
-                showNoCoinsOverlay(proceed,close);
-                return;
-            }
             textTitle.setText(R.string.buy_20_mins);
             textDescription.setText(R.string.desc_sd_overlay);
-            textDescription.append("\n"+"BALANCE: " + String.valueOf(crnt_coins));
+            textDescription.append("\n"+"BALANCE: " + String.valueOf(crnt_coins) +"\n\n");
+            textDescription.append(sp.getString(DigiConstants.PREF_WARN_MESSAGE,""));
+        } else {
+            textTitle.setText(sp.getString(DigiConstants.PREF_WARN_TITLE,"Are you sure?"));
+            textDescription.setText(sp.getString(DigiConstants.PREF_WARN_MESSAGE,""));
         }
 		windowManager.addView(overlayView, params);
 		
@@ -98,10 +98,7 @@ public class OverlayManager {
         textDescription.append("\n"+"BALANCE: " + String.valueOf(CoinManager.getCoinCount(context)));
     
 		windowManager.addView(overlayView, params);
-		
-        
     }
-    
     
 	public void removeOverlay() {
 		if (windowManager != null && overlayView!= null) {

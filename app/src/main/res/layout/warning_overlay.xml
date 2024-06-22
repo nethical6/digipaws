@@ -13,6 +13,7 @@
          android:layout_height="wrap_content"
          android:layout_width="wrap_content"
          android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textColor="#FFFFFF"
          android:id="@+id/text_title"
          android:text="@string/breathe" />
 
@@ -20,7 +21,8 @@
          android:layout_height="wrap_content"
          android:layout_width="wrap_content"
          android:textAlignment="center"
-         android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+        android:textColor="#FFFFFF"
+         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
          android:layout_marginTop="8dp"
          android:id="@+id/text_desc"
          android:text="@string/desc_ex_overlay" />
@@ -36,7 +38,7 @@
              android:layout_width="wrap_content"
              android:layout_margin="8dp"
              android:backgroundTint="@color/md_theme_dark_onPrimary"
-             android:textColor="@color/md_theme_dark_surfaceTint"
+             android:textColor="#FFFFFF"
              android:id="@+id/close_overlay"
              android:text="@string/close" />
 
@@ -45,7 +47,7 @@
              android:layout_width="wrap_content"
              android:layout_margin="8dp"
              android:backgroundTint="@color/md_theme_dark_onPrimary"
-             android:textColor="@color/md_theme_dark_surfaceTint"
+             android:textColor="#FFFFFF"
              android:id="@+id/proceed_overlay"
              android:text="@string/proceed" />
 

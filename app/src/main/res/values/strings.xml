@@ -87,5 +87,7 @@
 
     <string name="accessibility_perm">This app solely depends on Accessibility Permission to block elements. We do not store any of this data on our servers.</string>
 
+    <string name="choose_msg_title">Configure your warning screen</string>
+
 
 </resources>

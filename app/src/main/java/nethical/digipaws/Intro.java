@@ -19,6 +19,7 @@ import nethical.digipaws.fragments.intro.ChooseDelay;
 import nethical.digipaws.fragments.intro.ChooseMode;
 import nethical.digipaws.fragments.intro.ChooseViewBlockers;
 import nethical.digipaws.fragments.intro.ConfigureAntiUninstall;
+import nethical.digipaws.fragments.intro.ConfigureWarning;
 import nethical.digipaws.fragments.intro.TermsAndConditions;
 import nethical.digipaws.utils.DigiConstants;
 
@@ -36,7 +37,7 @@ public class Intro extends AppIntro{
         
         sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
-        
+        addSlide(new ConfigureWarning());
 		addSlide(AppIntroFragment.createInstance(getString(R.string.welcome),
 		HtmlCompat.fromHtml(getString(R.string.app_desc),Html.FROM_HTML_MODE_COMPACT),
 		R.drawable.paws,
@@ -67,8 +68,8 @@ public class Intro extends AppIntro{
         
         
         addSlide(new ChooseMode(sharedPreferences));
-        addSlide(new ChooseViewBlockers(sharedPreferences));
         addSlide(new ChooseDelay(sharedPreferences));
+        addSlide(new ChooseViewBlockers(sharedPreferences));
         addSlide(new ChooseBlockedApps(sharedPreferences));
         addSlide(new ConfigureAntiUninstall(sharedPreferences));
         
