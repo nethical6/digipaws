@@ -1,7 +1,9 @@
 package nethical.digipaws;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -66,7 +68,8 @@ public class WorkoutActivity extends AppCompatActivity
     private CameraSelector cameraSelector;
     
     private String workoutType = PoseClassifierProcessor.SQUATS_CLASS;
-    
+    private int reps_final_count = DigiConstants.DEFAULT_REPS;
+    private SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +80,7 @@ public class WorkoutActivity extends AppCompatActivity
         previewView = findViewById(R.id.previewView);
         graphicOverlay = findViewById(R.id.overlayView);
         startButton = findViewById(R.id.start_button_workout);
-
+        sp = getSharedPreferences("workoutData",Context.MODE_PRIVATE);
         cameraExecutor = Executors.newSingleThreadExecutor();
         executor = Executors.newSingleThreadExecutor();
 
@@ -87,10 +90,22 @@ public class WorkoutActivity extends AppCompatActivity
         }
         TextView title = findViewById(R.id.title);
         TextView desc = findViewById(R.id.desc);
+        
+        String description = getString(R.string.pushups_desc);
         switch(workoutType){
             case PoseClassifierProcessor.PUSHUPS_CLASS:
                 title.setText("Quest: Pushups");
-                desc.setText(getString(R.string.pushups_desc));
+                reps_final_count = sp.getInt(PoseClassifierProcessor.PUSHUPS_CLASS,3)+2;
+                description = description.replace("$value",String.valueOf(reps_final_count));
+                desc.setText(description);
+                break;
+            case PoseClassifierProcessor.SQUATS_CLASS:
+                description = getString(R.string.squats_desc);
+                title.setText("Quest: Squats");
+                reps_final_count = sp.getInt(PoseClassifierProcessor.SQUATS_CLASS,3)+2;
+                description = description.replace("$value",String.valueOf(reps_final_count));
+                desc.setText(description);
+                break;
         }
         
         
@@ -330,11 +345,12 @@ public class WorkoutActivity extends AppCompatActivity
     
     public void checkIfWorkoutComplete(String unformattedRep){
         int formattedRep = formatReps(unformattedRep);
-        if(formattedRep>=DigiConstants.DEFAULT_REPS_SQUAT){
+        if(formattedRep>=reps_final_count){
             DigiUtils.sendNotification(getApplicationContext(),"Quest Complete","You earned 1 Aura point.",R.drawable.swords);
             if (imageProcessor != null) {
                 imageProcessor.stop();
             }
+            sp.edit().putInt(workoutType,reps_final_count).apply();
             isQuestRunning = true;
             showQuestCompleteDialog();
             CoinManager.incrementCoin(this);
