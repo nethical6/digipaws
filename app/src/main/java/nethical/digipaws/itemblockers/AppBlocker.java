@@ -51,7 +51,15 @@ public class AppBlocker {
             }
         }
         
-        
+        if(data.isReelsBlocked()){
+           for (String blockedPackageName : BlockerData.shortsApplications) {
+            // using contains instead of equals cuz tikok has multiple package names :sad:
+            if(data.getPackageName().contains(blockedPackageName)){ 
+               punish();
+                break;
+            }
+        }
+        }
         
     }
     

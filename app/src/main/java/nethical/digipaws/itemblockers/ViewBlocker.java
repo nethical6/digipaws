@@ -47,7 +47,8 @@ public class ViewBlocker {
 			performEngagementAction();
 		}
 	}
-	
+    
+  
 	private void performShortsAction(){
 		
 		AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
@@ -64,6 +65,7 @@ public class ViewBlocker {
         }
 	
 	}
+    
 	
 	
 	private void performEngagementAction(){

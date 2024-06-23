@@ -39,11 +39,6 @@ public class ChooseDelay extends Fragment {
         if(sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY) != DigiConstants.DIFFICULTY_LEVEL_EASY){
           delay.setEnabled(false);
         }
-        delay.setOnClickListener(v->{
-            if(!delay.isEnabled()){
-                Toast.makeText(getContext(),"Current selected Mode does not allow tweaking breaktimes.",Toast.LENGTH_SHORT).show();
-            }
-        });
         
         delay.setMaxValue(180);
         delay.setMinValue(2);
