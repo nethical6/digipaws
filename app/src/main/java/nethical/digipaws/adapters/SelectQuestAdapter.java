@@ -2,6 +2,7 @@ package nethical.digipaws.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,10 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 				    DigiUtils.replaceScreen(((AppCompatActivity)context).getSupportFragmentManager(),new FocusQuest());
 				    dialog.dismiss();
 				    break;
+                case(4):
+                    Intent intent3 = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT + "partners"));
+                    context.startActivity(intent3);
+                    break;
 			}
 		});
 		

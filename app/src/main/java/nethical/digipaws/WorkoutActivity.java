@@ -7,10 +7,16 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.SpannableString;
+import android.text.style.ClickableSpan;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import android.widget.ImageView;
@@ -107,6 +113,7 @@ public class WorkoutActivity extends AppCompatActivity
                 desc.setText(description);
                 break;
         }
+        setSpanText(this,desc);
         
         
         ImageView switchCamera = findViewById(R.id.switch_camera);
@@ -387,4 +394,30 @@ public class WorkoutActivity extends AppCompatActivity
                     });
         return builder;
     }
+    
+    public void setSpanText(Context context, TextView textView) {
+    String fullText = textView.getText().toString();
+    SpannableString spannableString = new SpannableString(fullText);
+    
+    String targetText = "Not working?";
+    int startIdx = fullText.indexOf(targetText);
+    if (startIdx == -1) {
+        // Handle the case where the text "not working" is not found
+        return;
+    }
+    int endIdx = startIdx + targetText.length();
+    
+    ClickableSpan clickableSpan = new ClickableSpan() {
+        @Override
+        public void onClick(View widget) {
+            // Open TOC URL in a new activity (or fragment)
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT + "help/workout"));
+            context.startActivity(intent);
+        }
+    };
+    
+    spannableString.setSpan(clickableSpan, startIdx, endIdx, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    textView.setText(spannableString);
+    textView.setMovementMethod(LinkMovementMethod.getInstance()); // Enable link movement
+}
 }
