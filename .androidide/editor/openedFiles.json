@@ -4,14 +4,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/BlockerData.java",
       "selection": {
         "end": {
-          "column": 87,
-          "index": 526,
-          "line": 11
+          "column": 4,
+          "index": 438,
+          "line": 10
         },
         "start": {
-          "column": 87,
-          "index": 526,
-          "line": 11
+          "column": 4,
+          "index": 438,
+          "line": 10
         }
       }
     },
@@ -19,14 +19,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/AppBlocker.java",
       "selection": {
         "end": {
-          "column": 90,
-          "index": 1836,
-          "line": 55
+          "column": 48,
+          "index": 3789,
+          "line": 105
         },
         "start": {
-          "column": 90,
-          "index": 1836,
-          "line": 55
+          "column": 48,
+          "index": 3789,
+          "line": 105
         }
       }
     },
@@ -34,14 +34,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/ViewBlocker.java",
       "selection": {
         "end": {
-          "column": 7,
-          "index": 2169,
-          "line": 75
+          "column": 21,
+          "index": 4744,
+          "line": 137
         },
         "start": {
-          "column": 7,
-          "index": 2169,
-          "line": 75
+          "column": 20,
+          "index": 3876,
+          "line": 120
         }
       }
     },
@@ -76,5 +76,5 @@
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/data/BlockerData.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/itemblockers/AppBlocker.java"
 }

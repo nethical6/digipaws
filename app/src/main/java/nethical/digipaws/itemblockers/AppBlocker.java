@@ -103,6 +103,24 @@ public class AppBlocker {
                         break;
                     }
                     OverlayManager overlayManager = data.getOverlayManager();
+                    int crnt_coins = CoinManager.getCoinCount(data.getService());
+                    if(crnt_coins<=0){
+                        overlayManager.showNoCoinsOverlay(()->{
+                                //proceed button
+                                overlayManager.removeOverlay();
+                                isOverlayVisible = false;
+                                },
+                            ()->{
+                                // Close button clicked
+                                pressHome();
+                                overlayManager.removeOverlay();
+                                isOverlayVisible = false;
+                            }
+                            );
+                        isOverlayVisible = true;
+                        break;
+                    }
+                
 				    overlayManager.showOverlay(difficulty,()->{
                         // Proceed Button clickdd
                         CoinManager.decrementCoin(data.getService());
