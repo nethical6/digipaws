@@ -6,7 +6,11 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 import androidx.fragment.app.Fragment;
+import com.github.appintro.AppIntro;
+import com.github.appintro.AppIntro2;
+import nethical.digipaws.Intro;
 import nethical.digipaws.R;
 import nethical.digipaws.utils.DigiConstants;
 
@@ -31,6 +35,16 @@ public class ChooseDelay extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        
+        if(sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY) != DigiConstants.DIFFICULTY_LEVEL_EASY){
+          delay.setEnabled(false);
+        }
+        delay.setOnClickListener(v->{
+            if(!delay.isEnabled()){
+                Toast.makeText(getContext(),"Current selected Mode does not allow tweaking breaktimes.",Toast.LENGTH_SHORT).show();
+            }
+        });
+        
         delay.setMaxValue(180);
         delay.setMinValue(2);
         

@@ -11,6 +11,7 @@ import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 
 import com.github.appintro.AppIntro;
+import com.github.appintro.AppIntro2;
 import com.github.appintro.AppIntroFragment;
 
 import com.google.android.material.internal.EdgeToEdgeUtils;
@@ -23,7 +24,7 @@ import nethical.digipaws.fragments.intro.ConfigureWarning;
 import nethical.digipaws.fragments.intro.TermsAndConditions;
 import nethical.digipaws.utils.DigiConstants;
 
-public class Intro extends AppIntro{
+public class Intro extends AppIntro {
     
 	private SharedPreferences sharedPreferences;
     
@@ -65,7 +66,6 @@ public class Intro extends AppIntro{
 		));
         
         
-        
         addSlide(new ChooseMode(sharedPreferences));
         addSlide(new ConfigureWarning());
         addSlide(new ChooseDelay(sharedPreferences));
@@ -93,7 +93,7 @@ public class Intro extends AppIntro{
     
     
 	@Override
-	protected void onSkipPressed(Fragment currentFragment) {
+	public void onSkipPressed(Fragment currentFragment) {
 		super.onSkipPressed(currentFragment);
 	}
     @Override
@@ -118,4 +118,8 @@ public class Intro extends AppIntro{
         startActivity(intent);
         finish();
 	}
+    
+    
+    
+    
 }

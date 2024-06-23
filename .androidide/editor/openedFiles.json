@@ -34,14 +34,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/WorkoutActivity.java",
       "selection": {
         "end": {
-          "column": 42,
-          "index": 18021,
-          "line": 414
+          "column": 55,
+          "index": 16303,
+          "line": 370
         },
         "start": {
-          "column": 12,
-          "index": 17875,
-          "line": 413
+          "column": 55,
+          "index": 16303,
+          "line": 370
         }
       }
     },
@@ -64,14 +64,14 @@
       "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/strings.xml",
       "selection": {
         "end": {
-          "column": 203,
-          "index": 5866,
-          "line": 81
+          "column": 187,
+          "index": 5639,
+          "line": 80
         },
         "start": {
-          "column": 203,
-          "index": 5866,
-          "line": 81
+          "column": 187,
+          "index": 5639,
+          "line": 80
         }
       }
     },
@@ -119,7 +119,52 @@
           "line": 8
         }
       }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/fragments/intro/ChooseDelay.java",
+      "selection": {
+        "end": {
+          "column": 9,
+          "index": 1389,
+          "line": 40
+        },
+        "start": {
+          "column": 9,
+          "index": 1389,
+          "line": 40
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/Intro.java",
+      "selection": {
+        "end": {
+          "column": 8,
+          "index": 2343,
+          "line": 66
+        },
+        "start": {
+          "column": 8,
+          "index": 2343,
+          "line": 66
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/build.gradle",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/res/values/arrays.xml"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/WorkoutActivity.java"
 }

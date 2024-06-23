@@ -368,7 +368,7 @@ public class WorkoutActivity extends AppCompatActivity
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
 		.setTitle("Quest Complete")
 		.setCancelable(false)
-        .setMessage("You earned 1 Aura point")
+        .setMessage("You earned 1 Aura point. Next Rep Target for this Quest has been set to " + String.valueOf(reps_final_count+2))
         
         .setNegativeButton("Quit",(dialog,which)->{
             dialog.dismiss();
