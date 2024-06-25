@@ -6,7 +6,8 @@ plugins {
 android {
     compileSdk 33
     namespace "nethical.digipaws"
-	
+	flavorDimensions "version"
+    
     defaultConfig {
         applicationId "nethical.digipaws"
         minSdk 22
@@ -14,6 +15,21 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    productFlavors {
+        full {
+            dimension "version"
+            applicationId "nethical.digipaws.full"
+            versionNameSuffix "-full"
+            buildConfigField "boolean", "LITE_VERSION", "false"
+        }
+        lite {
+            dimension "version"
+            applicationId "nethical.digipaws.lite"
+            versionNameSuffix "-lite"
+            buildConfigField "boolean", "LITE_VERSION", "true"
+        }
+            }
 
     buildTypes {
         release {
@@ -40,20 +56,21 @@ dependencies {
     implementation 'com.google.android.material:material:1.8.0-rc01'
 	implementation 'androidx.constraintlayout:constraintlayout:2.2.0-alpha05'
 	implementation "androidx.annotation:annotation:1.8.0"
-	implementation 'com.google.android.gms:play-services-location:19.0.1'
+        
+	fullImplementation 'com.google.android.gms:play-services-location:19.0.1'
 	
 	implementation 'com.github.AppIntro:AppIntro:6.3.1'
-	implementation 'org.osmdroid:osmdroid-android:6.1.18'
+	fullImplementation 'org.osmdroid:osmdroid-android:6.1.18'
     
-    implementation 'com.google.mlkit:pose-detection:18.0.0-beta4'
-    implementation 'com.google.mlkit:pose-detection-accurate:18.0.0-beta4' // Optional for accurate mode
+    fullImplementation 'com.google.mlkit:pose-detection:18.0.0-beta4'
+    fullImplementation 'com.google.mlkit:pose-detection-accurate:18.0.0-beta4' // Optional for accurate mode
 
     implementation 'com.google.guava:guava:27.1-android'
     
     def camerax_version = "1.2.0-rc01"
-    implementation "androidx.camera:camera-core:${camerax_version}"
-    implementation "androidx.camera:camera-camera2:${camerax_version}"
-    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
-    implementation "androidx.camera:camera-view:${camerax_version}"
+    fullImplementation "androidx.camera:camera-core:${camerax_version}"
+    fullImplementation "androidx.camera:camera-camera2:${camerax_version}"
+    fullImplementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    fullImplementation "androidx.camera:camera-view:${camerax_version}"
     
 }

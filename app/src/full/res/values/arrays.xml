@@ -1,5 +1,8 @@
 <resources>
     <string-array name="Quests">
+        <item>Touch Grass</item>
+        <item>Squats</item>
+        <item>Pushups</item>
          <item>Focus Mode</item>
         <item>More</item>
     </string-array>

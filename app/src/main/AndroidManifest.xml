@@ -8,9 +8,6 @@
 	
     <uses-permission android:name="nethical.digipaws.permission.API_V1"/>
     
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.INTERNET" />
-	
 	<uses-permission android:name="android.permission.GET_TASKS" />
 	<uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
 	
@@ -21,10 +18,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 	<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     
     
@@ -57,11 +51,6 @@
 			android:exported="true">
 		</activity>
 	 
-        <activity 
-            android:name=".WorkoutActivity" 
-            android:exported="true">
-            
-        </activity>
 	 
 		<service
 			android:exported="true"
@@ -77,11 +66,6 @@
 				
 		</service>
         
-        <service
-            android:name=".services.LocationTrackerService"
-            android:foregroundServiceType="location"
-            android:exported="false" />
-
         
         <service
             android:name=".services.FocusModeTimerService"
