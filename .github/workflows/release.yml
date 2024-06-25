@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4.1.0
+        uses: actions/setup-java@v4.2.1
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -21,15 +21,20 @@ jobs:
       - name: Give permission to executable
         run: chmod +x gradlew
 
-      - name: Build with gradle
-        uses: gradle/gradle-build-action@v3.1.0
-        with:
-          gradle-version: nightly
-          arguments: assembleRelease
+      - name: Build Full Release APK
+        run: ./gradlew assembleFullRelease
 
-      - name: Upload release apk
+      - name: Build Lite Release APK
+        run: ./gradlew assembleLiteRelease
+
+      - name: Upload Full Release APK
         uses: actions/upload-artifact@v4
         with:
-          name: apk-release
-          path: app/build/outputs/apk/release
+          name: full-release-apk
+          path: app/build/outputs/apk/full/release/app-full-release.apk
 
+      - name: Upload Lite Release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: lite-release-apk
+          path: app/build/outputs/apk/lite/release/app-lite-release.apk
