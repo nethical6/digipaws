@@ -1,1 +1,1 @@
-A fully featured productivity tool to block apps, explicit content, or even reels, with anti-uninstall and various modes.
+A productivity tool to block apps, explicit content, or reels, with anti-uninstall and modes.
