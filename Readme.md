@@ -1,5 +1,13 @@
-# DigiPaws: Reclaim Your Life
-![](https://dcbadge.limes.pink/api/server/https://discord.com/invite/Vs9mwUtuCN)
+<p align="center">
+  <img src="fastlane/metadata/android/en-US/images/icon.png" style="width: 30%;" />
+</p>
+
+# DigiPaws
+[![GitHub contributors](https://img.shields.io/github/contributors/nethical6/digipaws)](https://github.com/nethical6/digipaws/graphs/contributors)
+[![Discord](https://img.shields.io/discord/1249825403665780786)](https://discord.com/invite/Vs9mwUtuCN)
+[![Total downloads](https://img.shields.io/github/downloads/nethical6/digipaws/total)](https://github.com/nethical6/digipaws/releases)
+[![Repository Size](https://img.shields.io/github/repo-size/nethical6/digipaws)](https://github.com/nethical6/digipaws)
+
 
 DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes—Easy, Adventure, and Hard—each with unique features and challenges to promote healthy screen time habits.
 
@@ -13,7 +21,7 @@ DigiPaws is an open-source Android productivity utility designed to help users r
 ## Features
 
 - **Three Unique Modes**: Tailor your screen usage experience with Easy, Adventure, and Hard modes.
-- **Gamified Challenges**: Earn DigiCoins through quests like walking, and use them to unlock app usage.
+- **Gamified Challenges**: Earn Aura coins through quests like walking, and use them to unlock app usage.
 - **Open Source**: Fully transparent and free to use, with the source code available for community contributions.
 - **Productivity Enhancement**: Helps build healthier digital habits and reduce screen addiction.
 - **Versatile Blockers**: Take control of your digital environment by blocking apps, keywords, and unwanted in-app screens (e.g., YouTube shorts, comments).
@@ -28,7 +36,7 @@ In Easy Mode, DigiPaws provides gentle reminders to help you manage your screen 
 
 ### Adventure Mode
 
-Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need DigiCoins. These can be earned by completing quests such as a quick 1 km walk. Each DigiCoin grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use.
+Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need Aura coins. These can be earned by completing quests such as a quick 1 km walk. Each Aura coin grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use.
 
 #### Quests
 1. **Touch Grass** - Displace yourself by 1 km.
@@ -44,13 +52,23 @@ Adventure Mode introduces a gamified experience to control screen time. To acces
 
 Hard Mode offers the most stringent control over app usage. In this mode, when you try to open a blocked app, the back button is automatically pressed without any warning or cooldown, preventing access entirely.
 
-## Usage
+## Variants
+There are two build variants with different features:
+
+- `fullMode:` Contains additional inbuilt quests like touch grass, and workout. Requires google play services.
+- `liteMode:` Contains a bare version without additional quests except focus quest. Relatively smaller in size and doesn't require google play services.
+
+Note that the quest api works with both variants
+
+## Configuring
 
 1. Launch DigiPaws on your Android device.
 2. Provide all necessary permissions like Accessibility service, Notification, Draw over other apps etc
-3. Choose your preferred mode: Easy, Adventure, or Hard.
-4. Configure the apps and views you want to block and set your preferences.
-5. Start using your device with DigiPaws managing your screen time.
+3. On Android 13+ devices, you need to additionally allow restricted settings before enabling the accessibility permission. Watch a tutorial [here](https://youtu.be/91B72lEpcqc?si=PCKKUSwM1aLdELqJ)
+4. Choose your preferred mode: Easy, Adventure, or Hard.
+5. Configure the apps and views you want to block and set your preferences.
+6. Start using your device with DigiPaws managing your screen time.
+
 
 > [!TIP]  
 > This app relies exclusively on accessibility services to function. Because it requires sensitive permissions, please avoid downloading it from untrusted sources.
