@@ -1,10 +1,15 @@
 # DigiPaws: Reclaim Your Life
+![](https://dcbadge.limes.pink/api/server/https://discord.com/invite/Vs9mwUtuCN)
 
 DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes—Easy, Adventure, and Hard—each with unique features and challenges to promote healthy screen time habits.
 
-> [!CAUTION]  
+> [!IMPORTANT]  
+> This project is in its extreme initial stages for now
+
+> [!CAUTION]
 > This app may be discontinued very soon due to lack of funds (I am an indie developer who codes on phone). [Donate](https://www.patreon.com/nethical)
-> 
+
+
 ## Features
 
 - **Three Unique Modes**: Tailor your screen usage experience with Easy, Adventure, and Hard modes.
@@ -12,7 +17,8 @@ DigiPaws is an open-source Android productivity utility designed to help users r
 - **Open Source**: Fully transparent and free to use, with the source code available for community contributions.
 - **Productivity Enhancement**: Helps build healthier digital habits and reduce screen addiction.
 - **Versatile Blockers**: Take control of your digital environment by blocking apps, keywords, and unwanted in-app screens (e.g., YouTube shorts, comments).
-- **Open Api**: Turn your existing application into a digipaws quest!! [Learn More](https://github.com/nethical6/digipause/blob/main/HowToUseApi.md)
+- **Open Api**: Turn your existing application into a digipaws quest!! [Learn More](https://nethical6.github.io/digipaws/partners/)
+
 
 ## Modes
 
@@ -31,6 +37,8 @@ Adventure Mode introduces a gamified experience to control screen time. To acces
 4. **Focus Quest** - Apply the 20/60 study rule: Digipaws blocks all unnecessary applications except basic apps like calling and SMS.
 5. **Open API** - See the list of [applications using our quest API.](https://github.com/nethical6/digipause/blob/main/HowToUseApi.md)
 
+> [!IMPORTANT]  
+> Remember that only focus quest is available on lite version (same as the fdroid version) to reduce app size. Download the full version to enjoy all inbuilt quests. [Download](https://github.com/nethical6/digipaws/releases)
 
 ### Hard Mode
 
@@ -44,7 +52,7 @@ Hard Mode offers the most stringent control over app usage. In this mode, when y
 4. Configure the apps and views you want to block and set your preferences.
 5. Start using your device with DigiPaws managing your screen time.
 
-> [!CAUTION]  
+> [!TIP]  
 > This app relies exclusively on accessibility services to function. Because it requires sensitive permissions, please avoid downloading it from untrusted sources.
 
 ## ToDo
@@ -53,12 +61,14 @@ Hard Mode offers the most stringent control over app usage. In this mode, when y
 - [x] Block explicit context
 - [x] App blockers
 - [x] Focus Quest
+- [x] Anti-Uninstall
 - [ ] Geoblocker (basically block things when a certain area is entered like workplace)
-- [ ] Customisable warning screen
+- [x] Customisable warning screen
 - [ ] Block cusomtom user defined keywords
 - [ ] Modular and downloadable view blockers
 - [x] Api for other developers to transform their existing apps into digipaw quests!
 - [ ] expand the app to ios and desktops.
+
 ## Thanks 
 - [**Osmdroid**](https://github.com/osmdroid/osmdroid) : Mapview used in Quest "TouchGrass"
 - [**Digital Wellbeing Experiments Toolkit**](https://github.com/googlecreativelab/digital-wellbeing-experiments-toolkit) : some ideas ig, basically the geoblocker one.
@@ -100,11 +110,16 @@ We welcome contributions from the community! If you'd like to contribute, please
 5. Create a new Pull Request.
 
 Please ensure your code adheres to our coding standards and includes relevant tests.
-    
+
+## Contributors
+- [Henry Delallal](https://github.com/HenriDellal): assisted in setting up fdroid version
+- [Remaker17](https://github.com/remaker17): setup workflow files
+
 ### HELP REQUIRED!!
 1. Implementing material ui inside the warning overlay and also making it customisable.
 2. Expanding the list of [explict keywords](https://github.com/nethical6/digipause/blob/da5723915412277655aea4dd448cdc64a21fcc83/app/src/main/java/nethical/digipaws/data/BlockerData.java#L28)
-3. Expanding the list of [Blocked views](https://github.com/nethical6/digipause/blob/main/app/src/main/java/nethical/digipaws/data/BlockerData.java#L4) so that more apps can be supported. You can scrape the view ids of a screen with the help of [Developer Assistant](https://play.google.com/store/apps/details?id=com.appsisle.developerassistant). Remeber that these view ids must be unique and only present on the screen to block!!
+3. Expanding the list of [Blocked view items](https://github.com/nethical6/digipause/blob/main/app/src/main/java/nethical/digipaws/data/BlockerData.java#L4) so that more apps can be supported. You can scrape the view ids of a screen with the help of [Developer Assistant](https://play.google.com/store/apps/details?id=com.appsisle.developerassistant). Remeber that these view ids must be unique and only present on the screen to block!!
+4. Adding more info about other packages [here](https://github.com/nethical6/digipause/blob/main/app/src/main/java/nethical/digipaws/data/BlockerData.java)
 
 
 ## License
