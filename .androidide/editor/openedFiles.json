@@ -1,0 +1,20 @@
+{
+  "allFiles": [
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java",
+      "selection": {
+        "end": {
+          "column": 8,
+          "index": 1168,
+          "line": 32
+        },
+        "start": {
+          "column": 8,
+          "index": 1168,
+          "line": 32
+        }
+      }
+    }
+  ],
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/digi-paws/app/src/main/java/nethical/digipaws/services/BlockerService.java"
+}
