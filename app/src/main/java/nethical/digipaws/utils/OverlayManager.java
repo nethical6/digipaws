@@ -64,16 +64,21 @@ public class OverlayManager {
 			
 		});
         
+        String msg = sp.getString(DigiConstants.PREF_WARN_MESSAGE,"");
+        String titleT = sp.getString(DigiConstants.PREF_WARN_TITLE,"Are you sure?");
+        
         if(difficulty == DigiConstants.DIFFICULTY_LEVEL_NORMAL){
             int crnt_coins = CoinManager.getCoinCount(context);
             
             textTitle.setText(R.string.buy_20_mins);
             textDescription.setText(R.string.desc_sd_overlay);
-            textDescription.append("\n"+"BALANCE: " + String.valueOf(crnt_coins) +"\n\n");
-            textDescription.append(sp.getString(DigiConstants.PREF_WARN_MESSAGE,""));
+            textDescription.append("\n"+"BALANCE: " + String.valueOf(crnt_coins) +"\n");
+            textDescription.append(titleT + "\n");
+            textDescription.append(msg);
+            proceedButton.setText(R.string.proceed + " (1 Aura)");
         } else {
-            textTitle.setText(sp.getString(DigiConstants.PREF_WARN_TITLE,"Are you sure?"));
-            textDescription.setText(sp.getString(DigiConstants.PREF_WARN_MESSAGE,""));
+            textTitle.setText(titleT);
+            textDescription.setText(msg);
         }
 		windowManager.addView(overlayView, params);
 		
@@ -81,7 +86,7 @@ public class OverlayManager {
     }
     
     public void showNoCoinsOverlay(OnProceedClicked proceed, OnCloseClicked close){
-        
+        SharedPreferences sp = context.getSharedPreferences(DigiConstants.PREF_WARN_FILE,Context.MODE_PRIVATE);
         closeButton.setOnClickListener(v -> {
 			close.onCloseClicked();
 		}); 
@@ -93,10 +98,19 @@ public class OverlayManager {
             removeOverlay();
             proceed.onProceedClicked();    
 		});
+        
+        String msg = sp.getString(DigiConstants.PREF_WARN_MESSAGE,"");
+        String titleT = sp.getString(DigiConstants.PREF_WARN_TITLE,"Are you sure?");
+        
+        
         textTitle.setText(R.string.no_coins_title);
-        textDescription.setText(R.string.desc_no_coins_overlay);
+        
+        textDescription.setText(titleT + "\n");
+        textDescription.append(msg + "\n\n");
+        textDescription.append(context.getString(R.string.desc_no_coins_overlay));
         textDescription.append("\n"+"BALANCE: " + String.valueOf(CoinManager.getCoinCount(context)));
-    
+        
+        proceedButton.setText("Perform Quest");
 		windowManager.addView(overlayView, params);
     }
     
