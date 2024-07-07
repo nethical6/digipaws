@@ -23,7 +23,7 @@ public class FocusModeTimerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        startForeground(1, getNotification("60:00"));
+        startForeground(1, getNotification("90:00"));
 
         countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
             @Override
