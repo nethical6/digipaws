@@ -72,5 +72,6 @@ dependencies {
     fullImplementation "androidx.camera:camera-camera2:${camerax_version}"
     fullImplementation "androidx.camera:camera-lifecycle:${camerax_version}"
     fullImplementation "androidx.camera:camera-view:${camerax_version}"
-    
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
+
 }

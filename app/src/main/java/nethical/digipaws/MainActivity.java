@@ -1,5 +1,7 @@
 package nethical.digipaws;
 
+import android.app.Activity;
+import android.os.PowerManager;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 		//transaction.addToBackStack(null);
 		transaction.commit();
         
+        checkAndRequestBatteryOptimization(this);
         
         
         // setup notification channels
@@ -147,6 +150,25 @@ public class MainActivity extends AppCompatActivity {
     // Set exact alarm for the next midnight
     long intervalMillis = AlarmManager.INTERVAL_DAY;
     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 0, pendingIntent);
+    }
+    
+    public static void checkAndRequestBatteryOptimization(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+            if (!powerManager.isIgnoringBatteryOptimizations(context.getPackageName())) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
+                    .setTitle(R.string.battery_optimisation_title)
+                    .setMessage(R.string.battery_optimisation_desc)
+                    .setNeutralButton("Provide",(dialog,which)->{
+                         Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                        intent.setData(Uri.parse("package:" + context.getPackageName()));
+                        context.startActivity(intent);
+                      
+                       
+                    });
+                    builder.create().show();
+            }
+        }
     }
 }
     

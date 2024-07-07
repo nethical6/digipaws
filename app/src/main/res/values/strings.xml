@@ -89,5 +89,8 @@
 
     <string name="choose_msg_title">Configure your warning screen</string>
 
+     <string name="battery_optimisation_title">Disable Battery Optimization</string>
+    <string name="battery_optimisation_desc">To ensure this app works properly, please disable battery optimization for this app.</string>
 
+    
 </resources>
