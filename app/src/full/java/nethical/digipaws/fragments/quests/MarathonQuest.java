@@ -363,8 +363,8 @@ public class MarathonQuest extends Fragment {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     if (intent.getAction().equals("LOCATION_UPDATES")) {
-                        Double lat = Double.parseDouble(intent.getStringExtra("clatitude"));
-                        Double lon = Double.parseDouble(intent.getStringExtra("clongitude"));
+                        Double lat = intent.getDoubleExtra("clatitude",0D);
+                        Double lon = intent.getDoubleExtra("clongitude",0D);
                         
                         GeoPoint crntLoc = new GeoPoint(0D,0D);
                         crntLoc.setLatitude(lat);
@@ -374,8 +374,8 @@ public class MarathonQuest extends Fragment {
                         }
 
                         if (!isRadarDrawn) {
-                            Double rlat = Double.parseDouble(intent.getStringExtra("rlatitude"));
-                            Double rlon = Double.parseDouble(intent.getStringExtra("rlongitude"));
+                            Double rlat = intent.getDoubleExtra("rlatitude",0D);
+                            Double rlon = intent.getDoubleExtra("rlongitude",0D);
                             radarLocation.setLatitude(rlat);
                             radarLocation.setLongitude(rlon);
                             

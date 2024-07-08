@@ -108,10 +108,10 @@ public class LocationTrackerService extends Service implements LocationManager.L
         if(location==null){return;}
         Intent updateUIIntent = new Intent("LOCATION_UPDATES");
        
-        updateUIIntent.putExtra("clatitude", String.valueOf(location.getLatitude()));
-        updateUIIntent.putExtra("clongitude", String.valueOf(location.getLongitude()));
-        updateUIIntent.putExtra("rlatitude", String.valueOf(radarLocation.getLatitude()));
-        updateUIIntent.putExtra("rlongitude",String.valueOf(radarLocation.getLongitude()));
+        updateUIIntent.putExtra("clatitude", location.getLatitude());
+        updateUIIntent.putExtra("clongitude", location.getLongitude());
+        updateUIIntent.putExtra("rlatitude", radarLocation.getLatitude());
+        updateUIIntent.putExtra("rlongitude",radarLocation.getLongitude());
         sendBroadcast(updateUIIntent);
         
         distance = liveLocationTracker.getDistanceBetweenLocations(location,radarLocation);
