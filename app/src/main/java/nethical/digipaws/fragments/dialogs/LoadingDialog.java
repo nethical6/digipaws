@@ -24,11 +24,16 @@ public class LoadingDialog extends DialogFragment {
 		MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
 		.setTitle(title)
 		.setCancelable(false);
-		
+        
 		View view = LayoutInflater.from(requireContext()).inflate(R.layout.loading_dialog, null);
 		builder.setView(view);
 		
-		return builder.create();
+        Dialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+      //  dialog.setCancelable(false);
+        
+        
+		return dialog;
 	}
 	
 	@Override
