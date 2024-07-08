@@ -13,6 +13,7 @@ import nethical.digipaws.R;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.LocationManager;
+import org.osmdroid.util.GeoPoint;
 
 public class LocationTrackerService extends Service implements LocationManager.LocationListener {
 
@@ -49,7 +50,6 @@ public class LocationTrackerService extends Service implements LocationManager.L
             stopSelf();
             
         }
-        
         
         radarLocation.setLatitude(intent.getDoubleExtra(DigiConstants.KEY_RADAR_LATITUDE,0D));
         radarLocation.setLongitude(intent.getDoubleExtra(DigiConstants.KEY_RADAR_LONGITUDE,0D));
@@ -105,14 +105,26 @@ public class LocationTrackerService extends Service implements LocationManager.L
 
     @Override
     public void onLocationChanged(Location location) {
-       distance = liveLocationTracker.getDistanceBetweenLocations(location,radarLocation);
+        if(location==null){return;}
+        Intent updateUIIntent = new Intent("LOCATION_UPDATES");
+       
+        updateUIIntent.putExtra("clatitude", String.valueOf(location.getLatitude()));
+        updateUIIntent.putExtra("clongitude", String.valueOf(location.getLongitude()));
+        updateUIIntent.putExtra("rlatitude", String.valueOf(radarLocation.getLatitude()));
+        updateUIIntent.putExtra("rlongitude",String.valueOf(radarLocation.getLongitude()));
+        sendBroadcast(updateUIIntent);
+        
+        distance = liveLocationTracker.getDistanceBetweenLocations(location,radarLocation);
         updateNofification("Quest: Touch Grass","Distance Covered: "+ String.valueOf(distance),NotificationCompat.PRIORITY_DEFAULT);
+   
+        
         if(distance>DigiConstants.RADAR_RADIUS){
             CoinManager.incrementCoin(this);
             updateNofification("Quest Completed","You earned 1 digicoin",NotificationCompat.PRIORITY_MAX);
             liveLocationTracker.stopLocationUpdates();
             stopQuest();
         }
+        
     }
     
 }

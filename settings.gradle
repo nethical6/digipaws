@@ -7,5 +7,5 @@ dependencyResolutionManagement {
         maven { url "https://jitpack.io" }
     }
 }
-rootProject.name = "digiPause"
+rootProject.name = "digiPaws"
 include ':app',':digi-api'

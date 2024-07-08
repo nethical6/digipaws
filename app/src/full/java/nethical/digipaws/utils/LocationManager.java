@@ -52,7 +52,10 @@ public class LocationManager {
 				}
 			}
 		};
+        
 	}
+    
+    
 	
 	public void startLocationUpdates() {
 		isRunning = true;

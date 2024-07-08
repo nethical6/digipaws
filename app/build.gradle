@@ -19,13 +19,13 @@ android {
     productFlavors {
         full {
             dimension "version"
-            applicationId "nethical.digipaws.full"
+            applicationId "nethical.digipaws"
             versionNameSuffix "-full"
             buildConfigField "boolean", "LITE_VERSION", "false"
         }
         lite {
             dimension "version"
-            applicationId "nethical.digipaws.lite"
+            applicationId "nethical.digipaws"
             versionNameSuffix "-lite"
             buildConfigField "boolean", "LITE_VERSION", "true"
         }
@@ -72,6 +72,6 @@ dependencies {
     fullImplementation "androidx.camera:camera-camera2:${camerax_version}"
     fullImplementation "androidx.camera:camera-lifecycle:${camerax_version}"
     fullImplementation "androidx.camera:camera-view:${camerax_version}"
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
+    
 
 }
