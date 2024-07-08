@@ -38,7 +38,7 @@ public class Intro extends AppIntro {
         
         sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
-		addSlide(AppIntroFragment.createInstance(getString(R.string.welcome),
+		addSlide(AppIntroFragment.createInstance("",
 		HtmlCompat.fromHtml(getString(R.string.app_desc),Html.FROM_HTML_MODE_COMPACT),
 		R.drawable.paws,
 		R.color.md_theme_dark_background

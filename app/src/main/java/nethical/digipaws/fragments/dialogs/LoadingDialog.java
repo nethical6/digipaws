@@ -30,8 +30,7 @@ public class LoadingDialog extends DialogFragment {
 		
         Dialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
-      //  dialog.setCancelable(false);
-        
+      
         
 		return dialog;
 	}
