@@ -5,6 +5,8 @@ public class DigiConstants {
 	public static final int RADAR_RADIUS = 200; // in meters (distance to run in marathon quest)
 	public static final int DEFAULT_REPS = 5; // default number of squats for 1 aura
     
+    public static final int RADAR_RADIUS_LV_INC = 50; // value to increment each level
+    
 	public static final String PREF_PACKAGES_FILE = "package_names";
 	public static final String PREF_PACKAGES_KEY = "packages";
 	

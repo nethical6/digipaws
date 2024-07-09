@@ -65,6 +65,7 @@ public class ChooseBlockedApps extends Fragment implements SlidePolicy {
         return true;
     }
     
+    
     public void loadAppsAndDisplay(){
         
        LoadingDialog loadingDialog = new LoadingDialog("Fetching Packages");
@@ -80,10 +81,11 @@ public class ChooseBlockedApps extends Fragment implements SlidePolicy {
         // Create a Handler for the main thread
         Handler mainHandler = new Handler(Looper.getMainLooper());
         
-        handler.post(
+        handler.postDelayed(
                 new Runnable() {
                     @Override
                     public void run() {
+                    
                         List<String> appList = LoadAppList.getPackageNames(requireContext());
                         List<AppData> appData = new ArrayList<AppData>();
 
@@ -116,7 +118,7 @@ public class ChooseBlockedApps extends Fragment implements SlidePolicy {
                                     }
                                 });
                     }
-                });
+                },5000);
     }
     
     @Override

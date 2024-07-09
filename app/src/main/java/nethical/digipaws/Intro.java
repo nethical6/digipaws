@@ -65,8 +65,7 @@ public class Intro extends AppIntro {
 		R.color.md_theme_dark_background
 		));
         
-        
-        addSlide(new ChooseMode(sharedPreferences));
+       addSlide(new ChooseMode(sharedPreferences));
         addSlide(new ConfigureWarning());
         addSlide(new ChooseDelay(sharedPreferences));
         addSlide(new ChooseViewBlockers(sharedPreferences));
@@ -100,7 +99,6 @@ public class Intro extends AppIntro {
     protected void onSlideChanged(Fragment oldFragment, Fragment newFragment) {
         super.onSlideChanged(oldFragment, newFragment);
 
-        // You can perform actions when the slide changes, if needed
         if (newFragment instanceof ChooseBlockedApps) {
             ((ChooseBlockedApps) newFragment).loadAppsAndDisplay();
         }

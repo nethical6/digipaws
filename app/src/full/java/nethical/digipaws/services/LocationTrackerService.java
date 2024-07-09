@@ -19,12 +19,15 @@ public class LocationTrackerService extends Service implements LocationManager.L
 
     private LocationManager liveLocationTracker;
     private Location radarLocation = new Location("radarLocation");
+    private int radius = DigiConstants.RADAR_RADIUS;
     
-    SharedPreferences questPref;
+    private SharedPreferences questPref;
+    private SharedPreferences lvData;
     
     private CountDownTimer countDownTimer;
     private String formattedTime ="00";
     private float distance = 0f;
+    
     
     private NotificationManager notificationManager;
     @Override
@@ -37,7 +40,9 @@ public class LocationTrackerService extends Service implements LocationManager.L
         super.onCreate();
         questPref = getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE,
 				Context.MODE_PRIVATE);
+        
         liveLocationTracker = new LocationManager(this);
+     
     }
     
 
@@ -53,7 +58,7 @@ public class LocationTrackerService extends Service implements LocationManager.L
         
         radarLocation.setLatitude(intent.getDoubleExtra(DigiConstants.KEY_RADAR_LATITUDE,0D));
         radarLocation.setLongitude(intent.getDoubleExtra(DigiConstants.KEY_RADAR_LONGITUDE,0D));
-        
+        radius = intent.getIntExtra("radius",DigiConstants.RADAR_RADIUS);
         
         liveLocationTracker.setLiveLocationListener(this);
         liveLocationTracker.startLocationUpdates();
@@ -118,11 +123,14 @@ public class LocationTrackerService extends Service implements LocationManager.L
         updateNofification("Quest: Touch Grass","Distance Covered: "+ String.valueOf(distance),NotificationCompat.PRIORITY_DEFAULT);
    
         
-        if(distance>DigiConstants.RADAR_RADIUS){
+        if(distance>radius){
             CoinManager.incrementCoin(this);
             updateNofification("Quest Completed","You earned 1 digicoin",NotificationCompat.PRIORITY_MAX);
             liveLocationTracker.stopLocationUpdates();
             stopQuest();
+            Intent questComplete = new Intent("MARATHON_QUEST_COMPLETE");
+            sendBroadcast(questComplete);
+       
         }
         
     }

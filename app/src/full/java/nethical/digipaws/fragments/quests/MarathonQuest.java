@@ -1,6 +1,7 @@
 package nethical.digipaws.fragments.quests;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -52,14 +53,19 @@ public class MarathonQuest extends Fragment {
     private LocationManager liveLocationTracker = null;
 
     private Location radarLocation = new Location("radar");
-
+    private int travelRadius = 0; // the size of radar
+    
     private MyLocationNewOverlay mLocationOverlay;
     private LoadingDialog loadingDialog = new LoadingDialog("Calculating Location...");
     private Marker myLocation;
 
+    
+    private SharedPreferences lvData;
+    
     private static final int REQUEST_FINE_LOCATION_PERMISSION = 69;
     private static final int REQUEST_POST_NOTIFICATIONS_PERMISSION = 70;
-
+    
+    
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -112,11 +118,17 @@ public class MarathonQuest extends Fragment {
         mapView.getOverlays().add(myLocation);
 
         checkLocationPermission();
+        
+        lvData = requireContext().getSharedPreferences("lvData",Context.MODE_PRIVATE);
+        travelRadius = lvData.getInt("marathon_quest_distance",DigiConstants.RADAR_RADIUS) + DigiConstants.RADAR_RADIUS_LV_INC;
+        
+        
         questPref =
                 requireContext()
                         .getSharedPreferences(
                                 DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
 
+        
         if (!questPref.getBoolean(DigiConstants.PREF_IS_QUEST_RUNNING_KEY, false))  {
                 makeRadar();
                 isRadarDrawn = true;
@@ -165,6 +177,7 @@ public class MarathonQuest extends Fragment {
                             serviceIntent.putExtra(
                                     DigiConstants.KEY_RADAR_LONGITUDE,
                                     radarLocation.getLongitude());
+                            serviceIntent.putExtra("radius",travelRadius);
                             serviceIntent.setAction("START");
                             requireContext().startForegroundService(serviceIntent);
                             
@@ -173,11 +186,6 @@ public class MarathonQuest extends Fragment {
                             isRunning = false;
                             Intent serviceIntent =
                                     new Intent(requireContext(), LocationTrackerService.class);
-                            serviceIntent.putExtra(
-                                    DigiConstants.KEY_RADAR_LATITUDE, radarLocation.getLatitude());
-                            serviceIntent.putExtra(
-                                    DigiConstants.KEY_RADAR_LONGITUDE,
-                                    radarLocation.getLongitude());
                             serviceIntent.setAction("STOP");
                             requireContext().startForegroundService(serviceIntent);
                             
@@ -209,12 +217,10 @@ public class MarathonQuest extends Fragment {
 
                                                 double latitude = location.getLatitude();
                                                 double longitude = location.getLongitude();
-                                                double radius =
-                                                        DigiConstants
-                                                                .RADAR_RADIUS; // Radius in meters
-
+                                                 
+                                
                                                 radarLocation.set(location);
-                                                addCircleTo(latitude, longitude, radius);
+                                                addCircleTo(latitude, longitude,travelRadius);
                                                 loadingDialog.dismiss();
                                                 locationHelperCircle.stopLocationUpdates();
                                             }
@@ -380,7 +386,7 @@ public class MarathonQuest extends Fragment {
                             radarLocation.setLongitude(rlon);
                             
                             loadingDialog.dismiss();
-                            addCircleTo(rlat, rlon, DigiConstants.RADAR_RADIUS);
+                            addCircleTo(rlat, rlon, travelRadius);
                             IMapController controller = mapView.getController();
                             controller.setZoom(18.0);
                             GeoPoint loc = new GeoPoint(rlat, rlon);
@@ -393,9 +399,35 @@ public class MarathonQuest extends Fragment {
                 }
             };
 
+    private BroadcastReceiver questComplete =
+            new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if (intent.getAction().equals("MARATHON_QUEST_COMPLETE")) {
+                        isRunning = false;
+                MaterialAlertDialogBuilder builder =
+                new MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Quest Complete")
+                        .setMessage("You earned 1 Aura point. Your next Touch Grass target is " + String.valueOf(travelRadius + 50 ) +" metres away!")
+                        .setNeutralButton(
+                                "Quit",
+                                (dialog, which) -> {
+                                    dialog.dismiss();
+                                    getActivity().getSupportFragmentManager().popBackStack();
+                                });
+                        Dialog dialog = builder.create();
+                        dialog.setCanceledOnTouchOutside(false);
+                        dialog.setCancelable(false);
+                        dialog.show();
+                    }
+                }
+            };
+
+    
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         context.registerReceiver(locUpdateReceiver, new IntentFilter("LOCATION_UPDATES"));
+        context.registerReceiver(questComplete, new IntentFilter("MARATHON_QUEST_COMPLETE"));
     }
 }

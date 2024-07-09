@@ -86,7 +86,7 @@ public class WorkoutActivity extends AppCompatActivity
         previewView = findViewById(R.id.previewView);
         graphicOverlay = findViewById(R.id.overlayView);
         startButton = findViewById(R.id.start_button_workout);
-        sp = getSharedPreferences("workoutData",Context.MODE_PRIVATE);
+        sp = getSharedPreferences("lvData",Context.MODE_PRIVATE);
         cameraExecutor = Executors.newSingleThreadExecutor();
         executor = Executors.newSingleThreadExecutor();
 
