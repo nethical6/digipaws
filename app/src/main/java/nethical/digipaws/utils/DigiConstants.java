@@ -50,6 +50,7 @@ public class DigiConstants {
     public static final String PREF_IS_ENGMMT_BLOCKED = "is_engmnt_blocked";
     public static final String PREF_IS_ANTI_UNINSTALL = "is_uninstall_blocked";
     public static final String PREF_ANTI_UNINSTALL_START = "anti_uninstall_day";
+    public static final String PREF_USAGE_STREAK_START = "streak_start"; 
     
     public static final String PREF_WARN_FILE = "warn_info";
     public static final String PREF_WARN_MESSAGE = "warn_msg";

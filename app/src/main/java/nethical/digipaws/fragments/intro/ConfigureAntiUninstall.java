@@ -52,9 +52,13 @@ public class ConfigureAntiUninstall extends Fragment  {
         SimpleDateFormat sdf = new SimpleDateFormat(DigiConstants.DATE_FORMAT, Locale.getDefault());
         String dateString = sdf.format(date);
       
-        if(!sharedPreferences.contains(DigiConstants.PREF_ANTI_UNINSTALL_START)){
-           sharedPreferences.edit().putString(DigiConstants.PREF_ANTI_UNINSTALL_START,dateString).apply();
+        //stores date for streak
+        if(!sharedPreferences.contains(DigiConstants.PREF_USAGE_STREAK_START)){
+           sharedPreferences.edit().putString(DigiConstants.PREF_USAGE_STREAK_START,dateString).apply();
         }
+        //stores date for checking if challenge has been completed
+        sharedPreferences.edit().putString(DigiConstants.PREF_ANTI_UNINSTALL_START,dateString).apply();
+     
         devicePolicyManager =
                         (DevicePolicyManager)
                                 requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
