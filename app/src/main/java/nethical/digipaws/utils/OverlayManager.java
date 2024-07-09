@@ -75,7 +75,7 @@ public class OverlayManager {
             textDescription.append("\n"+"BALANCE: " + String.valueOf(crnt_coins) +"\n");
             textDescription.append(titleT + "\n");
             textDescription.append(msg);
-            proceedButton.setText(R.string.proceed + " (1 Aura)");
+            proceedButton.setText(context.getString(R.string.proceed) + " (1 Aura)");
         } else {
             textTitle.setText(titleT);
             textDescription.setText(msg);
