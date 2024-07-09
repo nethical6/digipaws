@@ -3,9 +3,18 @@ package nethical.digipaws.fragments;
 import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import androidx.core.content.FileProvider;
+import com.google.android.datatransport.BuildConfig;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import android.net.Uri;
 import com.google.android.material.internal.EdgeToEdgeUtils;
+import java.io.File;
+import android.os.Environment;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import nethical.digipaws.MainActivity;
 import nethical.digipaws.fragments.dialogs.SelectQuestDialog;
 import nethical.digipaws.fragments.intro.ConfigureWarning;
@@ -60,11 +69,11 @@ public class HomeFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		/*LoadingDialog loadingDialog = new LoadingDialog("Reloading packages");
+		LoadingDialog loadingDialog = new LoadingDialog("Reloading packages");
 		
 		loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog");
 		List<String> packages = LoadAppList.getPackageNames(requireContext());
-		loadingDialog.dismiss();*/
+		loadingDialog.dismiss();
         sharedPreferences = getContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         calculateDaysPassed();
         
@@ -118,17 +127,21 @@ public class HomeFragment extends Fragment {
         ComponentName deviceAdminReceiver =
                         new ComponentName(requireContext(), AdminReceiver.class);
 
-        
-        if(days>=DigiConstants.CHALLENGE_TIME){
-            daysRemaining.append("\nAnti Uninstall disabled!!");
-            sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,false).apply();
+        //if(true){
+       if(days >= DigiConstants.CHALLENGE_TIME ){
             if(!devicePolicyManager.isAdminActive(deviceAdminReceiver)){
                     return;
                 }
+            DigiUtils.sendNotification(requireContext(),"Challenge Completed","Anti-Uninstall has been disabled!!!!!!",R.drawable.swords);
+            sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,false).apply();
                 // Disable the device admin if it was enabled
+            
+            
             if (devicePolicyManager != null && deviceAdminReceiver != null) {
                 devicePolicyManager.removeActiveAdmin(deviceAdminReceiver);
             }
+            DigiUtils.replaceScreen(getActivity().getSupportFragmentManager(),new ChallengeCompletedFragment());
+            
         }
     }
     
@@ -187,5 +200,5 @@ public class HomeFragment extends Fragment {
                     builder.create().show();
     }
 	
-	
+    
 }

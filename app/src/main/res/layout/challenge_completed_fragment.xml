@@ -8,11 +8,6 @@
      android:gravity="center_vertical|center|center_horizontal"
      android:orientation="vertical">
 
-    <TextView
-         android:layout_height="wrap_content"
-         android:layout_width="wrap_content"
-         style="@style/AppIntroDefaultHeading"
-         android:text="A new journey begins!" />
 
     <ImageView
          android:layout_height="300dp"
@@ -21,24 +16,32 @@
          android:paddingBottom="40dp"
          android:paddingTop="40dp" />
 
+    
     <LinearLayout
          android:layout_height="wrap_content"
          android:layout_width="wrap_content"
          android:gravity="center"
-         android:orientation="horizontal">
-
+         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/text"
              android:layout_height="wrap_content"
              android:layout_width="wrap_content"
              android:gravity="center"
              android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
              android:padding="16dp"
              android:textColor="#fff"
-             android:text="@string/tac" />
+             android:id="@+id/text"
+             android:text="Congrats on conquering #TechRehab! Your 21 days of commitment are truly inspiring. Keep shining! 🌟" />
+
+        <com.google.android.material.button.MaterialButton
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:layout_marginBottom="8dp"
+                 android:layout_marginTop="12dp"
+                 android:id="@+id/share"
+                 android:text="Share" />
 
     </LinearLayout>
 
-
+    
 </LinearLayout>
