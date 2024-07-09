@@ -28,6 +28,14 @@ import nethical.digipaws.utils.DigiConstants;
 public class ChallengeCompletedFragment extends Fragment {
 
     private View view;
+    private boolean isChallengeCompleted = false;
+    private String day= "0";
+    
+    public ChallengeCompletedFragment(boolean isCompleted,String day){
+        isChallengeCompleted = isCompleted;
+        this.day = day;
+    }
+    public ChallengeCompletedFragment(){  }
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,14 +58,17 @@ public class ChallengeCompletedFragment extends Fragment {
         });
         
         TextView msg = view.findViewById(R.id.text);
+        if(isChallengeCompleted){
+            msg.setText(getString(R.string.congratulate_text_challenge_comp));
+        }
         msg.append("\n\n Stats:");
         SharedPreferences questPref = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
         msg.append("\n🏋️ Total Pushups: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS,0)) + " reps");
         msg.append("\n🏋️ Total Squats: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS,0)) + " reps");
         msg.append("\n🏃 Total Distance Ran: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN,0)) + " metres");
-        
         msg.append("\n⏲️ Total Time Focused: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED,0)) + " minutes");
-   
+        msg.append("\n📅 Days Elapsed: " + day);
+        
 	}
     
 	

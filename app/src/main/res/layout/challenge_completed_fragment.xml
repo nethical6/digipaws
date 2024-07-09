@@ -8,7 +8,6 @@
      android:gravity="center_vertical|center|center_horizontal"
      android:orientation="vertical">
 
-
     <ImageView
          android:layout_height="300dp"
          android:layout_width="300dp"
@@ -16,7 +15,6 @@
          android:paddingBottom="40dp"
          android:paddingTop="40dp" />
 
-    
     <LinearLayout
          android:layout_height="wrap_content"
          android:layout_width="wrap_content"
@@ -31,17 +29,16 @@
              android:padding="16dp"
              android:textColor="#fff"
              android:id="@+id/text"
-             android:text="Congrats on conquering #TechRehab! Your 21 days of commitment are truly inspiring. Keep shining! 🌟" />
+             android:text="@string/congratulate_text_challenge_incomp" />
 
         <com.google.android.material.button.MaterialButton
-                 android:layout_height="wrap_content"
-                 android:layout_width="wrap_content"
-                 android:layout_marginBottom="8dp"
-                 android:layout_marginTop="12dp"
-                 android:id="@+id/share"
-                 android:text="Share" />
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:layout_marginBottom="8dp"
+             android:layout_marginTop="12dp"
+             android:id="@+id/share"
+             android:text="Share" />
 
     </LinearLayout>
 
-    
 </LinearLayout>
