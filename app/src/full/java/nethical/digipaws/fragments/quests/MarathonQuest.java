@@ -269,6 +269,8 @@ public class MarathonQuest extends Fragment {
         } else {
             checkLocationPermission();
         }
+        requireContext().registerReceiver(locUpdateReceiver, new IntentFilter("LOCATION_UPDATES"));
+        requireContext().registerReceiver(questComplete, new IntentFilter("MARATHON_QUEST_COMPLETE"));
     }
 
     @Override
@@ -286,6 +288,8 @@ public class MarathonQuest extends Fragment {
         if (liveLocationTracker != null) {
             liveLocationTracker.stopLocationUpdates();
         }
+        requireContext().unregisterReceiver(locUpdateReceiver);
+        requireContext().unregisterReceiver(questComplete);
     }
 
     @Override
@@ -419,6 +423,7 @@ public class MarathonQuest extends Fragment {
                         dialog.setCanceledOnTouchOutside(false);
                         dialog.setCancelable(false);
                         dialog.show();
+                        lvData.edit().putInt("marathon_quest_distance",travelRadius).apply();
                     }
                 }
             };

@@ -357,8 +357,22 @@ public class WorkoutActivity extends AppCompatActivity
             if (imageProcessor != null) {
                 imageProcessor.stop();
             }
-            sp.edit().putInt(workoutType,reps_final_count).apply();
+            
+            SharedPreferences questPref = getSharedPreferences(
+                                DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
+            
+            switch(workoutType){
+                case PoseClassifierProcessor.PUSHUPS_CLASS:
+                    questPref.edit().putInt(DigiConstants.KEY_TOTAL_PUSHUPS,questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS,0)+reps_final_count).apply();
+                    break;
+                case PoseClassifierProcessor.SQUATS_CLASS:
+                   questPref.edit().putInt(DigiConstants.KEY_TOTAL_SQUATS,questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS,0)+reps_final_count).apply();
+                    break;
+                
+            }
+            
             isQuestRunning = true;
+            sp.edit().putInt(workoutType,reps_final_count).apply();
             showQuestCompleteDialog();
             CoinManager.incrementCoin(this);
         }

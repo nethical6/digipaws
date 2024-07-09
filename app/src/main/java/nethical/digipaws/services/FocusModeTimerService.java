@@ -5,7 +5,9 @@ import android.app.NotificationManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.IBinder;
@@ -41,6 +43,9 @@ public class FocusModeTimerService extends Service {
                 stopSelf();
                 SurvivalModeManager.disableSurvivalMode(getApplicationContext());
                 DigiUtils.sendNotification(getApplicationContext(),"Quest Completed!","You earned 1 Aura Coin.",R.drawable.swords);
+                SharedPreferences questPref = getSharedPreferences(
+                                DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
+                questPref.edit().putInt(DigiConstants.KEY_TOTAL_FOCUSED,questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED,0)+90).apply();
             }
         }.start();
 
