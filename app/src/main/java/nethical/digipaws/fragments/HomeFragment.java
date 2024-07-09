@@ -79,6 +79,10 @@ public class HomeFragment extends Fragment {
         calculateDaysPassed();
         calculateStats();
         
+        daysRemaining.setOnClickListener(v->{
+            DigiUtils.replaceScreen(getActivity().getSupportFragmentManager(),new ChallengeCompletedFragment());
+        });
+        
         HollowCircleView hcv = view.findViewById(R.id.select_quest);
         switch(sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)){
             case DigiConstants.DIFFICULTY_LEVEL_EASY:
@@ -142,7 +146,7 @@ public class HomeFragment extends Fragment {
             if (devicePolicyManager != null && deviceAdminReceiver != null) {
                 devicePolicyManager.removeActiveAdmin(deviceAdminReceiver);
             }
-            DigiUtils.replaceScreen(getActivity().getSupportFragmentManager(),new ChallengeCompletedFragment());
+            DigiUtils.replaceScreen(getActivity().getSupportFragmentManager(),new ChallengeCompletedFragment(true,String.valueOf(days)));
             
         }
     }
