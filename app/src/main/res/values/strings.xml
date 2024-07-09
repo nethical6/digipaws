@@ -38,20 +38,20 @@
     <string name="easy_mode_desc">In Easy Mode, DigiPaws provides gentle reminders to help you manage your screen time. When you attempt to access a blocked app, a warning screen appears. If you choose to proceed, a cooldown period starts. After the cooldown, another warning is displayed to remind you of your usage.</string>
 
     <string name="adventure_mode">Adventure Mode</string>
-    <string name="adventure_mode_desc">Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need Aura. These can be earned by completing quests such as a quick 1 km walk. Each Aura grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use.</string>
+    <string name="adventure_mode_desc">Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need Aura. These can be earned by completing quests such as a quick 1 km walk. Each Aura grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use. With every quests you perform, the questvdifficulty keeps rising.</string>
 
     <string name="hard_mode">Hard Mode</string>
     <string name="hard_mode_desc">Hard Mode offers the most stringent control over app usage. In this mode, when you try to open a blocked app, the back button is automatically pressed without any warning or cooldown, preventing access entirely.</string>
 
     <string name="block_vb_title">What do you wish to block?</string>
     <string name="block_shorts_cb">Block Shorts</string>
-    <string name="block_comments_cb">Block Comments</string>
-    <string name="block_porn_cb">Block Explict Keywords</string>
+    <string name="block_comments_cb">Block Comments (auto-close)</string>
+    <string name="block_porn_cb">Block Explict Keywords (beta)</string>
     <string name="block_vb_desc">Supported Platforms: Youtube, Instagram, Revanced</string>
 
     <string name="anti_uninstall_title">Enter the #TechRehab challenge!</string>
     <string name="anti_uninstall_cb">Activate Anti-Uninstall</string>
-    <string name="anti_uninstall_desc">#TechRehab is a 3 week productivity challenge that blocks all uninstall attempts on this app.</string>
+    <string name="anti_uninstall_desc">#TechRehab is a 3 week productivity challenge that aims to fix your screen addiction.</string>
     <string name="anti_uninstall_desc_day">days strong!!!</string>
 
 
