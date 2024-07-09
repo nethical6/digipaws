@@ -31,12 +31,10 @@ public class BlockerService extends AccessibilityService {
 	public void onAccessibilityEvent(AccessibilityEvent event) {
         serviceData.setEvent(event);
         
-        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED){
-            viewBlocker.performAction(serviceData);
-        }
         
-        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED){
+        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED || event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED){
             appBlocker.performAction(serviceData);
+            viewBlocker.performAction(serviceData);
         }
         
         

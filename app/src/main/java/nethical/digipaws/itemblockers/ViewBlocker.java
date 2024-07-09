@@ -33,6 +33,7 @@ public class ViewBlocker {
     }
     
 	public void performAction(ServiceData data){
+        if(isOverlayVisible) { return;}
         this.data = data;
             
         init();
@@ -162,7 +163,7 @@ public class ViewBlocker {
 	
 	
 	
-	private boolean isViewOpened(AccessibilityNodeInfo rootNode,String viewId){
+	private static boolean isViewOpened(AccessibilityNodeInfo rootNode,String viewId){
 		AccessibilityNodeInfo viewNode =
 		findElementById(rootNode, viewId);
 		if (viewNode != null) {
