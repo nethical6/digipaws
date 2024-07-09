@@ -74,6 +74,15 @@ public class ChallengeCompletedFragment extends Fragment {
             shareScreenshot(requireContext(), screenshotUri);
         });
         
+        TextView msg = view.findViewById(R.id.text);
+        msg.append("\n\n Stats:");
+        SharedPreferences questPref = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
+        msg.append("\n🏋️ Total Pushups: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS,0)) + " reps");
+        msg.append("\n🏋️ Total Squats: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS,0)) + " reps");
+        msg.append("\n🏃 Total Distance Ran: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN,0)) + " metres");
+        
+        msg.append("\n⏲️ Total Time Focused: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED,0)) + " minutes");
+   
 	}
     
 	
@@ -107,5 +116,6 @@ public class ChallengeCompletedFragment extends Fragment {
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         context.startActivity(Intent.createChooser(shareIntent, "Share Screenshot"));
 }
+  
 	
 }

@@ -152,6 +152,7 @@ public class HomeFragment extends Fragment {
         daysRemaining.append("\nTotal Pushups: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS,0)) + " reps");
         daysRemaining.append("\nTotal Squats: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS,0)) + " reps");
         daysRemaining.append("\nTotal Distance Ran: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN,0)) + " metres");
+        
         daysRemaining.append("\nTotal Time Focused: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED,0)) + " minutes");
     }
     
