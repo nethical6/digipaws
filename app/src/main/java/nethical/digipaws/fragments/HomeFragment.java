@@ -201,12 +201,12 @@ public class HomeFragment extends Fragment {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.missing_permission)
                     .setMessage(R.string.accessibility_perm)
-                    .setPositiveButton("Provide",(dialog,which)->{
+                    .setPositiveButton("Agree",(dialog,which)->{
                         Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
 					    startActivity(intent);
                         dialog.dismiss();
                     })
-                    .setNegativeButton("Read more",(dialog,which)->{
+                    .setNegativeButton("How DigiPaws processes my data?",(dialog,which)->{
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT+"about/permission"));
                         startActivity(intent);
                         dialog.dismiss();

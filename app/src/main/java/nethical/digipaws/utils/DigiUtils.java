@@ -1,15 +1,12 @@
 package nethical.digipaws.utils;
 
-import android.accessibilityservice.AccessibilityServiceInfo;
 import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
-import android.content.pm.ServiceInfo;
-import android.view.accessibility.AccessibilityManager;
+import android.provider.Settings;
 import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
-import java.util.List;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.FragmentManager;
 import nethical.digipaws.R;
@@ -27,16 +24,8 @@ public class DigiUtils {
 	}
 	
 	public static boolean isAccessibilityServiceEnabled(Context context, Class<? extends AccessibilityService> service) {
-		AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
-		List<AccessibilityServiceInfo> enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
-		
-		for (AccessibilityServiceInfo enabledService : enabledServices) {
-			ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
-			if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(service.getName()))
-			return true;
-		}
-		
-		return false;
+        String prefString = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+        return prefString!= null && prefString.contains("nethical.digipaws/nethical.digipaws.services.BlockerService");
 	}
 	
     public static void pressBack(AccessibilityService service){
