@@ -22,7 +22,6 @@ public class LocationTrackerService extends Service implements LocationManager.L
     private int radius = DigiConstants.RADAR_RADIUS;
     
     private SharedPreferences questPref;
-    private SharedPreferences lvData;
     
     private CountDownTimer countDownTimer;
     private String formattedTime ="00";
@@ -103,6 +102,7 @@ public class LocationTrackerService extends Service implements LocationManager.L
         SharedPreferences.Editor editor = questPref.edit();
         editor.putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL);
         editor.putBoolean(DigiConstants.PREF_IS_QUEST_RUNNING_KEY,false);
+        editor.putInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN,questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN,0)+radius);
         editor.apply();  
     }
    
@@ -130,7 +130,7 @@ public class LocationTrackerService extends Service implements LocationManager.L
             stopQuest();
             Intent questComplete = new Intent("MARATHON_QUEST_COMPLETE");
             sendBroadcast(questComplete);
-       
+            
         }
         
     }

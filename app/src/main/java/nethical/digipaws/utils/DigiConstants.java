@@ -87,4 +87,11 @@ public class DigiConstants {
     public static final int API_COIN_INC_COOLDOWN = 60 * 60 * 1000; // in ms 
     
     public static final String WEBSITE_ROOT = "https://nethical6.github.io/digipaws/";
+    
+    public static final String KEY_TOTAL_DISTANCE_RUN = "marathon_distance";
+    public static final String KEY_TOTAL_PUSHUPS = "pushups_total";
+    public static final String KEY_TOTAL_SQUATS = "squats_total";
+    public static final String KEY_TOTAL_FOCUSED = "focused";
+    
+    
 }

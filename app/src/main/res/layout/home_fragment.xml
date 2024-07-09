@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:layout_margin="16dp"
-        android:text="@string/anti_uninstall_desc_day" 
+        android:text="" 
         android:textAppearance="@style/TextAppearance.Material3.BodySmall"/>
 
     

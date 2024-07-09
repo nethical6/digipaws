@@ -75,7 +75,9 @@ public class HomeFragment extends Fragment {
 		List<String> packages = LoadAppList.getPackageNames(requireContext());
 		loadingDialog.dismiss();
         sharedPreferences = getContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
+        
         calculateDaysPassed();
+        calculateStats();
         
         HollowCircleView hcv = view.findViewById(R.id.select_quest);
         switch(sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)){
@@ -119,7 +121,7 @@ public class HomeFragment extends Fragment {
         // Convert milliseconds to days
         long days = TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS);
         
-        daysRemaining.setText(String.valueOf(days) + " "+ getContext().getString(R.string.anti_uninstall_desc_day));
+        daysRemaining.append(String.valueOf(days) + " "+ getContext().getString(R.string.anti_uninstall_desc_day));
         
         DevicePolicyManager devicePolicyManager =
                         (DevicePolicyManager)
@@ -145,6 +147,14 @@ public class HomeFragment extends Fragment {
         }
     }
     
+    private void calculateStats(){
+        SharedPreferences questPref = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
+        daysRemaining.append("\nTotal Pushups: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS,0)) + " reps");
+        daysRemaining.append("\nTotal Squats: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS,0)) + " reps");
+        daysRemaining.append("\nTotal Distance Ran: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN,0)) + " metres");
+        daysRemaining.append("\nTotal Time Focused: " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED,0)) + " minutes");
+    }
+    
     public Date getDate(Context context) {
         
         String dateString = sharedPreferences.getString(DigiConstants.PREF_ANTI_UNINSTALL_START, "0001-01-01");
@@ -164,6 +174,9 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         checkAccessibiltyPermission();
+        daysRemaining.setText("");
+        calculateDaysPassed();
+        calculateStats();
     }
     
     private void checkAccessibiltyPermission(){
