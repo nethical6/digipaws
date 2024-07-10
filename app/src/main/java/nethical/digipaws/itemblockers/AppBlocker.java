@@ -17,6 +17,7 @@ public class AppBlocker {
     
     private float lastWarningTimestamp = 0f;
     private float lastOverlayTimestamp = 0f;
+    private float removeOverlayTimestamp = 0f;
     private float lastGlobalActionTimestamp = 0f;
     
     private boolean isOverlayVisible = false;
@@ -27,11 +28,16 @@ public class AppBlocker {
     private void init(){
 		isSettingsBlocked = data.isReelsBlocked();
         difficulty = data.getDifficulty();
+        if(isOverlayVisible){
+           return;
+        }
+        if(!DelayManager.isDelayOver(removeOverlayTimestamp,50000)){return;}
     }
     
     
     public void performAction(ServiceData data){
         this.data = data;
+        
         init();
         
         if(SurvivalModeManager.isSurvivalModeActive(data.getService())){
@@ -107,14 +113,16 @@ public class AppBlocker {
                     if(crnt_coins<=0){
                         overlayManager.showNoCoinsOverlay(()->{
                                 //proceed button
-                                overlayManager.removeOverlay();
                                 isOverlayVisible = false;
+                                overlayManager.removeOverlay();
+                                removeOverlayTimestamp = SystemClock.uptimeMillis();
                                 },
                             ()->{
                                 // Close button clicked
                                 pressHome();
                                 overlayManager.removeOverlay();
                                 isOverlayVisible = false;
+                                removeOverlayTimestamp = SystemClock.uptimeMillis();
                             }
                             );
                         isOverlayVisible = true;
@@ -125,6 +133,7 @@ public class AppBlocker {
                         // Proceed Button clickdd
                         CoinManager.decrementCoin(data.getService());
                         overlayManager.removeOverlay();
+                        removeOverlayTimestamp = SystemClock.uptimeMillis();
                         isOverlayVisible = false;
                         lastWarningTimestamp = SystemClock.uptimeMillis();
                     },
@@ -132,6 +141,7 @@ public class AppBlocker {
                         // Close button clicked
                         pressHome();
                         overlayManager.removeOverlay();
+                        removeOverlayTimestamp = SystemClock.uptimeMillis();
                         isOverlayVisible = false;
                     }
                     );
