@@ -24,11 +24,24 @@
          android:layout_width="wrap_content"
          android:text="Is Focus Quest Active: idk" />
 
+     <TextView
+        android:id="@+id/is_added_to_list"
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:text="Is added to list: nah" />
+
+    
     <Button
          android:layout_height="wrap_content"
          android:layout_width="wrap_content"
          android:id="@+id/permission"
          android:text="Request Permission" />
+    
+     <Button
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:id="@+id/addToQuests"
+         android:text="Add to Available Quests list" />
 
     <Button
          android:layout_height="wrap_content"

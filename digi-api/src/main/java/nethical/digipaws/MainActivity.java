@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnRequestPermission;
     private Button btnIncrementCoin;
+    private Button btnAddToList;
+    
+    private TextView isAddedToList;
     private TextView coinCountInfo;
 
     private ContentResolver contentResolver;
@@ -41,9 +44,11 @@ public class MainActivity extends AppCompatActivity {
         btnRequestPermission = findViewById(R.id.permission);
         btnIncrementCoin = findViewById(R.id.inc_coin);
         coinCountInfo = findViewById(R.id.coin_count);
+        btnAddToList = findViewById(R.id.addToQuests);
+        
         TextView appModeInfo = findViewById(R.id.mode);
         TextView focusQuestInfo = findViewById(R.id.focus_quest);
-
+        isAddedToList = findViewById(R.id.is_added_to_list);
         // Initialize ContentResolver for database operations
         contentResolver = getContentResolver();
 
@@ -66,11 +71,15 @@ public class MainActivity extends AppCompatActivity {
         // check if focus quest is running
         focusQuestInfo.setText("Is Focus Mode Running: " + isFocusQuestRunning());
 
+        isAddedToList.setText("is added to quest list: "+ checkIfAddedToList());
         // The app needs to explicitly ask for user permission to manage quests in order to increment the coin count. 
         // Retrieving other data like available coins doesn't require explicit permissions.
        btnRequestPermission.setOnClickListener(v -> askPermission());
         
         btnIncrementCoin.setOnClickListener(v -> incrementCoins());
+        
+        btnAddToList.setOnClickListener(v -> addToQuestList());
+        
     }
 
     @Override
@@ -107,6 +116,32 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Missing permissions: " + e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
+    private void addToQuestList() {
+        try {
+
+            // Update the coin count
+            contentResolver.update(AppConstants.CONTENT_URI_ADD_TO_QUESTS, new ContentValues(), null, null);
+
+            // Refresh the coin count display
+            isAddedToList.setText("is added to quest list: " + checkIfAddedToList());
+        } catch (SecurityException e) {
+            // Handle the exception if permission is missing
+            Toast.makeText(this, "Missing permissions: " + e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+    private boolean checkIfAddedToList(){
+        Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_IS_ADDED_TO_QUESTS, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            int isAdded = cursor.getInt(cursor.getColumnIndex("is_added"));
+            cursor.close();
+            return isAdded != 0;
+        } else {
+            // Show a message if the Digipaws app is not installed
+            Toast.makeText(this, "Digipaws not installed", Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+    
 
     private void askPermission() {
         if (ContextCompat.checkSelfPermission(this, "nethical.digipaws.permission.API_V0") != PackageManager.PERMISSION_GRANTED) {

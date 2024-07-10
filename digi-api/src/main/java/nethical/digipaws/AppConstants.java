@@ -22,6 +22,13 @@ public class AppConstants {
     public static final Uri CONTENT_URI_UPDATE_DATA_DELAY =
             Uri.parse("content://" + PROVIDER_AUTHORITY + "/get_delay_details");
     
+    // add a quest to the list of quests inside the app
+    public static final Uri CONTENT_URI_ADD_TO_QUESTS =
+            Uri.parse("content://" + PROVIDER_AUTHORITY + "/add_to_quests");
+    // check if quest is added
+    public static final Uri CONTENT_URI_IS_ADDED_TO_QUESTS =
+            Uri.parse("content://" + PROVIDER_AUTHORITY + "/is_quest");
+    
     
     // These are the possible modes
     public static final int DIFFICULTY_LEVEL_EASY = 0;
