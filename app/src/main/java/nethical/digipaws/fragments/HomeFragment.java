@@ -1,23 +1,11 @@
 package nethical.digipaws.fragments;
 
-import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import androidx.core.content.FileProvider;
-import com.google.android.datatransport.BuildConfig;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import android.net.Uri;
 import com.google.android.material.internal.EdgeToEdgeUtils;
-import java.io.File;
-import android.os.Environment;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import nethical.digipaws.MainActivity;
 import nethical.digipaws.fragments.dialogs.SelectQuestDialog;
-import nethical.digipaws.fragments.intro.ConfigureWarning;
 import nethical.digipaws.fragments.quests.FocusQuest;
 import nethical.digipaws.receivers.AdminReceiver;
 import android.content.Context;

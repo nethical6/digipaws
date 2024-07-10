@@ -2,11 +2,14 @@ package nethical.digipaws.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import nethical.digipaws.R;
@@ -15,6 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import nethical.digipaws.fragments.quests.FocusQuest;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
+import nethical.digipaws.utils.InstalledQuestsManager;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.ViewHolder> {
 	
@@ -22,8 +29,16 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 	private final String[] listItems;
 	private Context context;
 	private DialogFragment dialog;
+    private InstalledQuestsManager iqm;
+    
 	public SelectQuestAdapter(String[] listItems,DialogFragment dialog) {
-		this.listItems = listItems;
+		this.context = dialog.requireContext();
+        iqm = new InstalledQuestsManager(context);
+      //  iqm.append("nethical.digipaws.api");
+        List<String> apiUsers = iqm.getList();
+        List<String> tempList = new ArrayList<>(Arrays.asList(listItems));
+        tempList.addAll(apiUsers);
+        this.listItems = tempList.toArray(new String[0]);
 		this.dialog=dialog;
 	}
 	
@@ -37,8 +52,19 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 	
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-		holder.textView.setText(listItems[position]);
-		
+		PackageManager packageManager = context.getPackageManager();
+        if(position>1){
+           try {
+            ApplicationInfo appInfo = packageManager.getApplicationInfo(listItems[position], 0);
+            holder.textView.setText((String) packageManager.getApplicationLabel(appInfo));
+        } catch (PackageManager.NameNotFoundException e) {
+            holder.textView.setText(listItems[position]);
+            iqm.remove(listItems[position]);    
+        }
+        } else {
+            holder.textView.setText(listItems[position]);
+        }
+        
 		holder.textView.setOnClickListener(v -> {
 			switch(position){
                 case(0): //focus mode
@@ -49,6 +75,17 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
                     Intent intent3 = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT + "partners"));
                     context.startActivity(intent3);
                     break;
+                default:
+                    Intent intent4 = packageManager.getLaunchIntentForPackage(listItems[position]);
+                    if (intent4 != null) {
+                        intent4.addCategory(Intent.CATEGORY_LAUNCHER);
+                        intent4.putExtra(DigiConstants.KEY_START_QUEST,true);
+                         intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent4);
+                    } else {
+                        iqm.remove(listItems[position]);
+                        Toast.makeText(context, "App not found", Toast.LENGTH_SHORT).show();
+                    }    
 			}
 		});
 		
