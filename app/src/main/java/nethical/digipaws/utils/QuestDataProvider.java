@@ -130,7 +130,7 @@ public class QuestDataProvider extends ContentProvider {
         }
         if (uri.equals(CONTENT_URI_IS_QUEST)) {
             // Create a dummy cursor with the coin count
-            MatrixCursor cursor = new MatrixCursor(new String[] { "is_installed"},1);
+            MatrixCursor cursor = new MatrixCursor(new String[] { "is_added"},1);
             InstalledQuestsManager iqm = new InstalledQuestsManager(getContext());
             int isAdded = iqm.isAdded(getCallingPackage()) ? 1:0;
             cursor.addRow(new Object[] { isAdded});

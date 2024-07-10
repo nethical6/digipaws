@@ -19,11 +19,11 @@ public class InstalledQuestsManager {
     }
     public void append(String packageName) {
     	List<String> apiUsers = getList();
-        for(String item : apiUsers){
-            if(item == packageName){
+        
+            if(apiUsers.contains(packageName)){
                 return;
             }
-        }
+        
     apiUsers.add(packageName);
         save(apiUsers);
     }
@@ -47,11 +47,7 @@ public class InstalledQuestsManager {
     }
     public boolean isAdded(String packageName){
        List<String> apiUsers = getList();
-        for(String item : apiUsers){
-            if(item == packageName){
-                return true;
-            }
-        }
-        return false;
+        return apiUsers.contains(packageName);
+        
     }
 }
