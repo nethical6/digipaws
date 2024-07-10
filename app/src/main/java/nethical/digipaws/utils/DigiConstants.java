@@ -9,7 +9,12 @@ public class DigiConstants {
     
 	public static final String PREF_PACKAGES_FILE = "package_names";
 	public static final String PREF_PACKAGES_KEY = "packages";
+	public static final String PREF_PERMISSION_USERS_FILE = "permission_users";
+    public static final String PREF_PERMISSION_USERS_KEY = "permission_users";
 	
+    public static final String KEY_START_QUEST = "start_digipaws_quest";
+	
+    
     public static final String SETTINGS_PACKAGE_NAME = "com.android.settings";
     
     public static final String PREF_SURVIVAL_MODE_CONFIG_FILE = "survival_mode_config";

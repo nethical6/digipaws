@@ -26,6 +26,11 @@ public class QuestDataProvider extends ContentProvider {
             Uri.parse("content://" + DigiConstants.PROVIDER_AUTHORITY + "/focus");
     public final Uri CONTENT_URI_UPDATE_DATA_DELAY =
             Uri.parse("content://" + DigiConstants.PROVIDER_AUTHORITY + "/get_delay_details");
+    public final Uri CONTENT_URI_ADD_TO_QUESTS =
+            Uri.parse("content://" + DigiConstants.PROVIDER_AUTHORITY + "/add_to_quests");
+    public final Uri CONTENT_URI_IS_QUEST =
+            Uri.parse("content://" + DigiConstants.PROVIDER_AUTHORITY + "/is_quest");
+    
     
     public final int ERROR_CODE_UNKNOWN = 0;
     
@@ -72,6 +77,10 @@ public class QuestDataProvider extends ContentProvider {
                 return ERROR_CODE_COOLDOWN_ACTIVE;
             }
         }
+        if(uri.equals(CONTENT_URI_ADD_TO_QUESTS)){
+            InstalledQuestsManager iqm = new InstalledQuestsManager(getContext());
+            iqm.append(getCallingPackage());
+        }
         return ERROR_CODE_UNKNOWN;
         
     }
@@ -117,6 +126,14 @@ public class QuestDataProvider extends ContentProvider {
             long startTime = getCooldownStartTime(getCallingPackage());
             long remainingTime = DigiConstants.API_COIN_INC_COOLDOWN - (SystemClock.uptimeMillis() - startTime);
             cursor.addRow(new Object[] { isActive,remainingTime});
+            return cursor;
+        }
+        if (uri.equals(CONTENT_URI_IS_QUEST)) {
+            // Create a dummy cursor with the coin count
+            MatrixCursor cursor = new MatrixCursor(new String[] { "is_installed"},1);
+            InstalledQuestsManager iqm = new InstalledQuestsManager(getContext());
+            int isAdded = iqm.isAdded(getCallingPackage()) ? 1:0;
+            cursor.addRow(new Object[] { isAdded});
             return cursor;
         }
         return null;
