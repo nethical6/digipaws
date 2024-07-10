@@ -21,6 +21,7 @@ public class ViewBlocker {
     
     private float lastWarningTimestamp = 0f;
     private float lastOverlayTimestamp = 0f;
+    private float removeOverlayTimestamp = 0f;
     private float lastGlobalActionTimestamp = 0f;
     
     private boolean isOverlayVisible = false;
@@ -34,6 +35,7 @@ public class ViewBlocker {
     
 	public void performAction(ServiceData data){
         if(isOverlayVisible) { return;}
+        if(!DelayManager.isDelayOver(removeOverlayTimestamp,1000)){return;}
         this.data = data;
             
         init();
@@ -126,11 +128,14 @@ public class ViewBlocker {
                                 //proceed button
                                 overlayManager.removeOverlay();
                                 isOverlayVisible = false;
+                                removeOverlayTimestamp = SystemClock.uptimeMillis();
+                    
                                 },
                             ()->{
                                 // Close button clicked
                                 pressBack();
                                 overlayManager.removeOverlay();
+                                removeOverlayTimestamp = SystemClock.uptimeMillis();
                                 isOverlayVisible = false;
                             }
                             );
@@ -143,12 +148,14 @@ public class ViewBlocker {
                         // Proceed Button clickdd
                         CoinManager.decrementCoin(data.getService());
                         overlayManager.removeOverlay();
+                        removeOverlayTimestamp = SystemClock.uptimeMillis();
                         isOverlayVisible = false;
                         lastWarningTimestamp = SystemClock.uptimeMillis();
                     },
                     ()->{
                         // Close button clicked
                         pressBack();
+                        removeOverlayTimestamp = SystemClock.uptimeMillis();
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
                     }
