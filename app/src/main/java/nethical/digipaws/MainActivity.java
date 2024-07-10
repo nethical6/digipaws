@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         
        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
-        if(!sharedPreferences.getBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,false)){
+       if(!sharedPreferences.getBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,false)){
            Intent intent = new Intent(this,Intro.class);
 			startActivity(intent);
             finish();
