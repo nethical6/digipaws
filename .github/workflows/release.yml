@@ -18,6 +18,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Build Full Release Bundle
+        run: ./gradlew bundleFullRelease
+
       - name: Give permission to executable
         run: chmod +x gradlew
 
@@ -26,6 +29,12 @@ jobs:
 
       - name: Build Lite Release APK
         run: ./gradlew assembleLiteRelease
+    
+      - name: Upload Full Release Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-release-bundle
+          path: app/build/outputs/bundle/fullRelease/app-full-release.aab
 
       - name: Upload Full Release APK
         uses: actions/upload-artifact@v4
