@@ -30,20 +30,20 @@ jobs:
       - name: Build Lite Release APK
         run: ./gradlew assembleLiteRelease
     
-      - name: Upload Full Release Bundle
+      - name: Upload Unsigned Full Release Bundle
         uses: actions/upload-artifact@v4
         with:
           name: full-release-bundle
           path: app/build/outputs/bundle/fullRelease/app-full-release.aab
 
-      - name: Upload Full Release APK
+      - name: Upload Unsigned Full Release APK
         uses: actions/upload-artifact@v4
         with:
           name: full-release-apk
-          path: app/build/outputs/apk/full/release/app-full-release.apk
+          path: app/build/outputs/apk/full/release/app-full-release-unsigned.apk
 
-      - name: Upload Lite Release APK
+      - name: Upload Unsigned Lite Release APK 
         uses: actions/upload-artifact@v4
         with:
           name: lite-release-apk
-          path: app/build/outputs/apk/lite/release/app-lite-release.apk
+          path: app/build/outputs/apk/lite/release/app-lite-release-unsigned.apk
