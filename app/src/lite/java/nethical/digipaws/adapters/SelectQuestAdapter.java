@@ -68,7 +68,7 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 		holder.textView.setOnClickListener(v -> {
 			switch(position){
                 case(0): //focus mode
-				    DigiUtils.replaceScreen(((AppCompatActivity)context).getSupportFragmentManager(),new FocusQuest());
+				    DigiUtils.replaceScreen(dialog.getParentFragmentManager(),new FocusQuest());
 				    dialog.dismiss();
 				    break;
                 case(1):
