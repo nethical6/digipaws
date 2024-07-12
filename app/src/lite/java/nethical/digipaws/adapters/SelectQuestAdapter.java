@@ -68,11 +68,9 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 		holder.textView.setOnClickListener(v -> {
 			switch(position){
                 case(0): //focus mode
-                    try {
-                       DigiUtils.replaceScreen(dialog.getParentFragmentManager(),new FocusQuest());
-                    } catch (Exception e){
-                        Toast.makeText(context,e.getMessage().toString(),Toast.LENGTH_SHORT).show();
-                    }
+                    
+                   DigiUtils.replaceScreen(dialog.getParentFragmentManager(),new FocusQuest());
+                    
 				     dialog.dismiss();
 				    break;
                     
