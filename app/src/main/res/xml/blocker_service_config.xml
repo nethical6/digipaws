@@ -4,5 +4,5 @@ android:accessibilityEventTypes="typeWindowStateChanged"
 android:accessibilityFeedbackType="feedbackGeneric"
 android:accessibilityFlags="flagDefault"
 android:canRetrieveWindowContent="true"
-android:description="@string/app_name"
+android:description="@string/acc_desc"
 android:packageNames="com.google.android.youtube,com.instagram.android,com.reddit.frontpage" />

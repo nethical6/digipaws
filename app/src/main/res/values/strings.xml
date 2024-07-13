@@ -64,6 +64,8 @@
     <string name="choose_delay_title">How often?</string>
     <string name="choose_delay_desc">This is the cooldown period between each warnings.(ONLY FOR EASY MODE)</string>
 
+    <string name="acc_desc">Please turn off and re-enable if service malfunctions. To apply any configuration changes, turn off and on.</string>
+    
     <string name="choose_blocked_apps_title">App Blocker Configuration</string>
     <string name="choose_blocked_apps_desc">Select the apps you wish to block or receive usage warnings for.</string>
 
