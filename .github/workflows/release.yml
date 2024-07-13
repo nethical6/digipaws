@@ -30,15 +30,6 @@ jobs:
       - name: Build Full Release Bundle
         run: ./gradlew bundleFullRelease
 
-      - name: Sign Bundle
-        uses: r0adkll/sign-android-release@v1
-        id: sign_bundle
-        with:
-          releaseDirectory: app/build/outputs/bundle/fullRelease
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          
       - name: Build Full Release APK
         run: ./gradlew assembleFullRelease
 
