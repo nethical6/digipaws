@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 		
        // SurvivalModeManager.enableSurvivalMode(this);
-       h.setText("hshs");
+      // h.setText("hshs");
         
        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
