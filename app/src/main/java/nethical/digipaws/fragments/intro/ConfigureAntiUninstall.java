@@ -29,6 +29,7 @@ public class ConfigureAntiUninstall extends Fragment  {
     private ComponentName deviceAdminReceiver;
     
     private CheckBox enableAntiUninstallCb;
+    private CheckBox enableAntiRebootCb;
     
     public ConfigureAntiUninstall(SharedPreferences sp){
         sharedPreferences = sp;
@@ -40,6 +41,7 @@ public class ConfigureAntiUninstall extends Fragment  {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.choose_preferences_uninstall, container, false);
         enableAntiUninstallCb = view.findViewById(R.id.anti_uninstall_cb);
+        enableAntiRebootCb = view.findViewById(R.id.anti_reboot_cb);
          return view;
     }
 
@@ -89,6 +91,10 @@ public class ConfigureAntiUninstall extends Fragment  {
                     devicePolicyManager.removeActiveAdmin(deviceAdminReceiver);
                 }
             }
+        });
+        
+        enableAntiRebootCb.setOnCheckedChangeListener((v,isSwitchOn)->{
+            sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_REBOOT,isSwitchOn).apply();
         });
         
     }

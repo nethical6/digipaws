@@ -108,6 +108,7 @@ public class BlockerService extends AccessibilityService {
         serviceData.setBlockedApps(new ArrayList<>(
                         sharedPreferences.getStringSet(
                                 DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, new HashSet<>())));
+        serviceData.setIsRebootBlocked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_ANTI_REBOOT,false));
         isAntiUninstallOn = sharedPreferences.getBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,false);
         viewBlocker = new ViewBlocker();
         appBlocker = new AppBlocker();
