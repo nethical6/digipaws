@@ -40,10 +40,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: full-debug-apk
-          path: app/build/outputs/apk/full/debug/app-full-debug.apk
+          path: app/build/outputs/apk/full/debug/
 
       - name: Upload Lite Debug APK
         uses: actions/upload-artifact@v2
         with:
           name: lite-debug-apk
-          path: app/build/outputs/apk/lite/debug/app-lite-debug.apk
+          path: app/build/outputs/apk/lite/debug/
