@@ -103,6 +103,9 @@ public class ServiceData {
     }
 
     public OverlayManager getOverlayManager() {
+        if(this.overlayManager == null){
+            this.overlayManager = new OverlayManager(this);
+        }
         return this.overlayManager;
     }
 
