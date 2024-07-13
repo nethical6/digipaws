@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.location.Location;
+import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
@@ -432,7 +433,12 @@ public class MarathonQuest extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        context.registerReceiver(locUpdateReceiver, new IntentFilter("LOCATION_UPDATES"));
-        context.registerReceiver(questComplete, new IntentFilter("MARATHON_QUEST_COMPLETE"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            context.registerReceiver(locUpdateReceiver, new IntentFilter("LOCATION_UPDATES"),Context.RECEIVER_NOT_EXPORTED);
+            context.registerReceiver(questComplete, new IntentFilter("MARATHON_QUEST_COMPLETE"),Context.RECEIVER_NOT_EXPORTED);
+        }else {
+            context.registerReceiver(locUpdateReceiver, new IntentFilter("LOCATION_UPDATES"));
+            context.registerReceiver(questComplete, new IntentFilter("MARATHON_QUEST_COMPLETE"));
+        }
     }
 }
