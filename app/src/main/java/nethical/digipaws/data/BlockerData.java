@@ -23,6 +23,12 @@ public class BlockerData {
         "com.zhiliaoapp.musically" + DigiConstants.VIEWID_SEPERATOR + "c5g" //tiktok global
     };
     
+    public static final String[] rebootViewIds = {
+        "oppo" + DigiConstants.VIEWID_SEPERATOR + "oppo_power_shutdown_tv_id",
+        "androidhwext"+ DigiConstants.VIEWID_SEPERATOR +"hw_new_global_actions_view"
+    };
+    
+    
     public static final String[] nonBlockedPackages = {
     "com.google.android.dialer", // Google Dialer
     "nethical.digipaws", // DigiPaws

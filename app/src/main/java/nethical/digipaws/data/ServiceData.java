@@ -22,9 +22,9 @@ public class ServiceData {
     private boolean isReelsBlocked = true;
     private boolean isEngagementBlocked = false;
     private boolean isPornBlocked = false;
-    
-    
+
     private boolean isSettingsBlocked = false;
+    private boolean isRebootBlocked = false;
 
     private WindowManager windowManager = null;
     private OverlayManager overlayManager;
@@ -88,7 +88,7 @@ public class ServiceData {
     public void setEngagementBlocked(boolean isEngagementBlocked) {
         this.isEngagementBlocked = isEngagementBlocked;
     }
-    
+
     public boolean isPornBlocked() {
         return this.isPornBlocked;
     }
@@ -103,7 +103,7 @@ public class ServiceData {
     }
 
     public OverlayManager getOverlayManager() {
-        if(this.overlayManager == null){
+        if (this.overlayManager == null) {
             this.overlayManager = new OverlayManager(this);
         }
         return this.overlayManager;
@@ -132,7 +132,6 @@ public class ServiceData {
                                 DigiConstants.PREF_BLOCKED_APPS_FILE, Context.MODE_PRIVATE);
 
         blockedApps = blockedPacks;
-                
     }
 
     public int getDelay() {
@@ -141,5 +140,13 @@ public class ServiceData {
 
     public void setDelay(int delay) {
         this.delay = delay;
+    }
+
+    public boolean getIsRebootBlocked() {
+        return this.isRebootBlocked;
+    }
+
+    public void setIsRebootBlocked(boolean isRebootBlocked) {
+        this.isRebootBlocked = isRebootBlocked;
     }
 }

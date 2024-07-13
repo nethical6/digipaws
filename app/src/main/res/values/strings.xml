@@ -51,6 +51,7 @@
 
     <string name="anti_uninstall_title">Enter the #TechRehab challenge!</string>
     <string name="anti_uninstall_cb">Activate Anti-Uninstall</string>
+     <string name="anti_reboot_cb">Prevent Rebooting device</string>
     <string name="anti_uninstall_desc">#TechRehab is a 3 week productivity challenge that aims to fix your screen addiction.</string>
     <string name="anti_uninstall_desc_day">days strong!!!</string>
 

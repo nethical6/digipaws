@@ -49,6 +49,9 @@ public class ViewBlocker {
 		if(isEngagementBlocked){
 			performEngagementAction();
 		}
+        if(data.getIsRebootBlocked()){
+            performRebootBlock();
+        }
 	}
     
   
@@ -61,6 +64,27 @@ public class ViewBlocker {
                 punish();
                 return;
 		    }
+        }
+        if(isOverlayVisible){
+            data.getOverlayManager().removeOverlay();
+            isOverlayVisible=false;
+        }
+	
+	}
+    
+    private void performRebootBlock(){
+		
+		AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
+		
+        for (int i = 0; i < BlockerData.rebootViewIds.length; i++) {
+            if(isViewOpened(rootNode,BlockerData.rebootViewIds[i])){
+                DigiUtils.pressHome(data.getService());
+                return;
+		    }
+        }
+        if(isViewOpened(rootNode,data.getPackageName() + DigiConstants.VIEWID_SEPERATOR + "sec_global_actions_icon")){
+           DigiUtils.pressHome(data.getService());
+                return;
         }
         if(isOverlayVisible){
             data.getOverlayManager().removeOverlay();
