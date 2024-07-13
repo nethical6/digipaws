@@ -18,11 +18,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build Full Release Bundle
-        run: ./gradlew bundleFullRelease
-
       - name: Give permission to executable
         run: chmod +x gradlew
+
+      - name: Build Full Release Bundle
+        run: ./gradlew bundleFullRelease
 
       - name: Build Full Release APK
         run: ./gradlew assembleFullRelease
@@ -30,18 +30,28 @@ jobs:
       - name: Build Lite Release APK
         run: ./gradlew assembleLiteRelease
         
-      - name: Sign Apks
-      - uses: r0adkll/sign-android-release@v1
-        id: sign_app
+      - name: Sign full variant Apks
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app_full
         with:
-          releaseDirectory: app/build/outputs/apk/release
+          releaseDirectory: app/build/outputs/apk/full/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      
+        - name: Sign lite variant Apk
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app_lite
+        with:
+          releaseDirectory: app/build/outputs/apk/lite/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
       
       - name: Sign Bundle
-      - uses: r0adkll/sign-android-release@v1
+        uses: r0adkll/sign-android-release@v1
         id: sign_bundle
         with:
           releaseDirectory: app/build/outputs/bundle/fullRelease
@@ -50,7 +60,6 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
       
-    
       - name: Upload Full Release Bundle
         uses: actions/upload-artifact@v4
         with:
@@ -60,35 +69,35 @@ jobs:
       - name: Upload Full Release APK (arm64-v8a)
         uses: actions/upload-artifact@v3
         with:
-          name: full-debug-apk-arm64-v8a
-          path: app/build/outputs/apk/full/release/app-full-arm64-v8a-release-unsigned-signed.apk
+          name: full-release-apk-arm64-v8a
+          path: app/build/outputs/apk/full/release/app-full-arm64-v8a-release-signed.apk
 
       - name: Upload Full Release APK (armeabi-v7a)
         uses: actions/upload-artifact@v3
         with:
-          name: full-debug-apk-armeabi-v7a
-          path: app/build/outputs/apk/full/release/app-full-armeabi-v7a-release-unsigned-signed.apk
+          name: full-release-apk-armeabi-v7a
+          path: app/build/outputs/apk/full/release/app-full-armeabi-v7a-release-signed.apk
 
       - name: Upload Full Release APK (x86)
         uses: actions/upload-artifact@v3
         with:
-          name: full-debug-apk-x86
-          path: app/build/outputs/apk/full/release/app-full-x86-release-unsigned-signed.apk
+          name: full-release-apk-x86
+          path: app/build/outputs/apk/full/release/app-full-x86-release-signed.apk
 
       - name: Upload Full Release APK (x86_64)
         uses: actions/upload-artifact@v3
         with:
-          name: full-debug-apk-x86_64
-          path: app/build/outputs/apk/full/release/app-full-x86_64-release-unsigned-signed.apk
+          name: full-release-apk-x86_64
+          path: app/build/outputs/apk/full/release/app-full-x86_64-release-signed.apk
 
       - name: Upload Full Release APK (universal)
         uses: actions/upload-artifact@v3
         with:
-          name: full-debug-apk-universal
-          path: app/build/outputs/apk/full/release/app-full-universal-release-unsigned-signed.apk
+          name: full-release-apk-universal
+          path: app/build/outputs/apk/full/release/app-full-universal-release-signed.apk
 
       - name: Upload Lite Release APK
         uses: actions/upload-artifact@v3
         with:
-          name: lite-debug-apk
-          path: app/build/outputs/apk/lite/release/app-lite-universal-release-unsigned-signed.apk
+          name: lite-release-apk
+          path: app/build/outputs/apk/lite/release/app-lite-universal-release-signed.apk
