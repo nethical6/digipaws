@@ -30,15 +30,9 @@ jobs:
       - name: Build Lite Release APK
         run: ./gradlew assembleLiteRelease
         
-<<<<<<< HEAD
       - name: Sign full variant Apks
         uses: r0adkll/sign-android-release@v1
         id: sign_app_full
-=======
-      - name: Sign Apks
-        uses: r0adkll/sign-android-release@v1
-        id: sign_app
->>>>>>> 47d5385536e544996a984680ed8cbc5e3b9fe408
         with:
           releaseDirectory: app/build/outputs/apk/full/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
@@ -46,7 +40,7 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
       
-        - name: Sign lite variant Apk
+      - name: Sign lite variant Apk
         uses: r0adkll/sign-android-release@v1
         id: sign_app_lite
         with:
@@ -106,4 +100,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: lite-release-apk
-          path: app/build/outputs/apk/lite/release/app-lite-universal-release-signed.apk
+          path: app/build/outputs/apk/lite/release/app-lite-release-signed.apk
