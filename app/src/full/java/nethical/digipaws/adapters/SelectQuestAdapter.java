@@ -71,7 +71,7 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 		holder.textView.setOnClickListener(v -> {
 			switch(position){
 				case(0)://Touch Grass Quest
-				    DigiUtils.replaceScreen(((AppCompatActivity)context).getSupportFragmentManager(),new MarathonQuest());
+				    DigiUtils.replaceScreen(dialog.getParentFragmentManager(),new MarathonQuest());
 				    dialog.dismiss();
 				    break;
 				case(1): // squats
@@ -85,7 +85,7 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
                     context.startActivity(intent2);    
 				    break;
                 case(3): //focus mode
-				    DigiUtils.replaceScreen(((AppCompatActivity)context).getSupportFragmentManager(),new FocusQuest());
+				    DigiUtils.replaceScreen(dialog.getParentFragmentManager(),new FocusQuest());
 				    dialog.dismiss();
 				    break;
                 case(4):

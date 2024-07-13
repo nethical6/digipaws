@@ -7,6 +7,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.view.WindowManager;
+import android.widget.TextView;
 import com.google.android.material.internal.EdgeToEdgeUtils;
 import java.util.Calendar;
 import android.content.Context;
@@ -33,7 +34,6 @@ import nethical.digipaws.utils.DigiConstants;
 
 public class MainActivity extends AppCompatActivity {
 
-    
     private Button cointCount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 		
        // SurvivalModeManager.enableSurvivalMode(this);
-        
+      // h.setText("hshs");
         
        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         

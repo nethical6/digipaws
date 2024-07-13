@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +59,13 @@ public class FocusQuest extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        context.registerReceiver(timerUpdateReceiver, new IntentFilter("TIMER_UPDATED"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            context.registerReceiver(timerUpdateReceiver, new IntentFilter("TIMER_UPDATED"),Context.RECEIVER_NOT_EXPORTED);
+        }else {
+            context.registerReceiver(timerUpdateReceiver, new IntentFilter("TIMER_UPDATED"));
+        }
+        
+        
     }
     
     
