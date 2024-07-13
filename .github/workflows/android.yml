@@ -36,14 +36,38 @@ jobs:
       - name: Build Lite Flavor with Gradle
         run: ./gradlew assembleLiteDebug
 
-      - name: Upload Full Debug APK
-        uses: actions/upload-artifact@v2
+      - name: Upload Full Debug APK (arm64-v8a)
+        uses: actions/upload-artifact@v3
         with:
-          name: full-debug-apk
-          path: app/build/outputs/apk/full/debug/
+          name: full-debug-apk-arm64-v8a
+          path: app/build/outputs/apk/full/debug/app-full-arm64-v8a-debug.apk
+
+      - name: Upload Full Debug APK (armeabi-v7a)
+        uses: actions/upload-artifact@v3
+        with:
+          name: full-debug-apk-armeabi-v7a
+          path: app/build/outputs/apk/full/debug/app-full-armeabi-v7a-debug.apk
+
+      - name: Upload Full Debug APK (x86)
+        uses: actions/upload-artifact@v3
+        with:
+          name: full-debug-apk-x86
+          path: app/build/outputs/apk/full/debug/app-full-x86-debug.apk
+
+      - name: Upload Full Debug APK (x86_64)
+        uses: actions/upload-artifact@v3
+        with:
+          name: full-debug-apk-x86_64
+          path: app/build/outputs/apk/full/debug/app-full-x86_64-debug.apk
+
+      - name: Upload Full Debug APK (universal)
+        uses: actions/upload-artifact@v3
+        with:
+          name: full-debug-apk-universal
+          path: app/build/outputs/apk/full/debug/app-full-universal-debug.apk
 
       - name: Upload Lite Debug APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: lite-debug-apk
-          path: app/build/outputs/apk/lite/debug/
+          path: app/build/outputs/apk/lite/debug/app-lite-universal-debug.apk
