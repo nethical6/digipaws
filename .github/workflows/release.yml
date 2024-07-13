@@ -30,9 +30,15 @@ jobs:
       - name: Build Lite Release APK
         run: ./gradlew assembleLiteRelease
         
+<<<<<<< HEAD
       - name: Sign full variant Apks
         uses: r0adkll/sign-android-release@v1
         id: sign_app_full
+=======
+      - name: Sign Apks
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app
+>>>>>>> 47d5385536e544996a984680ed8cbc5e3b9fe408
         with:
           releaseDirectory: app/build/outputs/apk/full/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
