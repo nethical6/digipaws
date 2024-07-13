@@ -270,8 +270,13 @@ public class MarathonQuest extends Fragment {
         } else {
             checkLocationPermission();
         }
-        requireContext().registerReceiver(locUpdateReceiver, new IntentFilter("LOCATION_UPDATES"));
-        requireContext().registerReceiver(questComplete, new IntentFilter("MARATHON_QUEST_COMPLETE"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requireContext().registerReceiver(locUpdateReceiver, new IntentFilter("LOCATION_UPDATES"),Context.RECEIVER_NOT_EXPORTED);
+            requireContext().registerReceiver(questComplete, new IntentFilter("MARATHON_QUEST_COMPLETE"),Context.RECEIVER_NOT_EXPORTED);
+        }else {
+            requireContext().registerReceiver(locUpdateReceiver, new IntentFilter("LOCATION_UPDATES"));
+            requireContext().registerReceiver(questComplete, new IntentFilter("MARATHON_QUEST_COMPLETE"));
+        }
     }
 
     @Override
