@@ -29,17 +29,41 @@ public class BlockerService extends AccessibilityService {
     
 	@Override
 	public void onAccessibilityEvent(AccessibilityEvent event) {
+        
+        if(serviceData ==null){
+            SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
+
+            serviceData = new ServiceData(this,sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY));
+            
+            serviceData.setDelay(sharedPreferences.getInt(DigiConstants.PREF_DELAY,120000));
+            serviceData.setReelsBlocked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_SHORTS_BLOCKED,false));
+            serviceData.setPornBlocked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_PORN_BLOCKED,false));
+            serviceData.setEngagementBlocked(sharedPreferences.getBoolean(DigiConstants.PREF_IS_ENGMMT_BLOCKED,false));
+            serviceData.setBlockedApps(new ArrayList<>(
+                            sharedPreferences.getStringSet(
+                                    DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, new HashSet<>())));
+            isAntiUninstallOn = sharedPreferences.getBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,false);
+            viewBlocker = new ViewBlocker();
+            appBlocker = new AppBlocker();
+            keywordBlocker = new KeywordBlocker();
+		    settingsBlocker = new SettingsBlocker();
+        }
+        
+        
         serviceData.setEvent(event);
         
         
         if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED || event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED){
-            appBlocker.performAction(serviceData);
+            
             viewBlocker.performAction(serviceData);
         }
         
         
         if(keywordBlocker.isEdFocused()&&event.getEventType()==AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED){
             keywordBlocker.performAction(serviceData);
+        }
+        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED){
+            appBlocker.performAction(serviceData);
         }
         
         if(event.getEventType()==AccessibilityEvent.TYPE_VIEW_FOCUSED){
@@ -65,7 +89,6 @@ public class BlockerService extends AccessibilityService {
 		info.eventTypes =
          AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
         | AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED
-        | AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED
         | AccessibilityEvent.TYPE_VIEW_FOCUSED;
         
 		info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
