@@ -12,12 +12,18 @@ import com.google.android.material.color.DynamicColors;
 public class DigiApplication extends Application{
     
     private Thread.UncaughtExceptionHandler uncaughtExceptionHandler;
-    
+    private static Context mApplicationContext;
+    public static Context getContext() {
+        return mApplicationContext;
+    }
     @Override
     public void onCreate() {
-        super.onCreate();
+        mApplicationContext = getApplicationContext();
+      
         DynamicColors.applyToActivitiesIfAvailable(this);
             // Set the default uncaught exception handler
+              this.uncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
+
         Thread.setDefaultUncaughtExceptionHandler(
             new Thread.UncaughtExceptionHandler() {
                 @Override
@@ -37,14 +43,17 @@ public class DigiApplication extends Application{
                     AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                     am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 1000, pendingIntent);
 
+                    SketchLogger.broadcastLog(Log.getStackTraceString(throwable));
                     Process.killProcess(Process.myPid());
                     System.exit(1);
 
                     uncaughtExceptionHandler.uncaughtException(thread, throwable);
                 }
             });
+        SketchLogger.startLogging();
+        super.onCreate();
+        }
+    
     }
     
-    
-    
-}
+
