@@ -18,42 +18,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+        
+      - name: Install Android Build Tools
+        run: sdkmanager "build-tools;29.0.3"
+
       - name: Give permission to executable
         run: chmod +x gradlew
 
       - name: Build Full Release Bundle
         run: ./gradlew bundleFullRelease
-
-      - name: Build Full Release APK
-        run: ./gradlew assembleFullRelease
-
-      - name: Build Lite Release APK
-        run: ./gradlew assembleLiteRelease
-        
-      - name: Install Android Build Tools
-        run: sdkmanager "build-tools;29.0.3"
-        
-        
-      - name: Sign full variant Apks
-        uses: r0adkll/sign-android-release@v1
-        id: sign_app_full
-        with:
-          releaseDirectory: app/build/outputs/apk/full/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-      
-      - name: Sign lite variant Apk
-        uses: r0adkll/sign-android-release@v1
-        id: sign_app_lite
-        with:
-          releaseDirectory: app/build/outputs/apk/lite/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-      
 
       - name: Sign Bundle
         uses: r0adkll/sign-android-release@v1
@@ -65,6 +40,33 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
       
+      - name: Build Full Release APK
+        run: ./gradlew assembleFullRelease
+
+      - name: Sign full variant Apks
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app_full
+        with:
+          releaseDirectory: app/build/outputs/apk/full/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      
+      - name: Build Lite Release APK
+        run: ./gradlew assembleLiteRelease
+        
+      - name: Sign lite variant Apk
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app_lite
+        with:
+          releaseDirectory: app/build/outputs/apk/lite/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      
+
       - name: Upload Full Release Bundle
         uses: actions/upload-artifact@v4
         with:
