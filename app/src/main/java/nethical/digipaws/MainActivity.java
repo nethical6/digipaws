@@ -34,7 +34,6 @@ import nethical.digipaws.utils.DigiConstants;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView h;
     private Button cointCount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
