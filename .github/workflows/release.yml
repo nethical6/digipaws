@@ -18,32 +18,92 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build Full Release Bundle
-        run: ./gradlew bundleFullRelease
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+        
+      - name: Install Android Build Tools
+        run: sdkmanager "build-tools;29.0.3"
 
       - name: Give permission to executable
         run: chmod +x gradlew
 
+      - name: Build Full Release Bundle
+        run: ./gradlew bundleFullRelease
+
+      - name: Sign Bundle
+        uses: r0adkll/sign-android-release@v1
+        id: sign_bundle
+        with:
+          releaseDirectory: app/build/outputs/bundle/fullRelease
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          
       - name: Build Full Release APK
         run: ./gradlew assembleFullRelease
 
+      - name: Sign full variant Apks
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app_full
+        with:
+          releaseDirectory: app/build/outputs/apk/full/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      
       - name: Build Lite Release APK
         run: ./gradlew assembleLiteRelease
-    
-      - name: Upload Unsigned Full Release Bundle
+        
+      - name: Sign lite variant Apk
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app_lite
+        with:
+          releaseDirectory: app/build/outputs/apk/lite/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      
+
+      - name: Upload Full Release Bundle
         uses: actions/upload-artifact@v4
         with:
           name: full-release-bundle
           path: app/build/outputs/bundle/fullRelease/app-full-release.aab
 
-      - name: Upload Unsigned Full Release APK
-        uses: actions/upload-artifact@v4
+      - name: Upload Full Release APK (arm64-v8a)
+        uses: actions/upload-artifact@v3
         with:
-          name: full-release-apk
-          path: app/build/outputs/apk/full/release/app-full-release-unsigned.apk
+          name: full-release-apk-arm64-v8a
+          path: app/build/outputs/apk/full/release/app-full-arm64-v8a-release-unsigned-signed.apk
 
-      - name: Upload Unsigned Lite Release APK 
-        uses: actions/upload-artifact@v4
+      - name: Upload Full Release APK (armeabi-v7a)
+        uses: actions/upload-artifact@v3
+        with:
+          name: full-release-apk-armeabi-v7a
+          path: app/build/outputs/apk/full/release/app-full-armeabi-v7a-release-unsigned-signed.apk
+
+      - name: Upload Full Release APK (x86)
+        uses: actions/upload-artifact@v3
+        with:
+          name: full-release-apk-x86
+          path: app/build/outputs/apk/full/release/app-full-x86-release-unsigned-signed.apk
+
+      - name: Upload Full Release APK (x86_64)
+        uses: actions/upload-artifact@v3
+        with:
+          name: full-release-apk-x86_64
+          path: app/build/outputs/apk/full/release/app-full-x86_64-release-unsigned-signed.apk
+
+      - name: Upload Full Release APK (universal)
+        uses: actions/upload-artifact@v3
+        with:
+          name: full-release-apk-universal
+          path: app/build/outputs/apk/full/release/app-full-universal-release-unsigned-signed.apk
+
+      - name: Upload Lite Release APK
+        uses: actions/upload-artifact@v3
         with:
           name: lite-release-apk
-          path: app/build/outputs/apk/lite/release/app-lite-release-unsigned.apk
+          path: app/build/outputs/apk/lite/release/app-lite-universal-release-unsigned-signed.apk
