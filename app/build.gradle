@@ -12,8 +12,8 @@ android {
         applicationId "nethical.digipaws"
         minSdk 23
         targetSdk 34
-        versionCode 3
-        versionName "Alpha-0.4"
+        versionCode 4
+        versionName "Alpha-0.5"
     }
 
     productFlavors {
