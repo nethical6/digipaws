@@ -50,6 +50,10 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
       
+      - name: Install Android Build Tools
+        run: sdkmanager "build-tools;29.0.3"
+        
+      
       - name: Sign Bundle
         uses: r0adkll/sign-android-release@v1
         id: sign_bundle
