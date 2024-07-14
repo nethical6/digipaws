@@ -401,9 +401,8 @@ public class MarathonQuest extends Fragment {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                 checkBgLocation();
-            } else {
-                checkNotificationPermision();
             }
+                checkNotificationPermision();
                 // Permission granted for ACCESS_FINE_LOCATION
                 //   makeRadar();
             }else {
