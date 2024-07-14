@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
@@ -162,10 +163,19 @@ public class MarathonQuest extends Fragment {
             startQuest.setOnClickListener(
                     v -> {
                         if (!isRunning) {
-                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                                 checkBgLocation();
-                                return;
+                             if (Build.VERSION.SDK_INT >= 34) {
+                                 if(checkBgLocation()){
+                                     return;
+                                 }
                              }
+                            if(checkNotificationPermision()){
+                                return;
+                            }
+                            if(liveLocationTracker == null|| !isRadarDrawn){
+                                Toast.makeText(requireContext(),"Some permissions missing, please re-open this quest",Toast.LENGTH_SHORT).show();
+                                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+                                
+                            }
                             
                             SharedPreferences.Editor editor = questPref.edit();
                             editor.putString(
@@ -322,25 +332,25 @@ public class MarathonQuest extends Fragment {
         }
     }
 
-    private void checkNotificationPermision() {
+    private boolean checkNotificationPermision() {
         if (ContextCompat.checkSelfPermission(
                         requireContext(), Manifest.permission.POST_NOTIFICATIONS)
                 != PackageManager.PERMISSION_GRANTED) {
             loadingDialog.dismiss();
             makeNotificationPermissionDialog().create().show();
-        }else{
-             
-            
+            return true;
         }
+        return false;
     }
 
-    private void checkBgLocation() {
+    private boolean checkBgLocation() {
         if (ContextCompat.checkSelfPermission(
                         requireContext(), Manifest.permission.ACCESS_BACKGROUND_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            loadingDialog.dismiss();
             makeBgLocationPermissionDialog().create().show();
+            return true;
         }
+        return false;
     }
 
     
@@ -402,11 +412,7 @@ public class MarathonQuest extends Fragment {
             int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_FINE_LOCATION_PERMISSION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                checkNotificationPermision();
-                // Permission granted for ACCESS_FINE_LOCATION
-                //   makeRadar();
-            }
+            checkNotificationPermision();
         } else if (requestCode == REQUEST_POST_NOTIFICATIONS_PERMISSION) {
             loadingDialog.show(
                     getActivity().getSupportFragmentManager(),
