@@ -66,7 +66,7 @@ public class MarathonQuest extends Fragment {
     
     private static final int REQUEST_FINE_LOCATION_PERMISSION = 69;
     private static final int REQUEST_POST_NOTIFICATIONS_PERMISSION = 70;
-    
+    private static final int REQUEST_BG_LOC_PERMISSION = 71;
     
     @Override
     public View onCreateView(
@@ -324,9 +324,21 @@ public class MarathonQuest extends Fragment {
                 != PackageManager.PERMISSION_GRANTED) {
             loadingDialog.dismiss();
             makeNotificationPermissionDialog().create().show();
+        }else{
+            checkBgLocation();
         }
     }
 
+    private void checkBgLocation() {
+        if (ContextCompat.checkSelfPermission(
+                        requireContext(), Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            loadingDialog.dismiss();
+            makeBgLocationPermissionDialog().create().show();
+        }
+    }
+
+    
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(
                         requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
@@ -367,6 +379,24 @@ public class MarathonQuest extends Fragment {
                                         ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
                                             REQUEST_FINE_LOCATION_PERMISSION);
                                     }
+                                    
+                                    
+                                });
+        return builder;
+    }
+    
+    private MaterialAlertDialogBuilder makeBgLocationPermissionDialog() {
+        MaterialAlertDialogBuilder builder =
+                new MaterialAlertDialogBuilder(requireContext())
+                        .setTitle(R.string.missing_permission)
+                        .setMessage("Android 14+ requires background location access to run this app.")
+                        .setNeutralButton(
+                                "Provide",
+                                (dialog, which) -> {
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                                        ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.ACCESS_BACKGROUND_LOCATION},
+                                            REQUEST_BG_LOC_PERMISSION);
+                                    } 
                                     
                                     
                                 });

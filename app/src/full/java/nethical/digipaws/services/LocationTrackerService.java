@@ -88,7 +88,7 @@ public class LocationTrackerService extends Service implements LocationManager.L
                         .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
                         .setPriority(NotificationCompat.PRIORITY_HIGH);
 
-        startForeground(1, builder.build(),ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+        startForeground(70, builder.build(),ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
   }
   
   private void updateNofification(String title,String content,int priority)  {
