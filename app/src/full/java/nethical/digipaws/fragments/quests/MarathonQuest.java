@@ -162,7 +162,11 @@ public class MarathonQuest extends Fragment {
             startQuest.setOnClickListener(
                     v -> {
                         if (!isRunning) {
-
+                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                                 checkBgLocation();
+                                return;
+                             }
+                            
                             SharedPreferences.Editor editor = questPref.edit();
                             editor.putString(
                                     DigiConstants.PREF_QUEST_ID_KEY,
@@ -399,23 +403,16 @@ public class MarathonQuest extends Fragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_FINE_LOCATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                checkBgLocation();
-            }
                 checkNotificationPermision();
                 // Permission granted for ACCESS_FINE_LOCATION
                 //   makeRadar();
-            }else {
-                checkLocationPermission();
             }
         } else if (requestCode == REQUEST_POST_NOTIFICATIONS_PERMISSION) {
             loadingDialog.show(
                     getActivity().getSupportFragmentManager(),
                     "loading_dialog"); // Use a unique tag for the dialog
             makeRadar();
-        } else if (requestCode == REQUEST_BG_LOC_PERMISSION){
-            checkNotificationPermision();
-        }
+        } 
     }
 
     private BroadcastReceiver locUpdateReceiver =
