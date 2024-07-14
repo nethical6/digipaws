@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
@@ -194,7 +195,12 @@ public class MarathonQuest extends Fragment {
                             Intent serviceIntent =
                                     new Intent(requireContext(), LocationTrackerService.class);
                             serviceIntent.setAction("STOP");
-                            requireContext().startForegroundService(serviceIntent);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                ContextCompat.startForegroundService(requireContext(), serviceIntent);
+                            } else {
+                                requireContext().startService(serviceIntent);
+                            }
+                            
                             
                         }
                     });
@@ -340,8 +346,7 @@ public class MarathonQuest extends Fragment {
                         .setNeutralButton(
                                 "Provide",
                                 (dialog, which) -> {
-                                    requestPermissions(
-                                            new String[] {Manifest.permission.POST_NOTIFICATIONS},
+                                    ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.POST_NOTIFICATIONS},
                                             REQUEST_POST_NOTIFICATIONS_PERMISSION);
                                 });
         return builder;
@@ -355,9 +360,15 @@ public class MarathonQuest extends Fragment {
                         .setNeutralButton(
                                 "Provide",
                                 (dialog, which) -> {
-                                    requestPermissions(
-                                            new String[] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.FOREGROUND_SERVICE_LOCATION},
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                                        ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_BACKGROUND_LOCATION},
                                             REQUEST_FINE_LOCATION_PERMISSION);
+                                    } else {
+                                        ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+                                            REQUEST_FINE_LOCATION_PERMISSION);
+                                    }
+                                    
+                                    
                                 });
         return builder;
     }
@@ -371,6 +382,8 @@ public class MarathonQuest extends Fragment {
                 checkNotificationPermision();
                 // Permission granted for ACCESS_FINE_LOCATION
                 //   makeRadar();
+            }else {
+                checkLocationPermission();
             }
         } else if (requestCode == REQUEST_POST_NOTIFICATIONS_PERMISSION) {
             loadingDialog.show(

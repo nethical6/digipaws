@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.content.pm.ServiceInfo;
 import android.location.Location;
 import android.os.CountDownTimer;
+import androidx.core.app.ActivityCompat;
+import android.content.pm.PackageManager;
 import androidx.core.app.NotificationCompat;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -49,6 +51,9 @@ public class LocationTrackerService extends Service implements LocationManager.L
 
     @Override
     public int onStartCommand(Intent intent, int arg1, int arg2) {
+        if (!checkLocationPermissionIsGiven()) return START_NOT_STICKY;
+      
+        
         showNotification();
         
         
@@ -140,5 +145,16 @@ public class LocationTrackerService extends Service implements LocationManager.L
         }
         
     }
+    private boolean checkLocationPermissionIsGiven() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    } else {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
+}
+
     
 }
