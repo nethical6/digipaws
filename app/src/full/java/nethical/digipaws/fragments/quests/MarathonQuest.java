@@ -322,7 +322,7 @@ public class MarathonQuest extends Fragment {
     }
 
     private void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermissions(
+        if (ContextCompat.checkSelfPermission(
                         requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             loadingDialog.dismiss();

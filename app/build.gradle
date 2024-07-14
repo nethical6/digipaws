@@ -13,7 +13,7 @@ android {
         minSdk 23
         targetSdk 34
         versionCode 4
-        versionName "Alpha-0.5"
+        versionName "Alpha-0.5.1"
     }
 
     productFlavors {
