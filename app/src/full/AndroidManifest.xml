@@ -8,7 +8,9 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_TYPE_LOCATION" />
+ 
+     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
  
     <application>
         <activity 

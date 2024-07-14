@@ -180,7 +180,13 @@ public class MarathonQuest extends Fragment {
                                     radarLocation.getLongitude());
                             serviceIntent.putExtra("radius",travelRadius);
                             serviceIntent.setAction("START");
-                            requireContext().startForegroundService(serviceIntent);
+                    
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                ContextCompat.startForegroundService(requireContext(), serviceIntent);
+                            } else {
+                                requireContext().startService(serviceIntent);
+                            }
+                    
                             
                         } else {
                             startQuest.setText(R.string.start);
@@ -316,7 +322,7 @@ public class MarathonQuest extends Fragment {
     }
 
     private void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(
+        if (ContextCompat.checkSelfPermissions(
                         requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             loadingDialog.dismiss();
@@ -350,7 +356,7 @@ public class MarathonQuest extends Fragment {
                                 "Provide",
                                 (dialog, which) -> {
                                     requestPermissions(
-                                            new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+                                            new String[] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.FOREGROUND_SERVICE_LOCATION},
                                             REQUEST_FINE_LOCATION_PERMISSION);
                                 });
         return builder;

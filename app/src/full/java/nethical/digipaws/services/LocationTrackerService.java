@@ -2,6 +2,7 @@ package nethical.digipaws.services;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ServiceInfo;
 import android.location.Location;
 import android.os.CountDownTimer;
 import androidx.core.app.NotificationCompat;
@@ -76,7 +77,7 @@ public class LocationTrackerService extends Service implements LocationManager.L
                         .setOnlyAlertOnce(true)
                         .setPriority(NotificationCompat.PRIORITY_HIGH);
 
-        startForeground(70, builder.build());
+        startForeground(70, builder.build(),ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
   }
   
   private void updateNofification(String title,String content,int priority)  {
