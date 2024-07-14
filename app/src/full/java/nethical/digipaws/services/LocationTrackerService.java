@@ -10,6 +10,7 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.os.IBinder;
 import android.content.Intent;
+import androidx.core.app.ServiceCompat;
 import nethical.digipaws.R;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
@@ -48,6 +49,8 @@ public class LocationTrackerService extends Service implements LocationManager.L
 
     @Override
     public int onStartCommand(Intent intent, int arg1, int arg2) {
+        showNotification();
+        
         
         if(intent.getAction() == "STOP"){
             stopQuest();
@@ -62,8 +65,8 @@ public class LocationTrackerService extends Service implements LocationManager.L
         
         liveLocationTracker.setLiveLocationListener(this);
         liveLocationTracker.startLocationUpdates();
-        showNotification();
-        return START_NOT_STICKY;
+        
+        return START_STICKY;
     }
     
     private void showNotification() {
@@ -75,9 +78,10 @@ public class LocationTrackerService extends Service implements LocationManager.L
                         .setContentTitle("Quest Running: TOUCH GRASS")
                         .setContentText("Initialized successfully")
                         .setOnlyAlertOnce(true)
+                        .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
                         .setPriority(NotificationCompat.PRIORITY_HIGH);
 
-        startForeground(70, builder.build(),ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+        startForeground(1, builder.build(),ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
   }
   
   private void updateNofification(String title,String content,int priority)  {
@@ -87,6 +91,7 @@ public class LocationTrackerService extends Service implements LocationManager.L
                         .setContentTitle(title)
                         .setContentText(content)
                         .setOnlyAlertOnce(true)
+                        .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
                         .setSilent(true)
                         .setPriority(priority);
         notificationManager.notify(70,builder.build());
