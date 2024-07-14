@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
     namespace "nethical.digipaws"
 	flavorDimensions "version"
     
     defaultConfig {
         applicationId "nethical.digipaws"
         minSdk 23
-        targetSdk 33
+        targetSdk 34
         versionCode 4
         versionName "Alpha-0.5.1"
     }
