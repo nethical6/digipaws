@@ -140,10 +140,9 @@ public class LocationTrackerService extends Service implements LocationManager.L
             CoinManager.incrementCoin(this);
             updateNofification("Quest Completed","You earned 1 digicoin",NotificationCompat.PRIORITY_MAX);
             liveLocationTracker.stopLocationUpdates();
-            stopQuest();
             Intent questComplete = new Intent("MARATHON_QUEST_COMPLETE");
             sendBroadcast(questComplete);
-            
+            stopQuest();
         }
         
     }
