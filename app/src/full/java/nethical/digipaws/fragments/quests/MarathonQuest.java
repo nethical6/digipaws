@@ -325,7 +325,8 @@ public class MarathonQuest extends Fragment {
             loadingDialog.dismiss();
             makeNotificationPermissionDialog().create().show();
         }else{
-            checkBgLocation();
+             
+            
         }
     }
 
@@ -372,15 +373,8 @@ public class MarathonQuest extends Fragment {
                         .setNeutralButton(
                                 "Provide",
                                 (dialog, which) -> {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                                        ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+                                    ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
                                             REQUEST_FINE_LOCATION_PERMISSION);
-                                    } else {
-                                        ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
-                                            REQUEST_FINE_LOCATION_PERMISSION);
-                                    }
-                                    
-                                    
                                 });
         return builder;
     }
@@ -389,16 +383,12 @@ public class MarathonQuest extends Fragment {
         MaterialAlertDialogBuilder builder =
                 new MaterialAlertDialogBuilder(requireContext())
                         .setTitle(R.string.missing_permission)
-                        .setMessage("Android 14+ requires background location access to run this app.")
+                        .setMessage("Android 14+ requires background location access to run this app. Please allow access to location all the time to proceed. We do not save any of this data on our servers. Infact, the app is completely open source.")
                         .setNeutralButton(
                                 "Provide",
                                 (dialog, which) -> {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                                        ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.ACCESS_BACKGROUND_LOCATION},
+                                    ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.ACCESS_BACKGROUND_LOCATION},
                                             REQUEST_BG_LOC_PERMISSION);
-                                    } 
-                                    
-                                    
                                 });
         return builder;
     }
@@ -409,7 +399,11 @@ public class MarathonQuest extends Fragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_FINE_LOCATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                checkBgLocation();
+            } else {
                 checkNotificationPermision();
+            }
                 // Permission granted for ACCESS_FINE_LOCATION
                 //   makeRadar();
             }else {
@@ -420,6 +414,8 @@ public class MarathonQuest extends Fragment {
                     getActivity().getSupportFragmentManager(),
                     "loading_dialog"); // Use a unique tag for the dialog
             makeRadar();
+        } else if (requestCode == REQUEST_BG_LOC_PERMISSION){
+            checkNotificationPermision();
         }
     }
 
