@@ -8,10 +8,12 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import nethical.digipaws.MainActivity;
 import nethical.digipaws.R;
@@ -23,9 +25,14 @@ public class FocusModeTimerService extends Service {
     private CountDownTimer countDownTimer; 
     private long timeLeftInMillis = DigiConstants.FOCUS_MODE_LENGTH; // in milliseconds
 
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        startForeground(1, getNotification("90:00"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            startForeground(1, getNotification("90:00"), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
+        } else {
+            startForeground(1, getNotification("90:00"));
+        }
 
         countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
             @Override
@@ -49,7 +56,7 @@ public class FocusModeTimerService extends Service {
             }
         }.start();
 
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
 
     @Override
