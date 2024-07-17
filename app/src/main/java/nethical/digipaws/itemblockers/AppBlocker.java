@@ -23,22 +23,21 @@ public class AppBlocker {
     private boolean isOverlayVisible = false;
     private ServiceData data;
     private int difficulty = DigiConstants.DIFFICULTY_LEVEL_EASY;
-    
-    
-    private void init(){
-		isSettingsBlocked = data.isReelsBlocked();
-        difficulty = data.getDifficulty();
-        if(isOverlayVisible){
-           return;
-        }
-        if(!DelayManager.isDelayOver(removeOverlayTimestamp,50000)){return;}
-    }
-    
-    
+
     public void performAction(ServiceData data){
+
+        if(isOverlayVisible){
+            return;
+        }
+
+        if(!DelayManager.isDelayOver(removeOverlayTimestamp,50000)){return;}
+
+        isSettingsBlocked = data.isReelsBlocked();
+        difficulty = data.getDifficulty();
+
+
         this.data = data;
-        
-        init();
+
         
         if(SurvivalModeManager.isSurvivalModeActive(data.getService())){
            for (String blockedPackageName : BlockerData.nonBlockedPackages) {

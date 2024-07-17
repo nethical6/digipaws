@@ -27,18 +27,16 @@ public class ViewBlocker {
     private boolean isOverlayVisible = false;
     private ServiceData data;
     
-    private void init(){
-        difficulty = data.getDifficulty();
-		isReelsBlocked = data.isReelsBlocked();
-        isEngagementBlocked = data.isEngagementBlocked();
-    }
+
     
 	public void performAction(ServiceData data){
         if(isOverlayVisible) { return;}
         if(!DelayManager.isDelayOver(removeOverlayTimestamp,1000)){return;}
         this.data = data;
-            
-        init();
+
+        difficulty = data.getDifficulty();
+        isReelsBlocked = data.isReelsBlocked();
+        isEngagementBlocked = data.isEngagementBlocked();
 		
 		// block short-form content
 		if(isReelsBlocked){
