@@ -1,23 +1,25 @@
 package nethical.digipaws.fragments.intro;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.view.ViewGroup;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.os.Looper;
-import androidx.fragment.app.Fragment;
+import android.view.ViewGroup;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.github.appintro.SlidePolicy;
+
+import com.heinrichreimersoftware.materialintro.app.SlideFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import nethical.digipaws.R;
 import nethical.digipaws.adapters.SelectBlockedAppsAdapter;
 import nethical.digipaws.data.AppData;
@@ -25,7 +27,7 @@ import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.LoadAppList;
 
-public class ChooseBlockedApps extends Fragment implements SlidePolicy {
+public class ChooseBlockedApps extends SlideFragment  {
 
     private SharedPreferences sharedPreferences;
     private RecyclerView recyclerView;
@@ -54,16 +56,6 @@ public class ChooseBlockedApps extends Fragment implements SlidePolicy {
         handlerThread.quitSafely();
     }
 
-    @Override
-    public boolean isPolicyRespected() {
-       Set<String> newBlockedAppsSet = adapter.getSelectedAppList();
-        if(!newBlockedAppsSet.isEmpty()){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, newBlockedAppsSet);
-            editor.apply();
-        }
-        return true;
-    }
     
     
     public void loadAppsAndDisplay(){
@@ -120,12 +112,18 @@ public class ChooseBlockedApps extends Fragment implements SlidePolicy {
                     }
                 },5000);
     }
-    
+
+
     @Override
-    public void onUserIllegallyRequestedNextPage() {}
-    @Override
-    public void onAttach(Context arg0) {
-        super.onAttach(arg0);
-       
+    public boolean canGoForward() {
+        Set<String> newBlockedAppsSet = adapter.getSelectedAppList();
+        if(!newBlockedAppsSet.isEmpty()){
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, newBlockedAppsSet);
+            editor.apply();
+        }
+        return true;
     }
+
+
 }

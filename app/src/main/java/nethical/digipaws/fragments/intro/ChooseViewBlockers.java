@@ -1,16 +1,18 @@
 package nethical.digipaws.fragments.intro;
 
 import android.content.SharedPreferences;
-import android.widget.CheckBox;
 import android.os.Bundle;
-import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.View;
-import androidx.fragment.app.Fragment;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+
+import com.heinrichreimersoftware.materialintro.app.SlideFragment;
+
 import nethical.digipaws.R;
 import nethical.digipaws.utils.DigiConstants;
 
-public class ChooseViewBlockers extends Fragment  {
+public class ChooseViewBlockers extends SlideFragment {
 
     CheckBox isPornDisabled;
     CheckBox isEngmntDisabled;

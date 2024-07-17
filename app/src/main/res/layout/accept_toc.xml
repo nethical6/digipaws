@@ -11,7 +11,7 @@
     <TextView
          android:layout_height="wrap_content"
          android:layout_width="wrap_content"
-         style="@style/AppIntroDefaultHeading"
+         style="@style/TextAppearance.AppCompat.Headline"
          android:text="A new journey begins!" />
 
     <ImageView

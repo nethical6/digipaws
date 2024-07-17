@@ -23,7 +23,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="50dp"
                 android:padding="8dp"
-                style="@style/AppIntroDefaultHeading"
+                style="@style/TextAppearance.AppCompat.Headline"
                 android:text="@string/choose_blocked_apps_title" />
 
             <TextView

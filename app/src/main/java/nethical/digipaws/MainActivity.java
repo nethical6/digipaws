@@ -1,14 +1,11 @@
 package nethical.digipaws;
 
-import android.app.Activity;
 import android.os.PowerManager;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.view.WindowManager;
-import android.widget.TextView;
-import com.google.android.material.internal.EdgeToEdgeUtils;
+
 import java.util.Calendar;
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +24,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import nethical.digipaws.fragments.HomeFragment;
-import nethical.digipaws.fragments.dialogs.SelectQuestDialog;
 import nethical.digipaws.receivers.ResetCoinsReceiver;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
@@ -47,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
        if(!sharedPreferences.getBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,false)){
-           Intent intent = new Intent(this,Intro.class);
+           Intent intent = new Intent(this, AppIntroActivity.class);
 			startActivity(intent);
             finish();
         }
@@ -119,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        Intent intent = new Intent(this,Intro.class);
+        Intent intent = new Intent(this, AppIntroActivity.class);
         startActivity(intent);
         Toast.makeText(this,"Restarting Acessibility services required to apply any configuration changes",Toast.LENGTH_LONG).show();
 		

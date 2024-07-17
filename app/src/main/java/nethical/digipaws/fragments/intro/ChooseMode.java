@@ -1,23 +1,24 @@
 package nethical.digipaws.fragments.intro;
 
-import android.content.SharedPreferences;
-import android.os.Build;
-import android.provider.Settings;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
-import android.widget.AdapterView;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.ViewGroup;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Spinner;
-import androidx.fragment.app.Fragment;
-import com.github.appintro.SlidePolicy;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.heinrichreimersoftware.materialintro.app.SlideFragment;
+
 import nethical.digipaws.R;
 import nethical.digipaws.utils.DigiConstants;
 
-public class ChooseMode extends Fragment implements SlidePolicy {
+public class ChooseMode extends SlideFragment  {
 
     Spinner chooseModeSn;
     
@@ -65,8 +66,9 @@ public class ChooseMode extends Fragment implements SlidePolicy {
                 });
     }
 
+
     @Override
-    public boolean isPolicyRespected() {
+    public boolean canGoForward() {
         return canOverlay;
     }
 
@@ -89,12 +91,8 @@ public class ChooseMode extends Fragment implements SlidePolicy {
             }
         }
     }
-    
-    @Override
-    public void onUserIllegallyRequestedNextPage() {
-        showOverlayPerm();
-    }
-    
+
+
    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

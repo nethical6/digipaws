@@ -49,7 +49,7 @@
 			</intent-filter>
         </activity>
 		
-		<activity android:name="nethical.digipaws.Intro"
+		<activity android:name="nethical.digipaws.AppIntroActivity"
 			android:label="Intro" 
             android:theme="@style/IntroTheme"
 			android:exported="true">
