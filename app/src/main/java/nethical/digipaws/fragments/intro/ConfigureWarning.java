@@ -15,7 +15,8 @@ import nethical.digipaws.utils.DigiConstants;
 
 public class ConfigureWarning extends SlideFragment {
 
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences customMsgSharedPreferences;
+    private SharedPreferences userConfigPrefs;
     private TextInputEditText title;
     private TextInputEditText desc;
 
@@ -23,19 +24,21 @@ public class ConfigureWarning extends SlideFragment {
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.configure_message, container, false);
         title = view.findViewById(R.id.title);
         desc = view.findViewById(R.id.desc);
-        sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_WARN_FILE,Context.MODE_PRIVATE);
+        customMsgSharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_WARN_FILE,Context.MODE_PRIVATE);
         return view;
     }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        title.setText(sharedPreferences.getString(DigiConstants.PREF_WARN_TITLE,getContext().getString(R.string.breathe)));
-        desc.setText(sharedPreferences.getString(DigiConstants.PREF_WARN_MESSAGE,getContext().getString(R.string.warning_title)));
+        title.setText(customMsgSharedPreferences.getString(DigiConstants.PREF_WARN_TITLE,getContext().getString(R.string.breathe)));
+        desc.setText(customMsgSharedPreferences.getString(DigiConstants.PREF_WARN_MESSAGE,getContext().getString(R.string.warning_title)));
     }
 
     @Override
@@ -51,8 +54,9 @@ public class ConfigureWarning extends SlideFragment {
             msgm = getContext().getString(R.string.warning_title);
         }
 
-        sharedPreferences.edit().putString(DigiConstants.PREF_WARN_TITLE,titlet).apply();
-        sharedPreferences.edit().putString(DigiConstants.PREF_WARN_MESSAGE,msgm).apply();
+        customMsgSharedPreferences.edit().putString(DigiConstants.PREF_WARN_TITLE,titlet).apply();
+        customMsgSharedPreferences.edit().putString(DigiConstants.PREF_WARN_MESSAGE,msgm).apply();
         return true;
     }
+
 }

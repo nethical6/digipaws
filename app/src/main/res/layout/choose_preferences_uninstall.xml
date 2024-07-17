@@ -1,56 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
-     android:layout_height="match_parent"
-     android:layout_width="match_parent"
-     android:background="@color/md_theme_dark_background"
-     android:gravity="center_vertical|center|center_horizontal"
-     android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_dark_background"
+    android:gravity="center_vertical|center|center_horizontal"
+    android:orientation="vertical">
 
     <TextView
-         android:layout_height="wrap_content"
-         android:layout_width="wrap_content"
-         style="@style/TextAppearance.AppCompat.Headline"
-         android:text="@string/anti_uninstall_title" />
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/anti_uninstall_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="#fff" />
 
     <ImageView
-         android:layout_height="300dp"
-         android:layout_width="300dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/intro_config2"
-         android:paddingBottom="40dp" />
+        android:paddingBottom="40dp"
+        android:src="@drawable/intro_config2" />
 
     <LinearLayout
-         android:layout_height="wrap_content"
-         android:layout_width="wrap_content"
-         android:orientation="vertical">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <CheckBox
-             android:layout_height="wrap_content"
-             android:layout_width="wrap_content"
-             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-             android:textColor="#fff"
-             android:id="@+id/anti_uninstall_cb"
-             android:text="@string/anti_uninstall_cb" />
+            android:id="@+id/anti_uninstall_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/anti_uninstall_cb"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="#fff" />
 
 
         <CheckBox
-             android:layout_height="wrap_content"
-             android:layout_width="wrap_content"
-             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-             android:textColor="#fff"
-             android:id="@+id/anti_reboot_cb"
-             android:text="@string/anti_reboot_cb" />
+            android:id="@+id/anti_reboot_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/anti_reboot_cb"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="#fff" />
     </LinearLayout>
 
     <TextView
-         android:layout_height="wrap_content"
-         android:layout_width="wrap_content"
-         android:gravity="center"
-         android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-         android:padding="8dp"
-         android:textColor="#fff"
-         android:text="@string/anti_uninstall_desc" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/anti_uninstall_desc"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+        android:textColor="#fff" />
 
 </LinearLayout>

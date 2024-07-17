@@ -91,13 +91,14 @@ public class ChooseMode extends SlideFragment {
             }
             editor.apply();
         });
+        addOnNavigationBlockedListener((position, direction) -> showOverlayPerm());
 
     }
 
 
     @Override
     public boolean canGoForward() {
-        return canOverlay;
+        return Settings.canDrawOverlays(requireContext());
     }
 
     private void showOverlayPerm() {

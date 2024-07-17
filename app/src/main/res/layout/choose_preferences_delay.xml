@@ -1,61 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
-     android:layout_height="match_parent"
-     android:layout_width="match_parent"
-     android:background="@color/md_theme_dark_background"
-     android:gravity="center_vertical|center|center_horizontal"
-     android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_dark_background"
+    android:gravity="center_vertical|center|center_horizontal"
+    android:orientation="vertical">
 
     <TextView
-         android:layout_height="wrap_content"
-         android:layout_width="wrap_content"
-         style="@style/TextAppearance.AppCompat.Headline"
-         android:text="@string/choose_delay_title" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/choose_delay_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="#fff" />
 
     <ImageView
-         android:layout_height="300dp"
-         android:layout_width="300dp"
-         android:src="@drawable/intro_config3"
-         android:paddingBottom="40dp"
-         android:paddingTop="40dp" />
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:src="@drawable/intro_config3" />
 
     <LinearLayout
-         android:layout_height="wrap_content"
-         android:layout_width="wrap_content"
-         android:gravity="center"
-         android:orientation="horizontal">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <NumberPicker
-             android:layout_height="wrap_content"
-             android:layout_width="wrap_content"
-             android:gravity="center"
-             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-             android:padding="10dp"
-             android:textColor="#fff"
-             android:id="@+id/choose_delay">
+            android:id="@+id/choose_delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="#fff">
 
         </NumberPicker>
 
         <TextView
-             android:layout_height="wrap_content"
-             android:layout_width="wrap_content"
-             android:gravity="center"
-             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-             android:padding="8dp"
-             android:textColor="#fff"
-             android:text="minutes" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="minutes"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="#fff" />
 
     </LinearLayout>
 
     <TextView
-         android:layout_height="wrap_content"
-         android:layout_width="wrap_content"
-         android:gravity="center"
-         android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-         android:padding="8dp"
-         android:textColor="#fff"
-         android:text="@string/choose_delay_desc" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/choose_delay_desc"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+        android:textColor="#fff" />
 
 </LinearLayout>

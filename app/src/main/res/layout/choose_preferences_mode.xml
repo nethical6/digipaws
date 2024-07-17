@@ -3,29 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:fitsSystemWindows="false"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="@dimen/mi_baseline">
-
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginBottom="@dimen/mi_baseline"
-        android:src="@drawable/intro_config"
-        android:adjustViewBounds="true"
-        android:gravity="center"
-        tools:ignore="ContentDescription"
-        tools:src="@android:drawable/sym_action_call" />
+    android:orientation="vertical">
 
     <TextView
-        android:id="@id/mi_title"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/choose_mode_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="#fff" />
+
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mi_baseline"
         android:fontFamily="sans-serif-medium"
-        android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         tools:ignore="UnusedAttribute"
         tools:text="@string/choose_mode_title" />
@@ -38,9 +32,7 @@
         <RadioGroup
             android:id="@+id/radio_group_modes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/radio_button_hard_mode"
@@ -61,7 +53,7 @@
                 android:text="@string/adventure_mode" />
 
         </RadioGroup>
-    </LinearLayout>
 
+    </LinearLayout>
 
 </LinearLayout>

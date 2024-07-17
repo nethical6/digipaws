@@ -109,6 +109,8 @@
 
     <string name="congratulate_text_challenge_comp">Congrats on conquering #TechRehab! Your 21 days of commitment are truly inspiring. Keep shining! 🌟</string>
     <string name="congratulate_text_challenge_incomp">You are doing amazing on your #TechRehab journey! Keep going strong — every step counts! 🫵👑</string>
+    <string name="title">Title</string>
+    <string name="description">description</string>
 
 
 </resources>

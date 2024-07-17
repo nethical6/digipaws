@@ -5,13 +5,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.internal.EdgeToEdgeUtils;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 
-import nethical.digipaws.fragments.intro.ChooseBlockedApps;
 import nethical.digipaws.fragments.intro.ChooseDelay;
 import nethical.digipaws.fragments.intro.ChooseMode;
 import nethical.digipaws.fragments.intro.ChooseViewBlockers;
@@ -29,6 +29,8 @@ public class AppIntroActivity extends IntroActivity {
         super.onCreate(savedInstanceState);
 
         setFullscreen(true);
+        setButtonBackVisible(false);
+        
         EdgeToEdgeUtils.applyEdgeToEdge(getWindow(), true);
         //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -74,6 +76,20 @@ public class AppIntroActivity extends IntroActivity {
                 .backgroundDark(R.color.md_theme_dark_background)
                 .build());
 
+        addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+            @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {  }
+            @Override public void onPageSelected(int position) {
+                int mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EXTREME);
+                if(position == 5 && mode==DigiConstants.DIFFICULTY_LEVEL_EXTREME){
+                    goToSlide(7);
+                }
+                if(position == 6 && (mode ==DigiConstants.DIFFICULTY_LEVEL_EXTREME || mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL)){
+                    goToSlide(7);
+                }
+            }
+            @Override public void onPageScrollStateChanged(int state) {  }
+        });
+
         addSlide(new FragmentSlide.Builder()
                 .fragment(new ConfigureWarning())
                 .background(R.color.md_theme_light_onBackground)
@@ -93,7 +109,7 @@ public class AppIntroActivity extends IntroActivity {
                 .build());
 
         addSlide(new FragmentSlide.Builder()
-                .fragment(new ChooseBlockedApps(sharedPreferences))
+                .fragment(new ChooseViewBlockers(sharedPreferences))
                 .background(R.color.md_theme_light_onBackground)
                 .backgroundDark(R.color.md_theme_dark_background)
                 .build());
