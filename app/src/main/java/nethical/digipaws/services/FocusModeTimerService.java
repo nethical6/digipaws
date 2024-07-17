@@ -1,6 +1,5 @@
 package nethical.digipaws.services;
 
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -12,9 +11,10 @@ import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.IBinder;
+
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+
 import nethical.digipaws.MainActivity;
 import nethical.digipaws.R;
 import nethical.digipaws.utils.DigiConstants;
@@ -22,7 +22,7 @@ import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.SurvivalModeManager;
 
 public class FocusModeTimerService extends Service {
-    private CountDownTimer countDownTimer; 
+    private CountDownTimer countDownTimer;
     private long timeLeftInMillis = DigiConstants.FOCUS_MODE_LENGTH; // in milliseconds
 
 
@@ -49,10 +49,10 @@ public class FocusModeTimerService extends Service {
             public void onFinish() {
                 stopSelf();
                 SurvivalModeManager.disableSurvivalMode(getApplicationContext());
-                DigiUtils.sendNotification(getApplicationContext(),"Quest Completed!","You earned 1 Aura Coin.",R.drawable.swords);
+                DigiUtils.sendNotification(getApplicationContext(), "Quest Completed!", "You earned 1 Aura Coin.", R.drawable.swords);
                 SharedPreferences questPref = getSharedPreferences(
-                                DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
-                questPref.edit().putInt(DigiConstants.KEY_TOTAL_FOCUSED,questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED,0)+90).apply();
+                        DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
+                questPref.edit().putInt(DigiConstants.KEY_TOTAL_FOCUSED, questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED, 0) + 90).apply();
             }
         }.start();
 
@@ -79,7 +79,7 @@ public class FocusModeTimerService extends Service {
 
         return new NotificationCompat.Builder(this, DigiConstants.NOTIFICATION_CHANNEL)
                 .setContentTitle("Focus Mode Running")
-                .setContentText("Time Remaining: "+time)
+                .setContentText("Time Remaining: " + time)
                 .setSmallIcon(R.drawable.swords)
                 .setContentIntent(pendingIntent)
                 .setOnlyAlertOnce(true)
