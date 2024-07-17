@@ -1,9 +1,6 @@
 <resources>
     <string-array name="Quests">
         <item>Focus Mode</item>
-        <item>Touch Grass</item>
-        <item>Pushups</item>
-        <item>Squats</item>
     </string-array>
     
     <string-array name="modes">
