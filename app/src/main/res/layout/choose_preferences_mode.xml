@@ -1,36 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
-     android:layout_height="match_parent"
-     android:layout_width="match_parent"
-     android:background="@color/md_theme_dark_background"
-     android:gravity="center_vertical|center|center_horizontal"
-     android:orientation="vertical">
-
-    <TextView
-         android:layout_height="wrap_content"
-         android:layout_width="wrap_content"
-         style="@style/TextAppearance.AppCompat.Headline"
-         android:text="@string/choose_mode_title" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="false"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/mi_baseline">
 
     <ImageView
-         android:layout_height="300dp"
-         android:layout_width="300dp"
-         android:src="@drawable/intro_config"
-         android:paddingBottom="40dp"
-         android:paddingTop="40dp" />
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="@dimen/mi_baseline"
+        android:src="@drawable/intro_config"
+        android:adjustViewBounds="true"
+        android:gravity="center"
+        tools:ignore="ContentDescription"
+        tools:src="@android:drawable/sym_action_call" />
 
-    <Spinner
-        android:id="@+id/choose_mode"
-         android:layout_height="wrap_content"
-         android:layout_width="wrap_content"
-         android:gravity="center"
-         android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-         android:entries="@array/modes"
-         android:textColor="#fff"
-         android:text="@string/choose_mode">
+    <TextView
+        android:id="@id/mi_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mi_baseline"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        tools:ignore="UnusedAttribute"
+        tools:text="@string/choose_mode_title" />
 
-    </Spinner>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/radio_group_modes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <RadioButton
+                android:id="@+id/radio_button_hard_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hard_mode" />
+
+            <RadioButton
+                android:id="@+id/radio_button_easy_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/easy_mode" />
+
+            <RadioButton
+                android:id="@+id/radio_button_adventure_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/adventure_mode" />
+
+        </RadioGroup>
+    </LinearLayout>
+
 
 </LinearLayout>

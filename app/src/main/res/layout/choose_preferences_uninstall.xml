@@ -17,7 +17,8 @@
     <ImageView
          android:layout_height="300dp"
          android:layout_width="300dp"
-         android:src="@drawable/intro_config2"
+        android:importantForAccessibility="no"
+        android:src="@drawable/intro_config2"
          android:paddingBottom="40dp" />
 
     <LinearLayout
