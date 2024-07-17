@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,25 +20,23 @@ import com.heinrichreimersoftware.materialintro.app.SlideFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import nethical.digipaws.R;
 import nethical.digipaws.adapters.SelectBlockedAppsAdapter;
 import nethical.digipaws.data.AppData;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
-import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.LoadAppList;
 
 public class ChooseBlockedApps extends SlideFragment  {
 
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences userConfigs;
     private RecyclerView recyclerView;
     private HandlerThread handlerThread;
     private SelectBlockedAppsAdapter adapter;
-    private boolean isRecyclerViewLoaded = false;
+    private final boolean canGoAhead = false;
     
     public ChooseBlockedApps(SharedPreferences sp) {
-        sharedPreferences = sp;
+        userConfigs = sp;
     }
 
     @Override
@@ -48,6 +48,10 @@ public class ChooseBlockedApps extends SlideFragment  {
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
 
     @Override
     public void onDestroy() {
@@ -59,13 +63,7 @@ public class ChooseBlockedApps extends SlideFragment  {
     
     
     public void loadAppsAndDisplay(){
-        
-       LoadingDialog loadingDialog = new LoadingDialog("Fetching Packages");
-        
-        loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog");
 
-        adapter = new SelectBlockedAppsAdapter(requireContext());
-        
         handlerThread = new HandlerThread("AppListLoader");
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());
@@ -75,24 +73,29 @@ public class ChooseBlockedApps extends SlideFragment  {
         
         handler.postDelayed(
                 new Runnable() {
+
                     @Override
                     public void run() {
-                    
-                        List<String> appList = LoadAppList.getPackageNames(requireContext());
-                        List<AppData> appData = new ArrayList<AppData>();
 
-                        PackageManager pm =
-                                requireContext()
-                                        .getPackageManager(); // Replace 'context' with your
-                                                              // activity or context
+                        LoadingDialog loadingDialog = new LoadingDialog("Fetching Packages");
 
-                        for (String packageName : appList) {
+                        loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog");
+
+                        adapter = new SelectBlockedAppsAdapter(requireContext(), userConfigs);
+
+                        final PackageManager pm = requireContext().getPackageManager();
+                        List<ApplicationInfo> packages = pm.getInstalledApplications(0);
+
+                        List<AppData> appData = new ArrayList<>();
+                        for (ApplicationInfo info : packages) {
+                            if(LoadAppList.isSystemPackage(info)) {
+                                continue;
+                            }
                             try {
-                                ApplicationInfo info = pm.getApplicationInfo(packageName, 0);
                                 appData.add(
                                         new AppData(
                                                 info.loadLabel(pm).toString(),
-                                                pm.getApplicationIcon(packageName),packageName));
+                                                pm.getApplicationIcon(info.packageName),info.packageName));
                             } catch (PackageManager.NameNotFoundException e) {
                                 continue;
                             }
@@ -102,28 +105,20 @@ public class ChooseBlockedApps extends SlideFragment  {
                                 new Runnable() {
                                     @Override
                                     public void run() {
-                                        recyclerView.setLayoutManager(
-                                                new LinearLayoutManager(requireContext()));
-                                        adapter.setData(appData);
-                                        recyclerView.setAdapter(adapter);
-                                        loadingDialog.dismiss();
+                                        try {
+                                            recyclerView.setLayoutManager(
+                                                    new LinearLayoutManager(requireContext()));
+                                            adapter.setData(appData);
+                                            recyclerView.setAdapter(adapter);
+                                            loadingDialog.dismiss();
+                                        } catch (Exception ignored) {
+
+                                        }
                                     }
                                 });
                     }
-                },5000);
+                },200);
+
     }
-
-
-    @Override
-    public boolean canGoForward() {
-        Set<String> newBlockedAppsSet = adapter.getSelectedAppList();
-        if(!newBlockedAppsSet.isEmpty()){
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, newBlockedAppsSet);
-            editor.apply();
-        }
-        return true;
-    }
-
 
 }

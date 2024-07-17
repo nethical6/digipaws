@@ -38,7 +38,7 @@
     <string name="easy_mode_desc">In Easy Mode, DigiPaws provides gentle reminders to help you manage your screen time. When you attempt to access a blocked app, a warning screen appears. If you choose to proceed, a cooldown period starts. After the cooldown, another warning is displayed to remind you of your usage.</string>
 
     <string name="adventure_mode">Adventure Mode</string>
-    <string name="adventure_mode_desc">Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need Aura. These can be earned by completing quests such as a quick 1 km walk. Each Aura grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use. With every quests you perform, the questvdifficulty keeps rising.</string>
+    <string name="adventure_mode_desc">Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need Aura. These can be earned by completing quests such as a quick 1 km walk. Each Aura grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use. With every quests you perform, the  difficulty rises.</string>
 
     <string name="hard_mode">Hard Mode</string>
     <string name="hard_mode_desc">Hard Mode offers the most stringent control over app usage. In this mode, when you try to open a blocked app, the back button is automatically pressed without any warning or cooldown, preventing access entirely.</string>
@@ -47,22 +47,22 @@
     <string name="block_shorts_cb">Block Shorts</string>
     <string name="block_comments_cb">Block Comments (auto-close)</string>
     <string name="block_porn_cb">Block Explict Keywords (beta)</string>
-    <string name="block_vb_desc">Supported Platforms: Youtube, Instagram, Revanced</string>
+    <string name="block_vb_desc">Supported Platforms: Youtube, Instagram, Revanced, Tiktok.</string>
 
-    <string name="anti_uninstall_title">Enter the #TechRehab challenge!</string>
+    <string name="anti_uninstall_title">#TechRehab</string>
     <string name="anti_uninstall_cb">Activate Anti-Uninstall</string>
      <string name="anti_reboot_cb">Prevent Rebooting device</string>
     <string name="anti_uninstall_desc">#TechRehab is a 3 week productivity challenge that aims to fix your screen addiction.</string>
     <string name="anti_uninstall_desc_day">days strong!!!</string>
 
 
-    <string name="choose_mode_title">Configure Mode</string>
+    <string name="choose_mode_title">Mode</string>
     <string name="choose_mode">Choose Mode</string>
     <string name="loading">Loading</string>
 
 
     <string name="choose_delay_title">How often?</string>
-    <string name="choose_delay_desc">This is the cooldown period between each warnings.(ONLY FOR EASY MODE)</string>
+    <string name="choose_delay_desc">Specify a custom cooldown between each warning.</string>
 
     <string name="acc_desc">Please turn off and re-enable if service malfunctions. To apply any configuration changes, turn off and on.</string>
     
@@ -102,7 +102,7 @@
 
     <string name="accessibility_perm">This app solely depends on Accessibility Permission to block elements. We do not store any of this data on our servers; everything is processed locally. By pressing "Agree," you accept our data usage policy.</string>
 
-    <string name="choose_msg_title">Configure your warning screen</string>
+    <string name="choose_msg_title">Warning Screen</string>
 
     <string name="battery_optimisation_title">Disable Battery Optimization</string>
     <string name="battery_optimisation_desc">To ensure this app works properly, please disable battery optimization for this app.</string>

@@ -1,35 +1,38 @@
 package nethical.digipaws.adapters;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import nethical.digipaws.R;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import nethical.digipaws.data.AppData;
+import nethical.digipaws.utils.DigiConstants;
 
 public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlockedAppsAdapter.ViewHolder> {
-	
-	
-	private List<AppData> appData;
-	private Context context;
-	private List<Drawable> iconList;
-    private PackageManager pm;
+
+
+    private Context context;
+    private List<AppData> appData;
+    private final SharedPreferences userConfigs;
+
+    private final Set<String> newBlockedAppsSet = new HashSet<>();
     
-    private Set<String> newBlockedAppsSet = new HashSet<>();
     
-    
-	public SelectBlockedAppsAdapter(Context context) {
+	public SelectBlockedAppsAdapter(Context context, SharedPreferences userConfigs) {
         this.context = context;
+        this.userConfigs = userConfigs;
 	}
     public void setData(List<AppData> appDataL){
         appData = appDataL;
@@ -52,9 +55,7 @@ public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlocked
         holder.itemView.setOnClickListener(null);
         holder.cb.setOnCheckedChangeListener(null);
 
-        holder.itemView.setOnClickListener((view)->{
-            holder.cb.setChecked(!holder.cb.isChecked());
-        });
+        holder.itemView.setOnClickListener((view)-> holder.cb.setChecked(!holder.cb.isChecked()));
         
         // Set new listener
         holder.cb.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -63,10 +64,9 @@ public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlocked
                 appData.get(adapterPosition).setIsChecked(isChecked);
                     if(isChecked){
                         newBlockedAppsSet.add(appData.get(position).getPackageName());
+                        userConfigs.edit().putStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, newBlockedAppsSet).apply();
                     }else{
-                        if(newBlockedAppsSet.contains(appData.get(position).getPackageName())){
-                           newBlockedAppsSet.remove(appData.get(position).getPackageName());
-                        }
+                        newBlockedAppsSet.remove(appData.get(position).getPackageName());
                     }
            }
         });

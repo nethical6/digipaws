@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="@string/choose_mode_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="#fff" />

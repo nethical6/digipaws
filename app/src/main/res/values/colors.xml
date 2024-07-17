@@ -66,4 +66,15 @@
     <color name="black">#000000</color>
     
 	<color name="light_grey">#808080</color>
+
+
+    <color name="easy_color">#6AB187</color>
+    <color name="difficult_color">#8B6F84</color>
+    <color name="adventure_color">#5E97B0</color>
+    <color name="mode_color">#A7895F</color>
+    <color name="customize_color">#9B786F</color>
+    <color name="time_color">#7D8DAA</color>
+    <color name="block_color">#B17860</color>
+    <color name="app_color">#7687A8</color>
+    <color name="committed_color">#947B6E</color>
 </resources>

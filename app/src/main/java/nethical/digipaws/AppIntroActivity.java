@@ -3,15 +3,17 @@ package nethical.digipaws;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.internal.EdgeToEdgeUtils;
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
 import com.heinrichreimersoftware.materialintro.slide.SimpleSlide;
 
+import nethical.digipaws.fragments.intro.ChooseBlockedApps;
 import nethical.digipaws.fragments.intro.ChooseDelay;
 import nethical.digipaws.fragments.intro.ChooseMode;
 import nethical.digipaws.fragments.intro.ChooseViewBlockers;
@@ -30,8 +32,16 @@ public class AppIntroActivity extends IntroActivity {
 
         setFullscreen(true);
         setButtonBackVisible(false);
-        
-        EdgeToEdgeUtils.applyEdgeToEdge(getWindow(), true);
+        EdgeToEdge.enable(this);
+
+        View decorView = getWindow().getDecorView();
+        // Hide both the navigation bar and the status bar.
+        // SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+        // a general rule, you should design your app to hide the status bar whenever you
+        // hide the navigation bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
         //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
@@ -40,83 +50,71 @@ public class AppIntroActivity extends IntroActivity {
         addSlide(new SimpleSlide.Builder()
                 .description(R.string.app_desc)
                 .image(R.drawable.paws)
-                .background(R.color.md_theme_light_onBackground)
+                .background(R.color.md_theme_dark_background)
                 .backgroundDark(R.color.md_theme_dark_background)
                 .scrollable(false)
                 .build());
 
         addSlide(new SimpleSlide.Builder()
-                .title( R.string.easy_mode)
+                .title(R.string.easy_mode)
                 .description(R.string.easy_mode_desc)
-                .background(R.color.md_theme_light_onBackground)
-                .backgroundDark(R.color.md_theme_dark_background)
+                .background(R.color.easy_color)
+                .backgroundDark(R.color.easy_color)
                 .scrollable(false)
                 .build());
 
         addSlide(new SimpleSlide.Builder()
                 .title(R.string.adventure_mode)
                 .description(R.string.adventure_mode_desc)
-                .background(R.color.md_theme_light_onBackground)
-                .backgroundDark(R.color.md_theme_dark_background)
+                .background(R.color.adventure_color)
+                .backgroundDark(R.color.adventure_color)
                 .scrollable(false)
                 .build());
 
         addSlide(new SimpleSlide.Builder()
                 .title(R.string.hard_mode)
                 .description(R.string.hard_mode_desc)
-                .background(R.color.md_theme_light_onBackground)
-                .backgroundDark(R.color.md_theme_dark_background)
+                .background(R.color.difficult_color)
+                .backgroundDark(R.color.difficult_color)
                 .scrollable(false)
                 .build());
 
 
         addSlide(new FragmentSlide.Builder()
                 .fragment(new ChooseMode(sharedPreferences))
-                .background(R.color.md_theme_light_onBackground)
-                .backgroundDark(R.color.md_theme_dark_background)
+                .background(R.color.mode_color)
+                .backgroundDark(R.color.mode_color)
                 .build());
 
-        addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
-            @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {  }
-            @Override public void onPageSelected(int position) {
-                int mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EXTREME);
-                if(position == 5 && mode==DigiConstants.DIFFICULTY_LEVEL_EXTREME){
-                    goToSlide(7);
-                }
-                if(position == 6 && (mode ==DigiConstants.DIFFICULTY_LEVEL_EXTREME || mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL)){
-                    goToSlide(7);
-                }
-            }
-            @Override public void onPageScrollStateChanged(int state) {  }
-        });
 
         addSlide(new FragmentSlide.Builder()
                 .fragment(new ConfigureWarning())
-                .background(R.color.md_theme_light_onBackground)
-                .backgroundDark(R.color.md_theme_dark_background)
+                .background(R.color.customize_color)
+                .backgroundDark(R.color.customize_color)
                 .build());
 
         addSlide(new FragmentSlide.Builder()
                 .fragment(new ChooseDelay(sharedPreferences))
-                .background(R.color.md_theme_light_onBackground)
-                .backgroundDark(R.color.md_theme_dark_background)
+                .background(R.color.time_color)
+                .backgroundDark(R.color.time_color)
                 .build());
 
         addSlide(new FragmentSlide.Builder()
                 .fragment(new ChooseViewBlockers(sharedPreferences))
-                .background(R.color.md_theme_light_onBackground)
-                .backgroundDark(R.color.md_theme_dark_background)
+                .background(R.color.block_color)
+                .backgroundDark(R.color.block_color)
                 .build());
 
+        ChooseBlockedApps chooseBlockedApps = new ChooseBlockedApps(sharedPreferences);
         addSlide(new FragmentSlide.Builder()
-                .fragment(new ChooseViewBlockers(sharedPreferences))
-                .background(R.color.md_theme_light_onBackground)
-                .backgroundDark(R.color.md_theme_dark_background)
+                .fragment(chooseBlockedApps)
+                .background(R.color.app_color)
+                .backgroundDark(R.color.app_color)
                 .build());
 
         addSlide(new FragmentSlide.Builder()
                 .fragment(new ConfigureAntiUninstall(sharedPreferences))
-                .background(R.color.md_theme_light_onBackground)
+                .background(R.color.committed_color)
                 .backgroundDark(R.color.md_theme_dark_background)
                 .build());
 
@@ -126,7 +124,32 @@ public class AppIntroActivity extends IntroActivity {
                 .backgroundDark(R.color.md_theme_dark_background)
                 .build());
 
-        }
 
+        addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                int mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EXTREME);
+                if (position == 5 && mode == DigiConstants.DIFFICULTY_LEVEL_EXTREME) {
+                    goToSlide(7);
+                }
+                if (position == 6 && (mode == DigiConstants.DIFFICULTY_LEVEL_EXTREME || mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL)) {
+                    goToSlide(7);
+                }
+                if (position == 8) {
+                    chooseBlockedApps.loadAppsAndDisplay();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
+
+    }
 
 }

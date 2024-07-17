@@ -2,17 +2,18 @@ package nethical.digipaws.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-
+import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.os.UserHandle;
 import android.os.UserManager;
+
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import nethical.digipaws.data.BlockerData;
 
 public class LoadAppList {
@@ -22,11 +23,7 @@ public class LoadAppList {
 				Context.MODE_PRIVATE);
 		Set<String> packageNames = sharedPreferences.getStringSet(DigiConstants.PREF_PACKAGES_KEY, new HashSet<>());
 
-		if (!packageNames.isEmpty()) {
-			return true;
-		} else {
-			return false;
-		}
+        return !packageNames.isEmpty();
 	}
 
 	// Retrieve the list of package names
@@ -70,12 +67,14 @@ public class LoadAppList {
 		return removeIgnoredPackages(context, packageList);
 	}
 
+	public static boolean isSystemPackage(ApplicationInfo pkgInfo) {
+		return ((pkgInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
+	}
+
 	private static List<String> removeIgnoredPackages(Context context,List<String> packages) {
 		
 		for (String value : BlockerData.nonBlockedPackages) {
-			if (packages.contains(value)) {
-				packages.remove(value);
-			}
+            packages.remove(value);
 		}
 
 		

@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
+        android:textStyle="bold"
         android:text="@string/choose_msg_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="#fff" />

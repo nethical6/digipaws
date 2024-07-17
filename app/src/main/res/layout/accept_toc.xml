@@ -8,18 +8,12 @@
      android:gravity="center_vertical|center|center_horizontal"
      android:orientation="vertical">
 
-    <TextView
-         android:layout_height="wrap_content"
-         android:layout_width="wrap_content"
-         style="@style/TextAppearance.AppCompat.Headline"
-         android:text="A new journey begins!" />
 
     <ImageView
          android:layout_height="300dp"
          android:layout_width="300dp"
          android:src="@drawable/paws"
-         android:paddingBottom="40dp"
-         android:paddingTop="40dp" />
+         android:paddingBottom="40dp"/>
 
     <LinearLayout
          android:layout_height="wrap_content"
