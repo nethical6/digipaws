@@ -37,7 +37,7 @@ public class OverlayManager {
     
     public void init(){
         LayoutInflater inflater = LayoutInflater.from(context);
-		overlayView = inflater.inflate(R.layout.warning_overlay, null);
+		overlayView = inflater.inflate(R.layout.warning_overlay_default, null);
         closeButton = overlayView.findViewById(R.id.close_overlay);
         proceedButton = overlayView.findViewById(R.id.proceed_overlay);
         textTitle = overlayView.findViewById(R.id.text_title);
@@ -70,10 +70,10 @@ public class OverlayManager {
         if(difficulty == DigiConstants.DIFFICULTY_LEVEL_NORMAL){
             int crnt_coins = CoinManager.getCoinCount(context);
             
-            textTitle.setText(R.string.buy_20_mins);
-            textDescription.setText(R.string.desc_sd_overlay);
-            textDescription.append("\n"+"BALANCE: " + String.valueOf(crnt_coins) +"\n");
-            textDescription.append(titleT + "\n");
+            textTitle.setText(titleT);
+            textDescription.setText("");
+            textDescription.append("Purchase 20 minutes to continue.");
+            textDescription.append("\nBALANCE: " + String.valueOf(crnt_coins) +"\n\n");
             textDescription.append(msg);
             proceedButton.setText(context.getString(R.string.proceed) + " (1 Aura)");
         } else {
@@ -100,15 +100,11 @@ public class OverlayManager {
         
         String msg = sp.getString(DigiConstants.PREF_WARN_MESSAGE,"");
         String titleT = sp.getString(DigiConstants.PREF_WARN_TITLE,"Are you sure?");
-        
-        
+
         textTitle.setText(R.string.no_coins_title);
-        
-        textDescription.setText(titleT + "\n");
-        textDescription.append(msg + "\n\n");
+
+        textDescription.setText("");
         textDescription.append(context.getString(R.string.desc_no_coins_overlay));
-        textDescription.append("\n"+"BALANCE: " + String.valueOf(CoinManager.getCoinCount(context)));
-        
         proceedButton.setText("Perform Quest");
 		windowManager.addView(overlayView, params);
     }
