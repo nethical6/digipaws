@@ -41,7 +41,6 @@ public class ChooseMode extends SlideFragment {
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.choose_preferences_mode, container, false);
-        //chooseModeSn = view.findViewById(R.id.choose_mode);
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> canOverlay = Settings.canDrawOverlays(requireContext()));

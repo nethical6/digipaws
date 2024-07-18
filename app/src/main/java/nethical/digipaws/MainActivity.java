@@ -1,11 +1,14 @@
 package nethical.digipaws;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -27,57 +30,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.activity_main);
-		
-       // SurvivalModeManager.enableSurvivalMode(this);
-      // h.setText("hshs");
+
         
        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
-       //if(!sharedPreferences.getBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,false)){
-        if(false){
+       if(!sharedPreferences.getBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,false)){
            Intent intent = new Intent(this, AppIntroActivity.class);
 			startActivity(intent);
-            //finish();
         }
-       /*
-        cointCount = findViewById(R.id.coint_count);
-        
-        if(sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)==DigiConstants.DIFFICULTY_LEVEL_EASY || sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)==DigiConstants.DIFFICULTY_LEVEL_NORMAL){
-           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(this)) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
-                    .setTitle(R.string.missing_permission)
-                    .setMessage(R.string.notification_overlay_permission)
-                    .setNeutralButton("Provide",(dialog,which)->{
-                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                        Uri.parse("package:" + getPackageName()));
-                        startActivityForResult(intent, 69);
-                        dialog.dismiss();
-                    });
-                    builder.create().show();
-        
-                }
-            }
-            
-        }
-        
-        if(sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)==DigiConstants.DIFFICULTY_LEVEL_EASY || sharedPreferences.getInt(DigiConstants.PREF_MODE,DigiConstants.DIFFICULTY_LEVEL_EASY)==DigiConstants.DIFFICULTY_LEVEL_EXTREME){
-            cointCount.setVisibility(View.GONE);
-        }
-        */
-        
-       // setDailyAlarm(this);
 
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.replace(R.id.fragment_container, new HomeFragment());
-		//transaction.addToBackStack(null);
 		transaction.commit();
-        
-        //checkAndRequestBatteryOptimization(this);
-        /*
-        
-        // setup notification channels
+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -85,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     new NotificationChannel(DigiConstants.NOTIFICATION_CHANNEL, "Blockers", importance);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
-        }*/
+        }
     }
 
 

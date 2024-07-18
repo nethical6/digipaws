@@ -6,13 +6,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,19 +28,16 @@ import com.google.android.material.snackbar.Snackbar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import nethical.digipaws.R;
 import nethical.digipaws.adapters.SelectQuestAdapter;
-import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.receivers.AdminReceiver;
 import nethical.digipaws.services.BlockerService;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
-import nethical.digipaws.utils.LoadAppList;
 
 public class HomeFragment extends Fragment {
 
@@ -44,6 +46,8 @@ public class HomeFragment extends Fragment {
     private String daysStreak = "0";
 
     private TextView cointCount;
+    private int mode = 0;
+    private ActivityResultLauncher<Intent> activityResultLauncherOverlay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,44 +55,54 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         dayStreakTextView = view.findViewById(R.id.streak);
         cointCount = view.findViewById(R.id.coin_count);
+        activityResultLauncherOverlay = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    checkAndRequestBatteryOptimization(requireContext());
+                }
+                );
         return view;
     }
 
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LoadingDialog loadingDialog = new LoadingDialog("Reloading packages");
 
         RecyclerView recyclerView = view.findViewById(R.id.quest_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        refreshCoinCount();
-
-
         String[] listItems = getResources().getStringArray(R.array.Quests);
         recyclerView.setAdapter(new SelectQuestAdapter(listItems, requireContext(), getParentFragmentManager()));
 
-        loadingDialog.show(getParentFragmentManager(), "loading_dialog");
-        List<String> packages = LoadAppList.getPackageNames(requireContext());
-        loadingDialog.dismiss();
-        sharedPreferences = getContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
-
+        sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
+        mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY);
+        if (mode == DigiConstants.DIFFICULTY_LEVEL_EASY || mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
+            checkOverlay();
+        } else {
+            cointCount.setText("He who conquers himself is the mightiest warrior.");
+        }
         dayStreakTextView.setOnClickListener(v -> {
             DigiUtils.replaceScreen(getParentFragmentManager(), new ChallengeCompletedFragment(false, daysStreak));
         });
+    }
 
-        switch (sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY)) {
-            case DigiConstants.DIFFICULTY_LEVEL_EASY:
-            case DigiConstants.DIFFICULTY_LEVEL_EXTREME:
-                dayStreakTextView.setText("He who conquers himself is the mightiest warrior.");
-                break;
-            case DigiConstants.DIFFICULTY_LEVEL_NORMAL:
-                refreshCoinCount();
-                break;
-
+    private void checkOverlay(){
+        if (!Settings.canDrawOverlays(requireContext())) {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(R.string.missing_permission)
+                    .setMessage(R.string.notification_overlay_permission)
+                    .setNeutralButton("Provide", (dialog, which) -> {
+                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                                Uri.parse("package:" + requireContext().getPackageName()));
+                        activityResultLauncherOverlay.launch(intent);
+                        dialog.dismiss();
+                    });
+            builder.setCancelable(false);
+            builder.create().show();
+        } else {
+            checkAndRequestBatteryOptimization(requireContext());
         }
-
     }
 
 
@@ -108,7 +122,7 @@ public class HomeFragment extends Fragment {
         // Convert milliseconds to days
         long days = TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS);
         daysStreak = String.valueOf(days);
-        dayStreakTextView.append("Day " + String.valueOf(days));
+        dayStreakTextView.setText("Day " + String.valueOf(days));
 
         DevicePolicyManager devicePolicyManager =
                 (DevicePolicyManager)
@@ -137,16 +151,16 @@ public class HomeFragment extends Fragment {
             // Disable the device admin if it was enabled
 
 
-            if (devicePolicyManager != null && deviceAdminReceiver != null) {
-                devicePolicyManager.removeActiveAdmin(deviceAdminReceiver);
-            }
-            DigiUtils.replaceScreen(getActivity().getSupportFragmentManager(), new ChallengeCompletedFragment(true, String.valueOf(days)));
-
+            devicePolicyManager.removeActiveAdmin(deviceAdminReceiver);
+            DigiUtils.replaceScreen(getParentFragmentManager(), new ChallengeCompletedFragment(true, String.valueOf(days)));
         }
+        checkOverlay();
     }
 
     public void refreshCoinCount() {
-        cointCount.setText("You hold " + String.valueOf(CoinManager.getCoinCount(requireContext())) + " Aura");
+        if (mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
+            cointCount.setText("You hold " + String.valueOf(CoinManager.getCoinCount(requireContext())) + " Aura");
+        }
     }
 
     public Date getDate(Context context) {
@@ -179,9 +193,8 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         checkAccessibiltyPermission();
-        dayStreakTextView.setText("");
-        calculateDaysPassed();
         refreshCoinCount();
+        calculateDaysPassed();
     }
 
     private void checkAccessibiltyPermission() {
@@ -213,5 +226,20 @@ public class HomeFragment extends Fragment {
         builder.create().show();
     }
 
+    public static void checkAndRequestBatteryOptimization(Context context) {
+        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        if (!powerManager.isIgnoringBatteryOptimizations(context.getPackageName())) {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
+                    .setTitle(R.string.battery_optimisation_title)
+                    .setMessage(R.string.battery_optimisation_desc)
+                    .setNeutralButton("Provide",(dialog,which)->{
+                        Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                        intent.setData(Uri.parse("package:" + context.getPackageName()));
+                        context.startActivity(intent);
+                        dialog.dismiss();
+                    });
+            builder.create().show();
+        }
+    }
 
 }
