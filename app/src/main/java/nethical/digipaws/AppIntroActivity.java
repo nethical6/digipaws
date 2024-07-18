@@ -142,6 +142,9 @@ public class AppIntroActivity extends IntroActivity {
                 if (position == 8) {
                     chooseBlockedApps.loadAppsAndDisplay();
                 }
+                if(position==10){
+                    sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,true).apply();
+                }
             }
 
             @Override
