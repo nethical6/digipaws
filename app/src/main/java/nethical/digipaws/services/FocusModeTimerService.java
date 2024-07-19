@@ -59,7 +59,7 @@ public class FocusModeTimerService extends Service {
                 SharedPreferences questPref = getSharedPreferences(
                         DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
                 questPref.edit().putInt(DigiConstants.KEY_TOTAL_FOCUSED, questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED, 0) + 90).apply();
-
+                questPref.edit().putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL).apply();
                 stopSelf();
             }
         }.start();

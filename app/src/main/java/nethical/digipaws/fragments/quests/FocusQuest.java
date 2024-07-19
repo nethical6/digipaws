@@ -1,11 +1,11 @@
 package nethical.digipaws.fragments.quests;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,27 +14,29 @@ import android.view.ViewGroup;
 
 import androidx.core.content.ContextCompat;
 import android.content.pm.PackageManager;
+import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
 
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import nethical.digipaws.R;
 import nethical.digipaws.services.FocusModeTimerService;
+import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.SurvivalModeManager;
-import nethical.digipaws.views.HollowCircleView;
 
 
 public class FocusQuest extends Fragment {
 
     
-    private HollowCircleView hollowTimer;
+    private TextView timer;
     private boolean isQuestRunning = false;
-    
-	@Override
+    SharedPreferences questInfo;
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.focus_quest, container, false);
-		hollowTimer = view.findViewById(R.id.hollow_timer);
+		timer = view.findViewById(R.id.timer);
 		return view;
 	}
 	
@@ -43,15 +45,19 @@ public class FocusQuest extends Fragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		hollowTimer.setTitle("Start");
         if( ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
             makeNotificationPermissionDialog().create().show();
         }
+        questInfo = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE,Context.MODE_PRIVATE);
+        if(!questInfo.getBoolean(DigiConstants.PREF_QUEST_FOCUS_DESCRIBE_DIALOG_KEY,false)){
+            showQuestInfoDialog(questInfo).setCancelable(false).show();
+        }
         
-        hollowTimer.setOnClickListener((v)->{
+        timer.setOnClickListener((v)->{
              if(isQuestRunning){
                return;
             }
+             questInfo.edit().putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_FOCUS).apply();
             SurvivalModeManager.enableSurvivalMode(requireContext());
             startTimer();
         });
@@ -92,7 +98,7 @@ public class FocusQuest extends Fragment {
         public void onReceive(Context context, Intent intent) {
             if(intent.hasExtra("time")){
                 String time = intent.getStringExtra("time");
-                hollowTimer.setTitle(time);
+                timer.setText(time);
                 if(!isQuestRunning){
                     isQuestRunning= true;
                 }
@@ -128,6 +134,16 @@ public class FocusQuest extends Fragment {
 
                 });
     }
+    private MaterialAlertDialogBuilder showQuestInfoDialog(SharedPreferences pref){
+        return new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("The Focus Quest!!!")
+                .setMessage(R.string.focus_desc)
+                .setNeutralButton("Close",(dialog,which)->{
+                    dialog.dismiss();
+                    pref.edit().putBoolean(DigiConstants.PREF_QUEST_FOCUS_DESCRIBE_DIALOG_KEY,true).apply();;
+                });
+    }
+
 
     
     
