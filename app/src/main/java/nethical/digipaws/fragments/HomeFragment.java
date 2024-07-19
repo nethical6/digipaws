@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
                 result -> {
                     checkAndRequestBatteryOptimization(requireContext());
                 }
-                );
+        );
         return view;
     }
 
@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void checkOverlay(){
+    private void checkOverlay() {
         if (!Settings.canDrawOverlays(requireContext())) {
             MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.missing_permission)
@@ -100,8 +100,6 @@ public class HomeFragment extends Fragment {
                     });
             builder.setCancelable(false);
             builder.create().show();
-        } else {
-            checkAndRequestBatteryOptimization(requireContext());
         }
     }
 
@@ -154,7 +152,6 @@ public class HomeFragment extends Fragment {
             devicePolicyManager.removeActiveAdmin(deviceAdminReceiver);
             DigiUtils.replaceScreen(getParentFragmentManager(), new ChallengeCompletedFragment(true, String.valueOf(days)));
         }
-        checkOverlay();
     }
 
     public void refreshCoinCount() {
@@ -206,6 +203,31 @@ public class HomeFragment extends Fragment {
                             buildAccessibiltyDialog();
                         }
                     }).show();
+        } else {
+            checkAndRequestBatteryOptimization(requireContext());
+        }
+    }
+
+    private void checkAndRequestBatteryOptimization(Context context) {
+        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        if (!powerManager.isIgnoringBatteryOptimizations(context.getPackageName())) {
+            Snackbar.make(dayStreakTextView, R.string.battery_optimisation_title, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.settings, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
+                                    .setTitle(R.string.battery_optimisation_title)
+                                    .setMessage(R.string.battery_optimisation_desc)
+                                    .setNeutralButton("Provide", (dialog, which) -> {
+                                        Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                                        intent.setData(Uri.parse("package:" + context.getPackageName()));
+                                        context.startActivity(intent);
+                                        dialog.dismiss();
+                                    });
+                            builder.create().show();
+                        }
+                    }).show();
+
         }
     }
 
@@ -226,20 +248,5 @@ public class HomeFragment extends Fragment {
         builder.create().show();
     }
 
-    public static void checkAndRequestBatteryOptimization(Context context) {
-        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        if (!powerManager.isIgnoringBatteryOptimizations(context.getPackageName())) {
-            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
-                    .setTitle(R.string.battery_optimisation_title)
-                    .setMessage(R.string.battery_optimisation_desc)
-                    .setNeutralButton("Provide",(dialog,which)->{
-                        Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-                        intent.setData(Uri.parse("package:" + context.getPackageName()));
-                        context.startActivity(intent);
-                        dialog.dismiss();
-                    });
-            builder.create().show();
-        }
-    }
 
 }

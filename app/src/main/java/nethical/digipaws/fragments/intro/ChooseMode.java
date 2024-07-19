@@ -90,7 +90,11 @@ public class ChooseMode extends SlideFragment {
             }
             editor.apply();
         });
-        addOnNavigationBlockedListener((position, direction) -> showOverlayPerm());
+        addOnNavigationBlockedListener((position, direction) -> {
+            if(!canOverlay){
+                showOverlayPerm();
+            }
+        });
 
     }
 
