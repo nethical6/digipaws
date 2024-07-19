@@ -95,7 +95,7 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
         }
         if (position == listItems.length - 1) {
             // more button
-            holder.icon.setImageResource(R.drawable.icons0_discord);
+            holder.icon.setImageResource(R.drawable.discord_svgrepo_com);
             holder.title.setText("Join us");
             holder.desc.setVisibility(View.GONE);
         }
