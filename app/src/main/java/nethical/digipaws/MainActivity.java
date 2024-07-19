@@ -28,18 +28,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        setContentView(R.layout.activity_main);
 
-        
        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
         
        if(!sharedPreferences.getBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,false)){
            Intent intent = new Intent(this, AppIntroActivity.class);
 			startActivity(intent);
+            finishActivity(0);
         }
 
-		FragmentManager fragmentManager = getSupportFragmentManager();
+        setContentView(R.layout.activity_main);
+
+
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.replace(R.id.fragment_container, new HomeFragment());
 		transaction.commit();

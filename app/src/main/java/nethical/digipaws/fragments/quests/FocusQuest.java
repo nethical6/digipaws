@@ -1,6 +1,7 @@
 package nethical.digipaws.fragments.quests;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -48,57 +49,66 @@ public class FocusQuest extends Fragment {
         }
         
         hollowTimer.setOnClickListener((v)->{
-            if(isQuestRunning){
+             if(isQuestRunning){
                return;
             }
             SurvivalModeManager.enableSurvivalMode(requireContext());
             startTimer();
         });
-        
-	}
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            context.registerReceiver(timerUpdateReceiver, new IntentFilter("TIMER_UPDATED"),Context.RECEIVER_NOT_EXPORTED);
-        }else {
-            context.registerReceiver(timerUpdateReceiver, new IntentFilter("TIMER_UPDATED"));
-        }
-        
-        
+
     }
-    
-    
+
+
+    @Override
+    public void onResume() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getActivity().registerReceiver( timerUpdateReceiver, new IntentFilter("nethical.digipaws.TIMER_UPDATED"), Context.RECEIVER_NOT_EXPORTED);
+        } else {
+            getActivity().registerReceiver(timerUpdateReceiver,new IntentFilter("nethical.digipaws.TIMER_UPDATED"));
+        }
+        super.onResume();
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        requireContext().unregisterReceiver(timerUpdateReceiver);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
     private void startTimer() {
         Intent serviceIntent = new Intent(requireContext(), FocusModeTimerService.class);
         requireContext().startService(serviceIntent);
     }
     
-    private BroadcastReceiver timerUpdateReceiver = new BroadcastReceiver() {
+    public BroadcastReceiver timerUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals("TIMER_UPDATED")) {
                 String time = intent.getStringExtra("time");
                 hollowTimer.setTitle(time);
-                if(isQuestRunning==false){
+                if(!isQuestRunning){
                     isQuestRunning= true;
                 }
                 
             }
-        }
     };
     
     private MaterialAlertDialogBuilder makeNotificationPermissionDialog(){
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
+        return new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.missing_permission)
                     .setMessage(R.string.notification_notif_permission)
                     .setNeutralButton("Provide",(dialog,which)->{
                         requestPermissions(
                         new String[]{Manifest.permission.POST_NOTIFICATIONS},
                         0);
-				  
+
                     });
-        return builder;
     }
     
     

@@ -39,10 +39,11 @@ public class FocusModeTimerService extends Service {
             public void onTick(long millisUntilFinished) {
                 timeLeftInMillis = millisUntilFinished;
                 String timeFormatted = getTimeFormatted(timeLeftInMillis);
-                updateNotification(timeFormatted);
-                Intent updateUIIntent = new Intent("TIMER_UPDATED");
+                Intent updateUIIntent = new Intent("nethical.digipaws.TIMER_UPDATED");
+                updateUIIntent.setPackage(getPackageName());
                 updateUIIntent.putExtra("time", timeFormatted);
                 sendBroadcast(updateUIIntent);
+                updateNotification(timeFormatted);
             }
 
             @Override
@@ -84,7 +85,7 @@ public class FocusModeTimerService extends Service {
                 .setContentIntent(pendingIntent)
                 .setOnlyAlertOnce(true)
                 .setSilent(true)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
                 .build();
     }
 

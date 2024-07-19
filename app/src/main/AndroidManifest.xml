@@ -21,8 +21,6 @@
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     
     <permission
@@ -69,14 +67,13 @@
 					android:resource="@xml/blocker_service_config" />
 				</service>
         
-        
         <service
             android:name=".services.FocusModeTimerService"
             android:enabled="true"
             android:foregroundServiceType="specialUse"
             android:exported="false">
             <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="Block All addictive apps temporarily when the user wants to focus on some task."/>
+                android:value="Start a 90-minute focused session during which all distracting elements are blocked at the user's discretion."/>
         </service>
         <receiver
             android:exported="false"
