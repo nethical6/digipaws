@@ -90,12 +90,19 @@ public class FocusQuest extends Fragment {
     public BroadcastReceiver timerUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            if(intent.hasExtra("time")){
                 String time = intent.getStringExtra("time");
                 hollowTimer.setTitle(time);
                 if(!isQuestRunning){
                     isQuestRunning= true;
                 }
-                
+            }
+
+                if(intent.hasExtra("over")){
+                    isQuestRunning = false;
+                    makeQuestCompleteDialog().show();
+                }
+
             }
     };
     
@@ -110,6 +117,18 @@ public class FocusQuest extends Fragment {
 
                     });
     }
+
+    private MaterialAlertDialogBuilder makeQuestCompleteDialog(){
+        return new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Congratulations!!!")
+                .setMessage("Remember to come again!")
+                .setNeutralButton("Quit",(dialog,which)->{
+                    dialog.dismiss();
+                    getParentFragmentManager().popBackStack();
+
+                });
+    }
+
     
     
 }

@@ -43,17 +43,24 @@ public class FocusModeTimerService extends Service {
                 updateUIIntent.setPackage(getPackageName());
                 updateUIIntent.putExtra("time", timeFormatted);
                 sendBroadcast(updateUIIntent);
+
                 updateNotification(timeFormatted);
             }
 
             @Override
             public void onFinish() {
-                stopSelf();
+                Intent updateUIIntent = new Intent("nethical.digipaws.TIMER_UPDATED");
+                updateUIIntent.setPackage(getPackageName());
+                updateUIIntent.putExtra("over", true);
+                sendBroadcast(updateUIIntent);
+
                 SurvivalModeManager.disableSurvivalMode(getApplicationContext());
                 DigiUtils.sendNotification(getApplicationContext(), "Quest Completed!", "You earned 1 Aura Coin.", R.drawable.swords);
                 SharedPreferences questPref = getSharedPreferences(
                         DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
                 questPref.edit().putInt(DigiConstants.KEY_TOTAL_FOCUSED, questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED, 0) + 90).apply();
+
+                stopSelf();
             }
         }.start();
 

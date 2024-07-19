@@ -1,5 +1,7 @@
 package nethical.digipaws.utils;
 
+import nethical.digipaws.BuildConfig;
+
 public class DigiConstants {
 	
 	public static final int RADAR_RADIUS = 200; // in meters (distance to run in marathon quest)
@@ -87,9 +89,10 @@ public class DigiConstants {
     
     
     public static final String KEY_WORKOUT_TYPE = "workout_type";
-    
-    public static final int FOCUS_MODE_LENGTH = 5400000; // 1 hour in ms
-    
+
+
+   public static final int FOCUS_MODE_LENGTH = 5400000; // 1 hour in ms
+
     public static final String PROVIDER_AUTHORITY = "nethical.digipaws.questprovider";
     public static final int API_COIN_INC_COOLDOWN = 60 * 60 * 1000; // in ms 
     
