@@ -14,12 +14,6 @@
             android:name=".WorkoutActivity" 
             android:exported="true">  
         </activity>
-        
-        <service
-            android:name=".services.LocationTrackerService"
-            android:foregroundServiceType="location"
-            android:exported="false">
-             </service>
    
     </application>
 </manifest>

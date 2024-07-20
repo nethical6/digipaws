@@ -65,7 +65,6 @@ public class MarathonQuest extends Fragment {
     private static final int REQUEST_FINE_LOCATION_PERMISSION = 69;
     private static final int REQUEST_POST_NOTIFICATIONS_PERMISSION = 70;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -117,13 +116,15 @@ public class MarathonQuest extends Fragment {
                 public void onLocationChanged(Location location) {
                     if (location != null) {
                         myLocation.setPosition(new GeoPoint(location.getLatitude(), location.getLongitude()));
+
+                        // not able to use foreground services due to google play foreground restrictions
                         if (isQuestRunning) {
                             double distance = liveLocationTracker.getDistanceBetweenLocations(location, radarLocation);
                             if (distance >= radarRadius) {
+                                endQuest();
                                 isQuestRunning = false;
                                 showQuestCompleteDialog();
                                 CoinManager.incrementCoin(requireContext());
-
                                 questPref.edit().putInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN,questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN,0)+ radarRadius).apply();
                             }
                         }
@@ -134,21 +135,7 @@ public class MarathonQuest extends Fragment {
         }).start();
 
         if (questPref.getBoolean(DigiConstants.PREF_IS_MARATHON_QUEST_RUNNING_KEY, false) && questPref.contains("radius") && questPref.contains(DigiConstants.KEY_RADAR_LATITUDE) && questPref.contains(DigiConstants.KEY_RADAR_LONGITUDE)) {
-            isQuestRunning = true;
-            double latitude = Double.parseDouble(questPref.getString(DigiConstants.KEY_RADAR_LATITUDE, "0"));
-            double longitude = Double.parseDouble(questPref.getString(DigiConstants.KEY_RADAR_LONGITUDE, "0"));
-            GeoPoint gRadarLocation = new GeoPoint(latitude, longitude);
-
-            IMapController controller = mapView.getController();
-            controller.setZoom(18.0);
-            controller.animateTo(gRadarLocation);
-
-            radarLocation.setLatitude(latitude);
-            radarLocation.setLongitude(longitude);
-
-            addCircleTo(latitude, longitude, radarRadius);
-            btnStartQuest.setText(R.string.stop);
-
+            reloadActiveQuest();
         } else {
             makeRadar();
             liveLocationTracker = new LocationManager(requireContext());
@@ -156,35 +143,58 @@ public class MarathonQuest extends Fragment {
 
         btnStartQuest.setOnClickListener(v -> {
             if (!isQuestRunning) {
-                SharedPreferences.Editor editor = questPref.edit();
-                editor.putString(DigiConstants.PREF_QUEST_ID_KEY, DigiConstants.QUEST_ID_MARATHON);
-                editor.putBoolean(DigiConstants.PREF_IS_MARATHON_QUEST_RUNNING_KEY, true);
-
-                editor.putInt("radius", radarRadius);
-                editor.putString(DigiConstants.KEY_RADAR_LATITUDE, String.valueOf(radarLocation.getLatitude()));
-                editor.putString(DigiConstants.KEY_RADAR_LONGITUDE, String.valueOf(radarLocation.getLongitude()));
-                editor.apply();
-
-                btnStartQuest.setText(R.string.stop);
-                isQuestRunning = true;
-
-
+                startQuest();
             } else {
-                SharedPreferences.Editor editor = questPref.edit();
-                editor.putString(DigiConstants.PREF_QUEST_ID_KEY, DigiConstants.QUEST_ID_NULL);
-                editor.putBoolean(DigiConstants.PREF_IS_MARATHON_QUEST_RUNNING_KEY, false);
-
-                editor.remove("radius");
-                editor.remove(DigiConstants.KEY_RADAR_LATITUDE);
-                editor.remove(DigiConstants.KEY_RADAR_LONGITUDE);
-                editor.apply();
-
-                btnStartQuest.setText(R.string.start);
-                isQuestRunning = false;
+                endQuest();
             }
         });
     }
 
+    private void endQuest(){
+        SharedPreferences.Editor editor = questPref.edit();
+        editor.putString(DigiConstants.PREF_QUEST_ID_KEY, DigiConstants.QUEST_ID_NULL);
+        editor.putBoolean(DigiConstants.PREF_IS_MARATHON_QUEST_RUNNING_KEY, false);
+
+        editor.remove("radius");
+        editor.remove(DigiConstants.KEY_RADAR_LATITUDE);
+        editor.remove(DigiConstants.KEY_RADAR_LONGITUDE);
+        editor.apply();
+
+        btnStartQuest.setText(R.string.start);
+        isQuestRunning = false;
+    }
+
+    private void startQuest(){
+        SharedPreferences.Editor editor = questPref.edit();
+        editor.putString(DigiConstants.PREF_QUEST_ID_KEY, DigiConstants.QUEST_ID_MARATHON);
+        editor.putBoolean(DigiConstants.PREF_IS_MARATHON_QUEST_RUNNING_KEY, true);
+
+        editor.putInt("radius", radarRadius);
+        editor.putString(DigiConstants.KEY_RADAR_LATITUDE, String.valueOf(radarLocation.getLatitude()));
+        editor.putString(DigiConstants.KEY_RADAR_LONGITUDE, String.valueOf(radarLocation.getLongitude()));
+        editor.apply();
+
+        btnStartQuest.setText(R.string.stop);
+        isQuestRunning = true;
+    }
+
+    private void reloadActiveQuest() {
+        isQuestRunning = true;
+        double latitude = Double.parseDouble(questPref.getString(DigiConstants.KEY_RADAR_LATITUDE, "0"));
+        double longitude = Double.parseDouble(questPref.getString(DigiConstants.KEY_RADAR_LONGITUDE, "0"));
+        GeoPoint gRadarLocation = new GeoPoint(latitude, longitude);
+
+        IMapController controller = mapView.getController();
+        controller.setZoom(18.0);
+        controller.animateTo(gRadarLocation);
+
+        radarLocation.setLatitude(latitude);
+        radarLocation.setLongitude(longitude);
+
+        addCircleTo(latitude, longitude, radarRadius);
+        loadingDialog.dismiss();
+        btnStartQuest.setText(R.string.stop);
+    }
     private void makeRadar() {
 
         // capture current location for radar and then immediately close the listener
