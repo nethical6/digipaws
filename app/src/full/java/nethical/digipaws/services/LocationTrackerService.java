@@ -13,7 +13,6 @@ import nethical.digipaws.R;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.LocationManager;
-import org.osmdroid.util.GeoPoint;
 
 public class LocationTrackerService extends Service implements LocationManager.LocationListener {
 
@@ -101,7 +100,7 @@ public class LocationTrackerService extends Service implements LocationManager.L
     private void stopQuest(){
         SharedPreferences.Editor editor = questPref.edit();
         editor.putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL);
-        editor.putBoolean(DigiConstants.PREF_IS_QUEST_RUNNING_KEY,false);
+        editor.putBoolean(DigiConstants.PREF_IS_MARATHON_QUEST_RUNNING_KEY,false);
         editor.putInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN,questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN,0)+radius);
         editor.apply();  
     }

@@ -1,7 +1,5 @@
 package nethical.digipaws.utils;
 
-import nethical.digipaws.BuildConfig;
-
 public class DigiConstants {
 
     public static final int RADAR_RADIUS = 200; // in meters (distance to run in marathon quest)
@@ -37,7 +35,7 @@ public class DigiConstants {
     public static final String KEY_RADAR_LONGITUDE = "radar_lon";
 
     public static final String PREF_QUEST_INFO_FILE = "quest_info";
-    public static final String PREF_IS_QUEST_RUNNING_KEY = "is_quest_running";
+    public static final String PREF_IS_MARATHON_QUEST_RUNNING_KEY = "is_quest_running";
     public static final String PREF_QUEST_ID_KEY = "quest_id";
     public static final String PREF_QUEST_FOCUS_DESCRIBE_DIALOG_KEY = "is_focus_quest_described";
 
