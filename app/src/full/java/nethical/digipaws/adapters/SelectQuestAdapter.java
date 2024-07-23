@@ -44,6 +44,9 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 
     private SharedPreferences questPref;
 
+
+    int no_of_custom_last_added_items = 3;
+
     public SelectQuestAdapter(String[] listItems, Context context, FragmentManager fm) {
         this.context = context;
         this.fragmentManager = fm;
@@ -52,8 +55,12 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
         List<String> apiUsers = iqm.getList();
         List<String> tempList = new ArrayList<>(Arrays.asList(listItems));
         tempList.addAll(apiUsers);
+
+
         tempList.add("More");
         tempList.add("Join us");
+        tempList.add("Donate");
+
         this.listItems = tempList.toArray(new String[0]);
         try{
             colorPrimary = MaterialColors.getColor(context, com.google.android.material.R.attr.colorPrimary, context.getColor(R.color.md_theme_dark_primary));
@@ -77,7 +84,7 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PackageManager packageManager = context.getPackageManager();
-        if (position > 3 && position < listItems.length-2) {
+        if (position > 3 && position < listItems.length- no_of_custom_last_added_items) {
             try {
                 ApplicationInfo appInfo = packageManager.getApplicationInfo(listItems[position], 0);
                 holder.title.setText((String) packageManager.getApplicationLabel(appInfo));
@@ -112,18 +119,25 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
             holder.desc.setText("You completed " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS, 0)) + " reps of push ups.");
         }
 
-        if (position == listItems.length - 2) {
-            // discord button
-            holder.desc.setText("Install apps that use our API.");
-        }
+
         if (position == listItems.length - 1) {
             // more button
+            holder.icon.setImageResource(R.drawable.baseline_attach_money_24);
+            holder.title.setText("Donate");
+            holder.desc.setVisibility(View.GONE);
+        }
+
+        if (position == listItems.length - 2) {
+            // discord button
             holder.icon.setImageResource(R.drawable.discord_svgrepo_com);
             holder.title.setText("Join us");
             holder.desc.setVisibility(View.GONE);
         }
 
-
+        if (position == listItems.length - 3) {
+            // discord button
+            holder.desc.setText("Install apps that use our API.");
+        }
         holder.itemView.setOnClickListener(v -> {
 
             if (position == 0) {
@@ -152,19 +166,29 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
                 return;
             }
 
+
+
+            if (position == listItems.length - 1) {
+                // discord button
+                Intent intent3 = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT + "donate"));
+                context.startActivity(intent3);
+                return;
+            }
+
             if (position == listItems.length - 2) {
+                // discord button
+                Intent intent3 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.com/invite/Vs9mwUtuCN"));
+                context.startActivity(intent3);
+                return;
+            }
+
+            if (position == listItems.length - 3) {
                 // more button
                 Intent intent3 = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT + "partners"));
                 context.startActivity(intent3);
                 return;
             }
 
-            if (position == listItems.length - 1) {
-                // more button
-                Intent intent3 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.com/invite/Vs9mwUtuCN"));
-                context.startActivity(intent3);
-                return;
-            }
 
 
             Intent intent4 = packageManager.getLaunchIntentForPackage(listItems[position]);
