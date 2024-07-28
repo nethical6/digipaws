@@ -91,7 +91,6 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
                 holder.icon.setImageDrawable(packageManager.getApplicationIcon(appInfo));
                 holder.icon.setColorFilter(colorPrimary, PorterDuff.Mode.OVERLAY);
                 holder.desc.setVisibility(View.GONE);
-                return;
             } catch (PackageManager.NameNotFoundException e) {
                 holder.title.setText(listItems[position]);
                 //iqm.remove(listItems[position]);
@@ -199,6 +198,8 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
                 context.startActivity(intent4);
             } else {
                 iqm.remove(listItems[position]);
+                InstalledQuestsManager iqm = new InstalledQuestsManager(context);
+                iqm.append(listItems[position]);
                 Toast.makeText(context, "App not found", Toast.LENGTH_SHORT).show();
             }
         });
