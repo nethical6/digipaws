@@ -122,6 +122,7 @@ public class ViewBlocker {
                             () -> {
                                 // Close button clicked
                                 pressBack();
+                                removeOverlayTimestamp = SystemClock.uptimeMillis();
                                 overlayManager.removeOverlay();
                                 isOverlayVisible = false;
                             }
