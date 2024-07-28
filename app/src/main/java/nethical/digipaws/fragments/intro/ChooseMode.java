@@ -23,7 +23,7 @@ import nethical.digipaws.utils.DigiConstants;
 
 public class ChooseMode extends SlideFragment {
 
-    private boolean canOverlay = true;
+    private boolean isOverlayPermGiven = true;
 
     private final SharedPreferences sharedPreferences;
 
@@ -43,7 +43,7 @@ public class ChooseMode extends SlideFragment {
         View view = inflater.inflate(R.layout.choose_preferences_mode, container, false);
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                result -> canOverlay = Settings.canDrawOverlays(requireContext()));
+                result -> isOverlayPermGiven = Settings.canDrawOverlays(requireContext()));
         return view;
     }
 
@@ -78,35 +78,31 @@ public class ChooseMode extends SlideFragment {
             int checkedBtnId = radioGroupModes.getCheckedRadioButtonId();
             if (checkedBtnId == R.id.radio_button_hard_mode) {
                 editor.putInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EXTREME);
-                canOverlay = true;
+                isOverlayPermGiven = true;
             } else if (checkedBtnId == R.id.radio_button_easy_mode) {
                 editor.putInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY);
                 showOverlayPerm();
-                canOverlay = false;
+                isOverlayPermGiven = false;
             } else if (checkedBtnId == R.id.radio_button_adventure_mode) {
                 editor.putInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_NORMAL);
                 showOverlayPerm();
-                canOverlay = false;
+                isOverlayPermGiven = false;
             }
             editor.apply();
         });
-        addOnNavigationBlockedListener((position, direction) -> {
-            if(!canOverlay){
-                showOverlayPerm();
-            }
-        });
+        addOnNavigationBlockedListener((position, direction) -> showOverlayPerm());
 
     }
 
 
     @Override
     public boolean canGoForward() {
-        return Settings.canDrawOverlays(requireContext());
+        return isOverlayPermGiven;
     }
 
     private void showOverlayPerm() {
         if (!Settings.canDrawOverlays(requireContext())) {
-            canOverlay = false;
+            isOverlayPermGiven = false;
             MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.missing_permission)
                     .setMessage(R.string.notification_overlay_permission)
@@ -119,7 +115,7 @@ public class ChooseMode extends SlideFragment {
                     });
             builder.create().show();
         } else {
-            canOverlay = true;
+            isOverlayPermGiven = true;
         }
     }
 
