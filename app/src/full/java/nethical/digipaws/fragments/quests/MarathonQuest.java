@@ -125,7 +125,7 @@ public class MarathonQuest extends Fragment {
                                 isQuestRunning = false;
                                 showQuestCompleteDialog();
                                 CoinManager.incrementCoin(requireContext());
-                                questPref.edit().putInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN, questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN, 0) + radarRadius).apply();
+                                questPref.edit().putInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN, questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN, DigiConstants.DEFAULT_FOCUSED) + radarRadius).apply();
                             }
                         }
                     }

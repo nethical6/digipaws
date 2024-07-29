@@ -1,5 +1,7 @@
 package nethical.digipaws.utils;
 
+import nethical.digipaws.BuildConfig;
+
 public class DigiConstants {
 
     public static final int RADAR_RADIUS = 200; // in meters (distance to run in marathon quest)
@@ -22,6 +24,13 @@ public class DigiConstants {
     public static final String PREF_COIN_DATA_FILE = "coin_info";
     public static final String PREF_COIN_KEY = "coins";
 
+    // starting stats score for different quests
+    public static final int DEFAULT_COINT_COUNT = 0;
+    public static final int DEFAULT_REPS_SQUATS = 0;
+    public static final int DEFAULT_REPS_PUSHUPS = 0;
+    public static final int DEFAULT_METERS_MARATHON = 0;
+    public static final int DEFAULT_FOCUSED = 0;
+
     public static final int DIFFICULTY_LEVEL_EASY = 0;
     public static final int DIFFICULTY_LEVEL_NORMAL = 1; // NORMAL MODE == ADVENTURE MODE
     public static final int DIFFICULTY_LEVEL_EXTREME = 2;
@@ -42,7 +51,6 @@ public class DigiConstants {
     public static final String QUEST_ID_MARATHON = "marathon";
     public static final String QUEST_ID_FOCUS = "focus";
     public static final String QUEST_ID_NULL = "null";
-
 
     public static final String KEY_TOTAL_DISTANCE_RUN = "marathon_distance";
     public static final String KEY_TOTAL_PUSHUPS = "pushups_total";

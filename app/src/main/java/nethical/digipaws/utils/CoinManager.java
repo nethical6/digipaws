@@ -4,31 +4,29 @@ import android.content.SharedPreferences;
 
 public class CoinManager {
     
-    public static final int DEFAULT_COUNT = 0;
-    
     public static int getCoinCount(Context context){
        SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_COIN_DATA_FILE,
 		Context.MODE_PRIVATE);
-        return sharedPreferences.getInt(DigiConstants.PREF_COIN_KEY,DEFAULT_COUNT);
+        return sharedPreferences.getInt(DigiConstants.PREF_COIN_KEY,DigiConstants.DEFAULT_COINT_COUNT);
     }
     
     public static void resetCoinCount(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_COIN_DATA_FILE,
 		Context.MODE_PRIVATE);
-        sharedPreferences.edit().putInt(DigiConstants.PREF_COIN_KEY,DEFAULT_COUNT).apply();
+        sharedPreferences.edit().putInt(DigiConstants.PREF_COIN_KEY,DigiConstants.DEFAULT_COINT_COUNT).apply();
     }
     
     public static void incrementCoin(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_COIN_DATA_FILE,
 		Context.MODE_PRIVATE);
-        int crnt = sharedPreferences.getInt(DigiConstants.PREF_COIN_KEY,DEFAULT_COUNT);
+        int crnt = sharedPreferences.getInt(DigiConstants.PREF_COIN_KEY,DigiConstants.DEFAULT_COINT_COUNT);
         sharedPreferences.edit().putInt(DigiConstants.PREF_COIN_KEY,crnt+1).apply();
     }
     
     public static boolean decrementCoin(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_COIN_DATA_FILE,
 		Context.MODE_PRIVATE);
-        int crnt = sharedPreferences.getInt(DigiConstants.PREF_COIN_KEY,DEFAULT_COUNT);
+        int crnt = sharedPreferences.getInt(DigiConstants.PREF_COIN_KEY,DigiConstants.DEFAULT_COINT_COUNT);
         if(crnt == 0){
             return false;
         }
@@ -39,7 +37,7 @@ public class CoinManager {
     public static void incrementCoinsBy(Context context,int value){
         SharedPreferences sharedPreferences = context.getSharedPreferences(DigiConstants.PREF_COIN_DATA_FILE,
 		Context.MODE_PRIVATE);
-        int crnt = sharedPreferences.getInt(DigiConstants.PREF_COIN_KEY,DEFAULT_COUNT);
+        int crnt = sharedPreferences.getInt(DigiConstants.PREF_COIN_KEY,DigiConstants.DEFAULT_COINT_COUNT);
         sharedPreferences.edit().putInt(DigiConstants.PREF_COIN_KEY,crnt+value).apply();
     }
     

@@ -102,20 +102,20 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
 
         if (position == 0) {
             holder.icon.setImageResource(R.drawable.baseline_access_time_24);
-            holder.desc.setText("You have spent " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED, 0)) + " minutes without distractions.");
+            holder.desc.setText("You have spent " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED, DigiConstants.DEFAULT_FOCUSED)) + " minutes without distractions.");
         }
         if (position == 1) {
             holder.icon.setImageResource(R.drawable.baseline_directions_run_24);
-            holder.desc.setText("You covered " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN, 0)) + " meters while attempting to touch grass.");
+            holder.desc.setText("You covered " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_DISTANCE_RUN, DigiConstants.DEFAULT_METERS_MARATHON)) + " meters while attempting to touch grass.");
         }
         if (position == 2) {
             holder.icon.setImageResource(R.drawable.baseline_front_hand_24);
-            holder.desc.setText("You completed " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS, 0)) + " reps of push ups.");
+            holder.desc.setText("You completed " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS, DigiConstants.DEFAULT_REPS_PUSHUPS)) + " reps of push ups.");
         }
 
         if (position == 3) {
             holder.icon.setImageResource(R.drawable.baseline_fitness_center_24);
-            holder.desc.setText("You completed " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS, 0)) + " reps of push ups.");
+            holder.desc.setText("You completed " + String.valueOf(questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS, DigiConstants.DEFAULT_REPS_SQUATS)) + " reps of squats.");
         }
 
 

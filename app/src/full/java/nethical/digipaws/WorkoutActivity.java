@@ -363,10 +363,10 @@ public class WorkoutActivity extends AppCompatActivity
             
             switch(workoutType){
                 case PoseClassifierProcessor.PUSHUPS_CLASS:
-                    questPref.edit().putInt(DigiConstants.KEY_TOTAL_PUSHUPS,questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS,0)+reps_final_count).apply();
+                    questPref.edit().putInt(DigiConstants.KEY_TOTAL_PUSHUPS,questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS,DigiConstants.DEFAULT_REPS_PUSHUPS)+reps_final_count).apply();
                     break;
                 case PoseClassifierProcessor.SQUATS_CLASS:
-                   questPref.edit().putInt(DigiConstants.KEY_TOTAL_SQUATS,questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS,0)+reps_final_count).apply();
+                   questPref.edit().putInt(DigiConstants.KEY_TOTAL_SQUATS,questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS,DigiConstants.DEFAULT_REPS_SQUATS)+reps_final_count).apply();
                     break;
                 
             }
