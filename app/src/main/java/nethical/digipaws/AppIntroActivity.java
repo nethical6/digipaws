@@ -49,7 +49,7 @@ public class AppIntroActivity extends IntroActivity {
 
         addSlide(new SimpleSlide.Builder()
                 .description(R.string.app_desc)
-                .image(R.drawable.paws)
+                .image(R.drawable.ic_launcher_monochrome)
                 .background(R.color.md_theme_dark_background)
                 .backgroundDark(R.color.md_theme_dark_background)
                 .scrollable(false)

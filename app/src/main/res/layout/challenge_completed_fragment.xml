@@ -9,11 +9,11 @@
      android:orientation="vertical">
 
     <ImageView
-         android:layout_height="300dp"
-         android:layout_width="300dp"
-         android:src="@drawable/paws"
-         android:paddingBottom="40dp"
-         android:paddingTop="40dp" />
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        android:src="@drawable/ic_launcher_monochrome" />
 
     <LinearLayout
          android:layout_height="wrap_content"
