@@ -79,8 +79,6 @@ public class HomeFragment extends Fragment {
         mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY);
         if (mode == DigiConstants.DIFFICULTY_LEVEL_EASY || mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
             checkOverlay();
-        } else {
-            cointCount.setText("He who conquers himself is the mightiest warrior.");
         }
         dayStreakTextView.setOnClickListener(v -> {
             DigiUtils.replaceScreen(getParentFragmentManager(), new ChallengeCompletedFragment(false, daysStreak));

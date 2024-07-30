@@ -28,6 +28,9 @@ public class FocusModeTimerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if(intent.hasExtra("session_length")){
+            timeLeftInMillis = intent.getIntExtra("session_length",DigiConstants.FOCUS_MODE_LENGTH);
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             startForeground(1, getNotification("90:00"), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
         } else {

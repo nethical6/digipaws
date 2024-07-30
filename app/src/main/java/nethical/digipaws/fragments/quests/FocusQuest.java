@@ -14,8 +14,11 @@ import android.view.ViewGroup;
 
 import androidx.core.content.ContextCompat;
 import android.content.pm.PackageManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -33,7 +36,9 @@ public class FocusQuest extends Fragment {
     private TextView timer;
     private boolean isQuestRunning = false;
     private NumberPicker setFTime;
-    private int selectedFocusTime = 90;
+    private LinearLayout selectTimeLayout;
+    private int selectedFocusTime = 30;
+    private Button startFocus;
 
     SharedPreferences questInfo;
     @Override
@@ -42,7 +47,9 @@ public class FocusQuest extends Fragment {
         View view = inflater.inflate(R.layout.focus_quest, container, false);
 		timer = view.findViewById(R.id.timer);
         setFTime = view.findViewById(R.id.choose_ftime);
-		return view;
+        selectTimeLayout = view.findViewById(R.id.focus_set_time_layout);
+        startFocus = view.findViewById(R.id.btn_start_focus);
+        return view;
 	}
 	
     
@@ -55,18 +62,26 @@ public class FocusQuest extends Fragment {
         }
         questInfo = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE,Context.MODE_PRIVATE);
         if(!questInfo.getBoolean(DigiConstants.PREF_QUEST_FOCUS_DESCRIBE_DIALOG_KEY,false)){
-            showQuestInfoDialog(questInfo).setCancelable(false).show();
+            makeQuestInfoDialog(questInfo).setCancelable(false).show();
+        }
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
+        int mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY);
+        if (mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
+            selectedFocusTime = 90;
+            startFocus.setVisibility(View.VISIBLE);
+            selectTimeLayout.setVisibility(View.GONE);
+        } else {
+            startFocus.setVisibility(View.VISIBLE);
+            selectTimeLayout.setVisibility(View.VISIBLE);
         }
         setFTime.setMaxValue(180);
         setFTime.setMinValue(30);
 
-        timer.setOnClickListener((v)->{
-             if(isQuestRunning){
-               return;
-            }
-             questInfo.edit().putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_FOCUS).apply();
-            SurvivalModeManager.enableSurvivalMode(requireContext());
-            startTimer();
+        setFTime.setOnValueChangedListener((np, oldnum, num) -> selectedFocusTime = num);
+
+
+        startFocus.setOnClickListener(v -> {
+            makeQuestWarningDialog().show();
         });
 
     }
@@ -97,6 +112,7 @@ public class FocusQuest extends Fragment {
 
     private void startTimer() {
         Intent serviceIntent = new Intent(requireContext(), FocusModeTimerService.class);
+        serviceIntent.putExtra("session_length",selectedFocusTime*60000);
         requireContext().startService(serviceIntent);
     }
     
@@ -108,6 +124,11 @@ public class FocusQuest extends Fragment {
                 timer.setText(time);
                 if(!isQuestRunning){
                     isQuestRunning= true;
+                }
+                if(startFocus.getVisibility() == View.VISIBLE){
+                    startFocus.setVisibility(View.GONE);
+                    selectTimeLayout.setVisibility(View.GONE);
+                    timer.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -141,9 +162,9 @@ public class FocusQuest extends Fragment {
 
                 });
     }
-    private MaterialAlertDialogBuilder showQuestInfoDialog(SharedPreferences pref){
+    private MaterialAlertDialogBuilder makeQuestInfoDialog(SharedPreferences pref){
         return new MaterialAlertDialogBuilder(requireContext())
-                .setTitle("The Focus Quest!!!")
+                .setTitle("The Focus Quest")
                 .setMessage(R.string.focus_desc)
                 .setNeutralButton("Close",(dialog,which)->{
                     dialog.dismiss();
@@ -151,6 +172,33 @@ public class FocusQuest extends Fragment {
                 });
     }
 
+    private MaterialAlertDialogBuilder makeQuestWarningDialog(){
+        return new MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Warning")
+                .setMessage("Are you sure you want to proceed? You wont be able to access applications on your device for the next "+ String.valueOf(selectedFocusTime)+" minutes. Remember that this quest cannot be stopped once started!!!")
+                .setPositiveButton("Proceed",(dialog,which)->{
+                    if(startFocus.getVisibility() == View.GONE){
+                        dialog.dismiss();
+                        Toast.makeText(requireContext(),"Already Focusing!!",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    startTimer();
+                    if(isQuestRunning){
+                        return;
+                    }
+                    questInfo.edit().putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_FOCUS).apply();
+                    SurvivalModeManager.enableSurvivalMode(requireContext());
+                    startFocus.setVisibility(View.GONE);
+                    selectTimeLayout.setVisibility(View.GONE);
+                    timer.setVisibility(View.VISIBLE);
+                    dialog.dismiss();
+
+                })
+                .setNegativeButton("Dismiss", (dialog,which)-> {
+                    dialog.dismiss();
+                });
+
+    }
 
     
     

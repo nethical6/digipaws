@@ -41,12 +41,7 @@ public class ChooseDelay extends SlideFragment {
         delay.setMaxValue(180);
         delay.setMinValue(2);
         
-        delay.setOnValueChangedListener(new NumberPicker.OnValueChangeListener(){
-            @Override
-            public void onValueChange(NumberPicker np, int oldnum, int num) {
-                    sharedPreferences.edit().putInt(DigiConstants.PREF_DELAY,num*60*1000).apply();
-            }
-        });
+        delay.setOnValueChangedListener((np, oldnum, num) -> sharedPreferences.edit().putInt(DigiConstants.PREF_DELAY,num*60*1000).apply());
 
     }
 }
