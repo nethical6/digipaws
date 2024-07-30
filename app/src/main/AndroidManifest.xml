@@ -73,7 +73,7 @@
             android:foregroundServiceType="specialUse"
             android:exported="false">
             <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="Start a 90-minute focused session during which all distracting elements are blocked at the user's discretion."/>
+                android:value="Required to start a simple timer in the notification that informs the user about the time remaining before the focus session ends. Once the time is over, update the stat values."/>
         </service>
         <receiver
             android:exported="false"
