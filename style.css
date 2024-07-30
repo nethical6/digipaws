@@ -8,7 +8,7 @@
         
         .intro {
             position: relative;
-            height: 80vh;
+            height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -64,14 +64,14 @@
             border-radius: 10px;
             padding: 30px;
             margin: 30px auto;
-            max-width: 80vw;
+            width: 50vw;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             justify-content: center;
             align-items: center;
         }
        
         .card img {
-            width: 100%;
+            width: 50%;
             height: auto;
             border-radius: 10px;
             margin-bottom: 20px;
