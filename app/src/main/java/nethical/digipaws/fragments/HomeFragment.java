@@ -33,6 +33,7 @@ import java.util.concurrent.TimeUnit;
 
 import nethical.digipaws.R;
 import nethical.digipaws.adapters.SelectQuestAdapter;
+import nethical.digipaws.fragments.quests.FocusQuest;
 import nethical.digipaws.receivers.AdminReceiver;
 import nethical.digipaws.services.BlockerService;
 import nethical.digipaws.utils.CoinManager;
@@ -83,6 +84,23 @@ public class HomeFragment extends Fragment {
         dayStreakTextView.setOnClickListener(v -> {
             DigiUtils.replaceScreen(getParentFragmentManager(), new ChallengeCompletedFragment(false, daysStreak));
         });
+       SharedPreferences questInfo = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE,Context.MODE_PRIVATE);
+        switch (questInfo.getString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL)){
+            case DigiConstants.QUEST_ID_MARATHON:
+                try {
+                    Fragment fragment = (Fragment) Class.forName("nethical.digipaws.fragments.quests.MarathonQuest").newInstance();
+                    DigiUtils.replaceScreen(getParentFragmentManager(), fragment);
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                         java.lang.InstantiationException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+
+            case DigiConstants.QUEST_ID_FOCUS:
+                DigiUtils.replaceScreen(getParentFragmentManager(), new FocusQuest());
+                break;
+
+        }
     }
 
     private void checkOverlay() {
