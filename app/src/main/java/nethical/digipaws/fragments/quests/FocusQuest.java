@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import androidx.core.content.ContextCompat;
 import android.content.pm.PackageManager;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -31,12 +32,16 @@ public class FocusQuest extends Fragment {
     
     private TextView timer;
     private boolean isQuestRunning = false;
+    private NumberPicker setFTime;
+    private int selectedFocusTime = 90;
+
     SharedPreferences questInfo;
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.focus_quest, container, false);
 		timer = view.findViewById(R.id.timer);
+        setFTime = view.findViewById(R.id.choose_ftime);
 		return view;
 	}
 	
@@ -52,7 +57,9 @@ public class FocusQuest extends Fragment {
         if(!questInfo.getBoolean(DigiConstants.PREF_QUEST_FOCUS_DESCRIBE_DIALOG_KEY,false)){
             showQuestInfoDialog(questInfo).setCancelable(false).show();
         }
-        
+        setFTime.setMaxValue(180);
+        setFTime.setMinValue(30);
+
         timer.setOnClickListener((v)->{
              if(isQuestRunning){
                return;
