@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.card.MaterialCardView;
@@ -27,6 +28,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.util.ArrayList;
 
 import nethical.digipaws.R;
+import nethical.digipaws.fragments.HomeFragment;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
@@ -34,6 +36,7 @@ import nethical.digipaws.utils.DigiConstants;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 
+import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.LocationManager;
 
 import org.osmdroid.util.GeoPoint;
@@ -49,6 +52,7 @@ public class MarathonQuest extends Fragment {
     private Button btnStartQuest;
 
     private boolean isQuestRunning;
+    private boolean isLoadingDialogVisible = false;
 
     private SharedPreferences questPref;
 
@@ -117,6 +121,10 @@ public class MarathonQuest extends Fragment {
                     if (location != null) {
                         myLocation.setPosition(new GeoPoint(location.getLatitude(), location.getLongitude()));
 
+                        if(isLoadingDialogVisible){
+                            isLoadingDialogVisible = false;
+                            loadingDialog.dismiss();
+                        }
                         // not able to use foreground services due to google play foreground restrictions
                         if (isQuestRunning) {
                             double distance = liveLocationTracker.getDistanceBetweenLocations(location, radarLocation);
@@ -138,7 +146,6 @@ public class MarathonQuest extends Fragment {
             reloadActiveQuest();
         } else {
             makeRadar();
-            liveLocationTracker = new LocationManager(requireContext());
         }
 
         btnStartQuest.setOnClickListener(v -> {
@@ -161,6 +168,7 @@ public class MarathonQuest extends Fragment {
         editor.apply();
 
         btnStartQuest.setText(R.string.start);
+
         isQuestRunning = false;
     }
 
@@ -192,7 +200,7 @@ public class MarathonQuest extends Fragment {
         radarLocation.setLongitude(longitude);
 
         addCircleTo(latitude, longitude, radarRadius);
-        loadingDialog.dismiss();
+        isLoadingDialogVisible = true;
         btnStartQuest.setText(R.string.stop);
     }
 
@@ -316,7 +324,9 @@ public class MarathonQuest extends Fragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_FINE_LOCATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                loadingDialog.show(getParentFragmentManager(), "loading_dialog"); // Use a unique tag for the dialog
+                if(!isQuestRunning && !loadingDialog.isVisible()){
+                    loadingDialog.show(getParentFragmentManager(), "loading_dialog"); // Use a unique tag for the dialog
+                }
                 makeRadar();
             }
         }
