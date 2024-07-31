@@ -22,6 +22,12 @@ public class DigiUtils {
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
+
+	public static void replaceScreenWithoutAddingToBackStack(FragmentManager fm,Fragment fragment){
+		FragmentTransaction transaction = fm.beginTransaction();
+		transaction.replace(R.id.fragment_container, fragment);
+		transaction.commit();
+	}
 	
 	public static boolean isAccessibilityServiceEnabled(Context context, Class<? extends AccessibilityService> service) {
         String prefString = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);

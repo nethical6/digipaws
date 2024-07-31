@@ -19,6 +19,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -76,6 +77,24 @@ public class HomeFragment extends Fragment {
         String[] listItems = getResources().getStringArray(R.array.Quests);
         recyclerView.setAdapter(new SelectQuestAdapter(listItems, requireContext(), getParentFragmentManager()));
 
+        SharedPreferences questInfo = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE,Context.MODE_PRIVATE);
+        switch (questInfo.getString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL)){
+            case DigiConstants.QUEST_ID_MARATHON:
+                try {
+                    Fragment fragment = (Fragment) Class.forName("nethical.digipaws.fragments.quests.MarathonQuest").newInstance();
+                    DigiUtils.replaceScreenWithoutAddingToBackStack(getParentFragmentManager(),fragment);
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                         java.lang.InstantiationException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+
+            case DigiConstants.QUEST_ID_FOCUS:
+                DigiUtils.replaceScreenWithoutAddingToBackStack(getParentFragmentManager(), new FocusQuest());
+                break;
+
+        }
+
         sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
         mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY);
         if (mode == DigiConstants.DIFFICULTY_LEVEL_EASY || mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
@@ -84,23 +103,7 @@ public class HomeFragment extends Fragment {
         dayStreakTextView.setOnClickListener(v -> {
             DigiUtils.replaceScreen(getParentFragmentManager(), new ChallengeCompletedFragment(false, daysStreak));
         });
-       SharedPreferences questInfo = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE,Context.MODE_PRIVATE);
-        switch (questInfo.getString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL)){
-            case DigiConstants.QUEST_ID_MARATHON:
-                try {
-                    Fragment fragment = (Fragment) Class.forName("nethical.digipaws.fragments.quests.MarathonQuest").newInstance();
-                    DigiUtils.replaceScreen(getParentFragmentManager(), fragment);
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-                         java.lang.InstantiationException e) {
-                    throw new RuntimeException(e);
-                }
-                break;
 
-            case DigiConstants.QUEST_ID_FOCUS:
-                DigiUtils.replaceScreen(getParentFragmentManager(), new FocusQuest());
-                break;
-
-        }
     }
 
     private void checkOverlay() {

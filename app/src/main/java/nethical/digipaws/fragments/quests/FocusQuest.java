@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -124,6 +125,7 @@ public class FocusQuest extends Fragment {
                 timer.setText(time);
                 if(!isQuestRunning){
                     isQuestRunning= true;
+                    getParentFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 }
                 if(startFocus.getVisibility() == View.VISIBLE){
                     startFocus.setVisibility(View.GONE);
