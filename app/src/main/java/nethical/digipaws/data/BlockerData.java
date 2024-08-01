@@ -64,9 +64,6 @@ public class BlockerData {
     "com.nutomic.syncthingandroid", // Syncthing
     "com.slack", // Slack
     "com.google.android.gm", // Gmail
-    "org.mozilla.firefox", // Firefox
-    "com.microsoft.emmx", // Microsoft Edge
-    "com.chrome.beta", // Chrome Beta
     "com.pushbullet.android", // Pushbullet
     "com.teams.microsoft", // Microsoft Teams
     "com.dropbox.android", // Dropbox
@@ -81,7 +78,6 @@ public class BlockerData {
     "com.moodle.moodlemobile", // Moodle
     "com.zoom.us", // Zoom
     "com.basecamp.bc3", // Basecamp
-    "com.evernote", // Evernote
     "com.campmobile.snow", // Snow
     "com.gs.android", // GTasks
     "com.habitrpg.android.habitica", // Habitica
