@@ -52,7 +52,9 @@ public class ConfigureAntiUninstall extends Fragment  {
         SimpleDateFormat sdf = new SimpleDateFormat(DigiConstants.DATE_FORMAT, Locale.getDefault());
         String dateString = sdf.format(date);
       
-        sharedPreferences.edit().putString(DigiConstants.PREF_ANTI_UNINSTALL_START,dateString).apply();
+        if(!sharedPreferences.contains(DigiConstants.PREF_ANTI_UNINSTALL_START)){
+           sharedPreferences.edit().putString(DigiConstants.PREF_ANTI_UNINSTALL_START,dateString).apply();
+        }
         devicePolicyManager =
                         (DevicePolicyManager)
                                 requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
