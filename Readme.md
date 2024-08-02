@@ -1,14 +1,13 @@
-<p align="center">
+<div align="center">
   <img src="fastlane/metadata/android/en-US/images/icon.png" style="width: 30%;" />
-</p>
-
-# DigiPaws
-[![GitHub contributors](https://img.shields.io/github/contributors/nethical6/digipaws)](https://github.com/nethical6/digipaws/graphs/contributors)
-[![Discord Server](https://img.shields.io/badge/Discord%20Server-white?style=flat&logo=discord)](https://discord.com/invite/Vs9mwUtuCN)
-[![Telegram Group](https://img.shields.io/badge/Telegram%20Group-blue?style=flat&logo=telegram)](https://t.me/digipaws6)
-[![Total downloads](https://img.shields.io/github/downloads/nethical6/digipaws/total)](https://github.com/nethical6/digipaws/releases)
-[![Repository Size](https://img.shields.io/github/repo-size/nethical6/digipaws)](https://github.com/nethical6/digipaws)
-
+   <h2>DigiPaws</h2>
+   
+   [![GitHub contributors](https://img.shields.io/github/contributors/nethical6/digipaws)](https://github.com/nethical6/digipaws/graphs/contributors)
+   [![Discord Server](https://img.shields.io/badge/Discord%20Server-white?style=flat&logo=discord)](https://discord.com/invite/Vs9mwUtuCN)
+   [![Telegram Group](https://img.shields.io/badge/Telegram%20Group-blue?style=flat&logo=telegram)](https://t.me/digipaws6)
+   [![Total downloads](https://img.shields.io/github/downloads/nethical6/digipaws/total)](https://github.com/nethical6/digipaws/releases)
+   [![Repository Size](https://img.shields.io/github/repo-size/nethical6/digipaws)](https://github.com/nethical6/digipaws)
+</div>
 
 
 DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes—Easy, Adventure, and Hard—each with unique features and challenges to promote healthy screen time habits.
@@ -16,7 +15,7 @@ DigiPaws is an open-source Android productivity utility designed to help users r
 
 
 > [!IMPORTANT]  
-> This project is in its extreme initial stages for now
+> Digipaws is still in its extreme initial phase
 
 > [!CAUTION]
 > This app may be discontinued very soon due to lack of funds (I am an indie developer who codes on phone). [Donate](https://nethical6.github.io/digipaws/donate)
@@ -25,12 +24,24 @@ DigiPaws is an open-source Android productivity utility designed to help users r
 ## Features
 
 - **Three Unique Modes**: Tailor your screen usage experience with Easy, Adventure, and Hard modes.
-- **Gamified Challenges**: Earn Aura coins through quests like walking, and use them to unlock app usage.
+- **Gamified Challenges**: Earn Aura coins through quests like walking and use them to unlock app usage.
 - **Open Source**: Fully transparent and free to use, with the source code available for community contributions.
 - **Productivity Enhancement**: Helps build healthier digital habits and reduce screen addiction.
 - **Versatile Blockers**: Take control of your digital environment by blocking apps, keywords, and unwanted in-app screens (e.g., YouTube shorts, comments).
 - **Open Api**: Turn your existing application into a digipaws quest!! [Learn More](https://nethical6.github.io/digipaws/partners/)
 
+## Screenshots
+Click on any image to enlarge it.
+<table>
+	<tr>
+		<td><img src='fastlane/metadata/android/en-US/images/phoneScreenshots/1.png' width='120'></td>
+		<td><img src='fastlane/metadata/android/en-US/images/phoneScreenshots/2.png' width='120'></td>
+		<td><img src='fastlane/metadata/android/en-US/images/phoneScreenshots/3.png' width='120'></td>
+		<td><img src='fastlane/metadata/android/en-US/images/phoneScreenshots/4.png' width='120'></td>
+		<td><img src='fastlane/metadata/android/en-US/images/phoneScreenshots/5.png' width='120'></td>
+		<td><img src='fastlane/metadata/android/en-US/images/phoneScreenshots/6.png' width='120'></td>
+	</tr>
+</table>
 
 ## Modes
 
@@ -40,14 +51,17 @@ In Easy Mode, DigiPaws provides gentle reminders to help you manage your screen 
 
 ### Adventure Mode
 
-Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need Aura coins. These can be earned by completing quests such as a quick 1 km walk. Each Aura coin grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use.
+Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need Aura coins. These can be earned by completing quests such as quick walk. Each Aura coin grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use. With every quest you perform, the difficulty rises.
 
 #### Quests
-1. **Touch Grass** - Displace yourself by 1 km.
-2. **40x Squats** - Perform 40 reps of squats in any sets. Verified using AI.
-3. **40x Pushups** - Perform 40 reps of pushups in any sets. Verified using AI.
-4. **Focus Quest** - Apply the 20/60 study rule: Digipaws blocks all unnecessary applications except basic apps like calling and SMS.
-5. **Open API** - See the list of [applications using our quest API.](https://github.com/nethical6/digipause/blob/main/HowToUseApi.md)
+1. **Touch Grass** - Displace yourself out of the red zone on map. Verified using GPS.
+2. **Squats** - Simply perform squats. Verified using AI.
+3. **Pushups** - Simply perform pushups. Verified using AI.
+4. **Focus Quest** - Apply the 90/20 study rule: Digipaws blocks all unnecessary applications except basic and productive apps like calling and SMS.
+5. **Open API** - Learn [how to use our API](https://github.com/nethical6/digipause/blob/main/HowToUseApi.md)
+
+> [!IMPORTANT]  
+> A custom time can be set for Focus quest when on Hard or Easy mode.
 
 > [!IMPORTANT]  
 > Remember that only focus quest is available on lite version (same as the fdroid version) to reduce app size. Download the full version to enjoy all inbuilt quests. [Download](https://github.com/nethical6/digipaws/releases)
@@ -84,33 +98,19 @@ Note that the quest api works with both variants
 - [x] App blockers
 - [x] Focus Quest
 - [x] Anti-Uninstall
-- [ ] Geoblocker (basically block things when a certain area is entered like workplace)
 - [x] Customisable warning screen
+- [x] Api for other developers to transform their existing apps into digipaw quests!
+- [ ] Geoblocker (basically block things when a certain area is entered, like workplace)
 - [ ] Block cusomtom user defined keywords
 - [ ] Modular and downloadable view blockers
-- [x] Api for other developers to transform their existing apps into digipaw quests!
-- [ ] expand the app to ios and desktops.
+- [ ] expand the app to ios and desktop.
 
-## Thanks 
+## Thanks
 - [**Osmdroid**](https://github.com/osmdroid/osmdroid) : Mapview used in Quest "TouchGrass"
 - [**Digital Wellbeing Experiments Toolkit**](https://github.com/googlecreativelab/digital-wellbeing-experiments-toolkit) : some ideas ig, basically the geoblocker one.
 - [**Undraw**](https://undraw.co) : illustrations on intro page
 - Special thanks to all the premium apps on the Play Store that inspired me to create a free and open-source alternative. imagine making money out of miserable people.
 - [**Ml Kit QuickStart**](https://github.com/googlesamples/mlkit/tree/master) : ML models and multiple classes were used from this repository.
-
-
-## Installation
-
-To install DigiPaws:
-
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/nethical6/digi-paws.git
-    ```
-2. Open the project in Android Studio.
-3. Build and run the app on your Android device.
-
-Alternatively, you can download the latest release from the [Releases](https://github.com/nethical6/digi-paws/releases) page and install the APK on your device.
 
 ## Contributing
 
@@ -136,9 +136,10 @@ Please ensure your code adheres to our coding standards and includes relevant te
 ## Contributors
 - [Henry Delallal](https://github.com/HenriDellal): assisted in setting up fdroid version
 - [Remaker17](https://github.com/remaker17): setup workflow files
+- Error 404: allowed me to upload digipaws from his play console
 
 ### HELP REQUIRED!!
-1. Implementing material ui inside the warning overlay and also making it customisable.
+1. Implementing dyanimic colors inside the warning overlay.
 2. Expanding the list of [explict keywords](https://github.com/nethical6/digipause/blob/da5723915412277655aea4dd448cdc64a21fcc83/app/src/main/java/nethical/digipaws/data/BlockerData.java#L28)
 3. Expanding the list of [Blocked view items](https://github.com/nethical6/digipause/blob/main/app/src/main/java/nethical/digipaws/data/BlockerData.java#L4) so that more apps can be supported. You can scrape the view ids of a screen with the help of [Developer Assistant](https://play.google.com/store/apps/details?id=com.appsisle.developerassistant). Remeber that these view ids must be unique and only present on the screen to block!!
 4. Adding more info about other packages [here](https://github.com/nethical6/digipause/blob/main/app/src/main/java/nethical/digipaws/data/BlockerData.java)
@@ -146,7 +147,7 @@ Please ensure your code adheres to our coding standards and includes relevant te
 
 ## License
 
-DigiPaws is licensed under the [GNU License](LICENSE). You are free to use, modify, and distribute this software in accordance with the license. 
+DigiPaws is licensed under the [GNU License](LICENSE). You are free to use, modify, and distribute this software in accordance with the license.
 
 ## Contact
 
