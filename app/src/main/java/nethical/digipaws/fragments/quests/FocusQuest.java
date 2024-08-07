@@ -26,8 +26,10 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import nethical.digipaws.R;
+import nethical.digipaws.fragments.HomeFragment;
 import nethical.digipaws.services.FocusModeTimerService;
 import nethical.digipaws.utils.DigiConstants;
+import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.SurvivalModeManager;
 
 
@@ -38,7 +40,7 @@ public class FocusQuest extends Fragment {
     private boolean isQuestRunning = false;
     private NumberPicker setFTime;
     private LinearLayout selectTimeLayout;
-    private int selectedFocusTime = 30;
+    private int selectedFocusTime = 1;
     private Button startFocus;
 
     SharedPreferences questInfo;
@@ -76,7 +78,7 @@ public class FocusQuest extends Fragment {
             selectTimeLayout.setVisibility(View.VISIBLE);
         }
         setFTime.setMaxValue(180);
-        setFTime.setMinValue(30);
+        setFTime.setMinValue(1);
 
         setFTime.setOnValueChangedListener((np, oldnum, num) -> selectedFocusTime = num);
 
@@ -160,7 +162,7 @@ public class FocusQuest extends Fragment {
                 .setMessage("Remember to come again!")
                 .setNeutralButton("Quit",(dialog,which)->{
                     dialog.dismiss();
-                    getParentFragmentManager().popBackStack();
+                    DigiUtils.replaceScreenWithoutAddingToBackStack(getParentFragmentManager(),new HomeFragment());
 
                 });
     }

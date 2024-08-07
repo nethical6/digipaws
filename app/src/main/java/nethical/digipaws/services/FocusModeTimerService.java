@@ -17,6 +17,7 @@ import androidx.core.app.NotificationCompat;
 
 import nethical.digipaws.MainActivity;
 import nethical.digipaws.R;
+import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.SurvivalModeManager;
@@ -24,7 +25,7 @@ import nethical.digipaws.utils.SurvivalModeManager;
 public class FocusModeTimerService extends Service {
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis = DigiConstants.FOCUS_MODE_LENGTH; // in milliseconds
-
+    private Context context = this;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -56,6 +57,7 @@ public class FocusModeTimerService extends Service {
                 updateUIIntent.setPackage(getPackageName());
                 updateUIIntent.putExtra("over", true);
                 sendBroadcast(updateUIIntent);
+                CoinManager.incrementCoin(context);
 
                 SurvivalModeManager.disableSurvivalMode(getApplicationContext());
                 DigiUtils.sendNotification(getApplicationContext(), "Quest Completed!", "You earned 1 Aura Coin.", R.drawable.swords);
