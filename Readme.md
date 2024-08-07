@@ -18,7 +18,7 @@ DigiPaws is an open-source Android productivity utility designed to help users r
 > Digipaws is still in its extreme initial phase
 
 > [!CAUTION]
-> This app may be discontinued very soon due to lack of funds (I am an indie developer who codes on phone). [Donate](https://nethical6.github.io/digipaws/donate)
+> This project is experimental and not yet ready for full production. [Donate](https://nethical6.github.io/digipaws/donate)
 
 
 ## Features

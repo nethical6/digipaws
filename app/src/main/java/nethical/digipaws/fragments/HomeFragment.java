@@ -99,10 +99,11 @@ public class HomeFragment extends Fragment {
         sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
         mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY);
         if (mode == DigiConstants.DIFFICULTY_LEVEL_EASY || mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
-            checkOverlay();
-            cointCount.setText("Keep going king!");
+            checkOverlay();;
+        };
+        if(mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL){
+            refreshCoinCount();
         }
-        calculateDaysPassed();
         dayStreakTextView.setOnClickListener(v -> {
             DigiUtils.replaceScreen(getParentFragmentManager(), new ChallengeCompletedFragment(false, daysStreak));
         });
@@ -197,18 +198,13 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         checkAccessibiltyPermission();
-       // refreshCoinCount();
+        calculateDaysPassed();
     }
 
     private void checkAccessibiltyPermission() {
         if (!DigiUtils.isAccessibilityServiceEnabled(requireContext(), BlockerService.class)) {
             Snackbar.make(dayStreakTextView, R.string.notification_accessibility_permission, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.settings, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            buildAccessibiltyDialog();
-                        }
-                    }).show();
+                    .setAction(R.string.settings, v -> buildAccessibiltyDialog()).show();
         } else {
             checkAndRequestBatteryOptimization(requireContext());
         }
@@ -217,21 +213,18 @@ public class HomeFragment extends Fragment {
     private void checkAndRequestBatteryOptimization(Context context) {
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (!powerManager.isIgnoringBatteryOptimizations(context.getPackageName())) {
-            Snackbar.make(dayStreakTextView, R.string.battery_optimisation_title, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.settings, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
-                                    .setTitle(R.string.battery_optimisation_title)
-                                    .setMessage(R.string.battery_optimisation_desc)
-                                    .setNeutralButton("Provide", (dialog, which) -> {
-                                        Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-                                        intent.setData(Uri.parse("package:" + context.getPackageName()));
-                                        context.startActivity(intent);
-                                        dialog.dismiss();
-                                    });
-                            builder.create().show();
-                        }
+            Snackbar.make(dayStreakTextView, R.string.battery_optimisation_desc, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.settings, v -> {
+                        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
+                                .setTitle(R.string.battery_optimisation_title)
+                                .setMessage(R.string.battery_optimisation_desc)
+                                .setNeutralButton("Provide", (dialog, which) -> {
+                                    Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                                    intent.setData(Uri.parse("package:" + context.getPackageName()));
+                                    context.startActivity(intent);
+                                    dialog.dismiss();
+                                });
+                        builder.create().show();
                     }).show();
 
         }

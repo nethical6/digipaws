@@ -24,13 +24,13 @@ import nethical.digipaws.utils.SurvivalModeManager;
 
 public class FocusModeTimerService extends Service {
     private CountDownTimer countDownTimer;
-    private long timeLeftInMillis = DigiConstants.FOCUS_MODE_LENGTH; // in milliseconds
+    private long sessionLength = DigiConstants.FOCUS_MODE_LENGTH; // in milliseconds
     private Context context = this;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(intent.hasExtra("session_length")){
-            timeLeftInMillis = intent.getIntExtra("session_length",DigiConstants.FOCUS_MODE_LENGTH);
+            sessionLength = intent.getIntExtra("session_length",DigiConstants.FOCUS_MODE_LENGTH);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             startForeground(1, getNotification("90:00"), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
@@ -38,11 +38,10 @@ public class FocusModeTimerService extends Service {
             startForeground(1, getNotification("90:00"));
         }
 
-        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+        countDownTimer = new CountDownTimer(sessionLength, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeLeftInMillis = millisUntilFinished;
-                String timeFormatted = getTimeFormatted(timeLeftInMillis);
+                String timeFormatted = getTimeFormatted(millisUntilFinished);
                 Intent updateUIIntent = new Intent("nethical.digipaws.TIMER_UPDATED");
                 updateUIIntent.setPackage(getPackageName());
                 updateUIIntent.putExtra("time", timeFormatted);
@@ -57,13 +56,16 @@ public class FocusModeTimerService extends Service {
                 updateUIIntent.setPackage(getPackageName());
                 updateUIIntent.putExtra("over", true);
                 sendBroadcast(updateUIIntent);
-                CoinManager.incrementCoin(context);
+
+                if(sessionLength == DigiConstants.FOCUS_MODE_LENGTH){
+                    CoinManager.incrementCoin(context);
+                }
 
                 SurvivalModeManager.disableSurvivalMode(getApplicationContext());
-                DigiUtils.sendNotification(getApplicationContext(), "Quest Completed!", "You earned 1 Aura Coin.", R.drawable.swords);
+                DigiUtils.sendNotification(getApplicationContext(), "Quest Completed!", "", R.drawable.swords);
                 SharedPreferences questPref = getSharedPreferences(
                         DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
-                questPref.edit().putInt(DigiConstants.KEY_TOTAL_FOCUSED, questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED, DigiConstants.DEFAULT_FOCUSED) + 90).apply();
+                questPref.edit().putInt(DigiConstants.KEY_TOTAL_FOCUSED, questPref.getInt(DigiConstants.KEY_TOTAL_FOCUSED, DigiConstants.DEFAULT_FOCUSED) + Math.round((float) sessionLength /60000)).apply();
                 questPref.edit().putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL).apply();
                 stopSelf();
             }

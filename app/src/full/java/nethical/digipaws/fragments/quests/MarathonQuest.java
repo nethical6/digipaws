@@ -58,7 +58,7 @@ public class MarathonQuest extends Fragment {
 
     private LocationManager liveLocationTracker = null;
 
-    private final Location radarLocation = new Location("radar");
+    private Location radarLocation;
     private int radarRadius = 0; // the size of radar
 
     private final LoadingDialog loadingDialog = new LoadingDialog("Calculating Location...");
@@ -126,7 +126,7 @@ public class MarathonQuest extends Fragment {
                             loadingDialog.dismiss();
                         }
                         // not able to use foreground services due to google play foreground restrictions
-                        if (isQuestRunning) {
+                        if (isQuestRunning && radarLocation!=null) {
                             double distance = liveLocationTracker.getDistanceBetweenLocations(location, radarLocation);
                             if (distance >= radarRadius) {
                                 endQuest();
@@ -224,10 +224,13 @@ public class MarathonQuest extends Fragment {
                         double longitude = location.getLongitude();
 
 
-                        radarLocation.set(location);
-                        addCircleTo(latitude, longitude, radarRadius);
-                        loadingDialog.dismiss();
-                        locationHelperCircle.stopLocationUpdates();
+                        if(radarLocation == null){
+                            radarLocation = new Location("Radar");
+                            radarLocation.set(location);
+                            addCircleTo(latitude, longitude, radarRadius);
+                            loadingDialog.dismiss();
+                            locationHelperCircle.stopLocationUpdates();
+                        }
                     }
                 }
             });
