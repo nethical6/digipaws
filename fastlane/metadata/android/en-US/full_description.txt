@@ -1,34 +1,16 @@
-Digipaws is a Free, open-source Android app that helps fight screen addiction with fun & effective methods.
+Tired of losing hours to endless scrolling? Meet DigiPaws – the app that gamifies your screen time and turns it into a productive adventure!
+
 
 <b>Features</b>
 
 - <b>Versatile Blockers</b>: Take control of your digital environment by blocking apps, keywords, and unwanted in-app screens (e.g., YouTube shorts, comments).
 - <b>Anti-Uninstall</b>: Take up the "TechRehab" challenge to prevent any uninstallation attempts for the next 3 weeks.
 - <b>Three Unique Modes</b>: Tailor your screen usage experience with Easy, Adventure, and Hard modes.
-- <b>Gamified Challenges</b>: Earn Aura through quests like walking, and use them to unlock app usage.
+- <b>Gamified Challenges</b>: Earn Aura by becoming productive, and use them to unlock app usage.
+- <b>Focus Quest</b> : blocks all apps (except essentials like calls and SMS) for a few minutes.
 - <b>Open Source</b>: Fully transparent and free to use, with the source code available for community contributions.
 - <b>Productivity Enhancement</b>: Helps build healthier digital habits and reduce screen addiction.
 - <b>Open API</b>: Turn your existing application into a digipaws quest!! Learn More at https://github.com/nethical6/digipause/blob/main/HowToUseApi.md
-
-<b> Modes </b>
-Learn more at -> https://nethical6.github.io/digipaws/about/modes/
-
-<b>Easy Mode</b>
-
-In Easy Mode, DigiPaws provides gentle reminders to help you manage your screen time. When you attempt to access a blocked app, a warning screen appears. If you choose to proceed, a cooldown period starts. After the cooldown, another warning is displayed to remind you of your usage.
-
-<b>Adventure Mode</b>
-
-Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need Aura. These can be earned by completing quests such as a quick 1 km walk. Each Aura coin grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use. Learn more -> https://nethical6.github.io/digipaws/about/quests/
-
-<b>Quests</b>
- * <b>Focus Quest</b> - Apply the 20/60 study rule: Digipaws blocks all unnecessary applications except basic apps like calling and SMS. Cannot be stopped once started :)
- * <b>Open API</b> - See the list of applications using our quest API: https://nethical6.github.io/digipaws/partners/
-NOTE: This is the lite version, which has fewer inbuild quests compared to the full version. 
-
-<b>Hard Mode</b>
-
-Hard Mode offers the most stringent control over app usage. In this mode, when you try to open a blocked app, the back button is automatically pressed without any warning or cooldown, preventing access entirely.
 
 <b>Usage</b>
 
