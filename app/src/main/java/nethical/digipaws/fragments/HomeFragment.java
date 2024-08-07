@@ -1,5 +1,6 @@
 package nethical.digipaws.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -99,7 +100,9 @@ public class HomeFragment extends Fragment {
         mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY);
         if (mode == DigiConstants.DIFFICULTY_LEVEL_EASY || mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
             checkOverlay();
+            cointCount.setText("Keep going king!");
         }
+        calculateDaysPassed();
         dayStreakTextView.setOnClickListener(v -> {
             DigiUtils.replaceScreen(getParentFragmentManager(), new ChallengeCompletedFragment(false, daysStreak));
         });
@@ -126,20 +129,12 @@ public class HomeFragment extends Fragment {
     public void calculateDaysPassed() {
 
         SimpleDateFormat sdf = new SimpleDateFormat(DigiConstants.DATE_FORMAT, Locale.getDefault());
-
-        // Parse the given date
         Date givenDate = getDate(requireContext());
-
-        // Get the current date
         Date currentDate = new Date();
-
-        // Calculate the difference in milliseconds
         long differenceInMillis = currentDate.getTime() - givenDate.getTime();
-
-        // Convert milliseconds to days
         long days = TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS);
         daysStreak = String.valueOf(days);
-        dayStreakTextView.setText("Day " + String.valueOf(days));
+        dayStreakTextView.setText("Day " + days);
 
         DevicePolicyManager devicePolicyManager =
                 (DevicePolicyManager)
@@ -147,14 +142,8 @@ public class HomeFragment extends Fragment {
         ComponentName deviceAdminReceiver =
                 new ComponentName(requireContext(), AdminReceiver.class);
 
-
-        // Parse the given date
         Date antiUninstallStartDay = getChallengeDate(requireContext());
-
-        // Calculate the difference in milliseconds
         long adifferenceInMillis = currentDate.getTime() - antiUninstallStartDay.getTime();
-
-        // Convert milliseconds to days
         long antiUninstallDaysElapsed = TimeUnit.DAYS.convert(adifferenceInMillis, TimeUnit.MILLISECONDS);
 
         //if(true){
@@ -165,14 +154,13 @@ public class HomeFragment extends Fragment {
 
             DigiUtils.sendNotification(requireContext(), "Challenge Completed", "Anti-Uninstall has been disabled!!!!!!", R.drawable.swords);
             sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL, false).apply();
-            // Disable the device admin if it was enabled
-
 
             devicePolicyManager.removeActiveAdmin(deviceAdminReceiver);
             DigiUtils.replaceScreen(getParentFragmentManager(), new ChallengeCompletedFragment(true, String.valueOf(days)));
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void refreshCoinCount() {
         if (mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
             cointCount.setText("You hold " + String.valueOf(CoinManager.getCoinCount(requireContext())) + " Aura");
@@ -209,8 +197,7 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         checkAccessibiltyPermission();
-        refreshCoinCount();
-        calculateDaysPassed();
+       // refreshCoinCount();
     }
 
     private void checkAccessibiltyPermission() {

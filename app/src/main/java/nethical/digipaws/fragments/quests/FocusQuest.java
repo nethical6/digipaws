@@ -44,6 +44,7 @@ public class FocusQuest extends Fragment {
     private Button startFocus;
 
     SharedPreferences questInfo;
+
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
@@ -158,12 +159,11 @@ public class FocusQuest extends Fragment {
 
     private MaterialAlertDialogBuilder makeQuestCompleteDialog(){
         return new MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Congratulations!!!")
-                .setMessage("Remember to come again!")
+                .setTitle("Quest Complete")
+                .setMessage("Keep going King!!")
                 .setNeutralButton("Quit",(dialog,which)->{
                     dialog.dismiss();
                     DigiUtils.replaceScreenWithoutAddingToBackStack(getParentFragmentManager(),new HomeFragment());
-
                 });
     }
     private MaterialAlertDialogBuilder makeQuestInfoDialog(SharedPreferences pref){

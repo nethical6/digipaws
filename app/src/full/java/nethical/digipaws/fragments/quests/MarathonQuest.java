@@ -335,7 +335,7 @@ public class MarathonQuest extends Fragment {
     private void showQuestCompleteDialog() {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext()).setTitle("Quest Complete").setMessage("You earned 1 Aura point. Your next Touch Grass target is " + String.valueOf(radarRadius + 50) + " metres away!").setNeutralButton("Quit", (dialog, which) -> {
             dialog.dismiss();
-            getParentFragmentManager().popBackStack();
+            DigiUtils.replaceScreenWithoutAddingToBackStack(getParentFragmentManager(),new HomeFragment());
         });
         Dialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
