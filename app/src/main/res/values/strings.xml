@@ -9,7 +9,7 @@
     <string name="close">Close</string>
     <string name="proceed">Proceed</string>
     <string name="buy_20_mins">Purchase 20 minutes</string>
-    <string name="desc_sd_overlay">Do you want to buy a 20 minute timewaster for 1 Aura? This purchase will lift off all restrictions from this app or item for the next 20 minutes.</string>
+    <string name="desc_sd_overlay">Do you want to buy a 20 minute time-waster for 1 Aura? This purchase will lift off all restrictions from this app or item for the next 20 minutes.</string>
 
     <string name="no_coins_title">Insufficient Aura</string>
     <string name="desc_no_coins_overlay">You have 0 Aura to waste time, perform a quest to earn Aura now!</string>
@@ -45,8 +45,8 @@
 
     <string name="block_vb_title">What do you wish to block?</string>
     <string name="block_shorts_cb">Block Shorts</string>
-    <string name="block_comments_cb">Block Comments (auto-close)</string>
-    <string name="block_porn_cb">Block Explict Keywords (beta)</string>
+    <string name="block_comments_cb">Block Comments (Experimental)</string>
+    <string name="block_porn_cb">Block Explict Keywords (Experimental)</string>
     <string name="block_vb_desc">Supported Platforms: Youtube, Instagram, Revanced, Tiktok.</string>
 
     <string name="anti_uninstall_title">#TechRehab</string>
