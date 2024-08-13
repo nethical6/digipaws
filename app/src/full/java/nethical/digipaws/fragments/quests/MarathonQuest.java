@@ -153,6 +153,7 @@ public class MarathonQuest extends Fragment {
                 startQuest();
             } else {
                 endQuest();
+                DigiUtils.replaceScreenWithoutAddingToBackStack(getParentFragmentManager(),new HomeFragment());
             }
         });
     }
