@@ -59,6 +59,12 @@
             flex-direction: column;
             padding: 20px;
         }
+        .additional-content-toc {
+            color: #E7E0EC;
+            display: flex;
+            flex-direction: column;
+            padding: 20%;
+        }
         .card {
             background-color: #222222;
             border-radius: 10px;
