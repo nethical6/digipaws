@@ -196,6 +196,9 @@ public class MarathonQuest extends Fragment {
         controller.setZoom(18.0);
         controller.animateTo(gRadarLocation);
 
+        if(radarLocation==null){
+            radarLocation = new Location("lol");
+        }
         radarLocation.setLatitude(latitude);
         radarLocation.setLongitude(longitude);
 
