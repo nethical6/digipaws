@@ -100,7 +100,9 @@
     <string name="aura_earned_1">You earned 1 Aura coin</string>
     <string name="tac">By continuing, you agree to our Terms and Conditions</string>
 
-    <string name="accessibility_perm">This app solely depends on Accessibility Permission to block elements. We do not store any of this data on our servers; everything is processed locally. By pressing "Agree," you accept our data usage policy.</string>
+    <string name="accessibility_perm">This app solely depends on Accessibility Permission to block elements. We do not store any of this data on our servers; everything is processed locally. By pressing "Agree," you accept our data usage policy.
+
+        If you use github release or Fdroid variant, please allow DigiPaws to access restricted settings prior to this process.</string>
 
     <string name="choose_msg_title">Warning Screen</string>
 

@@ -32,6 +32,7 @@ public class BlockerData {
     
     public static final String[] nonBlockedPackages = {
     "com.google.android.dialer", // Google Dialer
+            "com.google.android.apps.messaging",
     "nethical.digipaws", // DigiPaws
     "com.google.android.deskclock", // Google Clock
     "com.android.systemui", // Android System UI
