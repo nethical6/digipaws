@@ -72,7 +72,7 @@ public class BlockerService extends AccessibilityService {
             if (keywordBlocker.isEdFocused() && event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
                 keywordBlocker.performAction(serviceData);
             }
-            if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+            if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
                 appBlocker.performAction(serviceData);
             }
         } catch (Exception ignored) {}

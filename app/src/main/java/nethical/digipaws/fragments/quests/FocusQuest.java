@@ -71,7 +71,7 @@ public class FocusQuest extends Fragment {
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
         int mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY);
         if (mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
-            selectedFocusTime = 90;
+            selectedFocusTime = 90; // tweak to change focus mode adv timing
             startFocus.setVisibility(View.VISIBLE);
             selectTimeLayout.setVisibility(View.GONE);
         } else {

@@ -12,11 +12,9 @@ import nethical.digipaws.utils.OverlayManager;
 import nethical.digipaws.utils.SurvivalModeManager;
 
 public class AppBlocker {
-    
-    private boolean isSettingsBlocked=false;
+
     
     private float lastWarningTimestamp = 0f;
-    private float lastOverlayTimestamp = 0f;
     private float removeOverlayTimestamp = 0f;
     private float lastGlobalActionTimestamp = 0f;
     
@@ -30,9 +28,6 @@ public class AppBlocker {
             return;
         }
 
-        if(!DelayManager.isDelayOver(removeOverlayTimestamp,50000)){return;}
-
-        isSettingsBlocked = data.isReelsBlocked();
         difficulty = data.getDifficulty();
 
 
@@ -69,6 +64,9 @@ public class AppBlocker {
     }
     
    public void punish(){
+        if(!DelayManager.isDelayOver(removeOverlayTimestamp,1000) || isOverlayVisible){
+            return;
+        }
 		switch(difficulty){
 			case(DigiConstants.DIFFICULTY_LEVEL_EASY):
             // Check if warning cooldown is over
@@ -83,12 +81,14 @@ public class AppBlocker {
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
                         lastWarningTimestamp = SystemClock.uptimeMillis();
+                        removeOverlayTimestamp = SystemClock.uptimeMillis();
                     },
                     ()->{
                         // Close button clicked
                         pressHome();
                         overlayManager.removeOverlay();
                         isOverlayVisible = false;
+                        removeOverlayTimestamp = SystemClock.uptimeMillis();
                     }
                     );
                     isOverlayVisible = true;
