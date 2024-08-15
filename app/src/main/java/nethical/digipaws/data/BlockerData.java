@@ -9,10 +9,11 @@ public class BlockerData {
         "com.instagram.android" + DigiConstants.VIEWID_SEPERATOR + "root_clips_layout"
     };
     
-    // This list consists of applications solely made for the purpose of doom scrolling
+    // This list consists applications solely made for the purpose of doom scrolling
     public static final String[] shortsApplications = {
         "com.ss.android.ugc", //tiktok asia
-        "com.zhiliaoapp.musically" //tiktok global
+        "com.zhiliaoapp.musically", //tiktok global
+            "com.instagram.lite" // has no unnique ids on reels tab, hence just blocked the entire app lmao
     };
     
     public static final String[] engagementPanelViewIds = {
