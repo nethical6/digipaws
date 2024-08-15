@@ -3,7 +3,9 @@ package nethical.digipaws.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.os.CountDownTimer;
 import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.material.button.MaterialButton;
@@ -13,19 +15,19 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.LayoutInflater;
 import nethical.digipaws.data.ServiceData;
+import nethical.digipaws.services.FocusModeTimerService;
 
 public class OverlayManager {
 	
 	private WindowManager windowManager;
 	private Context context;
 	private View overlayView;
-    
-    private MaterialButton mb;
+
     private Button closeButton;
     private Button proceedButton;
     private TextView textTitle;
     private TextView textDescription;
-    
+
     private WindowManager.LayoutParams params;
     
     // somehow implement material3 design here
@@ -55,6 +57,8 @@ public class OverlayManager {
 	
     public void showOverlay(int difficulty,OnProceedClicked proceed, OnCloseClicked close){
         SharedPreferences sp = context.getSharedPreferences(DigiConstants.PREF_WARN_FILE,Context.MODE_PRIVATE);
+
+
         closeButton.setOnClickListener(v -> {
 			close.onCloseClicked();
 		}); 
@@ -63,6 +67,7 @@ public class OverlayManager {
             proceed.onProceedClicked();
 			
 		});
+        setUpDelayToProceedOn(proceedButton);
         
         String msg = sp.getString(DigiConstants.PREF_WARN_MESSAGE,"");
         String titleT = sp.getString(DigiConstants.PREF_WARN_TITLE,"Are you sure?");
@@ -118,6 +123,27 @@ public class OverlayManager {
 			}
 		}
 	}
+
+    private void setUpDelayToProceedOn(Button button){
+        if(!button.isEnabled()){
+            return;
+        }
+        button.setEnabled(false);
+        button.setBackgroundColor(Color.TRANSPARENT);
+        new CountDownTimer(15000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                button.setText("Proceed in " + millisUntilFinished/1000);
+            }
+
+            @Override
+            public void onFinish() {
+                button.setEnabled(true);
+                button.setText(R.string.proceed);
+            }
+        }.start();
+
+    }
 
     public interface OnProceedClicked {
         void onProceedClicked();
