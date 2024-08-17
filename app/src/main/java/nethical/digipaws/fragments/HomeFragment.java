@@ -199,6 +199,7 @@ public class HomeFragment extends Fragment {
         super.onResume();
         checkAccessibiltyPermission();
         calculateDaysPassed();
+        refreshCoinCount();
     }
 
     private void checkAccessibiltyPermission() {
