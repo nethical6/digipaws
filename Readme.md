@@ -136,7 +136,7 @@ Please ensure your code adheres to our coding standards and includes relevant te
 ## Contributors
 - [Henry Delallal](https://github.com/HenriDellal): assisted in setting up fdroid version
 - [Remaker17](https://github.com/remaker17): setup workflow files
-- Error 404: allowed me to upload digipaws from his play console
+- Error 404: helped reaching larger audience
 
 ### HELP REQUIRED!!
 1. Implementing dyanimic colors inside the warning overlay.
