@@ -89,7 +89,6 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
                 ApplicationInfo appInfo = packageManager.getApplicationInfo(listItems[position], 0);
                 holder.title.setText((String) packageManager.getApplicationLabel(appInfo));
                 holder.icon.setImageDrawable(packageManager.getApplicationIcon(appInfo));
-                holder.icon.setColorFilter(colorPrimary, PorterDuff.Mode.OVERLAY);
                 holder.desc.setVisibility(View.GONE);
             } catch (PackageManager.NameNotFoundException e) {
                 holder.title.setText(listItems[position]);
@@ -97,7 +96,6 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
             }
         } else {
             holder.title.setText(listItems[position]);
-            holder.icon.setColorFilter(colorPrimary, PorterDuff.Mode.SRC_ATOP);
         }
 
         if (position == 0) {

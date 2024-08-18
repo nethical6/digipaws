@@ -335,6 +335,8 @@ public class MarathonQuest extends Fragment {
                     loadingDialog.show(getParentFragmentManager(), "loading_dialog"); // Use a unique tag for the dialog
                 }
                 makeRadar();
+            } else {
+                getParentFragmentManager().popBackStack();
             }
         }
     }
