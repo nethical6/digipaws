@@ -72,12 +72,14 @@ public class KeywordBlocker {
         }
     }
 
-    private static boolean containsKeyword(String text) {
+    private boolean containsKeyword(String text) {
         String lowerCaseText = text.toLowerCase().trim();
 
-        for (String keyword : BlockerData.pornKeywords) {
-            String trimmedKeyword = keyword.trim().toLowerCase();
-            if (lowerCaseText.matches(".*\\b" + Pattern.quote(trimmedKeyword) + "\\b.*")) {
+        // Split text into words and check each word against the HashMap
+        String[] words = lowerCaseText.split("\\W+"); // Split by non-word characters
+
+        for (String word : words) {
+            if (BlockerData.pornKeywords.containsKey(word)) {
                 return true;
             }
         }

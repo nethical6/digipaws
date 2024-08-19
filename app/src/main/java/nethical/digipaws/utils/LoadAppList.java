@@ -73,7 +73,7 @@ public class LoadAppList {
 
 	private static List<String> removeIgnoredPackages(Context context,List<String> packages) {
 		
-		for (String value : BlockerData.nonBlockedPackages) {
+		for (String value : BlockerData.nonBlockedPackages.keySet()) {
             packages.remove(value);
 		}
 
