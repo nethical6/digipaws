@@ -40,7 +40,6 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
     private Context context;
     private final FragmentManager fragmentManager;
     private InstalledQuestsManager iqm;
-    private int colorPrimary;
 
     private SharedPreferences questPref;
 
@@ -62,11 +61,6 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
         tempList.add("Donate");
 
         this.listItems = tempList.toArray(new String[0]);
-        try{
-            colorPrimary = MaterialColors.getColor(context, com.google.android.material.R.attr.colorPrimary, context.getColor(R.color.md_theme_dark_primary));
-        } catch (Exception e) {
-            colorPrimary = context.getColor(R.color.md_theme_dark_primary);
-        }
 
         questPref = context.getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
 
@@ -89,6 +83,7 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
                 ApplicationInfo appInfo = packageManager.getApplicationInfo(listItems[position], 0);
                 holder.title.setText((String) packageManager.getApplicationLabel(appInfo));
                 holder.icon.setImageDrawable(packageManager.getApplicationIcon(appInfo));
+                holder.icon.setImageTintMode(PorterDuff.Mode.OVERLAY); // prevents the icons of apps using quest api from turning into a box
                 holder.desc.setVisibility(View.GONE);
             } catch (PackageManager.NameNotFoundException e) {
                 holder.title.setText(listItems[position]);
