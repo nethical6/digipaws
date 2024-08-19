@@ -204,7 +204,7 @@ public class HomeFragment extends Fragment {
 
     private void checkAccessibiltyPermission() {
         if (!DigiUtils.isAccessibilityServiceEnabled(requireContext(), BlockerService.class)) {
-            Snackbar.make(dayStreakTextView, R.string.notification_accessibility_permission, Snackbar.LENGTH_LONG)
+            Snackbar.make(dayStreakTextView, R.string.notification_accessibility_permission, Snackbar.LENGTH_INDEFINITE)
                     .setAction(R.string.settings, v -> buildAccessibiltyDialog()).show();
         } else {
             checkAndRequestBatteryOptimization(requireContext());
@@ -214,7 +214,7 @@ public class HomeFragment extends Fragment {
     private void checkAndRequestBatteryOptimization(Context context) {
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (!powerManager.isIgnoringBatteryOptimizations(context.getPackageName())) {
-            Snackbar.make(dayStreakTextView, R.string.battery_optimisation_desc, Snackbar.LENGTH_LONG)
+            Snackbar.make(dayStreakTextView, R.string.battery_optimisation_desc, Snackbar.LENGTH_INDEFINITE)
                     .setAction(R.string.settings, v -> {
                         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
                                 .setTitle(R.string.battery_optimisation_title)

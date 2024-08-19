@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="90dp"
-    android:foregroundGravity="center_vertical">
+    android:foregroundGravity="center_vertical"
+    android:foreground="?selectableItemBackground">
 
     <ImageView
         android:id="@+id/quest_icon"
@@ -16,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/swords"
-        app:tint="@color/md_theme_light_primary" />
+        app:tint="?colorOnSurfaceVariant" />
 
     <LinearLayout
         android:layout_width="0dp"
