@@ -35,12 +35,9 @@ public class AppBlocker {
 
         
         if(SurvivalModeManager.isSurvivalModeActive(data.getService())){
-           for (String blockedPackageName : BlockerData.nonBlockedPackages) {
-            if(!blockedPackageName.equals(data.getPackageName())){
-               pressHome();
+            if(BlockerData.nonBlockedPackages.containsKey(data.getPackageName()))
+                pressHome();
                 return;
-                }
-            }
          }
         
         
@@ -52,14 +49,10 @@ public class AppBlocker {
         }
         
         if(data.isReelsBlocked()){
-           for (String blockedPackageName : BlockerData.shortsApplications) {
-            // using contains instead of equals cuz tikok has multiple package names :sad:
-            if(data.getPackageName().contains(blockedPackageName)){ 
-               punish();
-                break;
+            if(BlockerData.shortsApplications.containsKey(data.getPackageName())){
+                punish();
             }
-        }
-        }
+           }
         
     }
     
