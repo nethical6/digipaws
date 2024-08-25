@@ -69,6 +69,9 @@
     <string name="choose_blocked_apps_title">App Blocker Configuration</string>
     <string name="choose_blocked_apps_desc">Select the apps you wish to block or receive usage warnings for.</string>
 
+    <string name="choose_whitelist_apps">White Listed Apps</string>
+    <string name="choose_whitelist_apps_desc">Select the apps you wish to use during focus mode. Focus mode is a quest where one cannot access any non-whitelisted application for a desired time period. This quest cannot be stopped once started. </string>
+
     <string name="perm_quest_manager_label">Digipaws Quests</string>
     <string name="perm_quest_manager_desc">act as a quest and modify Aura count?</string>
 

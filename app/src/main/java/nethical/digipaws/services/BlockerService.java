@@ -95,11 +95,12 @@ public class BlockerService extends AccessibilityService {
         AccessibilityServiceInfo info = new AccessibilityServiceInfo();
         info.eventTypes = AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED | AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED | AccessibilityEvent.TYPE_VIEW_FOCUSED | AccessibilityEvent.TYPE_VIEW_SCROLLED;
 
+        refreshData();
+
         info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
         info.packageNames = LoadAppList.getPackageNames(this).stream().toArray(String[]::new);
         setServiceInfo(info);
 
-        refreshData();
         viewBlocker = new ViewBlocker();
         appBlocker = new AppBlocker();
         keywordBlocker = new KeywordBlocker();
@@ -123,8 +124,8 @@ public class BlockerService extends AccessibilityService {
         serviceData.setEngagementBlocked(configData.getBoolean(DigiConstants.PREF_IS_ENGMMT_BLOCKED, false));
         serviceData.setViewingFirstReelAllowed(configData.getBoolean(DigiConstants.PREF_IS_PREVENT_BLOCKING_FIRST_REEL, false));
 
+         isAntiUninstallOn = configData.getBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL, false);
         serviceData.setBlockedApps(new ArrayList<>(configData.getStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, new HashSet<>())));
-        isAntiUninstallOn = configData.getBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL, false);
 
         lastDataRefreshed = SystemClock.uptimeMillis();
     }

@@ -35,7 +35,6 @@ public class AppBlocker {
 
         
         if(SurvivalModeManager.isSurvivalModeActive(data.getService())){
-            if(BlockerData.nonBlockedPackages.containsKey(data.getPackageName()))
                 pressHome();
                 return;
          }

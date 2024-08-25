@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
+
+import java.util.HashSet;
 import java.util.List;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.OverlayManager;
@@ -18,6 +20,7 @@ public class ServiceData {
     private int difficulty = DigiConstants.DIFFICULTY_LEVEL_EXTREME;
 
     private List<String> blockedApps = null;
+
 
     private boolean isReelsBlocked = true;
     private boolean isEngagementBlocked = false;
@@ -127,10 +130,6 @@ public class ServiceData {
     }
 
     public void setBlockedApps(List<String> blockedPacks) {
-        SharedPreferences sharedPreferences =
-                getService()
-                        .getSharedPreferences(
-                                DigiConstants.PREF_BLOCKED_APPS_FILE, Context.MODE_PRIVATE);
 
         blockedApps = blockedPacks;
     }
@@ -158,4 +157,6 @@ public class ServiceData {
     public void setViewingFirstReelAllowed(boolean viewingFirstReelAllowed) {
         isViewingFirstReelAllowed = viewingFirstReelAllowed;
     }
+
+
 }

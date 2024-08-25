@@ -57,8 +57,9 @@ public class DigiConstants {
     public static final String KEY_TOTAL_SQUATS = "squats_total";
     public static final String KEY_TOTAL_FOCUSED = "focused";
 
-    public static final String PREF_BLOCKED_APPS_FILE = "blocked_apps";
     public static final String PREF_BLOCKED_APPS_LIST_KEY = "blocked";
+
+    public static final String PREF_WHITELISTED_APPS_LIST_KEY = "whitelisted_apps";
 
     public static final String PREF_APP_CONFIG = "app_config";
     public static final String PREF_MODE = "mode";

@@ -76,8 +76,11 @@ public class LoadAppList {
 		for (String value : BlockerData.nonBlockedPackages.keySet()) {
             packages.remove(value);
 		}
+		SharedPreferences config = context.getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
 
-		
+		for (String value : config.getStringSet(DigiConstants.PREF_WHITELISTED_APPS_LIST_KEY,new HashSet<>())){
+			packages.remove(value);
+		}
 		return packages;
 	}
 	

@@ -17,6 +17,7 @@ import nethical.digipaws.fragments.intro.ChooseBlockedApps;
 import nethical.digipaws.fragments.intro.ChooseDelay;
 import nethical.digipaws.fragments.intro.ChooseMode;
 import nethical.digipaws.fragments.intro.ChooseViewBlockers;
+import nethical.digipaws.fragments.intro.ChooseWhiteListedApps;
 import nethical.digipaws.fragments.intro.ConfigureAntiUninstall;
 import nethical.digipaws.fragments.intro.ConfigureWarning;
 import nethical.digipaws.fragments.intro.TermsAndConditions;
@@ -112,6 +113,13 @@ public class AppIntroActivity extends IntroActivity {
                 .backgroundDark(R.color.app_color)
                 .build());
 
+        ChooseWhiteListedApps chooseWhiteListedApps = new ChooseWhiteListedApps(sharedPreferences);
+        addSlide(new FragmentSlide.Builder()
+                .fragment(chooseWhiteListedApps)
+                .background(R.color.app_color)
+                .backgroundDark(R.color.app_color)
+                .build());
+
         addSlide(new FragmentSlide.Builder()
                 .fragment(new ConfigureAntiUninstall(sharedPreferences))
                 .background(R.color.committed_color)
@@ -141,6 +149,9 @@ public class AppIntroActivity extends IntroActivity {
                 }
                 if (position == 8) {
                     chooseBlockedApps.loadAppsAndDisplay();
+                }
+                if (position == 9) {
+                    chooseWhiteListedApps.loadAppsAndDisplay();
                 }
                 if(position==10){
                     sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,true).apply();
