@@ -117,6 +117,7 @@
     <string name="title">Title</string>
     <string name="description">description</string>
     <string name="shorts_allow_first_shorts_title">Do not block the first short I open myself (Experimental)</string>
+    <string name="enter_safe_mode_title">Press "minutes" ten times to force quit focus mode.</string>
 
 
 </resources>

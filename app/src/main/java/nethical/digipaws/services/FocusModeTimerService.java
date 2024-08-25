@@ -80,6 +80,11 @@ public class FocusModeTimerService extends Service {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
+        SurvivalModeManager.disableSurvivalMode(getApplicationContext());
+        SharedPreferences questPref = getSharedPreferences(
+                DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
+
+        questPref.edit().putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL).apply();
     }
 
     @Nullable

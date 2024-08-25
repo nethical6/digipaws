@@ -45,6 +45,9 @@ public class FocusQuest extends Fragment {
 
     SharedPreferences questInfo;
 
+    private TextView mins;
+    private int minsClickCounter = 0;
+
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
@@ -53,6 +56,7 @@ public class FocusQuest extends Fragment {
         setFTime = view.findViewById(R.id.choose_ftime);
         selectTimeLayout = view.findViewById(R.id.focus_set_time_layout);
         startFocus = view.findViewById(R.id.btn_start_focus);
+        mins = view.findViewById(R.id.mins_txt);
         return view;
 	}
 	
@@ -86,6 +90,21 @@ public class FocusQuest extends Fragment {
 
         startFocus.setOnClickListener(v -> {
             makeQuestWarningDialog().show();
+        });
+        mins.setOnClickListener(v -> {
+            minsClickCounter++;
+            if(minsClickCounter==6){
+                Toast.makeText(requireContext(),"Press 4 times more to force exit focus mode", Toast.LENGTH_SHORT).show();;
+            }
+            if(minsClickCounter>10){
+                SurvivalModeManager.disableSurvivalMode(requireContext());
+                DigiUtils.replaceScreenWithoutAddingToBackStack(getParentFragmentManager(),new HomeFragment());
+                SharedPreferences questPref = requireContext().getSharedPreferences(
+                        DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
+
+                questPref.edit().putString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL).apply();
+
+            }
         });
 
     }
