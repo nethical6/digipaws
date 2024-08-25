@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.OverlayManager;
+import nethical.digipaws.utils.TaskPicker;
 
 public class ServiceData {
 
@@ -33,12 +34,14 @@ public class ServiceData {
     private WindowManager windowManager = null;
     private OverlayManager overlayManager;
 
+    public TaskPicker taskPicker;
     private int delay = 120000;
 
     public ServiceData(AccessibilityService service, int difficulty) {
         this.difficulty = difficulty;
         this.service = service;
         windowManager = (WindowManager) service.getSystemService(service.WINDOW_SERVICE);
+        taskPicker = new TaskPicker(service);
     }
 
     public AccessibilityService getService() {

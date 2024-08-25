@@ -1,6 +1,10 @@
 package nethical.digipaws.itemblockers;
 
 import android.os.SystemClock;
+import android.widget.Toast;
+
+import java.io.IOException;
+
 import nethical.digipaws.data.BlockerData;
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.utils.CoinManager;
@@ -88,7 +92,12 @@ public class AppBlocker {
                 break;
             
             case(DigiConstants.DIFFICULTY_LEVEL_EXTREME):
-                pressHome();
+                removeOverlayTimestamp = SystemClock.uptimeMillis();
+                try {
+                    Toast.makeText(data.getService(),data.taskPicker.getRandomTask(),Toast.LENGTH_LONG).show();
+                } catch (IOException ignored) {
+                }
+                    pressHome();
                 break;
             
                     

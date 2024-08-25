@@ -4,6 +4,9 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 import nethical.digipaws.data.BlockerData;
 import nethical.digipaws.data.ServiceData;
@@ -12,6 +15,7 @@ import nethical.digipaws.utils.DelayManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.OverlayManager;
+import nethical.digipaws.utils.TaskPicker;
 
 public class ViewBlocker {
 
@@ -29,7 +33,6 @@ public class ViewBlocker {
     private boolean isReelsTabOpened = false;
     private ServiceData data;
     private int scrollEventCounter = 0;
-
 
     public void performAction(ServiceData data) {
         if (isOverlayVisible) {
@@ -160,6 +163,11 @@ public class ViewBlocker {
                 break;
 
             case (DigiConstants.DIFFICULTY_LEVEL_EXTREME):
+                try {
+                    Toast.makeText(data.getService(),data.taskPicker.getRandomTask(),Toast.LENGTH_LONG).show();
+                } catch (IOException ignored) {
+
+                }
                 pressBack();
                 break;
 
