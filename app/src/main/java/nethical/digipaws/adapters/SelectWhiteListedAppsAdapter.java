@@ -1,7 +1,10 @@
 package nethical.digipaws.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +46,7 @@ public class SelectWhiteListedAppsAdapter extends RecyclerView.Adapter<SelectWhi
 	public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.choose_blocked_apps_list_item, parent, false);
 		context=parent.getContext();
+        newBlockedAppsSet.add(getLauncherPackageName());
 		return new ViewHolder(view);
 	}
 	@Override
@@ -94,4 +98,16 @@ public class SelectWhiteListedAppsAdapter extends RecyclerView.Adapter<SelectWhi
             cb = itemView.findViewById(R.id.app_cb);
     	}
 	}
+    private String getLauncherPackageName() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+
+        PackageManager pm = context.getPackageManager();
+        ResolveInfo resolveInfo = pm.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        if (resolveInfo != null && resolveInfo.activityInfo != null) {
+            return resolveInfo.activityInfo.packageName;
+        }
+        return null;
+    }
 }

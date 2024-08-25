@@ -41,16 +41,7 @@ public class BlockerData {
         put("com.android.systemui", null); // Android System UI
         put("com.android.phone", null); // Android Phone
 
-        // Launchers
-        put("com.google.android.apps.nexuslauncher", null); // Google Pixel Launcher
-        put("com.microsoft.launcher", null); // Microsoft Launcher
-        put("com.teslacoilsw.launcher", null); // Nova Launcher
-        put("net.oneplus.launcher", null); // OnePlus Launcher
-        put("com.sec.android.app.launcher", null); // Samsung One UI Home
-        put("com.actionlauncher.playstore", null); // Action Launcher
-        put("com.laucher.smart", null); // Smart Launcher
-        put("ginlemon.flowerfree", null); // Smart Launcher 5
-        put("com.tsf.shell", null); // TSF Launcher
+
 
         // Productive apps
         put("com.google.android.keep", null); // Google Keep
