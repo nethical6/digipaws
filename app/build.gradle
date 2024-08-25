@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "nethical.digipaws"
-        minSdk 23
+        minSdk 24
         targetSdk 34
         versionCode 6
         versionName "0.6.1-alpha"

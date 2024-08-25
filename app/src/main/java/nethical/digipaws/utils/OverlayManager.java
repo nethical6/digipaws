@@ -14,6 +14,9 @@ import nethical.digipaws.R;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.LayoutInflater;
+
+import java.io.IOException;
+
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.services.FocusModeTimerService;
 
@@ -44,7 +47,8 @@ public class OverlayManager {
         proceedButton = overlayView.findViewById(R.id.proceed_overlay);
         textTitle = overlayView.findViewById(R.id.text_title);
         textDescription = overlayView.findViewById(R.id.text_desc);
-        
+
+
         params = new WindowManager.LayoutParams(
 		WindowManager.LayoutParams.MATCH_PARENT,
 		WindowManager.LayoutParams.MATCH_PARENT,
@@ -86,8 +90,14 @@ public class OverlayManager {
             textDescription.setText(msg);
         }
 		windowManager.addView(overlayView, params);
-		
-        
+
+        TaskPicker tp = new TaskPicker(context);
+        try {
+            textDescription.append("\n\n"+ tp.getRandomTask());
+        } catch (IOException ignored) {
+
+        }
+
     }
     
     public void showNoCoinsOverlay(OnProceedClicked proceed, OnCloseClicked close){
