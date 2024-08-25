@@ -1,6 +1,8 @@
 package nethical.digipaws.itemblockers;
 
 import android.os.SystemClock;
+import android.util.Log;
+import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import nethical.digipaws.data.BlockerData;
@@ -15,6 +17,7 @@ public class ViewBlocker {
 
     private boolean isReelsBlocked = true;
     private boolean isEngagementBlocked = true;
+    private boolean isViewingFirstReelAllowed = false;
     private int difficulty = DigiConstants.DIFFICULTY_LEVEL_EASY;
 
     private float lastWarningTimestamp = 0f;
@@ -22,13 +25,17 @@ public class ViewBlocker {
     private float lastGlobalActionTimestamp = 0f;
 
     private boolean isOverlayVisible = false;
+
+    private boolean isReelsTabOpened = false;
     private ServiceData data;
+    private int scrollEventCounter = 0;
 
 
     public void performAction(ServiceData data) {
         if (isOverlayVisible) {
             return;
         }
+
         if (!DelayManager.isDelayOver(removeOverlayTimestamp, 1000)) {
             return;
         }
@@ -37,11 +44,25 @@ public class ViewBlocker {
         difficulty = data.getDifficulty();
         isReelsBlocked = data.isReelsBlocked();
         isEngagementBlocked = data.isEngagementBlocked();
+        isViewingFirstReelAllowed = data.isViewingFirstReelAllowed();
 
+        if (isReelsTabOpened) {
+            scrollEventCounter++;
+            if(scrollEventCounter > 4){
+                scrollEventCounter = 0;
+                isReelsTabOpened = false;
+                performShortsAction(true);
+            }
+        }
         // block short-form content
         if (isReelsBlocked) {
-            performShortsAction();
+            if(isViewingFirstReelAllowed){
+                performShortsAction(false);
+            } else {
+                performShortsAction(true);
+            }
         }
+
 
         // block comments and video descriptions
         if (isEngagementBlocked) {
@@ -53,13 +74,20 @@ public class ViewBlocker {
     }
 
 
-    private void performShortsAction() {
+    private void performShortsAction(boolean triggerPunish) {
 
         AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
 
         for (int i = 0; i < BlockerData.shortsViewIds.length; i++) {
             if (isViewOpened(rootNode, BlockerData.shortsViewIds[i])) {
-                punish();
+                if(triggerPunish){
+                    punish();
+                } else {
+                    if(isViewingFirstReelAllowed){
+                        isReelsTabOpened = true;
+                    }
+                }
+                Log.d("Shorts View Found",String.valueOf(System.currentTimeMillis()));
                 return;
             }
         }

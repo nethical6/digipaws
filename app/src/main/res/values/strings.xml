@@ -113,6 +113,7 @@
     <string name="congratulate_text_challenge_incomp">You are doing amazing on your #TechRehab journey! Keep going strong — every step counts! 🫵👑</string>
     <string name="title">Title</string>
     <string name="description">description</string>
+    <string name="shorts_allow_first_shorts_title">Do not block the first short I open myself (Experimental)</string>
 
 
 </resources>
