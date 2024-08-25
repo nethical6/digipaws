@@ -23,6 +23,7 @@ public class ServiceData {
     private boolean isEngagementBlocked = false;
     private boolean isPornBlocked = false;
 
+    private boolean isViewingFirstReelAllowed = false;
     private boolean isSettingsBlocked = false;
     private boolean isRebootBlocked = false;
 
@@ -148,5 +149,13 @@ public class ServiceData {
 
     public void setIsRebootBlocked(boolean isRebootBlocked) {
         this.isRebootBlocked = isRebootBlocked;
+    }
+
+    public boolean isViewingFirstReelAllowed() {
+        return isViewingFirstReelAllowed;
+    }
+
+    public void setViewingFirstReelAllowed(boolean viewingFirstReelAllowed) {
+        isViewingFirstReelAllowed = viewingFirstReelAllowed;
     }
 }

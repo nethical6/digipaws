@@ -32,6 +32,15 @@
             android:textColor="#fff" />
 
         <CheckBox
+            android:id="@+id/shorts_allow_first_short_cb"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/shorts_allow_first_shorts_title"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="#fff"/>
+
+        <CheckBox
             android:id="@+id/engmnt_cb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
