@@ -10,6 +10,11 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.SystemClock;
+
+import androidx.annotation.NonNull;
+
+import java.util.Objects;
+
 import nethical.digipaws.R;
 
 public class QuestDataProvider extends ContentProvider {
@@ -39,29 +44,29 @@ public class QuestDataProvider extends ContentProvider {
     
     @Override
     public boolean onCreate() {
-        preferences = getContext().getSharedPreferences(DigiConstants.PREF_QUEST_MANAGING_PERM, Context.MODE_PRIVATE);
+        preferences = Objects.requireNonNull(getContext()).getSharedPreferences(DigiConstants.PREF_QUEST_MANAGING_PERM, Context.MODE_PRIVATE);
         this.context = getContext();
         return true;
     }
 
     @Override
-    public String getType(Uri uri) {
+    public String getType(@NonNull Uri uri) {
         return null; // Not required for simple data types
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues values) {
+    public Uri insert(@NonNull Uri uri, ContentValues values) {
         // Not applicable for retrieving coin count
         return null;
     }
 
     
     @Override
-    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+    public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         
-        // updating values requires explict user permission
+        // updating values requires explicit user permission
        int permissionCheck =
-            getContext().checkCallingOrSelfPermission(DigiConstants.PERMISSION_MANAGE_QUEST);
+            Objects.requireNonNull(getContext()).checkCallingOrSelfPermission(DigiConstants.PERMISSION_MANAGE_QUEST);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
             throw new SecurityException(
                     "Permission Missing: " + DigiConstants.PERMISSION_MANAGE_QUEST);
@@ -86,7 +91,7 @@ public class QuestDataProvider extends ContentProvider {
     }
 
     @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         // Not allowed to delete coin count
         return 0;
     }
@@ -115,7 +120,7 @@ public class QuestDataProvider extends ContentProvider {
         if (uri.equals(CONTENT_URI_FOCUS_MODE)) {
             // Create a dummy cursor with the coin count
             MatrixCursor cursor = new MatrixCursor(new String[] { "focus" },1);
-            int mode = SurvivalModeManager.isSurvivalModeActive(getContext()) ? 1:0;
+            int mode = SurvivalModeManager.isSurvivalModeActive(Objects.requireNonNull(getContext())) ? 1:0;
             cursor.addRow(new Object[] { mode });
             return cursor;
         }
@@ -131,7 +136,7 @@ public class QuestDataProvider extends ContentProvider {
         if (uri.equals(CONTENT_URI_IS_QUEST)) {
             // Create a dummy cursor with the coin count
             MatrixCursor cursor = new MatrixCursor(new String[] { "is_added"},1);
-            InstalledQuestsManager iqm = new InstalledQuestsManager(getContext());
+            InstalledQuestsManager iqm = new InstalledQuestsManager(Objects.requireNonNull(getContext()));
             int isAdded = iqm.isAdded(getCallingPackage()) ? 1:0;
             cursor.addRow(new Object[] { isAdded});
             return cursor;

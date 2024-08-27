@@ -39,9 +39,9 @@ public class SelectQuestAdapter extends RecyclerView.Adapter<SelectQuestAdapter.
     private final String[] listItems;
     private Context context;
     private final FragmentManager fragmentManager;
-    private InstalledQuestsManager iqm;
+    private final InstalledQuestsManager iqm;
 
-    private SharedPreferences questPref;
+    private final SharedPreferences questPref;
 
 
     int no_of_custom_last_added_items = 3;

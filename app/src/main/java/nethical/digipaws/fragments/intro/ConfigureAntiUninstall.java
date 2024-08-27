@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.heinrichreimersoftware.materialintro.app.SlideFragment;
 
 import java.text.SimpleDateFormat;
@@ -27,54 +29,54 @@ public class ConfigureAntiUninstall extends SlideFragment {
 
     private static final int REQUEST_CODE_ENABLE_ADMIN = 123;
 
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences sharedPreferences;
     private DevicePolicyManager devicePolicyManager;
     private ComponentName deviceAdminReceiver;
-    
+
     private CheckBox enableAntiUninstallCb;
     private CheckBox enableAntiRebootCb;
-    
-    public ConfigureAntiUninstall(SharedPreferences sp){
+
+    public ConfigureAntiUninstall(SharedPreferences sp) {
         sharedPreferences = sp;
     }
-    
+
     @Override
     public View onCreateView(
-        LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.choose_preferences_uninstall, container, false);
         enableAntiUninstallCb = view.findViewById(R.id.anti_uninstall_cb);
         enableAntiRebootCb = view.findViewById(R.id.anti_reboot_cb);
-         return view;
+        return view;
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        
+
         Date date = new Date();
-       
+
         SimpleDateFormat sdf = new SimpleDateFormat(DigiConstants.DATE_FORMAT, Locale.getDefault());
         String dateString = sdf.format(date);
-      
+
         //stores date for streak
-        if(!sharedPreferences.contains(DigiConstants.PREF_USAGE_STREAK_START)){
-           sharedPreferences.edit().putString(DigiConstants.PREF_USAGE_STREAK_START,dateString).apply();
+        if (!sharedPreferences.contains(DigiConstants.PREF_USAGE_STREAK_START)) {
+            sharedPreferences.edit().putString(DigiConstants.PREF_USAGE_STREAK_START, dateString).apply();
         }
         //stores date for checking if challenge has been completed
-        sharedPreferences.edit().putString(DigiConstants.PREF_ANTI_UNINSTALL_START,dateString).apply();
-     
+        sharedPreferences.edit().putString(DigiConstants.PREF_ANTI_UNINSTALL_START, dateString).apply();
+
         devicePolicyManager =
-                        (DevicePolicyManager)
-                                requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
+                (DevicePolicyManager)
+                        requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
         deviceAdminReceiver =
-                        new ComponentName(requireContext(), AdminReceiver.class);
+                new ComponentName(requireContext(), AdminReceiver.class);
 
         enableAntiUninstallCb.setChecked(devicePolicyManager.isAdminActive(deviceAdminReceiver));
-        
-        enableAntiUninstallCb.setOnCheckedChangeListener((v,isSwitchOn)->{
+
+        enableAntiUninstallCb.setOnCheckedChangeListener((v, isSwitchOn) -> {
             if (isSwitchOn) {
-                
+
                 // Check if the app is a device administrator
                 if (!devicePolicyManager.isAdminActive(deviceAdminReceiver)) {
                     Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
@@ -85,30 +87,31 @@ public class ConfigureAntiUninstall extends SlideFragment {
                     startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);
                 }
             } else {
-                    sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,false).apply();
-                    if(!devicePolicyManager.isAdminActive(deviceAdminReceiver)){
-                        return;
-                    }
+                sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL, false).apply();
+                if (!devicePolicyManager.isAdminActive(deviceAdminReceiver)) {
+                    return;
+                }
                 // Disable the device admin if it was enabled
                 if (devicePolicyManager != null && deviceAdminReceiver != null) {
                     devicePolicyManager.removeActiveAdmin(deviceAdminReceiver);
                 }
             }
         });
-        
-        enableAntiRebootCb.setOnCheckedChangeListener((v,isSwitchOn)->{
-            sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_REBOOT,isSwitchOn).apply();
+
+        enableAntiRebootCb.setOnCheckedChangeListener((v, isSwitchOn) -> {
+            sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_REBOOT, isSwitchOn).apply();
         });
-        
+
     }
-        @Override
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_ENABLE_ADMIN) {
             if (resultCode == Activity.RESULT_OK) {
                 // Device admin enabled successfully
                 Toast.makeText(requireContext(), "Device admin enabled", Toast.LENGTH_SHORT).show();
-                sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,true).apply();
+                sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL, true).apply();
             } else {
                 enableAntiUninstallCb.setChecked(false);
                 Toast.makeText(
@@ -120,5 +123,5 @@ public class ConfigureAntiUninstall extends SlideFragment {
         }
     }
 
-   
+
 }

@@ -13,8 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.heinrichreimersoftware.materialintro.app.OnNavigationBlockedListener;
 import com.heinrichreimersoftware.materialintro.app.SlideFragment;
+
+import java.util.Objects;
 
 import nethical.digipaws.R;
 import nethical.digipaws.utils.DigiConstants;
@@ -33,12 +37,12 @@ public class TermsAndConditions extends SlideFragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SpannableString st = new SpannableString(getContext().getString(R.string.tac));
+        SpannableString st = new SpannableString(requireContext().getString(R.string.tac));
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
-            public void onClick(View widget) {
+            public void onClick(@NonNull View widget) {
                 // Open TOC URL in a new activity (or fragment)
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT+"terms-and-conditions"));
                 startActivity(intent);

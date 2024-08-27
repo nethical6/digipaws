@@ -1,6 +1,7 @@
 package nethical.digipaws;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,28 +13,30 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.SpannableString;
-import android.text.style.ClickableSpan;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraInfoUnavailableException;
 import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ExperimentalGetImage;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
-
 import androidx.core.graphics.ColorUtils;
+
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.internal.EdgeToEdgeUtils;
@@ -41,14 +44,15 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.java.posedetector.PoseDetectorProcessor;
 import com.google.mlkit.vision.demo.java.posedetector.classification.PoseClassifierProcessor;
-
 import com.google.mlkit.vision.pose.accurate.AccuratePoseDetectorOptions;
+
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import nethical.digipaws.utils.CoinManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
@@ -61,7 +65,6 @@ public class WorkoutActivity extends AppCompatActivity
     private Button startButton;
 
     private ExecutorService cameraExecutor;
-    private ExecutorService executor;
     private PoseDetectorProcessor imageProcessor;
 
     private boolean needUpdateGraphicOverlayImageSourceInfo = true;
@@ -72,75 +75,69 @@ public class WorkoutActivity extends AppCompatActivity
     private Handler uiHandler;
     private boolean isQuestRunning = false;
     private CameraSelector cameraSelector;
-    
+
     private String workoutType = PoseClassifierProcessor.SQUATS_CLASS;
     private int reps_final_count = DigiConstants.DEFAULT_REPS;
     private SharedPreferences sp;
+
+    @SuppressLint({"RestrictedApi", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdgeUtils.applyEdgeToEdge(getWindow(),true);
-    
+        EdgeToEdgeUtils.applyEdgeToEdge(getWindow(), true);
+
         setContentView(R.layout.quest_workout);
 
         previewView = findViewById(R.id.previewView);
         graphicOverlay = findViewById(R.id.overlayView);
         startButton = findViewById(R.id.start_button_workout);
-        sp = getSharedPreferences("lvData",Context.MODE_PRIVATE);
+        sp = getSharedPreferences("lvData", Context.MODE_PRIVATE);
         cameraExecutor = Executors.newSingleThreadExecutor();
-        executor = Executors.newSingleThreadExecutor();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
 
         Intent intent = getIntent();
-        if(intent!=null){
-           workoutType = intent.getStringExtra(DigiConstants.KEY_WORKOUT_TYPE);
+        if (intent != null) {
+            workoutType = intent.getStringExtra(DigiConstants.KEY_WORKOUT_TYPE);
         }
         TextView title = findViewById(R.id.title);
         TextView desc = findViewById(R.id.desc);
-        
+
         String description = getString(R.string.pushups_desc);
-        switch(workoutType){
+        switch (workoutType) {
             case PoseClassifierProcessor.PUSHUPS_CLASS:
                 title.setText("Quest: Pushups");
-                reps_final_count = sp.getInt(PoseClassifierProcessor.PUSHUPS_CLASS,3)+2;
-                description = description.replace("$value",String.valueOf(reps_final_count));
+                reps_final_count = sp.getInt(PoseClassifierProcessor.PUSHUPS_CLASS, 3) + 2;
+                description = description.replace("$value", String.valueOf(reps_final_count));
                 desc.setText(description);
                 break;
             case PoseClassifierProcessor.SQUATS_CLASS:
                 description = getString(R.string.squats_desc);
                 title.setText("Quest: Squats");
-                reps_final_count = sp.getInt(PoseClassifierProcessor.SQUATS_CLASS,3)+2;
-                description = description.replace("$value",String.valueOf(reps_final_count));
+                reps_final_count = sp.getInt(PoseClassifierProcessor.SQUATS_CLASS, 3) + 2;
+                description = description.replace("$value", String.valueOf(reps_final_count));
                 desc.setText(description);
                 break;
         }
-        setSpanText(this,desc);
-        
-        
+        setSpanText(this, desc);
+
+
         ImageView switchCamera = findViewById(R.id.switch_camera);
-        switchCamera.setOnClickListener((v)->{
+        switchCamera.setOnClickListener((v) -> {
             switchCameraLens();
         });
-        
+
         MaterialCardView cardView = findViewById(R.id.bottom_card);
-     
-        ColorStateList backgroundColor = cardView.getCardBackgroundColor();
-        int defaultColor = Color.WHITE; // Default color in case background color is null
-        
-        // Get the default background color of the CardView
-        int backgroundColorValue = backgroundColor != null ? backgroundColor.getDefaultColor() : defaultColor;
-        
-        // Adjust the alpha to create a semi-transparent color (65% transparency)
-        int semiTransparentColor = ColorUtils.setAlphaComponent(backgroundColorValue, (int) (0.65 * 255));
+
+        int semiTransparentColor = getSemiTransparentColor(cardView);
 
         // Find the CardView and set the background color
-       cardView.setCardBackgroundColor(semiTransparentColor);
-   
-        
-        
+        cardView.setCardBackgroundColor(semiTransparentColor);
+
+
         startButton.setEnabled(false);
 
         uiHandler = new Handler(Looper.getMainLooper());
-        
+
         checkCameraPermission();
         startCamera();
         loadCsvData();
@@ -148,7 +145,7 @@ public class WorkoutActivity extends AppCompatActivity
         startButton.setOnClickListener(
                 (v) -> {
                     if (startButton.isEnabled()) {
-                        if(isQuestRunning){
+                        if (isQuestRunning) {
                             finish();
                         }
                         startCamera();
@@ -161,6 +158,17 @@ public class WorkoutActivity extends AppCompatActivity
                 });
     }
 
+    private static int getSemiTransparentColor(MaterialCardView cardView) {
+        ColorStateList backgroundColor = cardView.getCardBackgroundColor();
+        int defaultColor = Color.WHITE; // Default color in case background color is null
+
+        // Get the default background color of the CardView
+        int backgroundColorValue = backgroundColor.getDefaultColor();
+
+        // Adjust the alpha to create a semi-transparent color (65% transparency)
+        return ColorUtils.setAlphaComponent(backgroundColorValue, (int) (0.65 * 255));
+    }
+
     private void startCamera() {
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture =
                 ProcessCameraProvider.getInstance(this);
@@ -168,20 +176,20 @@ public class WorkoutActivity extends AppCompatActivity
         cameraProviderFuture.addListener(
                 () -> {
                     try {
-                        if(cameraProvider==null){
+                        if (cameraProvider == null) {
                             cameraProvider = cameraProviderFuture.get();
                         }
-                        
+
                         Preview preview = new Preview.Builder().build();
                         preview.setSurfaceProvider(previewView.getSurfaceProvider());
 
-                        if(cameraSelector==null){
-                           cameraSelector =
-                                new CameraSelector.Builder()
-                                        .requireLensFacing(lensFacing)
-                                        .build();
+                        if (cameraSelector == null) {
+                            cameraSelector =
+                                    new CameraSelector.Builder()
+                                            .requireLensFacing(lensFacing)
+                                            .build();
                         }
-                        
+
                         cameraProvider.unbindAll();
                         if (imageProcessor == null) {
                             cameraProvider.bindToLifecycle(this, cameraSelector, preview);
@@ -189,7 +197,7 @@ public class WorkoutActivity extends AppCompatActivity
                             return;
                         }
 
-                    
+
                         ImageAnalysis imageAnalysis =
                                 new ImageAnalysis.Builder()
                                         .setBackpressureStrategy(
@@ -199,6 +207,7 @@ public class WorkoutActivity extends AppCompatActivity
                         imageAnalysis.setAnalyzer(
                                 cameraExecutor,
                                 new ImageAnalysis.Analyzer() {
+                                    @OptIn(markerClass = ExperimentalGetImage.class)
                                     @Override
                                     public void analyze(@NonNull ImageProxy imageProxy) {
 
@@ -257,75 +266,72 @@ public class WorkoutActivity extends AppCompatActivity
                         .build();
 
         new Thread(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                // Perform the background task
-                                PoseClassifierProcessor pcf =
-                                        new PoseClassifierProcessor(
-                                                getApplication(),
-                                                true,
-                                                new String[] {
-                                                    workoutType
-                                                });
-                                // Update the UI on the main thread
-                                uiHandler.post(
-                                        new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                imageProcessor =
-                                                        new PoseDetectorProcessor(
-                                                                getApplicationContext(),
-                                                                options,
-                                                                false,
-                                                                false,
-                                                                false,
-                                                                true,
-                                                                true,
-                                                                pcf, (poseClassification)->{
-                                                                    if(poseClassification.size()>=2){ 
-                                                                       checkIfWorkoutComplete(poseClassification.get(0));
-                                                                    }
-                                                                    
-                                                                });
-                                                startButton.setText(getString(R.string.start));
-                                                startButton.setEnabled(true);
-                                            }
-                                        });
-                            }
-                        })
+                () -> {
+                    // Perform the background task
+                    PoseClassifierProcessor pcf =
+                            new PoseClassifierProcessor(
+                                    getApplication(),
+                                    true,
+                                    new String[]{
+                                            workoutType
+                                    });
+                    // Update the UI on the main thread
+                    uiHandler.post(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    imageProcessor =
+                                            new PoseDetectorProcessor(
+                                                    getApplicationContext(),
+                                                    options,
+                                                    false,
+                                                    false,
+                                                    false,
+                                                    true,
+                                                    true,
+                                                    pcf, (poseClassification) -> {
+                                                if (poseClassification.size() >= 2) {
+                                                    checkIfWorkoutComplete(poseClassification.get(0));
+                                                }
+
+                                            });
+                                    startButton.setText(getString(R.string.start));
+                                    startButton.setEnabled(true);
+                                }
+                            });
+                })
                 .start();
     }
-    
-    private void switchCameraLens(){
-    if (cameraProvider == null) {
-      return;
+
+    private void switchCameraLens() {
+        if (cameraProvider == null) {
+            return;
+        }
+        int newLensFacing =
+                lensFacing == CameraSelector.LENS_FACING_FRONT
+                        ? CameraSelector.LENS_FACING_BACK
+                        : CameraSelector.LENS_FACING_FRONT;
+        CameraSelector newCameraSelector =
+                new CameraSelector.Builder().requireLensFacing(newLensFacing).build();
+        try {
+            if (cameraProvider.hasCamera(newCameraSelector)) {
+                lensFacing = newLensFacing;
+                cameraSelector = newCameraSelector;
+                startCamera();
+
+                return;
+            }
+        } catch (CameraInfoUnavailableException e) {
+            // Falls through
+        }
+        Toast.makeText(
+                        getApplicationContext(),
+                        "This device does not have lens with facing: " + newLensFacing,
+                        Toast.LENGTH_SHORT)
+                .show();
     }
-    int newLensFacing =
-        lensFacing == CameraSelector.LENS_FACING_FRONT
-            ? CameraSelector.LENS_FACING_BACK
-            : CameraSelector.LENS_FACING_FRONT;
-    CameraSelector newCameraSelector =
-        new CameraSelector.Builder().requireLensFacing(newLensFacing).build();
-    try {
-      if (cameraProvider.hasCamera(newCameraSelector)) {
-        lensFacing = newLensFacing;
-        cameraSelector = newCameraSelector;
-         startCamera();       
-                         
-        return;
-      }
-    } catch (CameraInfoUnavailableException e) {
-      // Falls through
-    }
-    Toast.makeText(
-            getApplicationContext(),
-            "This device does not have lens with facing: " + newLensFacing,
-            Toast.LENGTH_SHORT)
-        .show();
-    }
-    
-    
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -333,85 +339,84 @@ public class WorkoutActivity extends AppCompatActivity
             imageProcessor.stop();
         }
     }
-    
+
 
     @Override
     public void onNewRepOccured(List<String> poseClassification) {
-      for (int i = 0; i < poseClassification.size(); i++) {
-        startButton.setText(poseClassification.get(i));
+        for (int i = 0; i < poseClassification.size(); i++) {
+            startButton.setText(poseClassification.get(i));
         }
     }
-    
-    public int formatReps(String unFormattedRep){
+
+    public int formatReps(String unFormattedRep) {
         Matcher matcher = Pattern.compile("\\d+").matcher(unFormattedRep);
         if (matcher.find()) {
             return Integer.parseInt(matcher.group());
         }
         return 0;
     }
-    
-    public void checkIfWorkoutComplete(String unformattedRep){
+
+    public void checkIfWorkoutComplete(String unformattedRep) {
         int formattedRep = formatReps(unformattedRep);
-        if(formattedRep>=reps_final_count){
-            DigiUtils.sendNotification(getApplicationContext(),"Quest Complete","You earned 1 Aura point.",R.drawable.swords);
+        if (formattedRep >= reps_final_count) {
+            DigiUtils.sendNotification(getApplicationContext(), "Quest Complete", "You earned 1 Aura point.", R.drawable.swords);
             if (imageProcessor != null) {
                 imageProcessor.stop();
             }
-            
+
             SharedPreferences questPref = getSharedPreferences(
-                                DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
-            
-            switch(workoutType){
+                    DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
+
+            switch (workoutType) {
                 case PoseClassifierProcessor.PUSHUPS_CLASS:
-                    questPref.edit().putInt(DigiConstants.KEY_TOTAL_PUSHUPS,questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS,DigiConstants.DEFAULT_REPS_PUSHUPS)+reps_final_count).apply();
+                    questPref.edit().putInt(DigiConstants.KEY_TOTAL_PUSHUPS, questPref.getInt(DigiConstants.KEY_TOTAL_PUSHUPS, DigiConstants.DEFAULT_REPS_PUSHUPS) + reps_final_count).apply();
                     break;
                 case PoseClassifierProcessor.SQUATS_CLASS:
-                   questPref.edit().putInt(DigiConstants.KEY_TOTAL_SQUATS,questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS,DigiConstants.DEFAULT_REPS_SQUATS)+reps_final_count).apply();
+                    questPref.edit().putInt(DigiConstants.KEY_TOTAL_SQUATS, questPref.getInt(DigiConstants.KEY_TOTAL_SQUATS, DigiConstants.DEFAULT_REPS_SQUATS) + reps_final_count).apply();
                     break;
-                
+
             }
-            
+
             isQuestRunning = true;
-            sp.edit().putInt(workoutType,reps_final_count).apply();
+            sp.edit().putInt(workoutType, reps_final_count).apply();
             showQuestCompleteDialog();
             CoinManager.incrementCoin(this);
         }
     }
-    
-    public void showQuestCompleteDialog(){
+
+    public void showQuestCompleteDialog() {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
-		.setTitle("Quest Complete")
-		.setCancelable(false)
-        .setMessage("You earned 1 Aura point. Next Rep Target for this Quest has been set to " + String.valueOf(reps_final_count+2))
-        
-        .setNegativeButton("Quit",(dialog,which)->{
-            dialog.dismiss();
-            finish();
-        });
+                .setTitle("Quest Complete")
+                .setCancelable(false)
+                .setMessage("You earned 1 Aura point. Next Rep Target for this Quest has been set to " + String.valueOf(reps_final_count + 2))
+
+                .setNegativeButton("Quit", (dialog, which) -> {
+                    dialog.dismiss();
+                    finish();
+                });
         builder.create().show();
     }
-    
-    private void checkCameraPermission(){
+
+    private void checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             makeCameraPermissionDialog().create().show();
         }
     }
-    
-    private MaterialAlertDialogBuilder makeCameraPermissionDialog(){
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
-                    .setTitle(R.string.missing_permission)
-                    .setMessage(R.string.notification_camera_permission)
-                    .setNeutralButton("Provide",(dialog,which)->{
-                        requestPermissions(
-                        new String[]{Manifest.permission.CAMERA},0);
-				  
-                    });
-        return builder;
+
+    private MaterialAlertDialogBuilder makeCameraPermissionDialog() {
+        return new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.missing_permission)
+                .setMessage(R.string.notification_camera_permission)
+                .setNeutralButton("Provide", (dialog, which) -> {
+                    requestPermissions(
+                            new String[]{Manifest.permission.CAMERA}, 0);
+
+                });
     }
 
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 0) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -421,30 +426,30 @@ public class WorkoutActivity extends AppCompatActivity
             }
         }
     }
-    
+
     public void setSpanText(Context context, TextView textView) {
-    String fullText = textView.getText().toString();
-    SpannableString spannableString = new SpannableString(fullText);
-    
-    String targetText = "Not working?";
-    int startIdx = fullText.indexOf(targetText);
-    if (startIdx == -1) {
-        // Handle the case where the text "not working" is not found
-        return;
-    }
-    int endIdx = startIdx + targetText.length();
-    
-    ClickableSpan clickableSpan = new ClickableSpan() {
-        @Override
-        public void onClick(View widget) {
-            // Open TOC URL in a new activity (or fragment)
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT + "help/workout"));
-            context.startActivity(intent);
+        String fullText = textView.getText().toString();
+        SpannableString spannableString = new SpannableString(fullText);
+
+        String targetText = "Not working?";
+        int startIdx = fullText.indexOf(targetText);
+        if (startIdx == -1) {
+            // Handle the case where the text "not working" is not found
+            return;
         }
-    };
-    
-    spannableString.setSpan(clickableSpan, startIdx, endIdx, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-    textView.setText(spannableString);
-    textView.setMovementMethod(LinkMovementMethod.getInstance()); // Enable link movement
-}
+        int endIdx = startIdx + targetText.length();
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                // Open TOC URL in a new activity (or fragment)
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT + "help/workout"));
+                context.startActivity(intent);
+            }
+        };
+
+        spannableString.setSpan(clickableSpan, startIdx, endIdx, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(spannableString);
+        textView.setMovementMethod(LinkMovementMethod.getInstance()); // Enable link movement
+    }
 }

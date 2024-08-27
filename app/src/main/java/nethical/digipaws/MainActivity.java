@@ -29,24 +29,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG,Context.MODE_PRIVATE);
-        
-       if(!sharedPreferences.getBoolean(DigiConstants.PREF_IS_INTRO_SHOWN,false)){
-           Intent intent = new Intent(this, AppIntroActivity.class);
-			startActivity(intent);
+        SharedPreferences sharedPreferences = getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
+
+        if (!sharedPreferences.getBoolean(DigiConstants.PREF_IS_INTRO_SHOWN, false)) {
+            Intent intent = new Intent(this, AppIntroActivity.class);
+            startActivity(intent);
             finishActivity(0);
         }
 
         setContentView(R.layout.activity_main);
 
 
-
         FragmentManager fragmentManager = getSupportFragmentManager();
-		FragmentTransaction transaction = fragmentManager.beginTransaction();
-		transaction.replace(R.id.fragment_container, new HomeFragment());
-		transaction.commit();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_container, new HomeFragment());
+        transaction.commit();
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel =
@@ -57,47 +56,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-    public void configure(View view){
-        if(!BuildConfig.DEBUG){
+    public void configure(View view) {
+        if (!BuildConfig.DEBUG) {
             SharedPreferences sp = this.getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
-            if(sp.getBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,false)){
-                Toast.makeText(this,"Anti Uninstall is active. Cannot change configurations.",Toast.LENGTH_LONG).show();
+            if (sp.getBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL, false)) {
+                Toast.makeText(this, "Anti Uninstall is active. Cannot change configurations.", Toast.LENGTH_LONG).show();
                 return;
             }
         }
         Intent intent = new Intent(this, AppIntroActivity.class);
         startActivity(intent);
-        Toast.makeText(this,"Changes take time to reflect",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Changes take time to reflect", Toast.LENGTH_LONG).show();
 
     }
-    public void info(View view){
+
+    public void info(View view) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT));
         startActivity(intent);
     }
-    
+
     public static void setDailyAlarm(Context context) {
-    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-    
-    Intent intent = new Intent(context, ResetCoinsReceiver.class);
-    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-    // Set the alarm to start at midnight
-    Calendar calendar = Calendar.getInstance();
-    calendar.setTimeInMillis(System.currentTimeMillis());
-    calendar.set(Calendar.HOUR_OF_DAY, 0);
-    calendar.set(Calendar.MINUTE, 0);
-    calendar.set(Calendar.SECOND, 0);
-    
-    // If the time set is before the current time, add one day
-    if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
-    }
+        Intent intent = new Intent(context, ResetCoinsReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
-    // Set exact alarm for the next midnight
-    long intervalMillis = AlarmManager.INTERVAL_DAY;
-    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 0, pendingIntent);
+        // Set the alarm to start at midnight
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        // If the time set is before the current time, add one day
+        if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+        }
+
+        // Set exact alarm for the next midnight
+        long intervalMillis = AlarmManager.INTERVAL_DAY;
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 0, pendingIntent);
     }
 
 }

@@ -22,13 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nethical.digipaws.R;
-import nethical.digipaws.adapters.SelectBlockedAppsAdapter;
 import nethical.digipaws.adapters.SelectWhiteListedAppsAdapter;
 import nethical.digipaws.data.AppData;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.utils.LoadAppList;
 
-public class ChooseWhiteListedApps extends SlideFragment  {
+public class ChooseWhiteListedApps extends SlideFragment {
 
     private final SharedPreferences userConfigs;
     private RecyclerView recyclerView;
@@ -62,8 +61,7 @@ public class ChooseWhiteListedApps extends SlideFragment  {
     }
 
 
-
-    public void loadAppsAndDisplay(){
+    public void loadAppsAndDisplay() {
 
         handlerThread = new HandlerThread("AppListLoader");
         handlerThread.start();
@@ -77,7 +75,7 @@ public class ChooseWhiteListedApps extends SlideFragment  {
 
                     LoadingDialog loadingDialog = new LoadingDialog("Fetching Packages");
 
-                    loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog");
+                    loadingDialog.show(requireActivity().getSupportFragmentManager(), "loading_dialog");
 
                     adapter = new SelectWhiteListedAppsAdapter(requireContext(), userConfigs);
 
@@ -86,35 +84,31 @@ public class ChooseWhiteListedApps extends SlideFragment  {
 
                     List<AppData> appData = new ArrayList<>();
                     for (ApplicationInfo info : packages) {
-                        if(LoadAppList.isSystemPackage(info)) {
+                        if (LoadAppList.isSystemPackage(info)) {
                             continue;
                         }
                         try {
                             appData.add(
                                     new AppData(
                                             info.loadLabel(pm).toString(),
-                                            pm.getApplicationIcon(info.packageName),info.packageName));
+                                            pm.getApplicationIcon(info.packageName), info.packageName));
                         } catch (PackageManager.NameNotFoundException e) {
-                            continue;
                         }
                     }
 
                     mainHandler.post(
-                            new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        recyclerView.setLayoutManager(
-                                                new LinearLayoutManager(requireContext()));
-                                        adapter.setData(appData);
-                                        recyclerView.setAdapter(adapter);
-                                        loadingDialog.dismiss();
-                                    } catch (Exception ignored) {
+                            () -> {
+                                try {
+                                    recyclerView.setLayoutManager(
+                                            new LinearLayoutManager(requireContext()));
+                                    adapter.setData(appData);
+                                    recyclerView.setAdapter(adapter);
+                                    loadingDialog.dismiss();
+                                } catch (Exception ignored) {
 
-                                    }
                                 }
                             });
-                },200);
+                }, 200);
 
     }
 

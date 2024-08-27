@@ -27,14 +27,14 @@ import nethical.digipaws.data.AppData;
 import nethical.digipaws.fragments.dialogs.LoadingDialog;
 import nethical.digipaws.utils.LoadAppList;
 
-public class ChooseBlockedApps extends SlideFragment  {
+public class ChooseBlockedApps extends SlideFragment {
 
     private final SharedPreferences userConfigs;
     private RecyclerView recyclerView;
     private HandlerThread handlerThread;
     private SelectBlockedAppsAdapter adapter;
     private final boolean canGoAhead = false;
-    
+
     public ChooseBlockedApps(SharedPreferences sp) {
         userConfigs = sp;
     }
@@ -60,9 +60,8 @@ public class ChooseBlockedApps extends SlideFragment  {
         handlerThread.quitSafely();
     }
 
-    
-    
-    public void loadAppsAndDisplay(){
+
+    public void loadAppsAndDisplay() {
 
         handlerThread = new HandlerThread("AppListLoader");
         handlerThread.start();
@@ -70,7 +69,7 @@ public class ChooseBlockedApps extends SlideFragment  {
 
         // Create a Handler for the main thread
         Handler mainHandler = new Handler(Looper.getMainLooper());
-        
+
         handler.postDelayed(
                 new Runnable() {
 
@@ -79,7 +78,7 @@ public class ChooseBlockedApps extends SlideFragment  {
 
                         LoadingDialog loadingDialog = new LoadingDialog("Fetching Packages");
 
-                        loadingDialog.show(getActivity().getSupportFragmentManager(), "loading_dialog");
+                        loadingDialog.show(requireActivity().getSupportFragmentManager(), "loading_dialog");
 
                         adapter = new SelectBlockedAppsAdapter(requireContext(), userConfigs);
 
@@ -88,36 +87,32 @@ public class ChooseBlockedApps extends SlideFragment  {
 
                         List<AppData> appData = new ArrayList<>();
                         for (ApplicationInfo info : packages) {
-                            if(LoadAppList.isSystemPackage(info)) {
+                            if (LoadAppList.isSystemPackage(info)) {
                                 continue;
                             }
                             try {
                                 appData.add(
                                         new AppData(
                                                 info.loadLabel(pm).toString(),
-                                                pm.getApplicationIcon(info.packageName),info.packageName));
-                            } catch (PackageManager.NameNotFoundException e) {
-                                continue;
+                                                pm.getApplicationIcon(info.packageName), info.packageName));
+                            } catch (PackageManager.NameNotFoundException ignored) {
                             }
                         }
 
                         mainHandler.post(
-                                new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        try {
-                                            recyclerView.setLayoutManager(
-                                                    new LinearLayoutManager(requireContext()));
-                                            adapter.setData(appData);
-                                            recyclerView.setAdapter(adapter);
-                                            loadingDialog.dismiss();
-                                        } catch (Exception ignored) {
+                                () -> {
+                                    try {
+                                        recyclerView.setLayoutManager(
+                                                new LinearLayoutManager(requireContext()));
+                                        adapter.setData(appData);
+                                        recyclerView.setAdapter(adapter);
+                                        loadingDialog.dismiss();
+                                    } catch (Exception ignored) {
 
-                                        }
                                     }
                                 });
                     }
-                },200);
+                }, 200);
 
     }
 

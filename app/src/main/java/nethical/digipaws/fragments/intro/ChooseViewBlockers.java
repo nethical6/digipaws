@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 
+import androidx.annotation.NonNull;
+
 import com.heinrichreimersoftware.materialintro.app.SlideFragment;
 
 import nethical.digipaws.R;
@@ -14,7 +16,7 @@ import nethical.digipaws.utils.DigiConstants;
 
 public class ChooseViewBlockers extends SlideFragment {
 
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences sharedPreferences;
 
     public ChooseViewBlockers(SharedPreferences sp){
         sharedPreferences = sp;
@@ -23,14 +25,12 @@ public class ChooseViewBlockers extends SlideFragment {
     @Override
     public View onCreateView(
         LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.choose_preferences_view_blockers, container, false);
 
-         return view;
+        return inflater.inflate(R.layout.choose_preferences_view_blockers, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         CheckBox isPornDisabled = view.findViewById(R.id.porn_cb);
         CheckBox isEngmntDisabled = view.findViewById(R.id.engmnt_cb);

@@ -1,25 +1,20 @@
 package nethical.digipaws.itemblockers;
 
 import android.accessibilityservice.AccessibilityService;
-import android.widget.Toast;
-import nethical.digipaws.data.BlockerData;
-import java.util.regex.Pattern;
 import android.view.accessibility.AccessibilityNodeInfo;
+
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.utils.DigiUtils;
 
-public class SettingsBlocker extends KeywordBlocker{
-    
-    private ServiceData data;
-    
+public class SettingsBlocker extends KeywordBlocker {
+
     public void performAction(ServiceData data) {
-        this.data = data;
         AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
         traverseNodesForKeywords(
-                        data.getService().getRootInActiveWindow(), data.getService());
+                data.getService().getRootInActiveWindow(), data.getService());
     }
-    
-   public void traverseNodesForKeywords(
+
+    public void traverseNodesForKeywords(
             AccessibilityNodeInfo node, AccessibilityService context) {
         if (node == null) {
             return;
@@ -40,5 +35,5 @@ public class SettingsBlocker extends KeywordBlocker{
         }
     }
 
-    
+
 }

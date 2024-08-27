@@ -1,14 +1,19 @@
 package nethical.digipaws.fragments;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 import android.net.Uri;
 import com.google.android.material.internal.EdgeToEdgeUtils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.Intent;
@@ -27,7 +32,6 @@ import nethical.digipaws.utils.DigiConstants;
 
 public class ChallengeCompletedFragment extends Fragment {
 
-    private View view;
     private boolean isChallengeCompleted = false;
     private String day= "0";
     
@@ -37,18 +41,17 @@ public class ChallengeCompletedFragment extends Fragment {
     }
     public ChallengeCompletedFragment(){  }
     
-	@Override
+	@SuppressLint("RestrictedApi")
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-        EdgeToEdgeUtils.applyEdgeToEdge(getActivity().getWindow(),false);
-        view = inflater.inflate(R.layout.challenge_completed_fragment, container, false);
-		return view;
+        EdgeToEdgeUtils.applyEdgeToEdge(requireActivity().getWindow(),false);
+        return inflater.inflate(R.layout.challenge_completed_fragment, container, false);
 	}
-	
-    
-    
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+
+
+    @Override
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		Button shareBtn = view.findViewById(R.id.share);
         shareBtn.setOnClickListener(v->{
