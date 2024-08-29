@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
@@ -312,22 +314,21 @@ public class MarathonQuest extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     private MaterialAlertDialogBuilder makeNotificationPermissionDialog() {
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.missing_permission).setMessage(R.string.notification_notif_permission).setNeutralButton("Provide", (dialog, which) -> {
+        return new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.missing_permission).setMessage(R.string.notification_notif_permission).setNeutralButton("Provide", (dialog, which) -> {
             requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_POST_NOTIFICATIONS_PERMISSION);
         });
-        return builder;
     }
 
     private MaterialAlertDialogBuilder makeLocationPermissionDialog() {
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.missing_permission).setMessage(R.string.notification_location_permission).setNeutralButton("Provide", (dialog, which) -> {
+        return new MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.missing_permission).setMessage(R.string.notification_location_permission).setNeutralButton("Provide", (dialog, which) -> {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION_PERMISSION);
         });
-        return builder;
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_FINE_LOCATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

@@ -3,7 +3,7 @@
 
     <string name="start">Start</string>
     <string name="stop">Stop</string>
-    <string name="missing_permission">Permission Missing</string>
+    <string name="missing_permission">Accessibility Service</string>
 
     <string name="settings">Settings</string>
     <string name="close">Close</string>
@@ -17,7 +17,7 @@
     <string name="desc_ex_overlay">Are you sure you want to continue wasting your time?</string>
 
 
-    <string name="breathe">Take a deep breath!!!</string>
+    <string name="breathe">Take a deep breath!</string>
     <string name="warning_title">Are you sure?</string>
 
     <string name="notification_accessibility_permission">Accessibilty Services required to run blockers.</string>
@@ -32,7 +32,7 @@
 
     <string name="select_quest">Select Quest</string>
     <string name="welcome">Welcome</string>
-    <string name="app_desc">DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes—Easy, Adventure, and Hard—each with unique features and challenges to promote healthy screen time habits.</string>
+    <string name="app_desc">DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes. Easy, Adventure, and Hard. each with unique features and challenges to promote healthy screen time habits.</string>
 
     <string name="easy_mode">Easy Mode</string>
     <string name="easy_mode_desc">In Easy Mode, DigiPaws provides gentle reminders to help you manage your screen time. When you attempt to access a blocked app, a warning screen appears. If you choose to proceed, a cooldown period starts. After the cooldown, another warning is displayed to remind you of your usage.</string>
@@ -103,7 +103,7 @@
     <string name="aura_earned_1">You earned 1 Aura coin</string>
     <string name="tac">By continuing, you agree to our Terms and Conditions</string>
 
-    <string name="accessibility_perm">This app solely depends on Accessibility Permission to block elements. We do not store any of this data on our servers; everything is processed locally. By pressing "Agree," you accept our data usage policy.
+    <string name="accessibility_perm">This app solely depends on Accessibility Permission to block elements. We do not store any of this data on our servers. everything is processed locally. By pressing "Agree," you accept our data usage policy.
 
         If you use github release or Fdroid variant, please allow DigiPaws to access restricted settings prior to this process.</string>
 

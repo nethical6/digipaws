@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
@@ -20,7 +19,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,7 +46,7 @@ public class HomeFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private String daysStreak = "0";
 
-    private TextView cointCount;
+    private TextView coinCount;
     private int mode = 0;
     private ActivityResultLauncher<Intent> activityResultLauncherOverlay;
 
@@ -57,7 +55,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         dayStreakTextView = view.findViewById(R.id.streak);
-        cointCount = view.findViewById(R.id.coin_count);
+        coinCount = view.findViewById(R.id.coin_count);
         activityResultLauncherOverlay = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -78,12 +76,12 @@ public class HomeFragment extends Fragment {
         String[] listItems = getResources().getStringArray(R.array.Quests);
         recyclerView.setAdapter(new SelectQuestAdapter(listItems, requireContext(), getParentFragmentManager()));
 
-        SharedPreferences questInfo = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE,Context.MODE_PRIVATE);
-        switch (questInfo.getString(DigiConstants.PREF_QUEST_ID_KEY,DigiConstants.QUEST_ID_NULL)){
+        SharedPreferences questInfo = requireContext().getSharedPreferences(DigiConstants.PREF_QUEST_INFO_FILE, Context.MODE_PRIVATE);
+        switch (questInfo.getString(DigiConstants.PREF_QUEST_ID_KEY, DigiConstants.QUEST_ID_NULL)) {
             case DigiConstants.QUEST_ID_MARATHON:
                 try {
                     Fragment fragment = (Fragment) Class.forName("nethical.digipaws.fragments.quests.MarathonQuest").newInstance();
-                    DigiUtils.replaceScreenWithoutAddingToBackStack(getParentFragmentManager(),fragment);
+                    DigiUtils.replaceScreenWithoutAddingToBackStack(getParentFragmentManager(), fragment);
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                          java.lang.InstantiationException e) {
                     throw new RuntimeException(e);
@@ -99,9 +97,9 @@ public class HomeFragment extends Fragment {
         sharedPreferences = requireContext().getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
         mode = sharedPreferences.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY);
         if (mode == DigiConstants.DIFFICULTY_LEVEL_EASY || mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
-            checkOverlay();;
-        };
-        if(mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL){
+            checkOverlay();
+        }
+        if (mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
             refreshCoinCount();
         }
         dayStreakTextView.setOnClickListener(v -> {
@@ -127,15 +125,15 @@ public class HomeFragment extends Fragment {
     }
 
 
+    @SuppressLint("SetTextI18n")
     public void calculateDaysPassed() {
-
         SimpleDateFormat sdf = new SimpleDateFormat(DigiConstants.DATE_FORMAT, Locale.getDefault());
         Date givenDate = getDate(requireContext());
         Date currentDate = new Date();
         long differenceInMillis = currentDate.getTime() - givenDate.getTime();
         long days = TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS);
         daysStreak = String.valueOf(days);
-        dayStreakTextView.setText("Day " + days);
+        dayStreakTextView.setText("Day" + " " + days);
 
         DevicePolicyManager devicePolicyManager =
                 (DevicePolicyManager)
@@ -164,7 +162,7 @@ public class HomeFragment extends Fragment {
     @SuppressLint("SetTextI18n")
     public void refreshCoinCount() {
         if (mode == DigiConstants.DIFFICULTY_LEVEL_NORMAL) {
-            cointCount.setText("You hold " + String.valueOf(CoinManager.getCoinCount(requireContext())) + " Aura");
+            coinCount.setText("You hold " + CoinManager.getCoinCount(requireContext()) + " Aura");
         }
     }
 
@@ -197,15 +195,15 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        checkAccessibiltyPermission();
+        checkAccessibilityPermission();
         calculateDaysPassed();
         refreshCoinCount();
     }
 
-    private void checkAccessibiltyPermission() {
+    private void checkAccessibilityPermission() {
         if (!DigiUtils.isAccessibilityServiceEnabled(requireContext(), BlockerService.class)) {
             Snackbar.make(dayStreakTextView, R.string.notification_accessibility_permission, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.settings, v -> buildAccessibiltyDialog()).show();
+                    .setAction(R.string.settings, v -> buildAccessibilityDialog()).show();
         } else {
             checkAndRequestBatteryOptimization(requireContext());
         }
@@ -220,6 +218,7 @@ public class HomeFragment extends Fragment {
                                 .setTitle(R.string.battery_optimisation_title)
                                 .setMessage(R.string.battery_optimisation_desc)
                                 .setNeutralButton("Provide", (dialog, which) -> {
+                                    @SuppressLint("BatteryLife")
                                     Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
                                     intent.setData(Uri.parse("package:" + context.getPackageName()));
                                     context.startActivity(intent);
@@ -231,7 +230,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void buildAccessibiltyDialog() {
+    private void buildAccessibilityDialog() {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.missing_permission)
                 .setMessage(R.string.accessibility_perm)
@@ -240,7 +239,7 @@ public class HomeFragment extends Fragment {
                     startActivity(intent);
                     dialog.dismiss();
                 })
-                .setNegativeButton("How DigiPaws processes my data?", (dialog, which) -> {
+                .setNegativeButton("Cancel", (dialog, which) -> {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT + "about/permission"));
                     startActivity(intent);
                     dialog.dismiss();

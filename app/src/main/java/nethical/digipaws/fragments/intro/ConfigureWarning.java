@@ -7,8 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.heinrichreimersoftware.materialintro.app.SlideFragment;
+
+import java.util.Objects;
 
 import nethical.digipaws.R;
 import nethical.digipaws.utils.DigiConstants;
@@ -35,23 +39,23 @@ public class ConfigureWarning extends SlideFragment {
 
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        title.setText(customMsgSharedPreferences.getString(DigiConstants.PREF_WARN_TITLE,getContext().getString(R.string.breathe)));
-        desc.setText(customMsgSharedPreferences.getString(DigiConstants.PREF_WARN_MESSAGE,getContext().getString(R.string.warning_title)));
+        title.setText(customMsgSharedPreferences.getString(DigiConstants.PREF_WARN_TITLE, requireContext().getString(R.string.breathe)));
+        desc.setText(customMsgSharedPreferences.getString(DigiConstants.PREF_WARN_MESSAGE, requireContext().getString(R.string.warning_title)));
     }
 
     @Override
     public boolean canGoForward() {
 
-        String titlet = title.getText().toString();
-        if(titlet.equals("")){
-            titlet = getContext().getString(R.string.breathe);
+        String titlet = Objects.requireNonNull(title.getText()).toString();
+        if(titlet.isEmpty()){
+            titlet = requireContext().getString(R.string.breathe);
         }
 
-        String msgm = desc.getText().toString();
-        if(msgm.equals("")){
-            msgm = getContext().getString(R.string.warning_title);
+        String msgm = Objects.requireNonNull(desc.getText()).toString();
+        if(msgm.isEmpty()){
+            msgm = requireContext().getString(R.string.warning_title);
         }
 
         customMsgSharedPreferences.edit().putString(DigiConstants.PREF_WARN_TITLE,titlet).apply();

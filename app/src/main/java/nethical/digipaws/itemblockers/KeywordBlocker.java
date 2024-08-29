@@ -32,7 +32,7 @@ public class KeywordBlocker {
         
     }
 
-    public void checkIfEditext(ServiceData data){
+    public void checkIfEditText(ServiceData data){
         AccessibilityNodeInfo node = data.getEvent().getSource();
 
         if (node == null) {
