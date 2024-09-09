@@ -2,7 +2,6 @@ package nethical.digipaws.itemblockers;
 
 import android.os.SystemClock;
 import android.util.Log;
-import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Toast;
 
@@ -15,12 +14,9 @@ import nethical.digipaws.utils.DelayManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.OverlayManager;
-import nethical.digipaws.utils.TaskPicker;
 
 public class ViewBlocker {
 
-    private boolean isReelsBlocked = true;
-    private boolean isEngagementBlocked = true;
     private boolean isViewingFirstReelAllowed = false;
     private int difficulty = DigiConstants.DIFFICULTY_LEVEL_EASY;
 
@@ -46,13 +42,13 @@ public class ViewBlocker {
 
         Log.d("Shorts View Found","BlockerData.shortsViewIds[i]");
         difficulty = data.getDifficulty();
-        isReelsBlocked = data.isReelsBlocked();
-        isEngagementBlocked = data.isEngagementBlocked();
+        boolean isReelsBlocked = data.isReelsBlocked();
+        boolean isEngagementBlocked = data.isEngagementBlocked();
         isViewingFirstReelAllowed = data.isViewingFirstReelAllowed();
 
         if (isReelsTabOpened) {
             scrollEventCounter++;
-            if(scrollEventCounter > 4){
+            if (scrollEventCounter > 4) {
                 scrollEventCounter = 0;
                 isReelsTabOpened = false;
                 performShortsAction(true);
@@ -60,7 +56,7 @@ public class ViewBlocker {
         }
         // block short-form content
         if (isReelsBlocked) {
-            if(isViewingFirstReelAllowed){
+            if (isViewingFirstReelAllowed) {
                 performShortsAction(false);
             } else {
                 performShortsAction(true);
@@ -86,14 +82,14 @@ public class ViewBlocker {
 
             Log.d("Shorts View Found",BlockerData.shortsViewIds[i]);
             if (isViewOpened(rootNode, BlockerData.shortsViewIds[i])) {
-                if(triggerPunish){
+                if (triggerPunish) {
                     punish();
                 } else {
-                    if(isViewingFirstReelAllowed){
+                    if (isViewingFirstReelAllowed) {
                         isReelsTabOpened = true;
                     }
                 }
-                Log.d("Shorts View Found",String.valueOf(System.currentTimeMillis()));
+                Log.d("Shorts View Found", String.valueOf(System.currentTimeMillis()));
                 return;
             }
         }
@@ -148,7 +144,7 @@ public class ViewBlocker {
                     }
                     OverlayManager overlayManager = data.getOverlayManager();
                     overlayManager.showOverlay(difficulty, () -> {
-                                // Proceed Button clickdd
+                                // Proceed Button clicked
                                 overlayManager.removeOverlay();
                                 isOverlayVisible = false;
                                 lastWarningTimestamp = SystemClock.uptimeMillis();
@@ -167,7 +163,7 @@ public class ViewBlocker {
 
             case (DigiConstants.DIFFICULTY_LEVEL_EXTREME):
                 try {
-                    Toast.makeText(data.getService(),data.taskPicker.getRandomTask(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(data.getService(), data.taskPicker.getRandomTask(), Toast.LENGTH_LONG).show();
                 } catch (IOException ignored) {
 
                 }
@@ -231,11 +227,8 @@ public class ViewBlocker {
     private static boolean isViewOpened(AccessibilityNodeInfo rootNode, String viewId) {
         AccessibilityNodeInfo viewNode =
                 findElementById(rootNode, viewId);
-        if (viewNode != null) {
-            // view found
-            return true;
-        }
-        return false;
+        // view found
+        return viewNode != null;
     }
 
     public static AccessibilityNodeInfo findElementById(AccessibilityNodeInfo node, String id) {

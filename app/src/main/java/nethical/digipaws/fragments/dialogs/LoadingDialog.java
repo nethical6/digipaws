@@ -25,7 +25,7 @@ public class LoadingDialog extends DialogFragment {
 		.setTitle(title)
 		.setCancelable(false);
         
-		View view = LayoutInflater.from(requireContext()).inflate(R.layout.loading_dialog, null);
+		View view = getLayoutInflater().inflate(R.layout.loading_dialog, null);
 		builder.setView(view);
 		
         Dialog dialog = builder.create();
@@ -34,7 +34,7 @@ public class LoadingDialog extends DialogFragment {
         
 		return dialog;
 	}
-	
+
 	@Override
 	public void onStart() {
 		super.onStart();

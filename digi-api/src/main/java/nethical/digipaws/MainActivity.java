@@ -1,5 +1,6 @@
 package nethical.digipaws.api;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.pm.PackageManager;
@@ -23,15 +24,12 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private static final int PERMISSION_REQUEST_CODE = 100;
 
-    private Button btnRequestPermission;
-    private Button btnIncrementCoin;
-    private Button btnAddToList;
-    
     private TextView isAddedToList;
     private TextView coinCountInfo;
 
     private ContentResolver contentResolver;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Initialize UI components
-        btnRequestPermission = findViewById(R.id.permission);
-        btnIncrementCoin = findViewById(R.id.inc_coin);
+        Button btnRequestPermission = findViewById(R.id.permission);
+        Button btnIncrementCoin = findViewById(R.id.inc_coin);
         coinCountInfo = findViewById(R.id.coin_count);
-        btnAddToList = findViewById(R.id.addToQuests);
+        Button btnAddToList = findViewById(R.id.addToQuests);
         
         TextView appModeInfo = findViewById(R.id.mode);
         TextView focusQuestInfo = findViewById(R.id.focus_quest);
@@ -100,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void incrementCoins() {
         try {
             if (!isCoinInCooldownOver()) {
@@ -116,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Missing permissions: " + e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
+    @SuppressLint("SetTextI18n")
     private void addToQuestList() {
         try {
 
@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean checkIfAddedToList(){
         Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_IS_ADDED_TO_QUESTS, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
+            @SuppressLint("Range")
             int isAdded = cursor.getInt(cursor.getColumnIndex("is_added"));
             cursor.close();
             return isAdded != 0;
@@ -153,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
     private int getCoinCount() {
         Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_COIN, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
+            @SuppressLint("Range")
             int coinCount = cursor.getInt(cursor.getColumnIndex("count"));
             cursor.close();
             return coinCount;
@@ -166,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
     private int getAppMode() {
         Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_MODE, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
+            @SuppressLint("Range")
             int mode = cursor.getInt(cursor.getColumnIndex("mode"));
             cursor.close();
             return mode;
@@ -179,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isFocusQuestRunning() {
         Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_FOCUS_QUEST, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
+            @SuppressLint("Range")
             int isFocus = cursor.getInt(cursor.getColumnIndex("focus"));
             cursor.close();
             return isFocus != 0;
@@ -192,9 +196,11 @@ public class MainActivity extends AppCompatActivity {
     private boolean isCoinInCooldownOver() {
         Cursor cursor = contentResolver.query(AppConstants.CONTENT_URI_UPDATE_DATA_DELAY, null, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
+            @SuppressLint("Range")
             int isDelayActive = cursor.getInt(cursor.getColumnIndex("is_active"));
             if (isDelayActive == 0) {
                 // Show remaining cooldown time if delay is active
+                @SuppressLint("Range")
                 long remainingTime = cursor.getLong(cursor.getColumnIndex("remaining_time"));
                 Toast.makeText(this, remainingTime + " ms remaining before a new coin can be generated.", Toast.LENGTH_SHORT).show();
             }

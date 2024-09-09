@@ -8,13 +8,11 @@ import java.util.Set;
 import java.util.HashSet;
 
 public class InstalledQuestsManager {
-    
-    private Context context;
-    private SharedPreferences sharedPreference;
+
+    private final SharedPreferences sharedPreference;
     
     public InstalledQuestsManager(Context context){
-        this.context = context;
-         sharedPreference = context.getSharedPreferences(DigiConstants.PREF_PERMISSION_USERS_FILE,
+        sharedPreference = context.getSharedPreferences(DigiConstants.PREF_PERMISSION_USERS_FILE,
 				Context.MODE_PRIVATE);
     }
     public void append(String packageName) {
@@ -34,9 +32,7 @@ public class InstalledQuestsManager {
     public void remove(String packageName){
         List<String> apiUsers = getList();
     	for (String value : apiUsers) {
-			if (apiUsers.contains(value)) {
-				apiUsers.remove(value);
-			}
+            apiUsers.remove(value);
 		}
         save(apiUsers);
     }

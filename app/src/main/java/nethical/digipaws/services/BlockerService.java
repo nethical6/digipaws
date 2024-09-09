@@ -21,13 +21,10 @@ import nethical.digipaws.utils.DelayManager;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 import nethical.digipaws.utils.LoadAppList;
-import nethical.digipaws.utils.OverlayManager;
 
 public class BlockerService extends AccessibilityService {
 
     private ViewBlocker viewBlocker;
-
-    private SharedPreferences configData;
 
     private AppBlocker appBlocker;
     private ServiceData serviceData;
@@ -41,21 +38,23 @@ public class BlockerService extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
 
-        Log.d("Event",String.valueOf(event.getEventType()));
-        try{
+        Log.d("Event", String.valueOf(event.getEventType()));
+        try {
             if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED && DelayManager.isDelayOver(lastDataRefreshed, 20000)) {
                 refreshData();
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         serviceData.setEvent(event);
 
 
         try {
-            if ( event.getEventType() == AccessibilityEvent.TYPE_VIEW_SCROLLED ) {
+            if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
                 viewBlocker.performAction(serviceData);
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
 
         try {
@@ -65,27 +64,30 @@ public class BlockerService extends AccessibilityService {
             if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
                 appBlocker.performAction(serviceData);
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         try {
 
             if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_FOCUSED) {
-                keywordBlocker.checkIfEditext(serviceData);
+                keywordBlocker.checkIfEditText(serviceData);
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
 
         try {
             if (isAntiUninstallOn && event.getPackageName() != null && event.getPackageName().toString().equals(DigiConstants.SETTINGS_PACKAGE_NAME) && event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
                 settingsBlocker.performAction(serviceData);
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
     }
 
     @Override
     public void onInterrupt() {
-        DigiUtils.sendNotification(this,"Service Interrupted","if Digipaws does not work, try re-enabling it in accessibility", R.drawable.info);
+        DigiUtils.sendNotification(this, "Service Interrupted", "if DigiPaws does not work, try re-enabling it in accessibility", R.drawable.info);
         // Handle accessibility service interruption
     }
 
@@ -98,7 +100,7 @@ public class BlockerService extends AccessibilityService {
         refreshData();
 
         info.feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC;
-        info.packageNames = LoadAppList.getPackageNames(this).stream().toArray(String[]::new);
+        info.packageNames = LoadAppList.getPackageNames(this).toArray(new String[0]);
         setServiceInfo(info);
 
         viewBlocker = new ViewBlocker();
@@ -107,14 +109,9 @@ public class BlockerService extends AccessibilityService {
         settingsBlocker = new SettingsBlocker();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
     private void refreshData() {
 
-        configData = getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
+        SharedPreferences configData = getSharedPreferences(DigiConstants.PREF_APP_CONFIG, Context.MODE_PRIVATE);
 
         serviceData = new ServiceData(this, configData.getInt(DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY));
 
@@ -124,7 +121,7 @@ public class BlockerService extends AccessibilityService {
         serviceData.setEngagementBlocked(configData.getBoolean(DigiConstants.PREF_IS_ENGMMT_BLOCKED, false));
         serviceData.setViewingFirstReelAllowed(configData.getBoolean(DigiConstants.PREF_IS_PREVENT_BLOCKING_FIRST_REEL, false));
 
-         isAntiUninstallOn = configData.getBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL, false);
+        isAntiUninstallOn = configData.getBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL, false);
         serviceData.setBlockedApps(new ArrayList<>(configData.getStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, new HashSet<>())));
 
         lastDataRefreshed = SystemClock.uptimeMillis();
