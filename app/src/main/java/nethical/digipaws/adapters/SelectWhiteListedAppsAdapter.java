@@ -30,13 +30,15 @@ public class SelectWhiteListedAppsAdapter extends RecyclerView.Adapter<SelectWhi
     private List<AppData> appData;
     private final SharedPreferences userConfigs;
 
-    private final Set<String> newBlockedAppsSet = new HashSet<>();
+    private final Set<String> newwhitelistAppsSet;
 
 
 	public SelectWhiteListedAppsAdapter(Context context, SharedPreferences userConfigs) {
         this.context = context;
         this.userConfigs = userConfigs;
-	}
+        newwhitelistAppsSet = userConfigs.getStringSet(DigiConstants.PREF_WHITELISTED_APPS_LIST_KEY, new HashSet<>());
+
+    }
     public void setData(List<AppData> appDataL){
         appData = appDataL;
     }
@@ -46,7 +48,7 @@ public class SelectWhiteListedAppsAdapter extends RecyclerView.Adapter<SelectWhi
 	public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.choose_blocked_apps_list_item, parent, false);
 		context=parent.getContext();
-        newBlockedAppsSet.add(getLauncherPackageName());
+        newwhitelistAppsSet.add(getLauncherPackageName());
 		return new ViewHolder(view);
 	}
 	@Override
@@ -54,7 +56,11 @@ public class SelectWhiteListedAppsAdapter extends RecyclerView.Adapter<SelectWhi
         
         holder.textView.setText(appData.get(position).getLabel());
         holder.icon.setImageDrawable(appData.get(position).getIcon());
-        holder.cb.setChecked(appData.get(position).getChecked());
+        if(newwhitelistAppsSet.contains(appData.get(position).getPackageName())){
+            holder.cb.setChecked(true);
+        } else {
+            holder.cb.setChecked(appData.get(position).getChecked());
+        }
         
         holder.itemView.setOnClickListener(null);
         holder.cb.setOnCheckedChangeListener(null);
@@ -67,10 +73,11 @@ public class SelectWhiteListedAppsAdapter extends RecyclerView.Adapter<SelectWhi
             if (adapterPosition != RecyclerView.NO_POSITION) {
                 appData.get(adapterPosition).setIsChecked(isChecked);
                     if(isChecked){
-                        newBlockedAppsSet.add(appData.get(position).getPackageName());
-                        userConfigs.edit().putStringSet(DigiConstants.PREF_WHITELISTED_APPS_LIST_KEY, newBlockedAppsSet).apply();
+                        newwhitelistAppsSet.add(appData.get(position).getPackageName());
+                        userConfigs.edit().putStringSet(DigiConstants.PREF_WHITELISTED_APPS_LIST_KEY, newwhitelistAppsSet).apply();
                     }else{
-                        newBlockedAppsSet.remove(appData.get(position).getPackageName());
+                        newwhitelistAppsSet.remove(appData.get(position).getPackageName());
+                        newwhitelistAppsSet.remove(appData.get(position).getPackageName());
                     }
            }
         });
@@ -82,7 +89,7 @@ public class SelectWhiteListedAppsAdapter extends RecyclerView.Adapter<SelectWhi
 	}
     
     public Set<String> getSelectedAppList(){
-        return this.newBlockedAppsSet;
+        return this.newwhitelistAppsSet;
     }
 	
 	

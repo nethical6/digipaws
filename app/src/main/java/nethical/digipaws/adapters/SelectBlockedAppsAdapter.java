@@ -27,13 +27,15 @@ public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlocked
     private List<AppData> appData;
     private final SharedPreferences userConfigs;
 
-    private final Set<String> newBlockedAppsSet = new HashSet<>();
-    
+    private final Set<String> newBlockedAppsSet;
+
     
 	public SelectBlockedAppsAdapter(Context context, SharedPreferences userConfigs) {
         this.context = context;
         this.userConfigs = userConfigs;
-	}
+        newBlockedAppsSet = userConfigs.getStringSet(DigiConstants.PREF_BLOCKED_APPS_LIST_KEY, new HashSet<>());
+
+    }
     public void setData(List<AppData> appDataL){
         appData = appDataL;
     }
@@ -50,8 +52,12 @@ public class SelectBlockedAppsAdapter extends RecyclerView.Adapter<SelectBlocked
         
         holder.textView.setText(appData.get(position).getLabel());
         holder.icon.setImageDrawable(appData.get(position).getIcon());
-        holder.cb.setChecked(appData.get(position).getChecked());
-        
+
+        if(newBlockedAppsSet.contains(appData.get(position).getPackageName())){
+            holder.cb.setChecked(true);
+        } else {
+            holder.cb.setChecked(appData.get(position).getChecked());
+        }
         holder.itemView.setOnClickListener(null);
         holder.cb.setOnCheckedChangeListener(null);
 
