@@ -51,9 +51,9 @@
     <string name="block_vb_desc">Supported Platforms: Youtube, Instagram, Revanced, Tiktok.</string>
 
     <string name="anti_uninstall_title">#TechRehab</string>
-    <string name="anti_uninstall_cb">Activate Anti-Uninstall</string>
-     <string name="anti_reboot_cb">Prevent Rebooting device</string>
-    <string name="anti_uninstall_desc">#TechRehab is a 3 week productivity challenge that aims to fix your screen addiction.</string>
+    <string name="anti_uninstall_cb">Enable Device Admin</string>
+     <string name="anti_reboot_cb">Prevent Force-Closing device (Experimental)</string>
+    <string name="anti_uninstall_desc">#TechRehab is a 3-week productivity challenge designed to help you break free from screen addiction. During this time, you won’t be able to modify the app or uninstall DigiPaws. To join the challenge, check the box labeled "Enable Device Admin" above.</string>
     <string name="anti_uninstall_desc_day">days strong!!!</string>
 
 

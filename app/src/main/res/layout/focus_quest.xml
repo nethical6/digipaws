@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-     xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-     android:layout_width="match_parent"
-     android:gravity="center_vertical|center|center_horizontal"
-     android:orientation="vertical">
+    android:gravity="center_vertical|center|center_horizontal"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/timer"
@@ -14,22 +13,14 @@
         android:layout_height="wrap_content"
         android:text="START"
         android:textSize="34sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/focus_set_time_layout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="horizontal">
 
         <NumberPicker
             android:id="@+id/choose_ftime"
@@ -38,7 +29,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-            android:textColor="#fff"/>
+            android:textColor="#fff" />
 
         <TextView
             android:id="@+id/mins_txt"
@@ -53,21 +44,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Start Focusing"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/focus_set_time_layout" />
+        android:text="Start Focusing" />
+
+    <Button
+        android:id="@+id/select_whitelist"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Select Whitelisted Apps" />
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="8dp"
-        android:layout_marginTop="16dp"
         android:text="@string/enter_safe_mode_title"
-        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_start_focus" />
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

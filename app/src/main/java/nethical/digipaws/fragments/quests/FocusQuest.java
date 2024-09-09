@@ -28,6 +28,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import nethical.digipaws.R;
 import nethical.digipaws.fragments.HomeFragment;
+import nethical.digipaws.fragments.intro.ChooseWhiteListedApps;
 import nethical.digipaws.services.FocusModeTimerService;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
@@ -43,7 +44,7 @@ public class FocusQuest extends Fragment {
     private LinearLayout selectTimeLayout;
     private int selectedFocusTime = 1;
     private Button startFocus;
-
+    private Button select_whitelist;
     SharedPreferences questInfo;
 
     private TextView mins;
@@ -57,6 +58,7 @@ public class FocusQuest extends Fragment {
         setFTime = view.findViewById(R.id.choose_ftime);
         selectTimeLayout = view.findViewById(R.id.focus_set_time_layout);
         startFocus = view.findViewById(R.id.btn_start_focus);
+        select_whitelist = view.findViewById(R.id.select_whitelist);
         mins = view.findViewById(R.id.mins_txt);
         return view;
     }
@@ -65,6 +67,7 @@ public class FocusQuest extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             makeNotificationPermissionDialog().create().show();
         }
@@ -78,10 +81,16 @@ public class FocusQuest extends Fragment {
             selectedFocusTime = 90; // tweak to change focus mode adv timing
             startFocus.setVisibility(View.VISIBLE);
             selectTimeLayout.setVisibility(View.GONE);
+            select_whitelist.setVisibility(View.VISIBLE);
         } else {
             startFocus.setVisibility(View.VISIBLE);
             selectTimeLayout.setVisibility(View.VISIBLE);
+            select_whitelist.setVisibility(View.VISIBLE);
         }
+
+        select_whitelist.setOnClickListener(v -> {
+        DigiUtils.replaceScreen(getParentFragmentManager(),new ChooseWhiteListedApps(sharedPreferences,true));
+        });
         setFTime.setMaxValue(180);
         setFTime.setMinValue(1);
 
@@ -217,6 +226,7 @@ public class FocusQuest extends Fragment {
                     questInfo.edit().putString(DigiConstants.PREF_QUEST_ID_KEY, DigiConstants.QUEST_ID_FOCUS).apply();
                     SurvivalModeManager.enableSurvivalMode(requireContext());
                     startFocus.setVisibility(View.GONE);
+                    select_whitelist.setVisibility(View.GONE);
                     selectTimeLayout.setVisibility(View.GONE);
                     timer.setVisibility(View.VISIBLE);
                     dialog.dismiss();

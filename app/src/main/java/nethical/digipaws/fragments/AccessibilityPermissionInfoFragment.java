@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment;
 
 
 import nethical.digipaws.R;
+import nethical.digipaws.services.BlockerService;
 import nethical.digipaws.utils.DigiConstants;
 import nethical.digipaws.utils.DigiUtils;
 
@@ -52,4 +53,11 @@ public class AccessibilityPermissionInfoFragment extends Fragment {
                 getParentFragmentManager().popBackStack());
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (DigiUtils.isAccessibilityServiceEnabled(requireContext(), BlockerService.class)) {{
+            getParentFragmentManager().popBackStack();
+        }}
+    }
 }

@@ -38,6 +38,12 @@ public class ChooseWhiteListedApps extends SlideFragment {
     public ChooseWhiteListedApps(SharedPreferences sp) {
         userConfigs = sp;
     }
+    public ChooseWhiteListedApps(SharedPreferences sp,boolean loadapps) {
+        userConfigs = sp;
+        if(loadapps){
+            loadAppsAndDisplay();
+        }
+    }
 
     @Override
     public View onCreateView(
