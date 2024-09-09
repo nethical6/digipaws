@@ -40,10 +40,11 @@ public class ViewBlocker {
         }
 
         if (!DelayManager.isDelayOver(removeOverlayTimestamp, 1000)) {
-            return;
+            //return;
         }
         this.data = data;
 
+        Log.d("Shorts View Found","BlockerData.shortsViewIds[i]");
         difficulty = data.getDifficulty();
         isReelsBlocked = data.isReelsBlocked();
         isEngagementBlocked = data.isEngagementBlocked();
@@ -82,6 +83,8 @@ public class ViewBlocker {
         AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
 
         for (int i = 0; i < BlockerData.shortsViewIds.length; i++) {
+
+            Log.d("Shorts View Found",BlockerData.shortsViewIds[i]);
             if (isViewOpened(rootNode, BlockerData.shortsViewIds[i])) {
                 if(triggerPunish){
                     punish();

@@ -205,7 +205,9 @@ public class HomeFragment extends Fragment {
     private void checkAccessibiltyPermission() {
         if (!DigiUtils.isAccessibilityServiceEnabled(requireContext(), BlockerService.class)) {
             Snackbar.make(dayStreakTextView, R.string.notification_accessibility_permission, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.settings, v -> buildAccessibiltyDialog()).show();
+                    .setAction(R.string.info, v -> {
+                        DigiUtils.replaceScreen(getParentFragmentManager(),new AccessibilityPermissionInfoFragment());
+                    }).show();
         } else {
             checkAndRequestBatteryOptimization(requireContext());
         }
@@ -229,23 +231,6 @@ public class HomeFragment extends Fragment {
                     }).show();
 
         }
-    }
-
-    private void buildAccessibiltyDialog() {
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.missing_permission)
-                .setMessage(R.string.accessibility_perm)
-                .setPositiveButton("Agree", (dialog, which) -> {
-                    Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-                    startActivity(intent);
-                    dialog.dismiss();
-                })
-                .setNegativeButton("How DigiPaws processes my data?", (dialog, which) -> {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(DigiConstants.WEBSITE_ROOT + "about/permission"));
-                    startActivity(intent);
-                    dialog.dismiss();
-                });
-        builder.create().show();
     }
 
 
