@@ -40,7 +40,6 @@ public class ViewBlocker {
         }
         this.data = data;
 
-        Log.d("Shorts View Found","BlockerData.shortsViewIds[i]");
         difficulty = data.getDifficulty();
         boolean isReelsBlocked = data.isReelsBlocked();
         boolean isEngagementBlocked = data.isEngagementBlocked();
@@ -48,7 +47,7 @@ public class ViewBlocker {
 
         if (isReelsTabOpened) {
             scrollEventCounter++;
-            if (scrollEventCounter > 4) {
+            if (scrollEventCounter > 5) {
                 scrollEventCounter = 0;
                 isReelsTabOpened = false;
                 performShortsAction(true);
@@ -78,9 +77,8 @@ public class ViewBlocker {
 
         AccessibilityNodeInfo rootNode = data.getService().getRootInActiveWindow();
 
-        for (int i = 0; i < BlockerData.shortsViewIds.length; i++) {
 
-            Log.d("Shorts View Found",BlockerData.shortsViewIds[i]);
+        for (int i = 0; i < BlockerData.shortsViewIds.length; i++) {
             if (isViewOpened(rootNode, BlockerData.shortsViewIds[i])) {
                 if (triggerPunish) {
                     punish();
@@ -89,7 +87,6 @@ public class ViewBlocker {
                         isReelsTabOpened = true;
                     }
                 }
-                Log.d("Shorts View Found", String.valueOf(System.currentTimeMillis()));
                 return;
             }
         }

@@ -48,14 +48,15 @@ public class BlockerService extends AccessibilityService {
 
         serviceData.setEvent(event);
 
-
-        try {
-            if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_SCROLLED) {
+        if(serviceData.isViewingFirstReelAllowed()){
+            if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_SCROLLED ) {
                 viewBlocker.performAction(serviceData);
             }
-        } catch (Exception ignored) {
+        } else {
+            if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED ) {
+                viewBlocker.performAction(serviceData);
+            }
         }
-
 
         try {
             if (keywordBlocker.isEdFocused() && event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED) {
