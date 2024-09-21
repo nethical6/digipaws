@@ -162,6 +162,7 @@ public class FocusQuest extends Fragment {
                 }
                 if (startFocus.getVisibility() == View.VISIBLE) {
                     startFocus.setVisibility(View.GONE);
+                    select_whitelist.setVisibility(View.GONE);
                     selectTimeLayout.setVisibility(View.GONE);
                     timer.setVisibility(View.VISIBLE);
                 }

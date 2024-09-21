@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import nethical.digipaws.R;
 import nethical.digipaws.data.BlockerData;
 import nethical.digipaws.data.ServiceData;
 import nethical.digipaws.utils.CoinManager;
@@ -39,6 +40,7 @@ public class AppBlocker {
 
         if (SurvivalModeManager.isSurvivalModeActive(data.getService())) {
             pressHome();
+            DigiUtils.sendNotification(data.getService(),"App Blocked",data.getPackageName() + " was just blocked!", R.drawable.ic_launcher_monochrome);
             return;
         }
 
