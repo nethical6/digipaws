@@ -71,7 +71,7 @@ public class AccessibilityPermissionInfoFragment extends Fragment {
     }
 
     private void showRestrictedSettingsInfoDialog() {
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext()).setTitle("Additional Step Required").setMessage("All third party apps that use Accessibility Services on Android 13+ requires Restricted Settings to be enabled prior to this process. If you have enabled it, you can proceed further.")
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext()).setTitle("Additional Step Required").setMessage("All third-party apps that use Accessibility Services on Android 13+ require Restricted Settings to be enabled before this process. If you have enabled it, you can proceed.")
                 .setNeutralButton("Watch Tutorial", (dialog, which) -> {
                     dialog.dismiss();
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/0bcLjpfrmHw?si=L3vXHPj1MJHA3DGm"));
