@@ -59,7 +59,7 @@ public class ChooseMode extends SlideFragment {
 
         // Set initial selection based on SharedPreferences
         int selectedMode = sharedPreferences.getInt(
-                DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EXTREME
+                DigiConstants.PREF_MODE, DigiConstants.DIFFICULTY_LEVEL_EASY
         );
         switch (selectedMode) {
             case DigiConstants.DIFFICULTY_LEVEL_NORMAL:
