@@ -22,10 +22,10 @@
     <string name="warning_title">Are you sure?</string>
 
     <string name="notification_accessibility_permission">Accessibilty Services required to run blockers.</string>
-    <string name="notification_overlay_permission">This app requires overlay permission to display warning screen each time when a blocked item is found on screen.</string>
+    <string name="notification_overlay_permission">This app requires overlay permission to display warning screen each time when a blocked item is found on screen. Your data always remains on your device and we do not store any of it on our servers</string>
     <string name="notification_notif_permission">Notification permission required to receive quest updates.</string>
-    <string name="notification_location_permission">Precise Location permission required to track location for this quest.</string>
-    <string name="notification_camera_permission">Camera permission required to track position and count reps for this quest.</string>
+    <string name="notification_location_permission">Precise Location permission required to track location for this quest. Your data always remains on your device and we do not store any of it on our servers</string>
+    <string name="notification_camera_permission">Camera permission required to track position and count reps for this quest. Your data always remains on your device and we do not store any of it on our servers.</string>
 
 
     <string name="notification_marathon_title">Marathon Quest in running</string>
@@ -38,7 +38,7 @@
     <string name="easy_mode">Easy Mode</string>
     <string name="easy_mode_desc">In Easy Mode, DigiPaws provides gentle reminders to help you manage your screen time. When you attempt to access a blocked app, a warning screen appears. If you choose to proceed, a cooldown period starts. After the cooldown, another warning is displayed to remind you of your usage.</string>
 
-    <string name="adventure_mode">Adventure Mode</string>
+    <string name="adventure_mode">Adventure Mode (Experimental)</string>
     <string name="adventure_mode_desc">Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need Aura. These can be earned by completing quests such as a quick 1 km walk. Each Aura grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use. With every quests you perform, the  difficulty rises.</string>
 
     <string name="hard_mode">Hard Mode</string>
@@ -47,13 +47,13 @@
     <string name="block_vb_title">What do you wish to block?</string>
     <string name="block_shorts_cb">Block Shorts</string>
     <string name="block_comments_cb">Block Comments (Experimental)</string>
-    <string name="block_porn_cb">Block Explict Keywords (Experimental)</string>
+    <string name="block_porn_cb">Block Explicit Keywords (Experimental)</string>
     <string name="block_vb_desc">Supported Platforms: Youtube, Instagram, Revanced, Tiktok.</string>
 
     <string name="anti_uninstall_title">#TechRehab</string>
     <string name="anti_uninstall_cb">Enable Device Admin</string>
      <string name="anti_reboot_cb">Prevent Force-Closing device (Experimental)</string>
-    <string name="anti_uninstall_desc">#TechRehab is a 3-week productivity challenge designed to help you break free from screen addiction. During this time, you won’t be able to modify the app or uninstall DigiPaws. To join the challenge, check the box labeled "Enable Device Admin" above.</string>
+    <string name="anti_uninstall_desc">#TechRehab is a 3-week productivity challenge designed to help you break free from screen addiction. During this time, you won’t be able to modify the app or uninstall DigiPaws. To join the challenge, check the box labeled "Enable Device Admin" above.This step is optional. You can skip this step and enable it anytime in the future.</string>
     <string name="anti_uninstall_desc_day">days strong!!!</string>
 
 
@@ -63,7 +63,7 @@
 
 
     <string name="choose_delay_title">How often?</string>
-    <string name="choose_delay_desc">Specify a custom cooldown between each warning.</string>
+    <string name="choose_delay_desc">Specify a custom cooldown between each warning. This is unavailable for Adventure mode</string>
 
     <string name="acc_desc">Please turn off and re-enable if service malfunctions. To apply any configuration changes, turn off and on.</string>
     

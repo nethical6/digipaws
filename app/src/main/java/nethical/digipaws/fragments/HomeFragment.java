@@ -213,7 +213,7 @@ public class HomeFragment extends Fragment {
     private void checkAndRequestBatteryOptimization(Context context) {
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (!powerManager.isIgnoringBatteryOptimizations(context.getPackageName())) {
-            Snackbar.make(dayStreakTextView, R.string.battery_optimisation_desc, Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(dayStreakTextView, R.string.battery_optimisation_desc, Snackbar.LENGTH_SHORT)
                     .setAction(R.string.settings, v -> {
                         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context)
                                 .setTitle(R.string.battery_optimisation_title)
