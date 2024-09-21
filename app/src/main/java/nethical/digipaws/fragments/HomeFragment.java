@@ -204,10 +204,7 @@ public class HomeFragment extends Fragment {
 
     private void checkAccessibiltyPermission() {
         if (!DigiUtils.isAccessibilityServiceEnabled(requireContext(), BlockerService.class)) {
-            Snackbar.make(dayStreakTextView, R.string.notification_accessibility_permission, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.info, v -> {
-                        DigiUtils.replaceScreen(getParentFragmentManager(),new AccessibilityPermissionInfoFragment());
-                    }).show();
+            DigiUtils.replaceScreen(getParentFragmentManager(),new AccessibilityPermissionInfoFragment());
         } else {
             checkAndRequestBatteryOptimization(requireContext());
         }

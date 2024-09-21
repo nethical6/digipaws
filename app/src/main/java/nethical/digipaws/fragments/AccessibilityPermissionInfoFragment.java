@@ -59,7 +59,7 @@ public class AccessibilityPermissionInfoFragment extends Fragment {
         });
 
         decline.setOnClickListener(v ->
-                getParentFragmentManager().popBackStack());
+                getActivity().finishAffinity());
     }
 
     @Override
