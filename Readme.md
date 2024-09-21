@@ -15,7 +15,7 @@ DigiPaws is an open-source Android productivity utility designed to help users r
 
 
 > [!IMPORTANT]  
-> Digipaws is still in its extreme initial phase
+>This project is being re-written in kotlin
 
 > [!CAUTION]
 > This project is experimental and not yet ready for full production. [Donate](https://nethical6.github.io/digipaws/donate)
