@@ -2,6 +2,7 @@ package nethical.digipaws.itemblockers;
 
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Toast;
 
@@ -45,31 +46,31 @@ public class ViewBlocker {
         boolean isEngagementBlocked = data.isEngagementBlocked();
         isViewingFirstReelAllowed = data.isViewingFirstReelAllowed();
 
-        if (isReelsTabOpened) {
-            scrollEventCounter++;
-            if (scrollEventCounter > 5) {
-                scrollEventCounter = 0;
-                isReelsTabOpened = false;
-                performShortsAction(true);
+        if(data.getEvent().getEventType() == AccessibilityEvent.TYPE_VIEW_SCROLLED){
+            if (isReelsTabOpened) {
+                scrollEventCounter++;
+                if (scrollEventCounter > 5) {
+                    scrollEventCounter = 0;
+                    isReelsTabOpened = false;
+                    performShortsAction(true);
+                }
             }
-        }
-        // block short-form content
-        if (isReelsBlocked) {
-            if (isViewingFirstReelAllowed) {
-                performShortsAction(false);
-            } else {
-                performShortsAction(true);
+            // block short-form content
+            if (isReelsBlocked) {
+                performShortsAction(!isViewingFirstReelAllowed);
+            }
+        } else {
+
+            // block comments and video descriptions
+            if (isEngagementBlocked) {
+                performEngagementAction();
+            }
+            if (data.getIsRebootBlocked()) {
+                performRebootBlock();
             }
         }
 
 
-        // block comments and video descriptions
-        if (isEngagementBlocked) {
-            performEngagementAction();
-        }
-        if (data.getIsRebootBlocked()) {
-            performRebootBlock();
-        }
     }
 
 

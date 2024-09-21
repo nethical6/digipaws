@@ -47,15 +47,8 @@ public class BlockerService extends AccessibilityService {
         }
 
         serviceData.setEvent(event);
-
-        if(serviceData.isViewingFirstReelAllowed()){
-            if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_SCROLLED ) {
-                viewBlocker.performAction(serviceData);
-            }
-        } else {
-            if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED ) {
-                viewBlocker.performAction(serviceData);
-            }
+        if (event.getEventType() == AccessibilityEvent.TYPE_VIEW_SCROLLED || event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED ) {
+            viewBlocker.performAction(serviceData);
         }
 
         try {
