@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="modes">
+        <item>Modo Fácil</item>
+        <item>Modo Aventura</item>
+        <item>Modo Difícil</item>
+    </string-array>
+</resources>
