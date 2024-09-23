@@ -1,0 +1,14 @@
+<resources>
+    <string-array name="Quests">
+        <item>Modo de foco</item>
+        <item>Toque na grama</item>
+        <item>Flexões</item>
+        <item>Agachamentos</item>
+    </string-array>
+    
+    <string-array name="modes">
+        <item>Modo Fácil</item>
+        <item>Modo Aventura</item>
+        <item>Modo Difícil</item>
+    </string-array>
+</resources>
