@@ -98,7 +98,7 @@
     <string name="focus_desc">O modo de foco ou sobrevivência bloqueia todos os aplicativos, exceto necessidades básicas, como chamadas e SMS, pelos próximos 90 minutos. Uma vez que o modo de foco é ligado, ele NÃO PODE ser desligado até que o cronômetro acabe. Completar esta missão te dará 1 moeda de Aura.</string>
 
     <string name="aura_earned_1">Você ganhou 1 moeda Aura</string>
-    <string name="tac">By continuing, you agree to our Terms and Conditions</string>
+    <string name="tac">Ao continuar, você concorda com nossos Termos e Condições</string>
 
     <string name="accessibility_perm">O DigiPaws precisa de acesso aos dados de acessibilidade para saber quando você abre um recurso específico em um aplicativo, como um feed de mídia social ou um jogo. Isso permite que o DigiPaws bloqueie esses recursos para você com base em suas preferências, ajudando você a manter o foco e reduzir as distrações da tela.
     \n\n
