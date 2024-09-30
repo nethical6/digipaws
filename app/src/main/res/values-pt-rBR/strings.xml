@@ -37,8 +37,8 @@
     <string name="adventure_mode">Adventure Mode (Experimental)</string>
     <string name="adventure_mode_desc">O Modo Aventura introduz uma experiência gamificada para controlar o tempo de tela. Para acessar um aplicativo bloqueado, você precisa do Aura. Eles podem ser obtidos completando missões como uma caminhada rápida de 1 km. Cada Aura concede 20 minutos de uso para qualquer aplicativo bloqueado, incentivando a atividade física e o uso consciente da tela. A cada missão que você realiza, a dificuldade aumenta.</string>
 
-    <string name="hard_mode">Hard Mode</string>
-    <string name="hard_mode_desc">Hard Mode offers the most stringent control over app usage. In this mode, when you try to open a blocked app, the back button is automatically pressed without any warning or cooldown, preventing access entirely.</string>
+    <string name="hard_mode">Modo Difícil</string>
+    <string name="hard_mode_desc">O Modo Difícil oferece o controle mais rigoroso sobre o uso de aplicativos. Neste modo, quando você tenta abrir um aplicativo bloqueado, o botão Voltar é pressionado automaticamente, sem nenhum aviso ou tempo de espera, impedindo o acesso completamente.</string>
 
     <string name="block_vb_title">O que você deseja bloquear?</string>
     <string name="block_shorts_cb">Shorts de Bloco</string>
@@ -98,7 +98,7 @@
     <string name="focus_desc">O modo de foco ou sobrevivência bloqueia todos os aplicativos, exceto necessidades básicas, como chamadas e SMS, pelos próximos 90 minutos. Uma vez que o modo de foco é ligado, ele NÃO PODE ser desligado até que o cronômetro acabe. Completar esta missão te dará 1 moeda de Aura.</string>
 
     <string name="aura_earned_1">Você ganhou 1 moeda Aura</string>
-    <string name="tac">By continuing, you agree to our Terms and Conditions</string>
+    <string name="tac">Ao continuar, você concorda com nossos Termos e Condições</string>
 
     <string name="accessibility_perm">O DigiPaws precisa de acesso aos dados de acessibilidade para saber quando você abre um recurso específico em um aplicativo, como um feed de mídia social ou um jogo. Isso permite que o DigiPaws bloqueie esses recursos para você com base em suas preferências, ajudando você a manter o foco e reduzir as distrações da tela.
     \n\n
