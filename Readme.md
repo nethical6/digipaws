@@ -9,7 +9,18 @@
    [![Repository Size](https://img.shields.io/github/repo-size/nethical6/digipaws)](https://github.com/nethical6/digipaws)
 </div>
 
-
+<div align="center">
+<a href="https://play.google.com/store/apps/details?id=nethical.digipaws&hl=en_IN&pli=1">
+    <img alt="Get it on Google Play"
+        height="80"
+        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
+</a>  
+<a href="https://f-droid.org/packages/nethical.digipaws/">
+    <img alt="Get it on F-Droid"
+        height="80"
+        src="https://f-droid.org/badge/get-it-on.png" />
+        </a>
+</div>
 DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes—Easy, Adventure, and Hard—each with unique features and challenges to promote healthy screen time habits.
 [Download Now](https://nethical6.github.io/digipaws/)
 
