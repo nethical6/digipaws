@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment {
     private View view;
     private TextView daysRemaining;
     private SharedPreferences sharedPreferences;
+    private String daysStreak = "0";
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class HomeFragment extends Fragment {
         calculateStats();
         
         daysRemaining.setOnClickListener(v->{
-            DigiUtils.replaceScreen(getActivity().getSupportFragmentManager(),new ChallengeCompletedFragment());
+            DigiUtils.replaceScreen(getActivity().getSupportFragmentManager(),new ChallengeCompletedFragment(false,daysStreak));
         });
         
         HollowCircleView hcv = view.findViewById(R.id.select_quest);
@@ -124,7 +125,7 @@ public class HomeFragment extends Fragment {
 
         // Convert milliseconds to days
         long days = TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS);
-        
+        daysStreak = String.valueOf(days);
         daysRemaining.append(String.valueOf(days) + " "+ getContext().getString(R.string.anti_uninstall_desc_day));
         
         DevicePolicyManager devicePolicyManager =
@@ -132,12 +133,24 @@ public class HomeFragment extends Fragment {
                                 requireContext().getSystemService(Context.DEVICE_POLICY_SERVICE);
         ComponentName deviceAdminReceiver =
                         new ComponentName(requireContext(), AdminReceiver.class);
+        
+        
+        
+        // Parse the given date
+        Date antiUninstallStartDay = getChallengeDate(requireContext());
 
+        // Calculate the difference in milliseconds
+        long adifferenceInMillis = currentDate.getTime() - antiUninstallStartDay.getTime();
+
+        // Convert milliseconds to days
+        long antiUninstallDaysElapsed = TimeUnit.DAYS.convert(adifferenceInMillis, TimeUnit.MILLISECONDS);
+        
         //if(true){
-       if(days >= DigiConstants.CHALLENGE_TIME ){
+       if(antiUninstallDaysElapsed >= DigiConstants.CHALLENGE_TIME ){
             if(!devicePolicyManager.isAdminActive(deviceAdminReceiver)){
                     return;
                 }
+            
             DigiUtils.sendNotification(requireContext(),"Challenge Completed","Anti-Uninstall has been disabled!!!!!!",R.drawable.swords);
             sharedPreferences.edit().putBoolean(DigiConstants.PREF_IS_ANTI_UNINSTALL,false).apply();
                 // Disable the device admin if it was enabled
@@ -161,6 +174,21 @@ public class HomeFragment extends Fragment {
     }
     
     public Date getDate(Context context) {
+        
+        String dateString = sharedPreferences.getString(DigiConstants.PREF_USAGE_STREAK_START, "0001-01-01");
+
+        if (dateString != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat(DigiConstants.DATE_FORMAT, Locale.getDefault());
+            try {
+                return sdf.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+    
+    public Date getChallengeDate(Context context) {
         
         String dateString = sharedPreferences.getString(DigiConstants.PREF_ANTI_UNINSTALL_START, "0001-01-01");
 
