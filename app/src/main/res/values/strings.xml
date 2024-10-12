@@ -52,7 +52,7 @@
 
     <string name="anti_uninstall_title">#TechRehab</string>
     <string name="anti_uninstall_cb">Enable Device Admin</string>
-     <string name="anti_reboot_cb">Prevent Force-Closing device (Experimental)</string>
+    <string name="anti_reboot_cb">Prevent Force-Closing device (Experimental)</string>
     <string name="anti_uninstall_desc">#TechRehab is a 3-week productivity challenge designed to help you break free from screen addiction. During this time, you won’t be able to modify the app or uninstall DigiPaws. To join the challenge, check the box labeled "Enable Device Admin" above.This step is optional. You can skip this step and enable it anytime in the future.</string>
     <string name="anti_uninstall_desc_day">days strong!!!</string>
 
@@ -66,7 +66,7 @@
     <string name="choose_delay_desc">Specify a custom cooldown between each warning. This is unavailable for Adventure mode</string>
 
     <string name="acc_desc">Please turn off and re-enable if service malfunctions. To apply any configuration changes, turn off and on.</string>
-    
+
     <string name="choose_blocked_apps_title">App Blocker Configuration</string>
     <string name="choose_blocked_apps_desc">Select the apps you wish to block or receive usage warnings for.</string>
 
@@ -77,24 +77,12 @@
     <string name="perm_quest_manager_desc">act as a quest and modify Aura count?</string>
 
 
-    <string
-            name="pref_category_key_camera"
-            translatable="false">pckc</string>
-    <string
-            name="pref_category_title_camera"
-            translatable="false">Camera</string>
-    <string
-            name="pref_key_rear_camera_preview_size"
-            translatable="false">rcpvs</string>
-    <string
-            name="pref_key_rear_camera_picture_size"
-            translatable="false">rcpts</string>
-    <string
-            name="pref_key_front_camera_preview_size"
-            translatable="false">fcpvs</string>
-    <string
-            name="pref_key_front_camera_picture_size"
-            translatable="false">fcpts</string>
+    <string name="pref_category_key_camera" translatable="false">pckc</string>
+    <string name="pref_category_title_camera" translatable="false">Camera</string>
+    <string name="pref_key_rear_camera_preview_size" translatable="false">rcpvs</string>
+    <string name="pref_key_rear_camera_picture_size" translatable="false">rcpts</string>
+    <string name="pref_key_front_camera_preview_size" translatable="false">fcpvs</string>
+    <string name="pref_key_front_camera_picture_size" translatable="false">fcpts</string>
 
     <string name="marathon_desc">Move out of the above red zone to win this quest. There is no penalty for failing this quest. Do not forget to carry your phone!</string>
     <string name="squats_desc">Simply perform $valuex squats to earn 1 Aura point. You are free to perform this quest in sets of any.Make sure your entire body is visible on camera above. Not working?</string>
