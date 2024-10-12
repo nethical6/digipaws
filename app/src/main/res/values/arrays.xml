@@ -1,8 +1,0 @@
-<resources>
-
-    <string-array name="modes">
-        <item>Easy Mode</item>
-        <item>Adventure Mode</item>
-        <item>Hard Mode</item>
-    </string-array>
-</resources>
