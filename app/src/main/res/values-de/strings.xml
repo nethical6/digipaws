@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">DigiPaws</string>
+
+    <string name="start">Start</string>
+    <string name="stop">Stoppen</string>
+    <string name="missing_permission">Berechtigung fehlt</string>
+
+    <string name="settings">Einstellungen</string>
+    <string name="info">Info</string>
+    <string name="close">schließen</string>
+    <string name="proceed">Fortfahren</string>
+    <string name="buy_20_mins">20 Minuten kaufen</string>
+    <string name="desc_sd_overlay">Möchtest du einen 20-minütigen Zeitfresser für 1 Aura kaufen? Dieser Kauf hebt alle Beschränkungen für diese App oder diesen Gegenstand für die nächsten 20 Minuten auf.</string>
+
+    <string name="no_coins_title">Unzureichende Aura</string>
+    <string name="desc_no_coins_overlay">Du hast 0 Aura, um Zeit zu verschwenden, führe jetzt eine Quest durch, um Aura zu verdienen!</string>
+
+    <string name="desc_ex_overlay">Bist du sicher, dass du weiterhin deine Zeit verschwenden willst?</string>
+
+
+    <string name="breathe">Tief durchatmen!!!</string>
+    <string name="warning_title">Bist du dir sicher?</string>
+
+    <string name="notification_accessibility_permission">Accessibilty Services erforderlich, um Blocker zu betreiben.</string>
+    <string name="notification_overlay_permission">Diese App benötigt eine Overlay-Erlaubnis, um jedes Mal eine Warnung anzuzeigen, wenn ein blockiertes Objekt auf dem Bildschirm gefunden wird. Deine Daten verbleiben immer auf deinem Gerät und wir speichern keine Daten auf unseren Servern.</string>
+    <string name="notification_notif_permission">Benachrichtigungserlaubnis erforderlich, um Quest-Updates zu erhalten.</string>
+    <string name="notification_location_permission">Die Erlaubnis zur präzisen Standortbestimmung ist erforderlich, um den Standort für diese Suche zu verfolgen. Deine Daten verbleiben immer auf deinem Gerät und wir speichern keine davon auf unseren Servern.</string>
+    <string name="notification_camera_permission">Kameraerlaubnis erforderlich, um die Position zu verfolgen und Wiederholungen für diese Aufgabe zu zählen. Deine Daten bleiben immer auf deinem Gerät und werden nicht auf unseren Servern gespeichert.</string>
+
+
+    <string name="notification_marathon_title">Marathon Quest im Laufen</string>
+
+
+    <string name="select_quest">Quest auswählen</string>
+    <string name="welcome">Wilkommen</string>
+    <string name="app_desc">DigiPaws ist ein Open-Source-Android-Produktivitätsprogramm, das Nutzern helfen soll, ihre Bildschirmabhängigkeit zu reduzieren, indem es die App-Nutzung durch ein spielerisches Erlebnis reguliert. Die Anwendung bietet drei verschiedene Modi - einfach, abenteuerlich und schwer - mit jeweils einzigartigen Funktionen und Herausforderungen zur Förderung gesunder Bildschirmgewohnheiten.</string>
+
+    <string name="easy_mode">Einfacher Modus</string>
+    <string name="easy_mode_desc">Im einfachen Modus bietet DigiPaws sanfte Erinnerungen, die dir helfen, deine Bildschirmzeit zu verwalten. Wenn du versuchst, auf eine gesperrte App zuzugreifen, wird ein Warnbildschirm angezeigt. Wenn du dich entscheidest, fortzufahren, beginnt eine Abklingzeit. Nach der Abkühlphase wird eine weitere Warnung angezeigt, um dich an Ihre Nutzung zu erinnern.</string>
+
+    <string name="adventure_mode">Abenteuer-Modus (experimentell)</string>
+    <string name="adventure_mode_desc">Der Abenteuermodus bietet eine spielerische Erfahrung zur Kontrolle der Bildschirmzeit. Um auf eine gesperrte App zuzugreifen, brauchst du Aura. Diese können durch das Erfüllen von Aufgaben, wie z. B. einem schnellen 1 km Spaziergang, verdient werden. Jede Aura gewährt 20 Minuten Nutzungszeit für eine gesperrte App, was zu körperlicher Aktivität und achtsamer Bildschirmnutzung anregt. Mit jeder Aufgabe, die du erfüllst, steigt der Schwierigkeitsgrad.</string>
+
+    <string name="hard_mode">Schwerer Modus</string>
+    <string name="hard_mode_desc">Der harte Modus bietet die strengste Kontrolle über die App-Nutzung. Wenn du in diesem Modus versuchen, eine gesperrte App zu öffnen, wird ohne Vorwarnung oder Abkühlzeit automatisch die Zurück-Taste gedrückt und der Zugriff vollständig verhindert.</string>
+
+    <string name="block_vb_title">Was möchtest du blockieren?</string>
+    <string name="block_shorts_cb">Shorts blockieren</string>
+    <string name="block_comments_cb">Kommentare blockieren (experimentell)</string>
+    <string name="block_porn_cb">Explizite Schlüsselwörter blockieren (experimentell)</string>
+    <string name="block_vb_desc">Unterstützte Platformen: Youtube, Instagram, Revanced, Tiktok.</string>
+
+    <string name="anti_uninstall_title">#TechRehab</string>
+    <string name="anti_uninstall_cb">Geräteadministration aktivieren</string>
+     <string name="anti_reboot_cb">Prevent Force-Closing-Vorrichtung (Experimentell)</string>
+    <string name="anti_uninstall_desc">#TechRehab ist eine 3-wöchige Produktivitäts-Challenge, die dir helfen soll, sich von der Bildschirmabhängigkeit zu befreien. Während dieser Zeit kannst du die App nicht ändern oder DigiPaws deinstallieren. Um an der Challenge teilzunehmen, markiere bitte das Kästchen „Geräteadministration aktivieren“ oben - dieser Schritt ist optional. Du kannst diesen Schritt überspringen und ihn jederzeit in der Zukunft aktivieren.</string>
+    <string name="anti_uninstall_desc_day">Tage stark!!!</string>
+
+
+    <string name="choose_mode_title">Modus</string>
+    <string name="choose_mode">Modus wählen</string>
+    <string name="loading">Laden</string>
+
+
+    <string name="choose_delay_title">Wie oft?</string>
+    <string name="choose_delay_desc">Lege eine benutzerdefinierte Abklingzeit zwischen den einzelnen Warnungen fest. Für den Abenteuermodus ist dies nicht verfügbar.</string>
+
+    <string name="acc_desc">Bitte schalte das Gerät aus und wieder ein, wenn der Dienst nicht funktioniert. Um Konfigurationsänderungen zu übernehmen, schalten Sie das Gerät aus und wieder ein.</string>
+    
+    <string name="choose_blocked_apps_title">App-Blocker-Konfiguration</string>
+    <string name="choose_blocked_apps_desc">Wähle die Apps aus, die du blockieren oder für die du Nutzungswarnungen erhalten möchtest.</string>
+
+    <string name="choose_whitelist_apps">whitegelistete Apps</string>
+    <string name="choose_whitelist_apps_desc">Wähle die Anwendungen aus, die Sie im Fokusmodus verwenden möchten. Der Fokusmodus ist eine Aufgabe, bei der man für einen bestimmten Zeitraum auf keine Anwendung zugreifen kann, die nicht auf der Whitelist steht. Diese Suche kann nicht beendet werden, wenn sie einmal begonnen hat. </string>
+
+    <string name="perm_quest_manager_label">Digipaws Quests</string>
+    <string name="perm_quest_manager_desc">Als Quest fungieren und die Aura verändern?</string>
+
+
+    <string
+            name="pref_category_key_camera"
+            translatable="false">pckc</string>
+    <string
+            name="pref_category_title_camera"
+            translatable="false">Camera</string>
+    <string
+            name="pref_key_rear_camera_preview_size"
+            translatable="false">rcpvs</string>
+    <string
+            name="pref_key_rear_camera_picture_size"
+            translatable="false">rcpts</string>
+    <string
+            name="pref_key_front_camera_preview_size"
+            translatable="false">fcpvs</string>
+    <string
+            name="pref_key_front_camera_picture_size"
+            translatable="false">fcpts</string>
+
+    <string name="marathon_desc">Verlassen Sie die oben genannte rote Zone, um diese Quest zu gewinnen. Es gibt keine Strafe für das Scheitern dieser Aufgabe. Vergesse nicht, dein Telefon mitzunehmen!</string>
+    <string name="squats_desc">Führe einfach $valuex Kniebeugen aus, um 1 Aura-Punkt zu verdienen. Es steht dir frei, diese Aufgabe in beliebigen Sätzen auszuführen. Achte darauf, dass dein ganzer Körper auf der Kamera zu sehen ist. Funktioniert nicht?</string>
+    <string name="pushups_desc">Führe einfach $valuex Liegestütze aus, um 1 Aura-Punkt zu verdienen. Es steht dir frei, diese Aufgabe in beliebigen Sätzen auszuführen. Achte darauf, dass dein ganzer Körper auf der Kamera oben zu sehen ist. Funktioniert nicht?</string>
+    <string name="focus_desc">Der Fokus- oder Überlebensmodus blockiert für die nächsten 90 Minuten alle Anwendungen mit Ausnahme der Grundfunktionen wie Anrufe und SMS. Sobald der Fokusmodus eingeschaltet ist, kann er NICHT mehr ausgeschaltet werden, bis der Timer abgelaufen ist. Das Abschließen dieser Aufgabe bringt 1 Aura-Münze.</string>
+
+    <string name="aura_earned_1">Du hast 1 Aura-Münze verdient</string>
+    <string name="tac">Wenn du fortfahrst, erklärst du sich mit unseren Allgemeinen Geschäftsbedingungen einverstanden.</string>
+
+    <string name="accessibility_perm">DigiPaws benötigt Zugriffsdaten, um zu wissen, wann du eine bestimmte Funktion innerhalb einer App öffnen, z. B. einen Social-Media-Feed oder ein Spiel. Auf diese Weise kann DigiPaws diese Funktionen je nach deien Vorlieben für dich blockieren, damit du sich besser konzentrieren können und weniger vom Bildschirm abgelenkt wirst.
+    \n\n
+        Du kannst sicher sein, dass alle Erreichbarkeitsdaten sicher auf Ihrem Gerät verbleiben - wir geben deine Daten niemals weiter oder übertragen sie, so dass deine Privatsphäre stets geschützt ist.
+    </string>
+
+    <string name="choose_msg_title">Warnbildschirm</string>
+
+    <string name="battery_optimisation_title">Akku-Optimierung deaktivieren</string>
+    <string name="battery_optimisation_desc">Um sicherzustellen, dass diese App ordnungsgemäß funktioniert, deaktiviere bitte die Batterieoptimierung für diese App. Dies hilft uns, Sie sanft an Ihre Bildschirmzeit zu erinnern, damit du achtsam und konzentrierst bleibst, ohne aufdringlich zu sein.</string>
+
+    <string name="congratulate_text_challenge_comp">Herzlichen Glückwunsch zur Eroberung von #TechRehab! Dein 21-tägiges Engagement ist wirklich inspirierend. Mach weiter so! 🌟</string>
+    <string name="congratulate_text_challenge_incomp">Du machst dich großartig auf deiner #TechRehab-Reise! Bleibe stark - jeder Schritt zählt! 🫵👑</string>
+    <string name="title">Titel</string>
+    <string name="description">Beschreibung</string>
+    <string name="shorts_allow_first_shorts_title">lass mich Reels öffnen, aber beim scrollen blockieren (Experimentell)</string>
+    <string name="enter_safe_mode_title">Drücke zehnmal „Minuten“, um den Fokusmodus zu beenden.</string>
+
+
+</resources>
