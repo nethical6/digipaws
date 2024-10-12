@@ -22,6 +22,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import nethical.digipaws.databinding.ActivityLauncherBinding
 import nethical.digipaws.databinding.LauncherItemBinding
+import java.text.SimpleDateFormat
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 
 class LauncherActivity : AppCompatActivity() {
 
@@ -39,16 +44,14 @@ class LauncherActivity : AppCompatActivity() {
         }
 
 
+
         lifecycleScope.launch(Dispatchers.IO) {
             val launcherApps = getSystemService(LAUNCHER_APPS_SERVICE) as LauncherApps
-
             val apps = launcherApps.getActivityList(null, android.os.Process.myUserHandle()).mapNotNull {
                 it.applicationInfo
             }.filter {
                 it.packageName != packageName
-            }.sortedBy {
-                it.loadLabel(packageManager).toString()
-            }
+            }.shuffled()
 
             lifecycleScope.launch(Dispatchers.Main) {
                 val adapter = ApplicationAdapter(apps)
@@ -56,12 +59,19 @@ class LauncherActivity : AppCompatActivity() {
                 binding.appList.adapter = adapter
             }
         }
+
         binding.appList.addItemDecoration(
             DividerItemDecoration(
                 this, OrientationHelper.VERTICAL
             )
         )
+        binding.clock.text = getCurrentTime()
 
+    }
+
+    private fun getCurrentTime(): String {
+        val sdf = SimpleDateFormat("hh:mm a", Locale.getDefault())
+        return sdf.format(Date())
     }
 
     fun launchAppByPackageName(context: Context, packageName: String) {
