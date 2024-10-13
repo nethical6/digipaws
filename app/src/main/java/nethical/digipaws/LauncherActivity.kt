@@ -7,6 +7,7 @@ import android.content.pm.LauncherApps
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -23,15 +24,14 @@ import kotlinx.coroutines.launch
 import nethical.digipaws.databinding.ActivityLauncherBinding
 import nethical.digipaws.databinding.LauncherItemBinding
 import java.text.SimpleDateFormat
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 
 class LauncherActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLauncherBinding
-    private val intent = Intent()
+
+    private val pinnedAppPackages = mutableSetOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,17 +44,26 @@ class LauncherActivity : AppCompatActivity() {
         }
 
 
+        Log.d("app", loadPinnedApps().toString())
+        pinnedAppPackages.addAll(loadPinnedApps())
+
 
         lifecycleScope.launch(Dispatchers.IO) {
             val launcherApps = getSystemService(LAUNCHER_APPS_SERVICE) as LauncherApps
-            val apps = launcherApps.getActivityList(null, android.os.Process.myUserHandle()).mapNotNull {
+            val allApps = launcherApps.getActivityList(null, android.os.Process.myUserHandle()).mapNotNull {
                 it.applicationInfo
             }.filter {
                 it.packageName != packageName
-            }.shuffled()
+            }
+
+            // Separate pinned and unpinned apps
+            val pinnedApps = allApps.filter { pinnedAppPackages.contains(it.packageName) }
+            val unpinnedApps = allApps.filter { !pinnedAppPackages.contains(it.packageName) }.shuffled()
+
+            val sortedApps = pinnedApps + unpinnedApps // Pinned apps first, followed by shuffled unpinned apps
 
             lifecycleScope.launch(Dispatchers.Main) {
-                val adapter = ApplicationAdapter(apps)
+                val adapter = ApplicationAdapter(sortedApps)
                 binding.appList.layoutManager = LinearLayoutManager(baseContext)
                 binding.appList.adapter = adapter
             }
@@ -68,7 +77,10 @@ class LauncherActivity : AppCompatActivity() {
         binding.clock.text = getCurrentTime()
 
     }
-
+    override fun onResume() {
+        super.onResume()
+        binding.clock.text = getCurrentTime()
+    }
     private fun getCurrentTime(): String {
         val sdf = SimpleDateFormat("hh:mm a", Locale.getDefault())
         return sdf.format(Date())
@@ -101,6 +113,10 @@ class LauncherActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadPinnedApps(): Set<String> {
+        val sharedPreferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
+        return sharedPreferences.getStringSet("pinned_apps", emptySet()) ?: emptySet()
+    }
 
 
     inner class ApplicationViewHolder(private val binding: LauncherItemBinding) :
