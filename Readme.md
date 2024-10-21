@@ -5,20 +5,20 @@
    [![GitHub contributors](https://img.shields.io/github/contributors/nethical6/digipaws)](https://github.com/nethical6/digipaws/graphs/contributors)
    [![Discord Server](https://img.shields.io/badge/Discord%20Server-white?style=flat&logo=discord)](https://discord.com/invite/Vs9mwUtuCN)
    [![Telegram Group](https://img.shields.io/badge/Telegram%20Group-blue?style=flat&logo=telegram)](https://t.me/digipaws6)
-   [![Total downloads](https://img.shields.io/github/downloads/nethical6/digipaws/total)](https://github.com/nethical6/digipaws/releases)
    [![Repository Size](https://img.shields.io/github/repo-size/nethical6/digipaws)](https://github.com/nethical6/digipaws)
+   [![Total downloads](https://img.shields.io/github/downloads/nethical6/digipaws/total)](https://github.com/nethical6/digipaws/releases)
 </div>
 
 <div align="center">
-<a href="https://play.google.com/store/apps/details?id=nethical.digipaws&hl=en_IN&pli=1">
-    <img alt="Get it on Google Play"
-        height="80"
-        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
-</a>  
 <a href="https://f-droid.org/packages/nethical.digipaws/">
     <img alt="Get it on F-Droid"
         height="80"
         src="https://f-droid.org/badge/get-it-on.png" />
+</a>
+<a href="https://play.google.com/store/apps/details?id=nethical.digipaws&hl=en_IN&pli=1">
+    <img alt="Get it on Google Play"
+        height="80"
+        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
         </a>
 </div>
 Copylefted libre software solving screen addiction by regulating and gamifying app usage. Easy, Adventure, and Hard modes — each with features and challenges for healthy screen-time habits.
