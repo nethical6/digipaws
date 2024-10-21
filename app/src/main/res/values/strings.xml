@@ -3,29 +3,29 @@
 
     <string name="start">Start</string>
     <string name="stop">Stop</string>
-    <string name="missing_permission">Permission Missing</string>
+    <string name="missing_permission">Missing Permission</string>
 
     <string name="settings">Settings</string>
     <string name="info">Info</string>
     <string name="close">Close</string>
     <string name="proceed">Proceed</string>
     <string name="buy_20_mins">Purchase 20 minutes</string>
-    <string name="desc_sd_overlay">Do you want to buy a 20 minute time-waster for 1 Aura? This purchase will lift off all restrictions from this app or item for the next 20 minutes.</string>
+    <string name="desc_sd_overlay">Buy a 20 minute time-waster for 1 Aura? The purchase lifts all restrictions from this app or item for the next 20 minutes.</string>
 
     <string name="no_coins_title">Insufficient Aura</string>
-    <string name="desc_no_coins_overlay">You have 0 Aura to waste time, perform a quest to earn Aura now!</string>
+    <string name="desc_no_coins_overlay">You have 0 Aura to waste time. Perform a quest to earn Aura now!</string>
 
-    <string name="desc_ex_overlay">Are you sure you want to continue wasting your time?</string>
+    <string name="desc_ex_overlay">Continue wasting your time, wasting away in the darkness of your own mind\'s creation?</string>
 
 
     <string name="breathe">Take a deep breath!!!</string>
     <string name="warning_title">Are you sure?</string>
 
-    <string name="notification_accessibility_permission">Accessibilty Services required to run blockers.</string>
-    <string name="notification_overlay_permission">This app requires overlay permission to display warning screen each time when a blocked item is found on screen. Your data always remains on your device and we do not store any of it on our servers</string>
-    <string name="notification_notif_permission">Notification permission required to receive quest updates.</string>
-    <string name="notification_location_permission">Precise Location permission required to track location for this quest. Your data always remains on your device and we do not store any of it on our servers</string>
-    <string name="notification_camera_permission">Camera permission required to track position and count reps for this quest. Your data always remains on your device and we do not store any of it on our servers.</string>
+    <string name="notification_accessibility_permission">Accessibilty services required to run blockers.</string>
+    <string name="notification_overlay_permission">Grant overlay permission to put warnings over blocked items. (Your data remains on your device and is never transferred elsewhere.)</string>
+    <string name="notification_notif_permission">Grant notification permission required to receive quest updates.</string>
+    <string name="notification_location_permission">Grant precise Location permission to track location for quests. (Your data remains on your device and is never transferred elsewhere.)</string>
+    <string name="notification_camera_permission">Grant camera permission to track position and count reps for quests. (Your data remains on your device and is never transferred elsewhere.)</string>
 
 
     <string name="notification_marathon_title">Marathon Quest in running</string>
@@ -33,27 +33,27 @@
 
     <string name="select_quest">Select Quest</string>
     <string name="welcome">Welcome</string>
-    <string name="app_desc">DigiPaws is an open-source Android productivity utility designed to help users reduce screen addiction by regulating app usage through a gamified experience. The application offers three distinct modes—Easy, Adventure, and Hard—each with unique features and challenges to promote healthy screen time habits.</string>
+    <string name="app_desc">DigiPaws is copylefted libre software solving screen addiction by regulating app usage through a gamified experience. Easy, adventure, and hard — each with unique features and challenges to promote healthy habits.</string>
 
     <string name="easy_mode">Easy Mode</string>
-    <string name="easy_mode_desc">In Easy Mode, DigiPaws provides gentle reminders to help you manage your screen time. When you attempt to access a blocked app, a warning screen appears. If you choose to proceed, a cooldown period starts. After the cooldown, another warning is displayed to remind you of your usage.</string>
+    <string name="easy_mode_desc">Access to blocked apps only gives gentle warnings. This is repeated to keep you honest in managing screen time.</string>
 
     <string name="adventure_mode">Adventure Mode (Experimental)</string>
-    <string name="adventure_mode_desc">Adventure Mode introduces a gamified experience to control screen time. To access a blocked app, you need Aura. These can be earned by completing quests such as a quick 1 km walk. Each Aura grants 20 minutes of usage time for any blocked app, encouraging physical activity and mindful screen use. With every quests you perform, the  difficulty rises.</string>
+    <string name="adventure_mode_desc">The slop is in the immediacy of a quick km walk away, which might be a safe distance. Requires Aura earnt through quests to access a blocked app for 20 min. With every quests, the  difficulty rises.</string>
 
     <string name="hard_mode">Hard Mode</string>
-    <string name="hard_mode_desc">Hard Mode offers the most stringent control over app usage. In this mode, when you try to open a blocked app, the back button is automatically pressed without any warning or cooldown, preventing access entirely.</string>
+    <string name="hard_mode_desc">Prevents use of blocked apps altogether.</string>
 
     <string name="block_vb_title">What do you wish to block?</string>
-    <string name="block_shorts_cb">Block Shorts</string>
-    <string name="block_comments_cb">Block Comments (Experimental)</string>
-    <string name="block_porn_cb">Block Explicit Keywords (Experimental)</string>
-    <string name="block_vb_desc">Supported Platforms: Youtube, Instagram, Revanced, Tiktok.</string>
+    <string name="block_shorts_cb">Block shorts</string>
+    <string name="block_comments_cb">Block comments (Experimental)</string>
+    <string name="block_porn_cb">Block keywords (Experimental)</string>
+    <string name="block_vb_desc">Supported platforms: YouTube, Instagram, ReVanced, TikTok.</string>
 
     <string name="anti_uninstall_title">#TechRehab</string>
-    <string name="anti_uninstall_cb">Enable Device Admin</string>
-     <string name="anti_reboot_cb">Prevent Force-Closing device (Experimental)</string>
-    <string name="anti_uninstall_desc">#TechRehab is a 3-week productivity challenge designed to help you break free from screen addiction. During this time, you won’t be able to modify the app or uninstall DigiPaws. To join the challenge, check the box labeled "Enable Device Admin" above.This step is optional. You can skip this step and enable it anytime in the future.</string>
+    <string name="anti_uninstall_cb">Turn on TechRehab</string>
+     <string name="anti_reboot_cb">Prevent force-closing device (Experimental)</string>
+    <string name="anti_uninstall_desc">#A strict 3-week productivity challenge to build a habit. During this time, you won’t be able to modify the app or uninstall DigiPaws.</string>
     <string name="anti_uninstall_desc_day">days strong!!!</string>
 
 
@@ -63,18 +63,18 @@
 
 
     <string name="choose_delay_title">How often?</string>
-    <string name="choose_delay_desc">Specify a custom cooldown between each warning. This is unavailable for Adventure mode</string>
+    <string name="choose_delay_desc">Specify a custom cooldown between each warning. This is unavailable for adventure mode</string>
 
-    <string name="acc_desc">Please turn off and re-enable if service malfunctions. To apply any configuration changes, turn off and on.</string>
+    <string name="acc_desc">Please turn off and on again if problems occur, or to apply any configuration changes.</string>
     
     <string name="choose_blocked_apps_title">App Blocker Configuration</string>
-    <string name="choose_blocked_apps_desc">Select the apps you wish to block or receive usage warnings for.</string>
+    <string name="choose_blocked_apps_desc">Select the apps block or get usage warnings for.</string>
 
-    <string name="choose_whitelist_apps">White Listed Apps</string>
-    <string name="choose_whitelist_apps_desc">Select the apps you wish to use during focus mode. Focus mode is a quest where one cannot access any non-whitelisted application for a desired time period. This quest cannot be stopped once started. </string>
+    <string name="choose_whitelist_apps">Graylisted Apps</string>
+    <string name="choose_whitelist_apps_desc">Select apps to allow during focus mode. Focus mode is a quest where one cannot access any of these apps for a desired time period. This quest cannot be stopped once started. </string>
 
     <string name="perm_quest_manager_label">Digipaws Quests</string>
-    <string name="perm_quest_manager_desc">act as a quest and modify Aura count?</string>
+    <string name="perm_quest_manager_desc">Act as a quest and modify Aura count?</string>
 
 
     <string
@@ -96,30 +96,30 @@
             name="pref_key_front_camera_picture_size"
             translatable="false">fcpts</string>
 
-    <string name="marathon_desc">Move out of the above red zone to win this quest. There is no penalty for failing this quest. Do not forget to carry your phone!</string>
-    <string name="squats_desc">Simply perform $valuex squats to earn 1 Aura point. You are free to perform this quest in sets of any.Make sure your entire body is visible on camera above. Not working?</string>
-    <string name="pushups_desc">Simply perform $valuex pushups to earn 1 Aura point. You are free to perform this quest in sets of any. Make sure your entire body is visible on camera above. Not working?</string>
-    <string name="focus_desc">Focus or survival mode blocks all apps except basic needs like calling and SMS for the next 90 minutes. Once focus mode is turned on, it CANNOT be turned off until the timer goes off. Completing this quest brings 1 Aura coin.</string>
+    <string name="marathon_desc">Exit the red zone to win, with no penalty for failing. Remember to bring your device along.</string>
+    <string name="squats_desc">$valuex squats earn 1 Aura point. Perform this quest in sets of any. Ensure your entire body is on camera above. Not working?</string>
+    <string name="pushups_desc">$valuex pushups earn 1 Aura point. Perform this quest in sets of any. Ensure your entire body is on camera above. Not working?</string>
+    <string name="focus_desc">Focus or survival mode blocks all apps except basic needs like calling and SMS for the next 90 minutes. The competed quest grants 1 Aura, and cannot be turned off.</string>
 
     <string name="aura_earned_1">You earned 1 Aura coin</string>
-    <string name="tac">By continuing, you agree to our Terms and Conditions</string>
+    <string name="tac">By continuing, you agree to the Terms and Conditions</string>
 
-    <string name="accessibility_perm">DigiPaws needs access to accessibility data to know when you open a specific feature within an app, like a social media feed or a game. This lets DigiPaws block those features for you based on your preferences, helping you stay focused and reduce screen distractions.
+    <string name="accessibility_perm">Accessibility data is needed for preferences based on use of specific features within blocked apps, like a social media feed or a game.
     \n\n
-        Rest assured, all accessibility data stays securely on your device—we never share or transmit your data, ensuring your privacy is always protected.
+        (Your data remains on your device and is never transferred elsewhere.)
     </string>
 
     <string name="choose_msg_title">Warning Screen</string>
 
-    <string name="battery_optimisation_title">Disable Battery Optimization</string>
-    <string name="battery_optimisation_desc">To ensure this app works properly, please disable battery optimization for this app. This helps us gently remind you of your screen time, keeping you mindful and focused without being intrusive.</string>
+    <string name="battery_optimisation_title">Turn off Battery Optimization</string>
+    <string name="battery_optimisation_desc">Helps the app always act when needed.</string>
 
-    <string name="congratulate_text_challenge_comp">Congrats on conquering #TechRehab! Your 21 days of commitment are truly inspiring. Keep shining! 🌟</string>
-    <string name="congratulate_text_challenge_incomp">You are doing amazing on your #TechRehab journey! Keep going strong — every step counts! 🫵👑</string>
+    <string name="congratulate_text_challenge_comp">Congrats on your #TechRehab! Your 21 days of commitment are truly inspiring. Keep shining! 🌟</string>
+    <string name="congratulate_text_challenge_incomp">You are doing your #TechRehab. Keep going strong — every step counts! 🫵👑</string>
     <string name="title">Title</string>
     <string name="description">description</string>
-    <string name="shorts_allow_first_shorts_title">let me open reels but block them when I scroll (Experimental)</string>
-    <string name="enter_safe_mode_title">Press "minutes" ten times to force quit focus mode.</string>
+    <string name="shorts_allow_first_shorts_title">Allow opening reels, but block scrolling (Experimental)</string>
+    <string name="enter_safe_mode_title">Press "minutes" ten times to force-quit focus mode.</string>
 
 
 </resources>
